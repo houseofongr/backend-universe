@@ -5,6 +5,8 @@ import com.hoo.common.web.dto.PageRequest;
 import com.hoo.universe.adapter.out.persistence.PersistenceAdapterTest;
 import com.hoo.universe.adapter.out.persistence.repository.PieceJpaRepository;
 import com.hoo.universe.api.dto.command.SearchUniverseCommand;
+import com.hoo.universe.api.dto.query.OpenPieceQueryResult;
+import com.hoo.universe.api.dto.query.UniverseListQueryInfo;
 import com.hoo.universe.api.dto.result.UniverseListInfo;
 import com.hoo.universe.api.dto.result.piece.OpenPieceResult;
 import com.hoo.universe.domain.vo.Category;
@@ -50,9 +52,9 @@ class UniverseQueryAdapterTest {
         SearchUniverseCommand command50 = new SearchUniverseCommand(PageRequest.of(1, 50), null);
 
         // when
-        PageQueryResult<UniverseListInfo> resultSize10 = sut.searchUniverses(command10);
-        PageQueryResult<UniverseListInfo> resultSize20 = sut.searchUniverses(command20);
-        PageQueryResult<UniverseListInfo> resultSize50 = sut.searchUniverses(command50);
+        PageQueryResult<UniverseListQueryInfo> resultSize10 = sut.searchUniverses(command10);
+        PageQueryResult<UniverseListQueryInfo> resultSize20 = sut.searchUniverses(command20);
+        PageQueryResult<UniverseListQueryInfo> resultSize50 = sut.searchUniverses(command50);
 
         // then
         assertThat(resultSize10.content().size()).isEqualTo(10);
@@ -85,10 +87,10 @@ class UniverseQueryAdapterTest {
         SearchUniverseCommand all_유니버스 = new SearchUniverseCommand(PageRequest.ofWithKeyword("all", "유니버스"), null);
 
         // when
-        PageQueryResult<UniverseListInfo> result_content_건강 = sut.searchUniverses(content_건강);
-        PageQueryResult<UniverseListInfo> result_content_콘텐츠 = sut.searchUniverses(content_콘텐츠);
-        PageQueryResult<UniverseListInfo> result_owner_leaf = sut.searchUniverses(owner_leaf);
-        PageQueryResult<UniverseListInfo> result_all_유니버스 = sut.searchUniverses(all_유니버스);
+        PageQueryResult<UniverseListQueryInfo> result_content_건강 = sut.searchUniverses(content_건강);
+        PageQueryResult<UniverseListQueryInfo> result_content_콘텐츠 = sut.searchUniverses(content_콘텐츠);
+        PageQueryResult<UniverseListQueryInfo> result_owner_leaf = sut.searchUniverses(owner_leaf);
+        PageQueryResult<UniverseListQueryInfo> result_all_유니버스 = sut.searchUniverses(all_유니버스);
 
         // then
         assertThat(result_content_건강.content().size()).isEqualTo(3);
@@ -111,8 +113,8 @@ class UniverseQueryAdapterTest {
         SearchUniverseCommand PUBLIC = new SearchUniverseCommand(PageRequest.defaultPage(), categoryID2);
 
         // when
-        PageQueryResult<UniverseListInfo> result_LIFE = sut.searchUniverses(LIFE);
-        PageQueryResult<UniverseListInfo> result_PUBLIC = sut.searchUniverses(PUBLIC);
+        PageQueryResult<UniverseListQueryInfo> result_LIFE = sut.searchUniverses(LIFE);
+        PageQueryResult<UniverseListQueryInfo> result_PUBLIC = sut.searchUniverses(PUBLIC);
 
         // then
         assertThat(result_LIFE.content().size()).isEqualTo(8);
@@ -129,7 +131,7 @@ class UniverseQueryAdapterTest {
         PageRequest pageRequest = PageRequest.defaultPage();
 
         // when
-        OpenPieceResult result = sut.searchPiece(pieceID, pageRequest);
+        OpenPieceQueryResult result = sut.searchPiece(pieceID, pageRequest);
 
         // then
         assertThat(result.sounds().content()).hasSize(4);

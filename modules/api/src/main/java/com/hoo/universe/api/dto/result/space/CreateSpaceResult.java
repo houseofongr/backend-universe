@@ -1,10 +1,11 @@
 package com.hoo.universe.api.dto.result.space;
 
+import java.net.URI;
 import java.util.UUID;
 
 public record CreateSpaceResult(
         UUID spaceID,
-        UUID backgroundID,
+        URI backgroundFileUrl,
         String title,
         String description,
         Double startX,

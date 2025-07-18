@@ -10,14 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 
+import java.net.URI;
 import java.util.UUID;
 
-import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -35,10 +35,7 @@ class OverwriteSpaceFileControllerTest extends DocumentationTest {
         MockMultipartFile background = new MockMultipartFile("background", "new_space_background.png", "image/png", "space file".getBytes());
 
         when(overwriteSpaceFileUseCase.overwriteSpaceFile(any(), any(), any()))
-                .thenReturn(new OverwriteSpaceFileResult(
-                        UuidCreator.getTimeOrderedEpoch(),
-                        UuidCreator.getTimeOrderedEpoch()
-                        ));
+                .thenReturn(new OverwriteSpaceFileResult(URI.create("http://example.com/files/background.jpg")));
 
         mockMvc.perform(multipart("/universes/{universeID}/spaces/{spaceID}/background", universeID, spaceID)
                         .file(background)
@@ -53,8 +50,7 @@ class OverwriteSpaceFileControllerTest extends DocumentationTest {
                                 partWithName("background").description("수정할 스페이스의 배경 파일입니다.")
                         ),
                         responseFields(
-                                fieldWithPath("deletedBackgroundID").description("삭제된 배경 파일 아이디입니다."),
-                                fieldWithPath("newBackgroundID").description("새로운 배경 파일 아이디입니다.")
+                                fieldWithPath("newBackgroundFileUrl").description("새로운 배경 파일 아이디입니다.")
                         )
                 ));
     }

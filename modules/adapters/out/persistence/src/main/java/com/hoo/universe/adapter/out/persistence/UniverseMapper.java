@@ -5,8 +5,8 @@ import com.hoo.universe.adapter.out.persistence.entity.*;
 import com.hoo.universe.adapter.out.persistence.entity.vo.CommonMetadataJpaValue;
 import com.hoo.universe.adapter.out.persistence.entity.vo.PieceMetadataJpaValue;
 import com.hoo.universe.adapter.out.persistence.entity.vo.SpaceMetadataJpaValue;
-import com.hoo.universe.api.dto.result.UniverseListInfo;
-import com.hoo.universe.api.dto.result.piece.OpenPieceResult;
+import com.hoo.universe.api.dto.query.OpenPieceQueryResult;
+import com.hoo.universe.api.dto.query.UniverseListQueryInfo;
 import com.hoo.universe.domain.Piece;
 import com.hoo.universe.domain.Space;
 import com.hoo.universe.domain.Universe;
@@ -55,8 +55,8 @@ public class UniverseMapper {
         );
     }
 
-    public UniverseListInfo mapToUniverseInfo(UniverseJpaEntity universeJpaEntity) {
-        return new UniverseListInfo(
+    public UniverseListQueryInfo mapToUniverseInfo(UniverseJpaEntity universeJpaEntity) {
+        return new UniverseListQueryInfo(
                 universeJpaEntity.getUuid(),
                 universeJpaEntity.getUniverseMetadata().getThumbmusicFileID(),
                 universeJpaEntity.getUniverseMetadata().getThumbnailFileID(),
@@ -74,8 +74,8 @@ public class UniverseMapper {
         );
     }
 
-    public OpenPieceResult mapToOpenPieceResult(PieceJpaEntity pieceJpaEntity, PageQueryResult<SoundJpaEntity> soundQueryResult) {
-        return new OpenPieceResult(
+    public OpenPieceQueryResult mapToOpenPieceResult(PieceJpaEntity pieceJpaEntity, PageQueryResult<SoundJpaEntity> soundQueryResult) {
+        return new OpenPieceQueryResult(
                 pieceJpaEntity.getUuid(),
                 pieceJpaEntity.getCommonMetadata().getTitle(),
                 pieceJpaEntity.getCommonMetadata().getDescription(),
@@ -86,8 +86,8 @@ public class UniverseMapper {
         );
     }
 
-    private OpenPieceResult.SoundInfo mapToSoundInfo(SoundJpaEntity soundJpaEntity) {
-        return new OpenPieceResult.SoundInfo(
+    private OpenPieceQueryResult.SoundInfo mapToSoundInfo(SoundJpaEntity soundJpaEntity) {
+        return new OpenPieceQueryResult.SoundInfo(
                 soundJpaEntity.getUuid(),
                 soundJpaEntity.getSoundMetadata().getAudioFileID(),
                 soundJpaEntity.getCommonMetadata().getTitle(),

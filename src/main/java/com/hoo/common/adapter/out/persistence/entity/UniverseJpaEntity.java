@@ -35,7 +35,7 @@ public class UniverseJpaEntity extends DateColumnBaseEntity {
     private PublicStatus publicStatus;
 
     @Column(nullable = false)
-    private Long thumbMusicFileId;
+    private Long thumbmusicFileId;
 
     @Column(nullable = false)
     private Long thumbnailFileId;
@@ -77,7 +77,7 @@ public class UniverseJpaEntity extends DateColumnBaseEntity {
         this.title = universe.getBasicInfo().getTitle();
         this.description = universe.getBasicInfo().getDescription();
         this.publicStatus = universe.getBasicInfo().getPublicStatus();
-        this.thumbMusicFileId = universe.getFileInfo().getThumbMusicId();
+        this.thumbmusicFileId = universe.getFileInfo().getThumbMusicId();
         this.thumbnailFileId = universe.getFileInfo().getThumbnailId();
         this.innerImageFileId = universe.getFileInfo().getImageId();
     }

@@ -66,7 +66,7 @@ class DeleteSpaceControllerTest extends AbstractControllerTest {
                         )
                 ));
 
-        // 파일개수 체크 : thumbMusic(audio : 1) | thumbnail + innerImage + spaces(1, 3)'s innerImage(image : 4)
+        // 파일개수 체크 : thumbmusic(audio : 1) | thumbnail + innerImage + spaces(1, 3)'s innerImage(image : 4)
         List<FileJpaEntity> files = fileJpaRepository.findAll();
         assertThat(files).hasSize(5);
         assertThat(files.stream().filter(fileJpaEntity -> fileJpaEntity.getAbsolutePath().contains("images"))).hasSize(4);

@@ -34,7 +34,7 @@ class DeletePieceControllerTest extends DocumentationTest {
                 .thenReturn(new DeletePieceResult(
                         UuidCreator.getTimeOrderedEpoch(),
                         List.of(UuidCreator.getTimeOrderedEpoch(), UuidCreator.getTimeOrderedEpoch()),
-                        List.of(UuidCreator.getTimeOrderedEpoch(), UuidCreator.getTimeOrderedEpoch())
+                        3
                 ));
 
         mockMvc.perform(delete("/universes/{universeID}/pieces/{pieceID}", universeID, pieceID))
@@ -47,7 +47,7 @@ class DeletePieceControllerTest extends DocumentationTest {
                         responseFields(
                                 fieldWithPath("deletedPieceID").description("삭제된 피스 ID입니다."),
                                 fieldWithPath("deletedSoundIDs").description("삭제된 사운드 ID 리스트입니다."),
-                                fieldWithPath("deletedFileIDs").description("삭제된 파일 ID 리스트입니다.")
+                                fieldWithPath("deletedFileCount").description("삭제된 파일 개수입니다.")
                         )
                 ));
     }

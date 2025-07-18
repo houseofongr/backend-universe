@@ -67,7 +67,7 @@ public class CreateSpaceService implements CreateSpaceUseCase {
 
         return new CreateSpaceResult(
                 newSpace.getId().uuid(),
-                newSpace.getSpaceMetadata().getBackgroundID(),
+                background.fileUrl(),
                 newSpace.getCommonMetadata().getTitle(),
                 newSpace.getCommonMetadata().getDescription(),
                 farthestPoints[0].x(),

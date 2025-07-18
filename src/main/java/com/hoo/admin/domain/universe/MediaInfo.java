@@ -1,11 +1,11 @@
 package com.hoo.admin.domain.universe;
 
 public class MediaInfo {
-    private final Long thumbMusicId;
+    private final Long thumbmusicId;
     private final Long thumbnailId;
 
-    public MediaInfo(Long thumbMusicId, Long thumbnailId) {
-        this.thumbMusicId = thumbMusicId;
+    public MediaInfo(Long thumbmusicId, Long thumbnailId) {
+        this.thumbmusicId = thumbmusicId;
         this.thumbnailId = thumbnailId;
     }
 }

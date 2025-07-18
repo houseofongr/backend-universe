@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 
+import java.net.URI;
 import java.util.UUID;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -36,10 +37,7 @@ class OverwriteSoundFileControllerTest extends DocumentationTest {
         MockMultipartFile audio = new MockMultipartFile("audio", "new_sound.mp3", "audio/mpeg", "sound file".getBytes());
 
         when(overwriteSoundFileUseCase.overwriteSoundAudio(any(), any(), any(), any()))
-                .thenReturn(new OverwriteSoundFileResult(
-                        UuidCreator.getTimeOrderedEpoch(),
-                        UuidCreator.getTimeOrderedEpoch()
-                ));
+                .thenReturn(new OverwriteSoundFileResult(URI.create("http://example.com/files/audio.mp3")));
 
         mockMvc.perform(multipart("/universes/{universeID}/pieces/{parentPieceID}/sound/{soundID}/audio",
                         universeID, parentPieceID, soundID)
@@ -56,8 +54,7 @@ class OverwriteSoundFileControllerTest extends DocumentationTest {
                                 partWithName("audio").description("수정할 사운드의 오디오 파일입니다.")
                         ),
                         responseFields(
-                                fieldWithPath("deletedAudioID").description("삭제된 오디오 파일 아이디입니다."),
-                                fieldWithPath("newAudioID").description("새로운 오디오 파일 아이디입니다.")
+                                fieldWithPath("newAudioFileUrl").description("새로운 오디오 파일 아이디입니다.")
                         )
                 ));
 

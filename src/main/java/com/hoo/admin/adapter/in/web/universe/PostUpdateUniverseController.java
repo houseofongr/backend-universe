@@ -28,9 +28,9 @@ public class PostUpdateUniverseController {
     @PostMapping("/admin/universes/thumb-music/{universeId}")
     public ResponseEntity<UpdateUniverseResult.ThumbMusic> updateThumbMusic(
             @PathVariable Long universeId,
-            @RequestPart(value = "thumbMusic") MultipartFile thumbMusic) {
+            @RequestPart(value = "thumbmusic") MultipartFile thumbmusic) {
 
-        return ResponseEntity.ok(useCase.updateThumbMusic(universeId, thumbMusic));
+        return ResponseEntity.ok(useCase.updateThumbMusic(universeId, thumbmusic));
 
     }
 

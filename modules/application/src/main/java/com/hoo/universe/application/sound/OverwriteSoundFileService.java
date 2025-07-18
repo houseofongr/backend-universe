@@ -32,21 +32,18 @@ public class OverwriteSoundFileService implements OverwriteSoundFileUseCase {
     private final DeleteFileEventPublisher deleteFileEventPublisher;
 
     @Override
-    public OverwriteSoundFileResult overwriteSoundAudio(UUID universeID, UUID pieceID, UUID soundID, FileCommand audio) {
+    public OverwriteSoundFileResult overwriteSoundAudio(UUID universeID, UUID pieceID, UUID soundID, FileCommand audioCommand) {
 
         Universe universe = loadUniversePort.loadUniverseWithAllEntity(universeID);
         Piece piece = universe.getPiece(new PieceID(pieceID));
         Sound sound = piece.getSound(new SoundID(soundID));
-        UploadFileResult response = uploadFileAPI.uploadFile(UploadFileCommand.from(audio, universe.getOwner().getId(), universe.getUniverseMetadata().getAccessLevel()));
+        UploadFileResult audio = uploadFileAPI.uploadFile(UploadFileCommand.from(audioCommand, universe.getOwner().getId(), universe.getUniverseMetadata().getAccessLevel()));
 
-        SoundFileOverwriteEvent event = sound.overwriteFile(response.id());
+        SoundFileOverwriteEvent event = sound.overwriteFile(audio.id());
 
         handleSoundEventPort.handleSoundFileOverwriteEvent(event);
         deleteFileEventPublisher.publishDeleteFilesEvent(event.oldAudioID());
 
-        return new OverwriteSoundFileResult(
-                event.oldAudioID(),
-                event.newAudioID()
-        );
+        return new OverwriteSoundFileResult(audio.fileUrl());
     }
 }

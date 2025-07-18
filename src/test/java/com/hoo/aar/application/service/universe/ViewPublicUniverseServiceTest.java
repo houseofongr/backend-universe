@@ -53,7 +53,7 @@ class ViewPublicUniverseServiceTest {
 
         // then
         assertThat(result.universeId()).isEqualTo(1L);
-        assertThat(result.thumbMusicId()).isEqualTo(1L);
+        assertThat(result.thumbmusicId()).isEqualTo(1L);
         assertThat(result.thumbnailId()).isEqualTo(2L);
         assertThat(result.innerImageId()).isEqualTo(3L);
         assertThat(result.ownerId()).isEqualTo(1L);

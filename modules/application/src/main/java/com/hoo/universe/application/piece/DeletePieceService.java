@@ -39,7 +39,7 @@ public class DeletePieceService implements DeletePieceUseCase {
         return new DeletePieceResult(
                 event.deletePieceID().uuid(),
                 event.deleteSoundIDs().stream().map(Sound.SoundID::uuid).toList(),
-                event.deleteFileIDs()
+                event.deleteFileIDs().size()
         );
     }
 }

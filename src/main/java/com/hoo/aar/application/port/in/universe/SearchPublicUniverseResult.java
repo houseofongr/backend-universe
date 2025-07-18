@@ -11,7 +11,7 @@ public record SearchPublicUniverseResult(
     public record UniverseListInfo(
             Long id,
             Long thumbnailId,
-            Long thumbMusicId,
+            Long thumbmusicId,
             Long ownerId,
             Long createdTime,
             Long view,

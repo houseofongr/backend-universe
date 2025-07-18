@@ -2,6 +2,7 @@ package com.hoo.universe.application;
 
 import com.hoo.common.web.dto.PageQueryResult;
 import com.hoo.universe.api.dto.command.SearchUniverseCommand;
+import com.hoo.universe.api.dto.query.UniverseListQueryInfo;
 import com.hoo.universe.api.dto.result.UniverseListInfo;
 import com.hoo.universe.api.in.SearchUniverseUseCase;
 import com.hoo.universe.api.out.persistence.QueryUniversePort;
@@ -18,6 +19,10 @@ public class SearchUniverseService implements SearchUniverseUseCase {
 
     @Override
     public PageQueryResult<UniverseListInfo> searchUniverse(SearchUniverseCommand command) {
-        return queryUniversePort.searchUniverses(command);
+        return mapToAPIResult(queryUniversePort.searchUniverses(command));
+    }
+
+    private PageQueryResult<UniverseListInfo> mapToAPIResult(PageQueryResult<UniverseListQueryInfo> universeListQueryInfoPageQueryResult) {
+        return null;
     }
 }

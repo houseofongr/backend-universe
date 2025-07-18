@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.mock.web.MockPart;
 
+import java.net.URI;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -49,7 +50,7 @@ class CreateUniverseControllerTest extends DocumentationTest {
 
         MockMultipartFile background = new MockMultipartFile("background", "universe_inner_image.png", "image/png", "image file".getBytes());
         MockMultipartFile thumbnail = new MockMultipartFile("thumbnail", "universe_thumb.png", "image/png", "universe file".getBytes());
-        MockMultipartFile thumbMusic = new MockMultipartFile("thumbmusic", "universe_music.mp3", "audio/mpeg", "music file".getBytes());
+        MockMultipartFile thumbmusic = new MockMultipartFile("thumbmusic", "universe_music.mp3", "audio/mpeg", "music file".getBytes());
 
         when(createUniverseUseCase.createNewUniverse(argThat( command ->
                         command.metadata().title().equals("우주") &&
@@ -61,9 +62,9 @@ class CreateUniverseControllerTest extends DocumentationTest {
                         ))))
                 .thenReturn(new CreateUniverseResult(
                         UuidCreator.getTimeOrderedEpoch(),
-                        UuidCreator.getTimeOrderedEpoch(),
-                        UuidCreator.getTimeOrderedEpoch(),
-                        UuidCreator.getTimeOrderedEpoch(),
+                        URI.create("http://example.com/files/thumbmusic.mp3"),
+                        URI.create("http://example.com/files/thumbnail.jpg"),
+                        URI.create("http://example.com/files/background.jpg"),
                         UuidCreator.getTimeOrderedEpoch(),
                         ZonedDateTime.now().toEpochSecond(),
                         UuidCreator.getTimeOrderedEpoch(),
@@ -75,7 +76,7 @@ class CreateUniverseControllerTest extends DocumentationTest {
                 ));
 
         mockMvc.perform(multipart("/universes")
-                        .file(thumbnail).file(thumbMusic).file(background)
+                        .file(thumbnail).file(thumbmusic).file(background)
                         .part(metadataPart)
                         .contentType(MediaType.MULTIPART_FORM_DATA))
                 .andExpect(status().is(201))
@@ -88,9 +89,9 @@ class CreateUniverseControllerTest extends DocumentationTest {
                         ),
                         responseFields(
                                 fieldWithPath("universeID").description("생성된 유니버스의 아이디입니다."),
-                                fieldWithPath("thumbnailID").description("생성된 유니버스의 썸네일 파일 ID입니다."),
-                                fieldWithPath("thumbMusicID").description("생성된 유니버스의 썸뮤직 파일 ID입니다."),
-                                fieldWithPath("backgroundID").description("생성된 유니버스의 내부 이미지 파일 ID입니다."),
+                                fieldWithPath("thumbmusicFileUrl").description("생성된 유니버스의 썸뮤직 파일 ID입니다."),
+                                fieldWithPath("thumbnailFileUrl").description("생성된 유니버스의 썸네일 파일 ID입니다."),
+                                fieldWithPath("backgroundFileUrl").description("생성된 유니버스의 내부 이미지 파일 ID입니다."),
                                 fieldWithPath("ownerID").description("생성된 유니버스 작성자의 ID입니다."),
                                 fieldWithPath("createdTime").description("유니버스의 생성(등록)일자입니다."),
                                 fieldWithPath("title").description("생성된 유니버스의 제목입니다."),

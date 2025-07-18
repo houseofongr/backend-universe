@@ -1,9 +1,8 @@
 package com.hoo.universe.api.dto.result.space;
 
-import java.util.UUID;
+import java.net.URI;
 
 public record OverwriteSpaceFileResult(
-        UUID deletedBackgroundID,
-        UUID newBackgroundID
+        URI newBackgroundFileUrl
 ) {
 }

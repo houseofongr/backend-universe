@@ -31,10 +31,10 @@ class PostUpdateUniverseControllerTest extends AbstractControllerTest {
     @DisplayName("유니버스 썸뮤직 수정 API")
     void testUniverseUpdateThumbMusicAPI() throws Exception {
         saveFile(FileF.IMAGE_FILE_1.get(tempDir.toString()));
-        MockMultipartFile thumbMusic = new MockMultipartFile("thumbMusic", "new_universe_thumb.mp3", "audio/mpeg", "universe file".getBytes());
+        MockMultipartFile thumbmusic = new MockMultipartFile("thumbmusic", "new_universe_thumb.mp3", "audio/mpeg", "universe file".getBytes());
 
         mockMvc.perform(multipart("/admin/universes/thumb-music/{universeId}", 1)
-                        .file(thumbMusic)
+                        .file(thumbmusic)
                         .contentType(MediaType.MULTIPART_FORM_DATA)
                         .with(user("admin").roles("ADMIN")))
                 .andExpect(status().is(200))
@@ -43,7 +43,7 @@ class PostUpdateUniverseControllerTest extends AbstractControllerTest {
                                 parameterWithName("universeId").description("수정할 유니버스의 ID입니다.")
                         ),
                         requestParts(
-                                partWithName("thumbMusic").description("수정할 유니버스의 썸뮤직 오디오 파일입니다.")
+                                partWithName("thumbmusic").description("수정할 유니버스의 썸뮤직 오디오 파일입니다.")
                         ),
                         responseFields(
                                 fieldWithPath("message").description("수정 완료 메시지 : '[#id]번 유니버스의 썸뮤직이 수정되었습니다.'"),

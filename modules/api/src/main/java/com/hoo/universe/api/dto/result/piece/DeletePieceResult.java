@@ -6,6 +6,6 @@ import java.util.UUID;
 public record DeletePieceResult(
         UUID deletedPieceID,
         List<UUID> deletedSoundIDs,
-        List<UUID> deletedFileIDs
+        Integer deletedFileCount
 ) {
 }

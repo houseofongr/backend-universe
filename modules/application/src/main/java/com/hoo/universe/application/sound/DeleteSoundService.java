@@ -38,9 +38,6 @@ public class DeleteSoundService implements DeleteSoundUseCase {
         handleSoundEventPort.handleSoundDeleteEvent(event);
         deleteFileEventPublisher.publishDeleteFilesEvent(event.deleteAudioFileID());
 
-        return new DeleteSoundResult(
-                event.deleteSoundID().uuid(),
-                event.deleteAudioFileID()
-        );
+        return new DeleteSoundResult(event.deleteSoundID().uuid());
     }
 }

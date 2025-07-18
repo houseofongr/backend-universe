@@ -5,12 +5,12 @@ import lombok.Getter;
 @Getter
 public class UniverseFileInfo extends ImageFileInfo {
 
-    private Long thumbMusicId;
+    private Long thumbmusicId;
     private Long thumbnailId;
 
-    public UniverseFileInfo(Long thumbMusicId, Long thumbnailId, Long innerImageId) {
+    public UniverseFileInfo(Long thumbmusicId, Long thumbnailId, Long innerImageId) {
         super(innerImageId);
-        this.thumbMusicId = thumbMusicId;
+        this.thumbmusicId = thumbmusicId;
         this.thumbnailId = thumbnailId;
     }
 
@@ -18,7 +18,7 @@ public class UniverseFileInfo extends ImageFileInfo {
         this.thumbnailId = thumbnailId;
     }
 
-    public void updateThumbMusic(Long thumbMusicId) {
-        this.thumbMusicId = thumbMusicId;
+    public void updateThumbMusic(Long thumbmusicId) {
+        this.thumbmusicId = thumbmusicId;
     }
 }

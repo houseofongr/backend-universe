@@ -72,13 +72,13 @@ class CreateUniverseServiceTest {
         // given
         MockMultipartFile innerImage = new MockMultipartFile("innerImage", "universe_inner_image.png", "image/png", "image file".getBytes());
         MockMultipartFile thumbnail = new MockMultipartFile("thumbnail", "universe_thumb.png", "image/png", "image file".getBytes());
-        MockMultipartFile thumbMusic = new MockMultipartFile("thumbMusic", "universe_music.mp3", "audio/mpeg", "music file".getBytes());
+        MockMultipartFile thumbmusic = new MockMultipartFile("thumbmusic", "universe_music.mp3", "audio/mpeg", "music file".getBytes());
 
         // when
         Map<String, MultipartFile> empty = Map.of();
-        Map<String, MultipartFile> noThumbnail = Map.of("thumbMusic", thumbMusic, "innerImage", innerImage);
+        Map<String, MultipartFile> noThumbnail = Map.of("thumbmusic", thumbmusic, "innerImage", innerImage);
         Map<String, MultipartFile> noThumbMusic = Map.of("thumbnail", thumbnail, "innerImage", innerImage);
-        Map<String, MultipartFile> noInnerImage = Map.of("thumbnail", thumbnail, "thumbMusic", thumbMusic);
+        Map<String, MultipartFile> noInnerImage = Map.of("thumbnail", thumbnail, "thumbmusic", thumbmusic);
 
         // then
         assertThatThrownBy(() -> CreateUniverseCommand.from(command, empty)).hasMessage(AdminErrorCode.UNIVERSE_FILE_REQUIRED.getMessage());
@@ -96,15 +96,15 @@ class CreateUniverseServiceTest {
 
         MockMultipartFile thumbnail = new MockMultipartFile("thumbnail", "universe_thumb.png", "image/png", "image file".getBytes());
         MockMultipartFile thumbnailExceed = new MockMultipartFile("thumbnail", "universe_thumb.png", "image/png", content);
-        MockMultipartFile thumbMusic = new MockMultipartFile("thumbMusic", "universe_music.mp3", "audio/mpeg", "music file".getBytes());
-        MockMultipartFile thumbMusicExceed = new MockMultipartFile("thumbMusic", "universe_music.mp3", "audio/mpeg", content);
+        MockMultipartFile thumbmusic = new MockMultipartFile("thumbmusic", "universe_music.mp3", "audio/mpeg", "music file".getBytes());
+        MockMultipartFile thumbmusicExceed = new MockMultipartFile("thumbmusic", "universe_music.mp3", "audio/mpeg", content);
         MockMultipartFile innerImage = new MockMultipartFile("innerImage", "universe_inner_image.png", "image/png", content);
         MockMultipartFile innerImageExceed = new MockMultipartFile("innerImage", "universe_inner_image.png", "image/png", content2);
 
         // when
-        Map<String, MultipartFile> exceedThumbnailSize = Map.of("thumbnail", thumbnailExceed, "thumbMusic", thumbMusic, "innerImage", innerImage);
-        Map<String, MultipartFile> exceedThumbMusicSize = Map.of("thumbnail", thumbnail, "thumbMusic", thumbMusicExceed, "innerImage", innerImage);
-        Map<String, MultipartFile> exceedInnerImage = Map.of("thumbnail", thumbnail, "thumbMusic", thumbMusic, "innerImage", innerImageExceed);
+        Map<String, MultipartFile> exceedThumbnailSize = Map.of("thumbnail", thumbnailExceed, "thumbmusic", thumbmusic, "innerImage", innerImage);
+        Map<String, MultipartFile> exceedThumbMusicSize = Map.of("thumbnail", thumbnail, "thumbmusic", thumbmusicExceed, "innerImage", innerImage);
+        Map<String, MultipartFile> exceedInnerImage = Map.of("thumbnail", thumbnail, "thumbmusic", thumbmusic, "innerImage", innerImageExceed);
 
         // then
         assertThatThrownBy(() -> CreateUniverseCommand.from(command, exceedThumbnailSize)).hasMessage(AdminErrorCode.EXCEEDED_FILE_SIZE.getMessage());
@@ -119,7 +119,7 @@ class CreateUniverseServiceTest {
         Map<String, MultipartFile> map = new HashMap<>();
         map.put("innerImage", new MockMultipartFile("innerImage", "universe_inner_image.png", "image/png", "image file".getBytes()));
         map.put("thumbnail", new MockMultipartFile("thumbnail", "universe_thumb.png", "image/png", "universe file".getBytes()));
-        map.put("thumbMusic", new MockMultipartFile("thumbMusic", "universe_music.mp3", "audio/mpeg", "music file".getBytes()));
+        map.put("thumbmusic", new MockMultipartFile("thumbmusic", "universe_music.mp3", "audio/mpeg", "music file".getBytes()));
 
         CreateUniverseCommand command = new CreateUniverseCommand("우주", "유니버스는 우주입니다.", 1L, 1L, PUBLIC, List.of("우주", "행성", "지구", "별"), map);
 
@@ -138,7 +138,7 @@ class CreateUniverseServiceTest {
         // then
         assertThat(result.message()).matches("\\[#\\d+]번 유니버스가 생성되었습니다.");
         assertThat(result.universeId()).isEqualTo(1L);
-        assertThat(result.thumbMusicId()).isEqualTo(1L);
+        assertThat(result.thumbmusicId()).isEqualTo(1L);
         assertThat(result.thumbnailId()).isEqualTo(2L);
         assertThat(result.innerImageId()).isEqualTo(3L);
         assertThat(result.ownerId()).isEqualTo(1L);

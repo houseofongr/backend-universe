@@ -6,7 +6,7 @@ public interface UpdateUniverseUseCase {
 
     UpdateUniverseResult.Detail updateDetail(Long universeId, UpdateUniverseCommand command);
 
-    UpdateUniverseResult.ThumbMusic updateThumbMusic(Long universeId, MultipartFile thumbMusic);
+    UpdateUniverseResult.ThumbMusic updateThumbMusic(Long universeId, MultipartFile thumbmusic);
 
     UpdateUniverseResult.Thumbnail updateThumbnail(Long universeId, MultipartFile thumbnail);
 

@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.mock.web.MockPart;
 
+import java.net.URI;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
@@ -58,7 +59,7 @@ class CreateSpaceControllerTest extends DocumentationTest {
         )))
                 .thenReturn(new CreateSpaceResult(
                         UuidCreator.getTimeOrderedEpoch(),
-                        UuidCreator.getTimeOrderedEpoch(),
+                        URI.create("http://example.com/files/background.jpg"),
                         "공간",
                         "스페이스는 공간입니다.",
                         0.8,
@@ -89,7 +90,7 @@ class CreateSpaceControllerTest extends DocumentationTest {
                         ),
                         responseFields(
                                 fieldWithPath("spaceID").description("생성된 스페이스의 ID입니다."),
-                                fieldWithPath("backgroundID").description("생성된 스페이스의 내부 배경입니다."),
+                                fieldWithPath("backgroundFileUrl").description("생성된 스페이스의 내부 배경입니다."),
                                 fieldWithPath("title").description("생성된 스페이스의 제목입니다."),
                                 fieldWithPath("description").description("생성된 스페이스의 상세정보입니다."),
                                 fieldWithPath("startX").description("생성된 스페이스의 시작좌표(x)입니다."),

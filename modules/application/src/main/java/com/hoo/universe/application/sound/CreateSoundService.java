@@ -56,7 +56,7 @@ public class CreateSoundService implements CreateSoundUseCase {
 
         return new CreateSoundResult(
                 newSound.getId().uuid(),
-                newSound.getSoundMetadata().getAudioID(),
+                audio.fileUrl(),
                 newSound.getCommonMetadata().getTitle(),
                 newSound.getCommonMetadata().getDescription(),
                 newSound.getSoundMetadata().isHidden(),

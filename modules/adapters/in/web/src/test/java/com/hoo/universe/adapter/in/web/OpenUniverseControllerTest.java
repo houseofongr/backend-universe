@@ -1,16 +1,20 @@
 package com.hoo.universe.adapter.in.web;
 
 import com.github.f4b6a3.uuid.UuidCreator;
+import com.hoo.common.enums.AccessLevel;
 import com.hoo.universe.api.dto.result.OpenUniverseResult;
 import com.hoo.universe.api.in.OpenUniverseUseCase;
-import com.hoo.universe.domain.Universe;
+import com.hoo.universe.domain.vo.Category;
+import com.hoo.universe.domain.vo.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.net.URI;
+import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.UUID;
 
-import static com.hoo.universe.test.domain.UniverseTestData.defaultUniverse;
 import static org.mockito.Mockito.when;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
@@ -28,10 +32,8 @@ class OpenUniverseControllerTest extends DocumentationTest {
     void openUniverse() throws Exception {
 
         UUID universeID = UuidCreator.getTimeOrderedEpoch();
-        Universe universe = defaultUniverse();
 
-        when(openUniverseUseCase.openUniverseWithComponents(universeID))
-                .thenReturn(OpenUniverseResult.from(universe));
+        when(openUniverseUseCase.openUniverseWithComponents(universeID)).thenReturn(getResult());
 
         mockMvc.perform(get("/universes/{universeID}", universeID))
                 .andExpect(status().is(200))
@@ -41,9 +43,9 @@ class OpenUniverseControllerTest extends DocumentationTest {
                         ),
                         responseFields(
                                 fieldWithPath("id").description("유니버스의 아이디입니다."),
-                                fieldWithPath("thumbnailID").description("썸네일 파일 ID입니다."),
-                                fieldWithPath("thumbMusicID").description("썸뮤직 파일 ID입니다."),
-                                fieldWithPath("backgroundID").description("백그라운드 파일 ID입니다."),
+                                fieldWithPath("thumbmusicFileUrl").description("썸뮤직 파일 ID입니다."),
+                                fieldWithPath("thumbnailFileUrl").description("썸네일 파일 ID입니다."),
+                                fieldWithPath("backgroundFileUrl").description("백그라운드 파일 ID입니다."),
                                 fieldWithPath("ownerID").description("작성자의 ID입니다."),
                                 fieldWithPath("createdTime").description(" 생성(등록)일자입니다."),
                                 fieldWithPath("updatedTime").description(" 수정일자입니다."),
@@ -62,7 +64,7 @@ class OpenUniverseControllerTest extends DocumentationTest {
 
                                 fieldWithPath("spaces[].spaceID").description("스페이스의 ID입니다."),
                                 fieldWithPath("spaces[].parentSpaceID").description("스페이스의 부모 스페이스 ID입니다. +" + "\n" + "* 부모가 유니버스일 경우, -1"),
-                                fieldWithPath("spaces[].backgroundID").description("스페이스의 백그라운드 파일 ID입니다."),
+                                fieldWithPath("spaces[].backgroundFileUrl").description("스페이스의 백그라운드 파일 ID입니다."),
                                 fieldWithPath("spaces[].depth").description("스페이스의 깊이입니다."),
                                 fieldWithPath("spaces[].title").description("스페이스의 제목입니다."),
                                 fieldWithPath("spaces[].description").description("스페이스의 설명입니다."),
@@ -76,7 +78,7 @@ class OpenUniverseControllerTest extends DocumentationTest {
 
                                 fieldWithPath("pieces[].pieceID").description("피스의 ID입니다."),
                                 fieldWithPath("pieces[].parentSpaceID").description("피스의 부모 스페이스 ID입니다. +" + "\n" + "* 부모가 유니버스일 경우, -1"),
-                                fieldWithPath("pieces[].imageID").description("피스의 이미지파일 ID입니다."),
+                                fieldWithPath("pieces[].imageFileUrl").description("피스의 이미지파일 ID입니다."),
                                 fieldWithPath("pieces[].depth").description("피스의 깊이입니다."),
                                 fieldWithPath("pieces[].title").description("피스의 제목입니다."),
                                 fieldWithPath("pieces[].description").description("피스의 설명입니다."),
@@ -87,5 +89,78 @@ class OpenUniverseControllerTest extends DocumentationTest {
                                 fieldWithPath("pieces[].updatedTime").description("피스의 수정일자입니다.(유닉스 타임스태프)")
                         )
                 ));
+    }
+
+    private OpenUniverseResult getResult() {
+        return new OpenUniverseResult(
+                UUID.randomUUID(),
+                URI.create("http://example.com/files/thumbmusic.mp3"),
+                URI.create("http://example.com/files/thumbnail.jpg"),
+                URI.create("http://example.com/files/background.jpg"),
+                UUID.randomUUID(),
+                System.currentTimeMillis() / 1000,
+                System.currentTimeMillis() / 1000,
+                123L,
+                20L,
+                "열린 유니버스 제목",
+                "열린 유니버스 내용",
+                "leaf",
+                "PUBLIC",
+                new Category(UUID.randomUUID(), "category", "카테고리"),
+                List.of("해", "시", "태그"),
+                List.of(
+                        new OpenUniverseResult.SpaceInfo(
+                                UUID.randomUUID(),
+                                UUID.randomUUID(),
+                                URI.create("http://example.com/files/space-bg.jpg"),
+                                1,
+                                "스페이스-1",
+                                "스페이스-1 내용",
+                                false,
+                                List.of(
+                                        new Point(0.1, 0.2),
+                                        new Point(0.3, 0.4),
+                                        new Point(0.5, 0.6)
+                                ),
+                                System.currentTimeMillis() / 1000,
+                                System.currentTimeMillis() / 1000,
+                                List.of(), // 하위 스페이스
+                                List.of(
+                                        new OpenUniverseResult.PieceInfo(
+                                                UUID.randomUUID(),
+                                                UUID.randomUUID(),
+                                                URI.create("http://example.com/files/piece-img.png"),
+                                                2,
+                                                "피스-1",
+                                                "피스-1 설명",
+                                                false,
+                                                List.of(
+                                                        new Point(0.6, 0.7),
+                                                        new Point(0.8, 0.9)
+                                                ),
+                                                System.currentTimeMillis() / 1000,
+                                                System.currentTimeMillis() / 1000
+                                        )
+                                )
+                        )
+                ),
+                List.of(
+                        new OpenUniverseResult.PieceInfo(
+                                UUID.randomUUID(),
+                                null,
+                                URI.create("http://example.com/files/top-piece.png"),
+                                0,
+                                "최상단 피스",
+                                "최상단 피스 설명",
+                                false,
+                                List.of(
+                                        new Point(0.0, 0.1),
+                                        new Point(0.2, 0.3)
+                                ),
+                                System.currentTimeMillis() / 1000,
+                                System.currentTimeMillis() / 1000
+                        )
+                )
+        );
     }
 }

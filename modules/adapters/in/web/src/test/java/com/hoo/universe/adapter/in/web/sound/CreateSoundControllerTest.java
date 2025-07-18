@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.mock.web.MockPart;
 
+import java.net.URI;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
@@ -53,7 +54,7 @@ class CreateSoundControllerTest extends DocumentationTest {
         )))
                 .thenReturn(new CreateSoundResult(
                         UuidCreator.getTimeOrderedEpoch(),
-                        UuidCreator.getTimeOrderedEpoch(),
+                        URI.create("http://example.com/files/audio.mp3"),
                         "소리",
                         "사운드는 소리입니다.",
                         false,
@@ -78,7 +79,7 @@ class CreateSoundControllerTest extends DocumentationTest {
                         ),
                         responseFields(
                                 fieldWithPath("soundID").description("생성된 사운드의 ID입니다."),
-                                fieldWithPath("audioFileID").description("생성된 사운드의 내부 음원파일 ID입니다."),
+                                fieldWithPath("audioFileUrl").description("생성된 사운드의 내부 음원파일 ID입니다."),
                                 fieldWithPath("title").description("생성된 사운드의 제목입니다."),
                                 fieldWithPath("description").description("생성된 사운드의 상세정보입니다."),
                                 fieldWithPath("hidden").description("생성된 사운드의 숨김 여부입니다."),

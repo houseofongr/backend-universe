@@ -33,14 +33,14 @@ public class CreateUniverseService implements CreateUniverseUseCase {
     public CreateUniverseResult create(CreateUniverseCommand command) {
         User owner = findUserPort.loadUser(command.ownerId()).orElseThrow(() -> new AdminException(AdminErrorCode.USER_NOT_FOUND));
 
-        UploadFileResult.FileInfo thumbMusic = uploadPublicAudioUseCase.publicUpload(command.fileMap().get("thumbMusic"));
+        UploadFileResult.FileInfo thumbmusic = uploadPublicAudioUseCase.publicUpload(command.fileMap().get("thumbmusic"));
         UploadFileResult.FileInfo thumbnail = uploadPublicImageUseCase.publicUpload(command.fileMap().get("thumbnail"));
         UploadFileResult.FileInfo innerImage = uploadPublicImageUseCase.publicUpload(command.fileMap().get("innerImage"));
 
         UniverseCategory universeCategory = findCategoryPort.findUniverseCategory(command.categoryId());
 
         Universe universe = Universe.create(
-                thumbMusic.id(),
+                thumbmusic.id(),
                 thumbnail.id(),
                 innerImage.id(),
                 command.title(),

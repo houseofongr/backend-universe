@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
+import java.net.URI;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -38,8 +39,8 @@ class SearchUniverseControllerTest extends DocumentationTest {
                                 1L,
                                 List.of(new UniverseListInfo(
                                         UuidCreator.getTimeOrderedEpoch(),
-                                        UuidCreator.getTimeOrderedEpoch(),
-                                        UuidCreator.getTimeOrderedEpoch(),
+                                        URI.create("http://example.com/files/thumbmusic.mp3"),
+                                        URI.create("http://example.com/files/thumbnail.jpg"),
                                         UuidCreator.getTimeOrderedEpoch(),
                                         ZonedDateTime.now().toEpochSecond(),
                                         ZonedDateTime.now().toEpochSecond(),
@@ -81,8 +82,8 @@ class SearchUniverseControllerTest extends DocumentationTest {
                         ),
                         responseFields(
                                 fieldWithPath("content[].id").description("유니버스의 아이디입니다."),
-                                fieldWithPath("content[].thumbnailID").description("썸네일 파일 ID입니다."),
-                                fieldWithPath("content[].thumbmusicID").description("썸뮤직 파일 ID입니다."),
+                                fieldWithPath("content[].thumbnailFileUrl").description("썸네일 파일 ID입니다."),
+                                fieldWithPath("content[].thumbmusicFileUrl").description("썸뮤직 파일 ID입니다."),
                                 fieldWithPath("content[].ownerID").description("작성자의 ID입니다."),
                                 fieldWithPath("content[].createdTime").description(" 생성(등록)일자입니다."),
                                 fieldWithPath("content[].updatedTime").description(" 생성(등록)일자입니다."),

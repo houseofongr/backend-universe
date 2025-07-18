@@ -12,7 +12,7 @@ public record SearchUniverseResult(
     public record UniverseListInfo(
             Long id,
             Long thumbnailId,
-            Long thumbMusicId,
+            Long thumbmusicId,
             Long ownerId,
             Long createdTime,
             Long updatedTime,
@@ -30,7 +30,7 @@ public record SearchUniverseResult(
 
     public record UniverseDetailInfo(
             Long id,
-            Long thumbMusicId,
+            Long thumbmusicId,
             Long thumbnailId,
             Long innerImageId,
             Long ownerId,

@@ -1,15 +1,14 @@
-package com.hoo.universe.api.dto.result;
+package com.hoo.universe.api.dto.query;
 
 import com.hoo.universe.domain.vo.Category;
 
-import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
-public record UniverseListInfo(
+public record UniverseListQueryInfo(
         UUID id,
-        URI thumbmusicFileUrl,
-        URI thumbnailFileUrl,
+        UUID thumbmusicFileID,
+        UUID thumbnailFileID,
         UUID ownerID,
         Long createdTime,
         Long updatedTime,
@@ -22,5 +21,4 @@ public record UniverseListInfo(
         Category category,
         List<String> hashtags
 ) {
-
 }

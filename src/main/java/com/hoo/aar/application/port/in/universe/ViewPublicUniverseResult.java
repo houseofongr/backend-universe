@@ -14,7 +14,7 @@ import java.util.List;
 
 public record ViewPublicUniverseResult(
         Long universeId,
-        Long thumbMusicId,
+        Long thumbmusicId,
         Long thumbnailId,
         Long innerImageId,
         Long ownerId,

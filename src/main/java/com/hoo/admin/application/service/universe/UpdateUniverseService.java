@@ -49,15 +49,15 @@ public class UpdateUniverseService implements UpdateUniverseUseCase {
     }
 
     @Override
-    public UpdateUniverseResult.ThumbMusic updateThumbMusic(Long universeId, MultipartFile thumbMusic) {
+    public UpdateUniverseResult.ThumbMusic updateThumbMusic(Long universeId, MultipartFile thumbmusic) {
 
-        if (thumbMusic == null) throw new AdminException(AdminErrorCode.UNIVERSE_FILE_REQUIRED);
-        if (thumbMusic.getSize() > 2 * 1024 * 1024) throw new AdminException(AdminErrorCode.EXCEEDED_FILE_SIZE);
+        if (thumbmusic == null) throw new AdminException(AdminErrorCode.UNIVERSE_FILE_REQUIRED);
+        if (thumbmusic.getSize() > 2 * 1024 * 1024) throw new AdminException(AdminErrorCode.EXCEEDED_FILE_SIZE);
 
         Universe targetUniverse = findUniversePort.load(universeId);
 
         Long beforeThumbMusicId = targetUniverse.getFileInfo().getThumbMusicId();
-        UploadFileResult.FileInfo uploadedThumbMusic = uploadPublicAudioUseCase.publicUpload(thumbMusic);
+        UploadFileResult.FileInfo uploadedThumbMusic = uploadPublicAudioUseCase.publicUpload(thumbmusic);
 
         targetUniverse.getFileInfo().updateThumbMusic(uploadedThumbMusic.id());
 

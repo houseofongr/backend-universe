@@ -1,13 +1,14 @@
 package com.hoo.universe.api.dto.result;
 
+import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
 public record CreateUniverseResult(
         UUID universeID,
-        UUID thumbMusicID,
-        UUID thumbnailID,
-        UUID backgroundID,
+        URI thumbmusicFileUrl,
+        URI thumbnailFileUrl,
+        URI backgroundFileUrl,
         UUID ownerID,
         Long createdTime,
         UUID categoryID,

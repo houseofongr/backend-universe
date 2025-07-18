@@ -89,13 +89,13 @@ class UpdateUniverseServiceTest {
         byte[] over2MB = new byte[2 * 1024 * 1024 + 1];
         byte[] over100MB = new byte[100 * 1024 * 1024 + 1];
         MockMultipartFile thumbnail = new MockMultipartFile("thumbnail", "universe_thumb.png", "image/png", over2MB);
-        MockMultipartFile thumbMusic = new MockMultipartFile("thumbMusic", "universe_thumb.mp3", "audio/mpeg", over2MB);
+        MockMultipartFile thumbmusic = new MockMultipartFile("thumbmusic", "universe_thumb.mp3", "audio/mpeg", over2MB);
         MockMultipartFile innerImage = new MockMultipartFile("innerImage", "universe_image.png", "image/png", over100MB);
         assertThatThrownBy(() -> sut.updateThumbnail(1L, null)).isInstanceOf(AdminException.class).hasMessage(AdminErrorCode.UNIVERSE_FILE_REQUIRED.getMessage());
         assertThatThrownBy(() -> sut.updateThumbMusic(1L, null)).isInstanceOf(AdminException.class).hasMessage(AdminErrorCode.UNIVERSE_FILE_REQUIRED.getMessage());
         assertThatThrownBy(() -> sut.updateInnerImage(1L, null)).isInstanceOf(AdminException.class).hasMessage(AdminErrorCode.UNIVERSE_FILE_REQUIRED.getMessage());
         assertThatThrownBy(() -> sut.updateThumbnail(1L, thumbnail)).isInstanceOf(AdminException.class).hasMessage(AdminErrorCode.EXCEEDED_FILE_SIZE.getMessage());
-        assertThatThrownBy(() -> sut.updateThumbMusic(1L, thumbMusic)).isInstanceOf(AdminException.class).hasMessage(AdminErrorCode.EXCEEDED_FILE_SIZE.getMessage());
+        assertThatThrownBy(() -> sut.updateThumbMusic(1L, thumbmusic)).isInstanceOf(AdminException.class).hasMessage(AdminErrorCode.EXCEEDED_FILE_SIZE.getMessage());
         assertThatThrownBy(() -> sut.updateInnerImage(1L, innerImage)).isInstanceOf(AdminException.class).hasMessage(AdminErrorCode.EXCEEDED_FILE_SIZE.getMessage());
     }
 
@@ -142,13 +142,13 @@ class UpdateUniverseServiceTest {
     @DisplayName("썸뮤직 수정 서비스")
     void updateDetailThumbmusic() {
         // given
-        MockMultipartFile thumbMusic = new MockMultipartFile("thumbMusic", "universe_thumb.mp3", "audio/mpeg", "image file".getBytes());
+        MockMultipartFile thumbmusic = new MockMultipartFile("thumbmusic", "universe_thumb.mp3", "audio/mpeg", "image file".getBytes());
         Universe universe = MockEntityFactoryService.getUniverse();
 
         // when
         when(findUniversePort.load(universe.getId())).thenReturn(universe);
         when(uploadPublicAudioUseCase.publicUpload((MultipartFile) any())).thenReturn(new UploadFileResult.FileInfo(12L, null, "universe_music.mp3", "test1235.mp3", new FileSize(1234L, 10000L).getUnitSize(), Authority.PUBLIC_FILE_ACCESS));
-        sut.updateThumbMusic(universe.getId(), thumbMusic);
+        sut.updateThumbMusic(universe.getId(), thumbmusic);
 
         // then
         verify(deleteFileUseCase, times(1)).deleteFile(anyLong());

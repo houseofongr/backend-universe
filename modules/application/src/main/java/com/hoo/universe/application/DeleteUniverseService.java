@@ -40,7 +40,7 @@ public class DeleteUniverseService implements DeleteUniverseUseCase {
                 event.deleteSpaceIDs().stream().map(SpaceID::uuid).toList(),
                 event.deletePieceIDs().stream().map(PieceID::uuid).toList(),
                 event.deleteSoundIDs().stream().map(SoundID::uuid).toList(),
-                event.deleteFileIDs()
+                event.deleteFileIDs().size()
         );
     }
 }

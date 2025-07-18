@@ -61,10 +61,10 @@ class PostUniverseControllerTest extends AbstractControllerTest {
 
         MockMultipartFile innerImage = new MockMultipartFile("innerImage", "universe_inner_image.png", "image/png", "image file".getBytes());
         MockMultipartFile thumbnail = new MockMultipartFile("thumbnail", "universe_thumb.png", "image/png", "universe file".getBytes());
-        MockMultipartFile thumbMusic = new MockMultipartFile("thumbMusic", "universe_music.mp3", "audio/mpeg", "music file".getBytes());
+        MockMultipartFile thumbmusic = new MockMultipartFile("thumbmusic", "universe_music.mp3", "audio/mpeg", "music file".getBytes());
 
         mockMvc.perform(multipart("/admin/universes")
-                        .file(thumbnail).file(thumbMusic).file(innerImage)
+                        .file(thumbnail).file(thumbmusic).file(innerImage)
                         .part(metadataPart)
                         .contentType(MediaType.MULTIPART_FORM_DATA)
                         .with(user("admin").roles("ADMIN")))
@@ -73,14 +73,14 @@ class PostUniverseControllerTest extends AbstractControllerTest {
                         requestParts(
                                 partWithName("metadata").description("생성할 유니버스의 정보를 포함하는 Json 형태의 문자열입니다."),
                                 partWithName("thumbnail").description("생성할 유니버스의 썸네일 이미지입니다."),
-                                partWithName("thumbMusic").description("생성할 유니버스의 썸뮤직 오디오입니다."),
+                                partWithName("thumbmusic").description("생성할 유니버스의 썸뮤직 오디오입니다."),
                                 partWithName("innerImage").description("생성할 유니버스의 내부이미지입니다.")
                         ),
                         responseFields(
                                 fieldWithPath("message").description("생성 완료 메시지 : '[#id]번 유니버스가 생성되었습니다.'"),
                                 fieldWithPath("universeId").description("생성된 유니버스의 아이디입니다."),
                                 fieldWithPath("thumbnailId").description("생성된 유니버스의 썸네일 파일 ID입니다."),
-                                fieldWithPath("thumbMusicId").description("생성된 유니버스의 썸뮤직 파일 ID입니다."),
+                                fieldWithPath("thumbmusicId").description("생성된 유니버스의 썸뮤직 파일 ID입니다."),
                                 fieldWithPath("innerImageId").description("생성된 유니버스의 내부 이미지 파일 ID입니다."),
                                 fieldWithPath("ownerId").description("생성된 유니버스 작성자의 ID입니다."),
                                 fieldWithPath("createdTime").description("생성된 유니버스의 유닉스 타임스탬프 형식의 생성(등록)일자입니다."),
@@ -102,11 +102,11 @@ class PostUniverseControllerTest extends AbstractControllerTest {
                 .anySatisfy(fileJpaEntity -> assertThat(fileJpaEntity.getRealFileName()).isEqualTo("universe_thumb.png"))
                 .anySatisfy(fileJpaEntity -> assertThat(fileJpaEntity.getRealFileName()).isEqualTo("universe_inner_image.png"));
 
-        FileJpaEntity thumbMusicFile = fileInDB.stream().filter(fileJpaEntity -> fileJpaEntity.getRealFileName().equals("universe_music.mp3")).findFirst().orElseThrow();
+        FileJpaEntity thumbmusicFile = fileInDB.stream().filter(fileJpaEntity -> fileJpaEntity.getRealFileName().equals("universe_music.mp3")).findFirst().orElseThrow();
         FileJpaEntity thumbnailFile = fileInDB.stream().filter(fileJpaEntity -> fileJpaEntity.getRealFileName().equals("universe_thumb.png")).findFirst().orElseThrow();
         FileJpaEntity innerImageFile = fileInDB.stream().filter(fileJpaEntity -> fileJpaEntity.getRealFileName().equals("universe_inner_image.png")).findFirst().orElseThrow();
 
-        assertThat(newUniverse.getThumbMusicFileId()).isEqualTo(thumbMusicFile.getId());
+        assertThat(newUniverse.getThumbMusicFileId()).isEqualTo(thumbmusicFile.getId());
         assertThat(newUniverse.getThumbnailFileId()).isEqualTo(thumbnailFile.getId());
         assertThat(newUniverse.getInnerImageFileId()).isEqualTo(innerImageFile.getId());
 

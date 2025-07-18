@@ -4,5 +4,5 @@ import com.hoo.admin.application.port.in.universe.CreateUniverseCommand;
 import com.hoo.admin.domain.universe.Universe;
 
 public interface CreateUniversePort {
-    Universe createUniverse(CreateUniverseCommand command, Long thumbMusicId, Long thumbnailId, Long innerImageId);
+    Universe createUniverse(CreateUniverseCommand command, Long thumbmusicId, Long thumbnailId, Long innerImageId);
 }

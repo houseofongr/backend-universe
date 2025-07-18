@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.net.URI;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -46,7 +47,7 @@ class OpenPieceControllerTest extends DocumentationTest {
                                 1L,
                                 List.of(new OpenPieceResult.SoundInfo(
                                         UuidCreator.getTimeOrderedEpoch(),
-                                        UuidCreator.getTimeOrderedEpoch(),
+                                        URI.create("http://example.com/files/audio.mp3"),
                                         "조회된 사운드 제목",
                                         "조회된 사운드 내용",
                                         false,
@@ -80,7 +81,7 @@ class OpenPieceControllerTest extends DocumentationTest {
                                 fieldWithPath("updatedTime").description("피스의 수정일자입니다."),
                                 fieldWithPath("sounds").description("피스 내부에 존재하는 사운드 리스트입니다."),
                                 fieldWithPath("sounds.content[].soundID").description("사운드의 ID입니다."),
-                                fieldWithPath("sounds.content[].audioID").description("오디오 파일의 ID입니다."),
+                                fieldWithPath("sounds.content[].audioFileUrl").description("오디오 파일의 ID입니다."),
                                 fieldWithPath("sounds.content[].title").description("사운드의 제목입니다."),
                                 fieldWithPath("sounds.content[].description").description("사운드의 설명입니다."),
                                 fieldWithPath("sounds.content[].hidden").description("사운드의 숨김여부입니다."),

@@ -1,8 +1,8 @@
 package com.hoo.universe.api.dto.result.piece;
 
 import com.hoo.common.web.dto.PageQueryResult;
-import com.hoo.universe.domain.Piece;
 
+import java.net.URI;
 import java.util.UUID;
 
 public record OpenPieceResult(
@@ -15,22 +15,9 @@ public record OpenPieceResult(
         PageQueryResult<SoundInfo> sounds
 ) {
 
-    public static OpenPieceResult from(Piece piece, PageQueryResult<SoundInfo> sounds) {
-
-        return new OpenPieceResult(
-                piece.getId().uuid(),
-                piece.getCommonMetadata().getTitle(),
-                piece.getCommonMetadata().getDescription(),
-                piece.getPieceMetadata().isHidden(),
-                piece.getCommonMetadata().getCreatedTime().toEpochSecond(),
-                piece.getCommonMetadata().getUpdatedTime().toEpochSecond(),
-                sounds
-        );
-    }
-
     public record SoundInfo(
             UUID soundID,
-            UUID audioID,
+            URI audioFileUrl,
             String title,
             String description,
             Boolean hidden,

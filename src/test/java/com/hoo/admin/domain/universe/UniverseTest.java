@@ -20,20 +20,20 @@ class UniverseTest {
         List<String> tag = List.of("우주", "행성", "지구", "별");
         UniverseCategory category = new UniverseCategory(1L, "카테고리", "category");
         PublicStatus publicStatus = PublicStatus.PUBLIC;
-        Long thumbMusicId = 100L;
+        Long thumbmusicId = 100L;
         Long thumbnailId = 11L;
         Long innerImageId = 12L;
         User owner = User.load(1L, "leaf");
 
         // when
-        Universe universe = Universe.create(thumbMusicId, thumbnailId, innerImageId, title, description, category, publicStatus, tag, owner);
+        Universe universe = Universe.create(thumbmusicId, thumbnailId, innerImageId, title, description, category, publicStatus, tag, owner);
         UniverseBasicInfo basicInfo = universe.getBasicInfo();
         SocialInfo socialInfo = universe.getSocialInfo();
 
         // then
         assertThat(universe.getId()).isNull();
         assertThat(universe.getFileInfo().getThumbnailId()).isEqualTo(thumbnailId);
-        assertThat(universe.getFileInfo().getThumbMusicId()).isEqualTo(thumbMusicId);
+        assertThat(universe.getFileInfo().getThumbMusicId()).isEqualTo(thumbmusicId);
         assertThat(universe.getFileInfo().getImageId()).isEqualTo(innerImageId);
         assertThat(universe.getDateInfo()).isNull();
         assertThat(universe.getTreeInfo()).isNull();
@@ -94,18 +94,18 @@ class UniverseTest {
         // given
         Universe universe = MockEntityFactoryService.getUniverse();
 
-        Long thumbMusicId = 101L;
+        Long thumbmusicId = 101L;
         Long thumbnailId = 12L;
         Long innerImageId = 13L;
 
         // when
-        universe.getFileInfo().updateThumbMusic(thumbMusicId);
+        universe.getFileInfo().updateThumbMusic(thumbmusicId);
         universe.getFileInfo().updateThumbnail(thumbnailId);
         universe.getFileInfo().updateImage(innerImageId);
 
         // then
         assertThat(universe.getFileInfo().getThumbnailId()).isEqualTo(thumbnailId);
-        assertThat(universe.getFileInfo().getThumbMusicId()).isEqualTo(thumbMusicId);
+        assertThat(universe.getFileInfo().getThumbMusicId()).isEqualTo(thumbmusicId);
         assertThat(universe.getFileInfo().getImageId()).isEqualTo(innerImageId);
     }
 }

@@ -9,13 +9,13 @@ import java.util.UUID;
 
 public record CreateUniverseCommand(
         Metadata metadata,
-        FileCommand thumbMusic,
+        FileCommand thumbmusic,
         FileCommand thumbnail,
         FileCommand background
 ) {
 
     public CreateUniverseCommand {
-        if (thumbMusic == null ||
+        if (thumbmusic == null ||
             thumbnail == null ||
             background == null)
             throw new IllegalArgumentException();

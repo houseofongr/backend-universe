@@ -35,7 +35,7 @@ class DeleteSpaceControllerTest extends DocumentationTest {
                         List.of(UuidCreator.getTimeOrderedEpoch()),
                         List.of(UuidCreator.getTimeOrderedEpoch(), UuidCreator.getTimeOrderedEpoch()),
                         List.of(UuidCreator.getTimeOrderedEpoch(), UuidCreator.getTimeOrderedEpoch()),
-                        List.of(UuidCreator.getTimeOrderedEpoch(), UuidCreator.getTimeOrderedEpoch(), UuidCreator.getTimeOrderedEpoch(), UuidCreator.getTimeOrderedEpoch())
+                        10
                 ));
 
         mockMvc.perform(delete("/universes/{universeID}/spaces/{spaceID}", universeID, spaceID))
@@ -49,7 +49,7 @@ class DeleteSpaceControllerTest extends DocumentationTest {
                                 fieldWithPath("deletedSpaceIDs").description("삭제된 스페이스 ID 리스트입니다."),
                                 fieldWithPath("deletedPieceIDs").description("삭제된 피스 ID 리스트입니다."),
                                 fieldWithPath("deletedSoundIDs").description("삭제된 사운드 ID 리스트입니다."),
-                                fieldWithPath("deletedFileIDs").description("삭제된 파일 ID 리스트입니다.")
+                                fieldWithPath("deletedFileCount").description("삭제된 파일 개수+입니다.")
                         )
                 ));
     }

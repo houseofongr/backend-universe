@@ -29,12 +29,12 @@ public record CreateUniverseCommand(
 
     public static CreateUniverseCommand from(CreateUniverseCommand baseCommand, Map<String, MultipartFile> fileMap) {
         if (!fileMap.containsKey("thumbnail") ||
-            !fileMap.containsKey("thumbMusic") ||
+            !fileMap.containsKey("thumbmusic") ||
             !fileMap.containsKey("innerImage"))
             throw new AdminException(AdminErrorCode.UNIVERSE_FILE_REQUIRED);
 
         if (fileMap.get("thumbnail").getSize() > 2 * 1024 * 1024 ||
-            fileMap.get("thumbMusic").getSize() > 2 * 1024 * 1024 ||
+            fileMap.get("thumbmusic").getSize() > 2 * 1024 * 1024 ||
             fileMap.get("innerImage").getSize() > 100 * 1024 * 1024)
             throw new AdminException(AdminErrorCode.EXCEEDED_FILE_SIZE);
 

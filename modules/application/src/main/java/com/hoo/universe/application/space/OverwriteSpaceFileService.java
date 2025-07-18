@@ -34,16 +34,13 @@ public class OverwriteSpaceFileService implements OverwriteSpaceFileUseCase {
 
         Universe universe = loadUniversePort.loadUniverseExceptSounds(universeID);
         Space space = universe.getSpace(new SpaceID(spaceID));
-        UploadFileResult response = uploadFileAPI.uploadFile(UploadFileCommand.from(background, universe.getOwner().getId(), universe.getUniverseMetadata().getAccessLevel()));
+        UploadFileResult audio = uploadFileAPI.uploadFile(UploadFileCommand.from(background, universe.getOwner().getId(), universe.getUniverseMetadata().getAccessLevel()));
 
-        SpaceFileOverwriteEvent event = space.overwriteFile(response.id());
+        SpaceFileOverwriteEvent event = space.overwriteFile(audio.id());
 
         handleSpaceEventPort.handleSpaceFileOverwriteEvent(event);
         deleteFileEventPublisher.publishDeleteFilesEvent(event.oldInnerImageID());
 
-        return new OverwriteSpaceFileResult(
-                event.oldInnerImageID(),
-                event.newInnerImageID()
-        );
+        return new OverwriteSpaceFileResult(audio.fileUrl());
     }
 }

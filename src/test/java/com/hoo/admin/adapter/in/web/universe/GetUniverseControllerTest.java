@@ -29,7 +29,7 @@ class GetUniverseControllerTest extends AbstractControllerTest {
                         responseFields(
                                 fieldWithPath("id").description("유니버스의 아이디입니다."),
                                 fieldWithPath("thumbnailId").description("썸네일 파일 ID입니다."),
-                                fieldWithPath("thumbMusicId").description("썸뮤직 파일 ID입니다."),
+                                fieldWithPath("thumbmusicId").description("썸뮤직 파일 ID입니다."),
                                 fieldWithPath("innerImageId").description("내부 이미지 파일 ID입니다."),
                                 fieldWithPath("ownerId").description("작성자의 ID입니다."),
                                 fieldWithPath("createdTime").description("유닉스 타임스탬프 형식의 생성(등록)일자입니다."),

@@ -41,7 +41,7 @@ public class CreateUniverseService implements CreateUniverseUseCase {
         Category category = queryCategoryPort.findUniverseCategory(command.metadata().categoryID());
         AccessLevel accessLevel = AccessLevel.valueOf(command.metadata().accessLevel());
 
-        UploadFileResult thumbmusic = uploadFileAPI.uploadFile(UploadFileCommand.from(command.thumbMusic(), owner.getId(), accessLevel));
+        UploadFileResult thumbmusic = uploadFileAPI.uploadFile(UploadFileCommand.from(command.thumbmusic(), owner.getId(), accessLevel));
         UploadFileResult thumbnail = uploadFileAPI.uploadFile(UploadFileCommand.from(command.thumbnail(), owner.getId(), accessLevel));
         UploadFileResult background = uploadFileAPI.uploadFile(UploadFileCommand.from(command.background(), owner.getId(), accessLevel));
 
@@ -67,9 +67,9 @@ public class CreateUniverseService implements CreateUniverseUseCase {
 
         return new CreateUniverseResult(
                 universe.getId().uuid(),
-                universe.getUniverseMetadata().getThumbmusicID(),
-                universe.getUniverseMetadata().getThumbnailID(),
-                universe.getUniverseMetadata().getBackgroundID(),
+                thumbmusic.fileUrl(),
+                thumbnail.fileUrl(),
+                background.fileUrl(),
                 universe.getOwner().getId(),
                 universe.getCommonMetadata().getCreatedTime().toEpochSecond(),
                 universe.getCategory().getId(),
@@ -83,7 +83,7 @@ public class CreateUniverseService implements CreateUniverseUseCase {
 
     private void validate(CreateUniverseCommand command) {
         if (command.thumbnail().size() > 2 * 1024 * 1024 ||
-            command.thumbMusic().size() > 2 * 1024 * 1024 ||
+            command.thumbmusic().size() > 2 * 1024 * 1024 ||
             command.background().size() > 100 * 1024 * 1024
         )
             throw new UniverseApplicationException(ApplicationErrorCode.EXCEEDED_FILE_SIZE);

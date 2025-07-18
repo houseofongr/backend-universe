@@ -25,9 +25,9 @@ public class Universe extends UniverseTreeComponent {
         this.ownerInfo = ownerInfo;
     }
 
-    public static Universe create(Long thumbMusicId, Long thumbnailId, Long innerImageId, String title, String description, UniverseCategory category, PublicStatus publicStatus, List<String> tag, User owner) {
+    public static Universe create(Long thumbmusicId, Long thumbnailId, Long innerImageId, String title, String description, UniverseCategory category, PublicStatus publicStatus, List<String> tag, User owner) {
         return new Universe(null,
-                new UniverseFileInfo(thumbMusicId, thumbnailId, innerImageId),
+                new UniverseFileInfo(thumbmusicId, thumbnailId, innerImageId),
                 new UniverseBasicInfo(title, description, publicStatus),
                 category,
                 null,
@@ -40,9 +40,9 @@ public class Universe extends UniverseTreeComponent {
         );
     }
 
-    public static Universe load(Long id, Long thumbMusicId, Long thumbnailId, Long innerImageId, String title, String description, UniverseCategory category, PublicStatus publicStatus, Integer likeCount, Long viewCount, List<String> tag, User owner, ZonedDateTime createdTime, ZonedDateTime updatedTime) {
+    public static Universe load(Long id, Long thumbmusicId, Long thumbnailId, Long innerImageId, String title, String description, UniverseCategory category, PublicStatus publicStatus, Integer likeCount, Long viewCount, List<String> tag, User owner, ZonedDateTime createdTime, ZonedDateTime updatedTime) {
         return new Universe(id,
-                new UniverseFileInfo(thumbMusicId, thumbnailId, innerImageId),
+                new UniverseFileInfo(thumbmusicId, thumbnailId, innerImageId),
                 new UniverseBasicInfo(title, description, publicStatus),
                 category,
                 new DateInfo(createdTime, updatedTime),
@@ -51,8 +51,8 @@ public class Universe extends UniverseTreeComponent {
                 new AuthorInfo(owner.getUserInfo().getId(), owner.getUserInfo().getNickname()));
     }
 
-    public static Universe loadTreeComponent(Long id, Long thumbMusicId, Long thumbnailId, Long innerImageFileId) {
-        return new Universe(id, new UniverseFileInfo(thumbMusicId, thumbnailId, innerImageFileId), null, null, null, null, null, null);
+    public static Universe loadTreeComponent(Long id, Long thumbmusicId, Long thumbnailId, Long innerImageFileId) {
+        return new Universe(id, new UniverseFileInfo(thumbmusicId, thumbnailId, innerImageFileId), null, null, null, null, null, null);
     }
 
     public Boolean isMine(Long userId) {

@@ -32,10 +32,7 @@ class DeleteSoundControllerTest extends DocumentationTest {
         UUID soundID = UuidCreator.getTimeOrderedEpoch();
 
         when(deleteSoundUseCase.deleteSound(universeID, spaceID, soundID))
-                .thenReturn(new DeleteSoundResult(
-                        soundID,
-                        UuidCreator.getTimeOrderedEpoch()
-                ));
+                .thenReturn(new DeleteSoundResult(UuidCreator.getTimeOrderedEpoch()));
 
         mockMvc.perform(delete("/universes/{universeID}/pieces/{parentPieceID}/sounds/{soundID}", universeID, spaceID, soundID)
                         .contentType(MediaType.APPLICATION_JSON))
@@ -47,8 +44,7 @@ class DeleteSoundControllerTest extends DocumentationTest {
                                 parameterWithName("soundID").description("삭제할 사운드 ID입니다.")
                         ),
                         responseFields(
-                                fieldWithPath("deletedSoundID").description("삭제된 사운드 ID입니다."),
-                                fieldWithPath("deletedAudioID").description("삭제된 오디오 파일 ID입니다.")
+                                fieldWithPath("deletedSoundID").description("삭제된 사운드 ID입니다.")
                         )
                 ));
     }

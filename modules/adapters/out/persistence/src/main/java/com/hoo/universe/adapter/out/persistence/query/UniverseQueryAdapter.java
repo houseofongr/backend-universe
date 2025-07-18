@@ -10,6 +10,8 @@ import com.hoo.universe.adapter.out.persistence.repository.CategoryJpaRepository
 import com.hoo.universe.adapter.out.persistence.repository.PieceJpaRepository;
 import com.hoo.universe.adapter.out.persistence.repository.UniverseJpaRepository;
 import com.hoo.universe.api.dto.command.SearchUniverseCommand;
+import com.hoo.universe.api.dto.query.OpenPieceQueryResult;
+import com.hoo.universe.api.dto.query.UniverseListQueryInfo;
 import com.hoo.universe.api.dto.result.UniverseListInfo;
 import com.hoo.universe.api.dto.result.piece.OpenPieceResult;
 import com.hoo.universe.api.out.persistence.QueryCategoryPort;
@@ -33,12 +35,12 @@ public class UniverseQueryAdapter implements
     private final UniverseMapper universeMapper;
 
     @Override
-    public PageQueryResult<UniverseListInfo> searchUniverses(SearchUniverseCommand command) {
+    public PageQueryResult<UniverseListQueryInfo> searchUniverses(SearchUniverseCommand command) {
         return universeJpaRepository.searchUniverse(command.categoryID(), command.pageRequest()).map(universeMapper::mapToUniverseInfo);
     }
 
     @Override
-    public OpenPieceResult searchPiece(UUID pieceID, PageRequest pageRequest) {
+    public OpenPieceQueryResult searchPiece(UUID pieceID, PageRequest pageRequest) {
 
         PieceJpaEntity pieceJpaEntity = pieceJpaRepository.findByUuid(pieceID)
                 .orElseThrow(() -> new UniverseAdapterException(AdapterErrorCode.PIECE_NOT_FOUND));
