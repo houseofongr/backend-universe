@@ -1,8 +1,8 @@
 package com.hoo.universe.adapter.in.web.piece;
 
 import com.github.f4b6a3.uuid.UuidCreator;
-import com.hoo.common.internal.api.dto.PageQueryResult;
-import com.hoo.common.internal.api.dto.PageRequest;
+import com.hoo.common.web.dto.PageQueryResult;
+import com.hoo.common.web.dto.PageRequest;
 import com.hoo.universe.adapter.in.web.DocumentationTest;
 import com.hoo.universe.api.dto.result.piece.OpenPieceResult;
 import com.hoo.universe.api.in.piece.OpenPieceUseCase;

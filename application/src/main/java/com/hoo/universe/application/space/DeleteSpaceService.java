@@ -1,6 +1,6 @@
 package com.hoo.universe.application.space;
 
-import com.hoo.common.internal.message.FileDeleteEventPublisher;
+import com.hoo.common.internal.message.DeleteFileEventPublisher;
 import com.hoo.universe.api.dto.result.space.DeleteSpaceResult;
 import com.hoo.universe.api.in.space.DeleteSpaceUseCase;
 import com.hoo.universe.api.out.persistence.HandleSpaceEventPort;
@@ -24,7 +24,7 @@ public class DeleteSpaceService implements DeleteSpaceUseCase {
 
     private final LoadUniversePort loadUniversePort;
     private final HandleSpaceEventPort handleSpaceEventPort;
-    private final FileDeleteEventPublisher fileDeleteEventPublisher;
+    private final DeleteFileEventPublisher deleteFileEventPublisher;
 
     @Override
     public DeleteSpaceResult deleteSpace(UUID universeID, UUID spaceID) {
@@ -35,7 +35,7 @@ public class DeleteSpaceService implements DeleteSpaceUseCase {
         SpaceDeleteEvent event = space.delete();
 
         handleSpaceEventPort.handleSpaceDeleteEvent(event);
-        fileDeleteEventPublisher.publishDeleteFilesEvent(event.deleteFileIDs());
+        deleteFileEventPublisher.publishDeleteFilesEvent(event.deleteFileIDs());
 
         return new DeleteSpaceResult(
                 event.deleteSpaceIDs().stream().map(SpaceID::uuid).toList(),

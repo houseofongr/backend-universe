@@ -23,10 +23,10 @@ class UniverseTest {
         Long thumbMusicId = 100L;
         Long thumbnailId = 11L;
         Long innerImageId = 12L;
-        User author = User.load(1L, "leaf");
+        User owner = User.load(1L, "leaf");
 
         // when
-        Universe universe = Universe.create(thumbMusicId, thumbnailId, innerImageId, title, description, category, publicStatus, tag, author);
+        Universe universe = Universe.create(thumbMusicId, thumbnailId, innerImageId, title, description, category, publicStatus, tag, owner);
         UniverseBasicInfo basicInfo = universe.getBasicInfo();
         SocialInfo socialInfo = universe.getSocialInfo();
 
@@ -37,7 +37,7 @@ class UniverseTest {
         assertThat(universe.getFileInfo().getImageId()).isEqualTo(innerImageId);
         assertThat(universe.getDateInfo()).isNull();
         assertThat(universe.getTreeInfo()).isNull();
-        assertThat(universe.getAuthorInfo().getId()).isEqualTo(author.getUserInfo().getId());
+        assertThat(universe.getAuthorInfo().getId()).isEqualTo(owner.getUserInfo().getId());
         assertThat(universe.getCategory()).isEqualTo(category);
         assertThat(basicInfo.getPublicStatus()).isEqualTo(publicStatus);
         assertThat(basicInfo.getTitle()).isEqualTo(title);

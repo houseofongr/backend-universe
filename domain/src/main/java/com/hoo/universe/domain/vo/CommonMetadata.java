@@ -6,6 +6,8 @@ import lombok.Getter;
 
 import java.time.ZonedDateTime;
 
+import static com.hoo.common.util.OptionalUtil.getOrDefault;
+
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class CommonMetadata {
@@ -21,10 +23,6 @@ public class CommonMetadata {
 
     public CommonMetadata update(String title, String description) {
         return new CommonMetadata(getOrDefault(title, this.title), getOrDefault(description, this.description), createdTime, ZonedDateTime.now());
-    }
-
-    private  <T> T getOrDefault(T value, T defaultValue) {
-        return value != null ? value : defaultValue;
     }
 
 }

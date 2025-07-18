@@ -8,24 +8,24 @@ import lombok.Getter;
 @Getter
 public class FileId {
     private final String baseDir;
-    private final Authority authority;
+    private final Authority ownerity;
     private final FileType fileType;
     private final String realFileName;
     private final String fileSystemName;
 
-    private FileId(String baseDir, Authority authority, FileType fileType, String realFileName, String fileSystemName) {
+    private FileId(String baseDir, Authority ownerity, FileType fileType, String realFileName, String fileSystemName) {
         this.baseDir = baseDir;
-        this.authority = authority;
+        this.ownerity = ownerity;
         this.fileType = fileType;
         this.realFileName = realFileName;
         this.fileSystemName = fileSystemName;
     }
 
-    public static FileId create(String baseDir, Authority authority, FileType fileType, String realFileName, String fileSystemName) {
+    public static FileId create(String baseDir, Authority ownerity, FileType fileType, String realFileName, String fileSystemName) {
         if (baseDir.charAt(baseDir.length() - 1) == '/')
             baseDir = baseDir.substring(0, baseDir.length() - 1);
 
-        FileId fileId = new FileId(baseDir, authority, fileType, realFileName, fileSystemName);
+        FileId fileId = new FileId(baseDir, ownerity, fileType, realFileName, fileSystemName);
 
         fileId.verifyExtension(fileType, realFileName);
 
@@ -38,35 +38,35 @@ public class FileId {
         String fileTypeDir = dirs[dirs.length - 1];
         FileType fileType = FileType.of(fileTypeDir);
 
-        String authorityDir = dirs[dirs.length - 2];
-        Authority authority = pathToAuthority(authorityDir, fileTypeDir);
+        String ownerityDir = dirs[dirs.length - 2];
+        Authority ownerity = pathToAuthority(ownerityDir, fileTypeDir);
 
-        String baseDir = parentDir.split("/" + authorityDir)[0];
+        String baseDir = parentDir.split("/" + ownerityDir)[0];
 
-        return new FileId(baseDir, authority, fileType, realFileName, fileSystemName);
+        return new FileId(baseDir, ownerity, fileType, realFileName, fileSystemName);
     }
 
-    private static Authority pathToAuthority(String authorityDir, String fileTypeDir) {
+    private static Authority pathToAuthority(String ownerityDir, String fileTypeDir) {
 
-        if (authorityDir.equalsIgnoreCase("public"))
+        if (ownerityDir.equalsIgnoreCase("public"))
             return Authority.PUBLIC_FILE_ACCESS;
 
-        else if (authorityDir.equalsIgnoreCase("private"))
+        else if (ownerityDir.equalsIgnoreCase("private"))
             if (fileTypeDir.equalsIgnoreCase("images"))
                 return Authority.ALL_PRIVATE_IMAGE_ACCESS;
 
             else if (fileTypeDir.equalsIgnoreCase("audios"))
                 return Authority.ALL_PRIVATE_AUDIO_ACCESS;
 
-            else throw new IllegalFileAuthorityDirException(authorityDir + "/" + fileTypeDir);
+            else throw new IllegalFileAuthorityDirException(ownerityDir + "/" + fileTypeDir);
 
-        else throw new IllegalFileAuthorityDirException(authorityDir + "/" + fileTypeDir);
+        else throw new IllegalFileAuthorityDirException(ownerityDir + "/" + fileTypeDir);
     }
 
     @Override
     public String toString() {
         return "[" + getPath() + "] " +
-               "authority=" + authority +
+               "ownerity=" + ownerity +
                ", fileType=" + fileType +
                ", realFileName='" + realFileName + '\'' +
                ", fileSystemName='" + fileSystemName;
@@ -97,14 +97,14 @@ public class FileId {
     }
 
     private String getAuthorityPath() {
-        switch (authority) {
+        switch (ownerity) {
             case PUBLIC_FILE_ACCESS -> {
                 return "public";
             }
             case ALL_PRIVATE_IMAGE_ACCESS, ALL_PRIVATE_AUDIO_ACCESS -> {
                 return "private";
             }
-            default -> throw new IllegalStateException("Unexpected value: " + authority);
+            default -> throw new IllegalStateException("Unexpected value: " + ownerity);
         }
     }
 

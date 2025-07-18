@@ -6,6 +6,8 @@ import lombok.Getter;
 
 import java.util.UUID;
 
+import static com.hoo.common.util.OptionalUtil.*;
+
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class PieceMetadata {
@@ -14,18 +16,10 @@ public class PieceMetadata {
     private final boolean hidden;
 
     public static PieceMetadata create(UUID imageID, Boolean hidden) {
-        return new PieceMetadata(imageID, orElseNotHidden(hidden));
-    }
-
-    private static boolean orElseNotHidden(Boolean hidden) {
-        return hidden != null && hidden;
+        return new PieceMetadata(imageID, orElseFalse(hidden));
     }
 
     public PieceMetadata update(Boolean hidden) {
         return new PieceMetadata(imageID, getOrDefault(hidden, this.hidden));
-    }
-
-    private <T> T getOrDefault(T value, T defaultValue) {
-        return value != null ? value : defaultValue;
     }
 }

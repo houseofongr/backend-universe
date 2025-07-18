@@ -36,7 +36,7 @@ public class UpdateUniverseService implements UpdateUniverseUseCase {
 
         Universe targetUniverse = findUniversePort.load(universeId);
 
-        targetUniverse.getAuthorInfo().update(command.authorId());
+        targetUniverse.getAuthorInfo().update(command.ownerId());
         targetUniverse.getBasicInfo().updateUniverseInfo(command.title(), command.description(), command.publicStatus());
         targetUniverse.getSocialInfo().updateHashtag(command.hashtags());
 

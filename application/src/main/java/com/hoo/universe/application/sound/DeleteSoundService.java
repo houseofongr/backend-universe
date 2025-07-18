@@ -1,6 +1,6 @@
 package com.hoo.universe.application.sound;
 
-import com.hoo.common.internal.message.FileDeleteEventPublisher;
+import com.hoo.common.internal.message.DeleteFileEventPublisher;
 import com.hoo.universe.api.dto.result.sound.DeleteSoundResult;
 import com.hoo.universe.api.in.sound.DeleteSoundUseCase;
 import com.hoo.universe.api.out.persistence.HandleSoundEventPort;
@@ -24,7 +24,7 @@ public class DeleteSoundService implements DeleteSoundUseCase {
 
     private final LoadUniversePort loadUniversePort;
     private final HandleSoundEventPort handleSoundEventPort;
-    private final FileDeleteEventPublisher fileDeleteEventPublisher;
+    private final DeleteFileEventPublisher deleteFileEventPublisher;
 
     @Override
     public DeleteSoundResult deleteSound(UUID universeID, UUID pieceID, UUID soundID) {
@@ -36,7 +36,7 @@ public class DeleteSoundService implements DeleteSoundUseCase {
         SoundDeleteEvent event = sound.delete();
 
         handleSoundEventPort.handleSoundDeleteEvent(event);
-        fileDeleteEventPublisher.publishDeleteFilesEvent(event.deleteAudioFileID());
+        deleteFileEventPublisher.publishDeleteFilesEvent(event.deleteAudioFileID());
 
         return new DeleteSoundResult(
                 event.deleteSoundID().uuid(),

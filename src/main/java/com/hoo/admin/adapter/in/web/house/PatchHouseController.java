@@ -24,7 +24,7 @@ public class PatchHouseController {
 
         UpdateHouseInfoCommand command = new UpdateHouseInfoCommand(houseId,
                 request.title(),
-                request.author(),
+                request.owner(),
                 request.description());
 
         return new ResponseEntity<>(updateHouseInfoUseCase.update(command), HttpStatus.OK);
@@ -32,7 +32,7 @@ public class PatchHouseController {
 
     private record Request(
             String title,
-            String author,
+            String owner,
             String description
     ) {
 

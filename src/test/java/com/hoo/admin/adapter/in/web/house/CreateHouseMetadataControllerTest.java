@@ -20,7 +20,7 @@ public class CreateHouseMetadataControllerTest extends AbstractControllerTest {
                 .andDo(document("admin-create-house-metadata",
                         responseFields(
                                 fieldWithPath("house.title").description("생성할 하우스의 제목입니다."),
-                                fieldWithPath("house.author").description("생성할 하우스의 작가입니다."),
+                                fieldWithPath("house.owner").description("생성할 하우스의 작가입니다."),
                                 fieldWithPath("house.description").description("생성할 하우스에 대한 설명입니다."),
                                 fieldWithPath("house.houseForm").description("기본 이미지로 사용할 이미지 파일의 Form 태그 name 속성값입니다. +" + "\n" + "* 지원 파일형식 : [jpg, jpeg, png, svg, gif]"),
                                 fieldWithPath("house.borderForm").description("테두리 이미지로 사용할 이미지 파일의 Form 태그 name 속성값입니다. +" + "\n" + "* 지원 파일형식 : [jpg, jpeg, png, svg, gif]"),

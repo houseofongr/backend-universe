@@ -26,7 +26,7 @@ class QueryHouseInfoListResultTest {
         // then
         assertThat(houseInfoDto.id()).isEqualTo(houseJpaEntity.getId());
         assertThat(houseInfoDto.title()).isEqualTo(houseJpaEntity.getTitle());
-        assertThat(houseInfoDto.author()).isEqualTo(houseJpaEntity.getAuthor());
+        assertThat(houseInfoDto.owner()).isEqualTo(houseJpaEntity.getAuthor());
         assertThat(houseInfoDto.description()).isEqualTo(houseJpaEntity.getDescription().substring(0, 100) + "...");
         assertThat(houseInfoDto.imageId()).isEqualTo(houseJpaEntity.getBasicImageFileId());
 

@@ -2,7 +2,6 @@ package com.hoo.universe.adapter.in.web.piece;
 
 import com.hoo.universe.adapter.in.web.RequestMapper;
 import com.hoo.universe.api.dto.command.piece.CreatePieceWithTwoPointCommand;
-import com.hoo.universe.api.dto.command.space.CreateSpaceWithTwoPointCommand;
 import com.hoo.universe.api.dto.result.piece.CreatePieceResult;
 import com.hoo.universe.api.in.piece.CreatePieceUseCase;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +28,7 @@ public class CreatePieceController {
 
         CreatePieceWithTwoPointCommand command = new CreatePieceWithTwoPointCommand(
                 requestMapper.mapToCreatePieceCommandMetadata(metadata),
-                requestMapper.mapToUploadFileRequest(imageFile));
+                requestMapper.mapToFileCommand(imageFile));
 
         return new ResponseEntity<>(useCase.createNewPieceWithTwoPoint(universeID, command), HttpStatus.CREATED);
     }

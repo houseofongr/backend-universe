@@ -6,7 +6,7 @@ import lombok.Value;
 import java.util.UUID;
 
 @Value
-public class Author {
+public class Owner {
 
     @EqualsAndHashCode.Include
     UUID id;

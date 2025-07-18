@@ -13,12 +13,12 @@ public class AuthorInfo {
         this.nickname = nickname;
     }
 
-    public void update(User author) {
-        this.id = author.getUserInfo().getId();
-        this.nickname = author.getUserInfo().getNickname();
+    public void update(User owner) {
+        this.id = owner.getUserInfo().getId();
+        this.nickname = owner.getUserInfo().getNickname();
     }
 
-    public void update(Long authorId) {
-        this.id = authorId;
+    public void update(Long ownerId) {
+        this.id = ownerId;
     }
 }

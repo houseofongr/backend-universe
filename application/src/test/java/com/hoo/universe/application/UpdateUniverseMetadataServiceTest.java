@@ -1,14 +1,14 @@
 package com.hoo.universe.application;
 
 import com.github.f4b6a3.uuid.UuidCreator;
+import com.hoo.common.enums.AccessLevel;
 import com.hoo.universe.api.dto.command.UpdateUniverseMetadataCommand;
 import com.hoo.universe.api.out.persistence.LoadUniversePort;
 import com.hoo.universe.api.out.persistence.HandleUniverseEventPort;
-import com.hoo.universe.api.out.internal.FindAuthorAPI;
+import com.hoo.universe.api.out.internal.FindOwnerAPI;
 import com.hoo.universe.api.out.persistence.QueryCategoryPort;
 import com.hoo.universe.domain.Universe;
-import com.hoo.universe.domain.vo.AccessStatus;
-import com.hoo.universe.domain.vo.Author;
+import com.hoo.universe.domain.vo.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -22,26 +22,26 @@ import static org.mockito.Mockito.*;
 class UpdateUniverseMetadataServiceTest {
 
     LoadUniversePort loadUniversePort = mock();
-    FindAuthorAPI findAuthorAPI = mock();
+    FindOwnerAPI findOwnerAPI = mock();
     QueryCategoryPort queryCategoryPort = mock();
     HandleUniverseEventPort handleUniverseEventPort = mock();
 
-    UpdateUniverseMetadataService sut = new UpdateUniverseMetadataService(loadUniversePort, findAuthorAPI, queryCategoryPort, handleUniverseEventPort);
+    UpdateUniverseMetadataService sut = new UpdateUniverseMetadataService(loadUniversePort, findOwnerAPI, queryCategoryPort, handleUniverseEventPort);
 
     @Test
     @DisplayName("정보 수정 서비스")
     void testUpdateDetail() {
         // given
         UUID universeID = UuidCreator.getTimeOrderedEpoch();
-        UpdateUniverseMetadataCommand command = new UpdateUniverseMetadataCommand("오르트구름", "오르트구름은 태양계 최외곽에 위치하고 있습니다.", UuidCreator.getTimeOrderedEpoch(), UuidCreator.getTimeOrderedEpoch(), AccessStatus.PRIVATE.name(), List.of("오르트구름", "태양계", "윤하", "별"));
+        UpdateUniverseMetadataCommand command = new UpdateUniverseMetadataCommand("오르트구름", "오르트구름은 태양계 최외곽에 위치하고 있습니다.", UuidCreator.getTimeOrderedEpoch(), UuidCreator.getTimeOrderedEpoch(), AccessLevel.PRIVATE.name(), List.of("오르트구름", "태양계", "윤하", "별"));
         Universe universe = defaultUniverseOnly()
                 .withUniverseID(new Universe.UniverseID(universeID))
                 .build();
-        Author newAuthor = new Author(UuidCreator.getTimeOrderedEpoch(), "leaffael");
+        Owner newOwner = new Owner(UuidCreator.getTimeOrderedEpoch(), "leaffael");
 
         // when
         when(loadUniversePort.loadUniverseOnly(universeID)).thenReturn(universe);
-        when(findAuthorAPI.findAuthor(command.authorID())).thenReturn(newAuthor);
+        when(findOwnerAPI.findOwner(command.ownerID())).thenReturn(newOwner);
         sut.updateUniverseMetadata(universeID, command);
 
         // then

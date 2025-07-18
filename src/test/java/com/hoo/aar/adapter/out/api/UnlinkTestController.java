@@ -16,10 +16,10 @@ public class UnlinkTestController {
 
     @PostMapping(value = "/unlink", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public ResponseEntity<OAuth2Dto.KakaoUnlinkResponse> unlink(
-            @RequestHeader(value = HttpHeaders.AUTHORIZATION) String authorizationHeader,
+            @RequestHeader(value = HttpHeaders.AUTHORIZATION) String ownerizationHeader,
             @RequestParam Map<String, String> map) {
 
-        if (!authorizationHeader.contains("KakaoAK") || !map.get("target_id_type").equals("user_id") || !map.get("target_id").equals("SNS_ID"))
+        if (!ownerizationHeader.contains("KakaoAK") || !map.get("target_id_type").equals("user_id") || !map.get("target_id").equals("SNS_ID"))
             return ResponseEntity.badRequest().build();
 
         return ResponseEntity.ok(new OAuth2Dto.KakaoUnlinkResponse(1L));

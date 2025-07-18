@@ -13,19 +13,19 @@ public class AdminUserDetail implements UserDetails, CredentialsContainer {
 
     private final String username;
     private String password;
-    private final List<GrantedAuthorityAdapter> authorities;
+    private final List<GrantedAuthorityAdapter> ownerities;
 
     public AdminUserDetail(AdminJpaEntity adminJpaEntity) {
         this.username = adminJpaEntity.getUsername();
         this.password = adminJpaEntity.getPassword();
-        this.authorities = adminJpaEntity.getRole().getAuthorities()
+        this.ownerities = adminJpaEntity.getRole().getAuthorities()
                 .stream().map(GrantedAuthorityAdapter::new)
                 .toList();
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return ownerities;
     }
 
     @Override

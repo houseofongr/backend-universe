@@ -33,8 +33,8 @@ public class AarSecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
                 .oauth2Login(oauth2 -> oauth2
-                        .authorizationEndpoint(authorization ->
-                                authorization.baseUri("/aar/authn/login/**"))
+                        .ownerizationEndpoint(ownerization ->
+                                ownerization.baseUri("/aar/authn/login/**"))
                         .redirectionEndpoint(redirection ->
                                 redirection.baseUri("/aar/authn/code/**"))
                         .userInfoEndpoint(userInfo ->
@@ -45,8 +45,8 @@ public class AarSecurityConfig {
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt.decoder(jwtDecoder)))
 
-                .authorizeHttpRequests(authorize ->
-                        authorize.requestMatchers(GET,
+                .ownerizeHttpRequests(ownerize ->
+                        ownerize.requestMatchers(GET,
                                         "/aar/authn/login/**",
                                         "/aar/authn/code/**",
                                         "/aar/authn/kakao/callback",

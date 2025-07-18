@@ -1,7 +1,7 @@
 package com.hoo.universe.api.out.persistence;
 
-import com.hoo.common.internal.api.dto.PageQueryResult;
-import com.hoo.common.internal.api.dto.PageRequest;
+import com.hoo.common.web.dto.PageQueryResult;
+import com.hoo.common.web.dto.PageRequest;
 import com.hoo.universe.api.dto.command.SearchUniverseCommand;
 import com.hoo.universe.api.dto.result.UniverseListInfo;
 import com.hoo.universe.api.dto.result.piece.OpenPieceResult;

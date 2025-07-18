@@ -22,11 +22,11 @@ spring:
           kakao:
             client-id: kakao-client-id
             client-secret: kakao-client-secret
-            authorization-grant-type: authorization_code
+            ownerization-grant-type: ownerization_code
             redirect-uri: http://localhost:8080/aar/authn/login/kakao
         provider:
           kakao:
-            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            ownerization-uri: https://kauth.kakao.com/oauth/ownerize
             token-uri: https://kauth.kakao.com/oauth/token
             user-info-uri: https://kapi.kakao.com/v2/user/me
             user-name-attribute: id

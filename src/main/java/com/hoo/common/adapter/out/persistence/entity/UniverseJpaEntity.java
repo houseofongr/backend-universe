@@ -45,7 +45,7 @@ public class UniverseJpaEntity extends DateColumnBaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
-    private UserJpaEntity author;
+    private UserJpaEntity owner;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CATEGORY_ID")
@@ -57,7 +57,7 @@ public class UniverseJpaEntity extends DateColumnBaseEntity {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "universe", cascade = CascadeType.REMOVE)
     private List<UniverseLikeJpaEntity> universeLikes;
 
-    public static UniverseJpaEntity create(Universe universe, UserJpaEntity author, CategoryJpaEntity category) {
+    public static UniverseJpaEntity create(Universe universe, UserJpaEntity owner, CategoryJpaEntity category) {
         return new UniverseJpaEntity(
                 null,
                 universe.getBasicInfo().getTitle(),
@@ -67,7 +67,7 @@ public class UniverseJpaEntity extends DateColumnBaseEntity {
                 universe.getFileInfo().getThumbMusicId(),
                 universe.getFileInfo().getThumbnailId(),
                 universe.getFileInfo().getImageId(),
-                author,
+                owner,
                 category,
                 new ArrayList<>(),
                 List.of());
@@ -82,8 +82,8 @@ public class UniverseJpaEntity extends DateColumnBaseEntity {
         this.innerImageFileId = universe.getFileInfo().getImageId();
     }
 
-    public void updateAuthor(UserJpaEntity author) {
-        this.author = author;
+    public void updateAuthor(UserJpaEntity owner) {
+        this.owner = owner;
     }
 
     public void updateCategory(CategoryJpaEntity category) {

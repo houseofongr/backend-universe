@@ -1,6 +1,6 @@
 package com.hoo.universe.api.dto.command;
 
-import com.hoo.universe.domain.vo.AccessStatus;
+import com.hoo.common.enums.AccessLevel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +28,7 @@ class UpdateUniverseMetadataCommandTest {
         assertThatThrownBy(() -> new UpdateUniverseMetadataCommand(null, null, null, null, null, tag11)).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new UpdateUniverseMetadataCommand(null, null, null, null, null, tagLength500)).isInstanceOf(IllegalArgumentException.class);
 
-        UpdateUniverseMetadataCommand command = new UpdateUniverseMetadataCommand("오르트구름", "오르트구름은 태양계 최외곽에 위치하고 있습니다.", UUID.randomUUID(), UUID.randomUUID(), AccessStatus.PRIVATE.name(), List.of("오르트구름", "태양계", "윤하", "별"));
+        UpdateUniverseMetadataCommand command = new UpdateUniverseMetadataCommand("오르트구름", "오르트구름은 태양계 최외곽에 위치하고 있습니다.", UUID.randomUUID(), UUID.randomUUID(), AccessLevel.PRIVATE.name(), List.of("오르트구름", "태양계", "윤하", "별"));
         assertThat(command).isNotNull();
     }
 

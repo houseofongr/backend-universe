@@ -127,7 +127,7 @@ class CreateUniverseServiceTest {
         Universe universe = Universe.load(1L, 1L, 2L, 3L, "오르트구름", "오르트구름은 태양계 최외곽에 위치하고 있습니다.", new UniverseCategory(1L, "카테고리", "category"), PublicStatus.PRIVATE, 0, 0L, List.of("오르트구름", "태양계", "윤하", "별"), user, ZonedDateTime.now(), ZonedDateTime.now());
 
         // when
-        when(findUserPort.loadUser(command.authorId())).thenReturn(Optional.of(User.load(1L, "leaf")));
+        when(findUserPort.loadUser(command.ownerId())).thenReturn(Optional.of(User.load(1L, "leaf")));
         when(findCategoryPort.findUniverseCategory(1L)).thenReturn(new UniverseCategory(1L, "category", "카테고리"));
         when(uploadPublicImageUseCase.publicUpload((MultipartFile) any())).thenReturn(new UploadFileResult.FileInfo(1L, null, "universe_music.mp3", "test1235.mp3", new FileSize(1234L, 10000L).getUnitSize(), Authority.PUBLIC_FILE_ACCESS));
         when(uploadPublicAudioUseCase.publicUpload((MultipartFile) any())).thenReturn(new UploadFileResult.FileInfo(1L, null, "universe_thumb.png", "test1234.png", new FileSize(1234L, 10000L).getUnitSize(), Authority.PUBLIC_FILE_ACCESS));
@@ -141,12 +141,12 @@ class CreateUniverseServiceTest {
         assertThat(result.thumbMusicId()).isEqualTo(1L);
         assertThat(result.thumbnailId()).isEqualTo(2L);
         assertThat(result.innerImageId()).isEqualTo(3L);
-        assertThat(result.authorId()).isEqualTo(1L);
+        assertThat(result.ownerId()).isEqualTo(1L);
         assertThat(result.createdTime()).isCloseTo(ZonedDateTime.now().toEpochSecond(), Offset.offset(10L));
         assertThat(result.categoryId()).isEqualTo(1L);
         assertThat(result.title()).isEqualTo("오르트구름");
         assertThat(result.description()).isEqualTo("오르트구름은 태양계 최외곽에 위치하고 있습니다.");
-        assertThat(result.author()).isEqualTo("leaf");
+        assertThat(result.owner()).isEqualTo("leaf");
         assertThat(result.publicStatus()).isEqualTo(PRIVATE.name());
         assertThat(result.hashtags()).hasSize(4);
     }

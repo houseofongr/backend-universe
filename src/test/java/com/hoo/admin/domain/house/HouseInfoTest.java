@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.*;
 class HouseInfoTest {
 
     String title = "cozy house";
-    String author = "leaf";
+    String owner = "leaf";
     String description = "this is cozy house.";
     Float width = 5000F;
     Float height = 5000F;
@@ -38,11 +38,11 @@ class HouseInfoTest {
         House newHouse = MockEntityFactoryService.getHouse();
 
         String title = "not cozy house";
-        String author = null;
+        String owner = null;
         String description = "this is not cozy house.";
 
         // when
-        newHouse.updateDetail(title, author, description);
+        newHouse.updateDetail(title, owner, description);
 
         // then
         assertThat(newHouse.getHouseDetail().getTitle()).isEqualTo(title);

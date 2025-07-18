@@ -1,12 +1,12 @@
 package com.hoo.universe.api.dto.command.space;
 
-import com.hoo.common.internal.api.dto.UploadFileRequest;
+import com.hoo.common.internal.api.dto.FileCommand;
 
 import java.util.UUID;
 
 public record CreateSpaceWithTwoPointCommand(
         Metadata metadata,
-        UploadFileRequest background
+        FileCommand background
 ) {
     public CreateSpaceWithTwoPointCommand {
         if (background == null)

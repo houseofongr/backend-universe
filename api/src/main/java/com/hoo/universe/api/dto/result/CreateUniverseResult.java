@@ -8,13 +8,13 @@ public record CreateUniverseResult(
         UUID thumbMusicID,
         UUID thumbnailID,
         UUID backgroundID,
-        UUID authorID,
+        UUID ownerID,
         Long createdTime,
         UUID categoryID,
         String title,
         String description,
-        String author,
-        String accessStatus,
+        String owner,
+        String accessLevel,
         List<String> hashtags
 ) {
 }

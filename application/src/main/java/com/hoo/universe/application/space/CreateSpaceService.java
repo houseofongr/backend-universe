@@ -1,8 +1,9 @@
 package com.hoo.universe.application.space;
 
 import com.hoo.common.IssueIDPort;
-import com.hoo.common.internal.api.dto.UploadFileResponse;
-import com.hoo.common.internal.api.FileUploadAPI;
+import com.hoo.common.internal.api.dto.UploadFileCommand;
+import com.hoo.common.internal.api.dto.UploadFileResult;
+import com.hoo.common.internal.api.UploadFileAPI;
 import com.hoo.universe.api.dto.command.space.CreateSpaceWithTwoPointCommand;
 import com.hoo.universe.api.dto.result.space.CreateSpaceResult;
 import com.hoo.universe.api.in.space.CreateSpaceUseCase;
@@ -34,7 +35,7 @@ public class CreateSpaceService implements CreateSpaceUseCase {
     private final IssueIDPort issueIDPort;
     private final LoadUniversePort loadUniversePort;
     private final HandleSpaceEventPort handleSpaceEventPort;
-    private final FileUploadAPI fileUploadAPI;
+    private final UploadFileAPI uploadFileAPI;
 
     @Override
     public CreateSpaceResult createSpaceWithTwoPoint(UUID universeID, UUID parentSpaceID, CreateSpaceWithTwoPointCommand command) {
@@ -44,7 +45,7 @@ public class CreateSpaceService implements CreateSpaceUseCase {
         Universe universe = loadUniversePort.loadUniverseExceptSounds(universeID);
         SpaceID newSpaceID = new SpaceID(issueIDPort.issueNewID());
 
-        UploadFileResponse background = fileUploadAPI.uploadFile(command.background());
+        UploadFileResult background = uploadFileAPI.uploadFile(UploadFileCommand.from(command.background(), universe.getOwner().getId(), universe.getUniverseMetadata().getAccessLevel()));
 
         SpaceCreateEvent event = universe.createSpaceInside(newSpaceID, new SpaceID(parentSpaceID),
                 SpaceMetadata.create(background.id(), command.metadata().hidden()),

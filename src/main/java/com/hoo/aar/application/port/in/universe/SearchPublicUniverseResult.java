@@ -12,14 +12,14 @@ public record SearchPublicUniverseResult(
             Long id,
             Long thumbnailId,
             Long thumbMusicId,
-            Long authorId,
+            Long ownerId,
             Long createdTime,
             Long view,
             Integer likeCnt,
             Boolean isLiked,
             String title,
             String description,
-            String author,
+            String owner,
             List<String> hashtags
     ) {
 

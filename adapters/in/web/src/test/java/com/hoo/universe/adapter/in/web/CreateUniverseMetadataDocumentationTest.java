@@ -19,9 +19,9 @@ public class CreateUniverseMetadataDocumentationTest extends DocumentationTest {
                         responseFields(
                                 fieldWithPath("title").description("생성할 유니버스의 제목입니다."),
                                 fieldWithPath("description").description("생성할 유니버스의 상세정보입니다."),
-                                fieldWithPath("authorID").description("생성할 유니버스의 작성자 ID입니다."),
+                                fieldWithPath("ownerID").description("생성할 유니버스의 작성자 ID입니다."),
                                 fieldWithPath("categoryID").description("생성할 유니버스의 카테고리 ID입니다."),
-                                fieldWithPath("accessStatus").description("생성할 유니버스의 접근상태 정보입니다. +" + "\n" +
+                                fieldWithPath("accessLevel").description("생성할 유니버스의 접근상태 정보입니다. +" + "\n" +
                                                                           "* PUBLIC : 공개 유니버스, PRIVATE : 비공개 유니버스"),
                                 fieldWithPath("hashtags").description("생성할 유니버스의 해시태그입니다.")
                         )

@@ -1,6 +1,6 @@
 package com.hoo.universe.application.piece;
 
-import com.hoo.common.internal.message.FileDeleteEventPublisher;
+import com.hoo.common.internal.message.DeleteFileEventPublisher;
 import com.hoo.universe.api.dto.result.piece.DeletePieceResult;
 import com.hoo.universe.api.in.piece.DeletePieceUseCase;
 import com.hoo.universe.api.out.persistence.HandlePieceEventPort;
@@ -23,7 +23,7 @@ public class DeletePieceService implements DeletePieceUseCase {
 
     private final LoadUniversePort loadUniversePort;
     private final HandlePieceEventPort handlePieceEventPort;
-    private final FileDeleteEventPublisher fileDeleteEventPublisher;
+    private final DeleteFileEventPublisher deleteFileEventPublisher;
 
     @Override
     public DeletePieceResult deletePiece(UUID universeID, UUID pieceID) {
@@ -34,7 +34,7 @@ public class DeletePieceService implements DeletePieceUseCase {
         PieceDeleteEvent event = piece.delete();
 
         handlePieceEventPort.handlePieceDeleteEvent(event);
-        fileDeleteEventPublisher.publishDeleteFilesEvent(event.deleteFileIDs());
+        deleteFileEventPublisher.publishDeleteFilesEvent(event.deleteFileIDs());
 
         return new DeletePieceResult(
                 event.deletePieceID().uuid(),

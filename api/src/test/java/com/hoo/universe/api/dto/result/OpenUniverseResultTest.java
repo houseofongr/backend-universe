@@ -20,7 +20,7 @@ class OpenUniverseResultTest {
         assertThat(result.thumbMusicID()).isEqualTo(universe.getUniverseMetadata().getThumbmusicID());
         assertThat(result.thumbnailID()).isEqualTo(universe.getUniverseMetadata().getThumbnailID());
         assertThat(result.backgroundID()).isEqualTo(universe.getUniverseMetadata().getBackgroundID());
-        assertThat(result.authorID()).isEqualTo(universe.getAuthor().getId());
+        assertThat(result.ownerID()).isEqualTo(universe.getOwner().getId());
 
         assertThat(result.createdTime()).isEqualTo(universe.getCommonMetadata().getCreatedTime().toEpochSecond());
         assertThat(result.updatedTime()).isEqualTo(universe.getCommonMetadata().getUpdatedTime().toEpochSecond());
@@ -30,8 +30,8 @@ class OpenUniverseResultTest {
 
         assertThat(result.title()).isEqualTo(universe.getCommonMetadata().getTitle());
         assertThat(result.description()).isEqualTo(universe.getCommonMetadata().getDescription());
-        assertThat(result.author()).isEqualTo(universe.getAuthor().getNickname());
-        assertThat(result.accessStatus()).isEqualTo(universe.getUniverseMetadata().getAccessStatus().name());
+        assertThat(result.owner()).isEqualTo(universe.getOwner().getNickname());
+        assertThat(result.accessLevel()).isEqualTo(universe.getUniverseMetadata().getAccessLevel().name());
 
         assertThat(result.category()).isEqualTo(universe.getCategory());
         assertThat(result.hashtags()).isEqualTo(universe.getUniverseMetadata().getTags());

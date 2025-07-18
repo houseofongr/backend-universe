@@ -2,16 +2,16 @@ package com.hoo.universe.api.dto.command;
 
 
 
-import com.hoo.common.internal.api.dto.UploadFileRequest;
+import com.hoo.common.internal.api.dto.FileCommand;
 
 import java.util.List;
 import java.util.UUID;
 
 public record CreateUniverseCommand(
         Metadata metadata,
-        UploadFileRequest thumbMusic,
-        UploadFileRequest thumbnail,
-        UploadFileRequest background
+        FileCommand thumbMusic,
+        FileCommand thumbnail,
+        FileCommand background
 ) {
 
     public CreateUniverseCommand {
@@ -24,9 +24,9 @@ public record CreateUniverseCommand(
     public record Metadata(
             String title,
             String description,
-            UUID authorID,
+            UUID ownerID,
             UUID categoryID,
-            String accessStatus,
+            String accessLevel,
             List<String> hashtags
     ) {
         public Metadata {

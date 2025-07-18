@@ -13,19 +13,19 @@ public class Universe extends UniverseTreeComponent {
     private UniverseCategory category;
     private final DateInfo dateInfo;
     private final SocialInfo socialInfo;
-    private final AuthorInfo authorInfo;
+    private final AuthorInfo ownerInfo;
 
-    private Universe(Long id, UniverseFileInfo fileInfo, UniverseBasicInfo basicInfo, UniverseCategory category, DateInfo dateInfo, SocialInfo socialInfo, TreeInfo treeInfo, AuthorInfo authorInfo) {
+    private Universe(Long id, UniverseFileInfo fileInfo, UniverseBasicInfo basicInfo, UniverseCategory category, DateInfo dateInfo, SocialInfo socialInfo, TreeInfo treeInfo, AuthorInfo ownerInfo) {
         super(id, treeInfo);
         this.fileInfo = fileInfo;
         this.basicInfo = basicInfo;
         this.category = category;
         this.dateInfo = dateInfo;
         this.socialInfo = socialInfo;
-        this.authorInfo = authorInfo;
+        this.ownerInfo = ownerInfo;
     }
 
-    public static Universe create(Long thumbMusicId, Long thumbnailId, Long innerImageId, String title, String description, UniverseCategory category, PublicStatus publicStatus, List<String> tag, User author) {
+    public static Universe create(Long thumbMusicId, Long thumbnailId, Long innerImageId, String title, String description, UniverseCategory category, PublicStatus publicStatus, List<String> tag, User owner) {
         return new Universe(null,
                 new UniverseFileInfo(thumbMusicId, thumbnailId, innerImageId),
                 new UniverseBasicInfo(title, description, publicStatus),
@@ -33,14 +33,14 @@ public class Universe extends UniverseTreeComponent {
                 null,
                 new SocialInfo(0, 0L, tag),
                 null,
-                author != null ? new AuthorInfo(
-                        author.getUserInfo().getId(),
-                        author.getUserInfo().getNickname())
+                owner != null ? new AuthorInfo(
+                        owner.getUserInfo().getId(),
+                        owner.getUserInfo().getNickname())
                         : null
         );
     }
 
-    public static Universe load(Long id, Long thumbMusicId, Long thumbnailId, Long innerImageId, String title, String description, UniverseCategory category, PublicStatus publicStatus, Integer likeCount, Long viewCount, List<String> tag, User author, ZonedDateTime createdTime, ZonedDateTime updatedTime) {
+    public static Universe load(Long id, Long thumbMusicId, Long thumbnailId, Long innerImageId, String title, String description, UniverseCategory category, PublicStatus publicStatus, Integer likeCount, Long viewCount, List<String> tag, User owner, ZonedDateTime createdTime, ZonedDateTime updatedTime) {
         return new Universe(id,
                 new UniverseFileInfo(thumbMusicId, thumbnailId, innerImageId),
                 new UniverseBasicInfo(title, description, publicStatus),
@@ -48,7 +48,7 @@ public class Universe extends UniverseTreeComponent {
                 new DateInfo(createdTime, updatedTime),
                 new SocialInfo(likeCount, viewCount, tag),
                 null,
-                new AuthorInfo(author.getUserInfo().getId(), author.getUserInfo().getNickname()));
+                new AuthorInfo(owner.getUserInfo().getId(), owner.getUserInfo().getNickname()));
     }
 
     public static Universe loadTreeComponent(Long id, Long thumbMusicId, Long thumbnailId, Long innerImageFileId) {

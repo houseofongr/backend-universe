@@ -97,7 +97,7 @@ class UploadServiceTest {
                     assertThat(fileInfo.realName()).isEqualTo("test2.png");
                     assertThat(fileInfo.fileSystemName()).contains(".png");
                     assertThat(fileInfo.size()).matches("^\\d{1,3}.\\d{1,2}KB$");
-                    assertThat(fileInfo.authority()).isEqualTo(Authority.PUBLIC_FILE_ACCESS);
+                    assertThat(fileInfo.ownerity()).isEqualTo(Authority.PUBLIC_FILE_ACCESS);
                 });
     }
 
@@ -124,7 +124,7 @@ class UploadServiceTest {
                     assertThat(fileInfo.realName()).isEqualTo("test2.png");
                     assertThat(fileInfo.fileSystemName()).contains(".png");
                     assertThat(fileInfo.size()).matches("^\\d{1,3}.\\d{1,2}KB$");
-                    assertThat(fileInfo.authority()).isEqualTo(Authority.ALL_PRIVATE_IMAGE_ACCESS);
+                    assertThat(fileInfo.ownerity()).isEqualTo(Authority.ALL_PRIVATE_IMAGE_ACCESS);
                 });
     }
 
@@ -147,7 +147,7 @@ class UploadServiceTest {
                     assertThat(fileInfo.realName()).isEqualTo("test.mp3");
                     assertThat(fileInfo.fileSystemName()).contains(".mp3");
                     assertThat(fileInfo.size()).matches("^\\d{1,3}.\\d{1,2}KB$");
-                    assertThat(fileInfo.authority()).isEqualTo(Authority.ALL_PRIVATE_IMAGE_ACCESS);
+                    assertThat(fileInfo.ownerity()).isEqualTo(Authority.ALL_PRIVATE_IMAGE_ACCESS);
                 });
     }
 }

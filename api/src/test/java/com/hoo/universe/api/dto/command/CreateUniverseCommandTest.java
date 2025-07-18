@@ -1,6 +1,7 @@
 package com.hoo.universe.api.dto.command;
 
-import com.hoo.common.internal.api.dto.UploadFileRequest;
+import com.hoo.common.internal.api.dto.FileCommand;
+import com.hoo.universe.test.dto.FileTestData;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,6 +9,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.UUID;
 
+import static com.hoo.universe.test.dto.FileTestData.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.mock;
 
@@ -44,9 +46,9 @@ class CreateUniverseCommandTest {
         // given
         CreateUniverseCommand.Metadata metadata = getMetadata();
 
-        UploadFileRequest thumbmusic = new UploadFileRequest("thumbmusic.mp3", 1000L, mockInputStream);
-        UploadFileRequest thumbnail = new UploadFileRequest("thumbnail.png", 1000L, mockInputStream);
-        UploadFileRequest background = new UploadFileRequest("background.png", 1000L, mockInputStream);
+        FileCommand thumbmusic = defaultAudioFileCommand();
+        FileCommand thumbnail = defaultImageFileCommand();
+        FileCommand background = defaultImageFileCommand();
 
         assertThatThrownBy(() -> new CreateUniverseCommand(metadata, null, thumbnail, background)).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new CreateUniverseCommand(metadata, thumbmusic, null, background)).isInstanceOf(IllegalArgumentException.class);

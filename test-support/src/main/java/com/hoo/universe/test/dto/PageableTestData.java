@@ -1,7 +1,7 @@
 package com.hoo.universe.test.dto;
 
 
-import com.hoo.common.internal.api.dto.PageRequest;
+import com.hoo.common.web.dto.PageRequest;
 
 public class PageableTestData {
 

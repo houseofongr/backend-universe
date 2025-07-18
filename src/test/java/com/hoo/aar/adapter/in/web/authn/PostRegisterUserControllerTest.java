@@ -4,7 +4,7 @@ import com.hoo.common.adapter.in.web.config.AbstractControllerTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.ownerity.SimpleGrantedAuthority;
 import org.springframework.test.context.jdbc.Sql;
 
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
@@ -26,7 +26,7 @@ public class PostRegisterUserControllerTest extends AbstractControllerTest {
                         .content(badBody)
                         .contentType(MediaType.APPLICATION_JSON)
                         .with(jwt().jwt(jwt -> jwt.claim("snsId", 1L))
-                                .authorities(new SimpleGrantedAuthority("ROLE_TEMP_USER")))
+                                .ownerities(new SimpleGrantedAuthority("ROLE_TEMP_USER")))
                 )
                 .andExpect(status().is(400));
 
@@ -36,7 +36,7 @@ public class PostRegisterUserControllerTest extends AbstractControllerTest {
                         .content(body)
                         .contentType(MediaType.APPLICATION_JSON)
                         .with(jwt().jwt(jwt -> jwt.claim("snsId", 1L))
-                                .authorities(new SimpleGrantedAuthority("ROLE_TEMP_USER")))
+                                .ownerities(new SimpleGrantedAuthority("ROLE_TEMP_USER")))
                 )
                 .andExpect(status().is(201))
                 .andDo(document("aar-authn-regist",

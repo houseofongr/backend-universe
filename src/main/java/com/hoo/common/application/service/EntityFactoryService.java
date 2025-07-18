@@ -52,9 +52,9 @@ public class EntityFactoryService implements CreateUserPort, CreateSnsAccountPor
     }
 
     @Override
-    public House createHouse(String title, String author, String description, Float width, Float height, Long basicImageId, Long borderImageId, List<Room> rooms) {
+    public House createHouse(String title, String owner, String description, Float width, Float height, Long basicImageId, Long borderImageId, List<Room> rooms) {
         Long newId = issueIdPort.issueHouseId();
-        return House.create(newId, title, author, description, width, height, basicImageId, borderImageId, rooms);
+        return House.create(newId, title, owner, description, width, height, basicImageId, borderImageId, rooms);
     }
 
     @Override

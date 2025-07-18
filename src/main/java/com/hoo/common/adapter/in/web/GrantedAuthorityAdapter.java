@@ -7,10 +7,10 @@ import org.springframework.security.core.GrantedAuthority;
 @RequiredArgsConstructor
 public class GrantedAuthorityAdapter implements GrantedAuthority {
 
-    private final Authority authority;
+    private final Authority ownerity;
 
     @Override
     public String getAuthority() {
-        return authority.name();
+        return ownerity.name();
     }
 }

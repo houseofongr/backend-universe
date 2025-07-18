@@ -96,7 +96,7 @@ class HousePersistenceAdapterTest {
         assertThat(result.houses()).anySatisfy(entity -> {
             assertThat(entity.id()).isEqualTo(1L);
             assertThat(entity.title()).isEqualTo("cozy house");
-            assertThat(entity.author()).isEqualTo("leaf");
+            assertThat(entity.owner()).isEqualTo("leaf");
             assertThat(entity.description()).isEqualTo("this is cozy house");
             assertThat(entity.createdDate()).isEqualTo(DateTimeFormatters.ENGLISH_DATE.getFormatter().format(ZonedDateTime.now()));
         });

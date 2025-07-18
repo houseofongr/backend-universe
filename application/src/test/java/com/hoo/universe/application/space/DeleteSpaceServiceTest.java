@@ -1,7 +1,7 @@
 package com.hoo.universe.application.space;
 
 import com.github.f4b6a3.uuid.UuidCreator;
-import com.hoo.common.internal.message.FileDeleteEventPublisher;
+import com.hoo.common.internal.message.DeleteFileEventPublisher;
 import com.hoo.universe.api.out.persistence.HandleSpaceEventPort;
 import com.hoo.universe.api.out.persistence.LoadUniversePort;
 import com.hoo.universe.domain.Universe;
@@ -17,9 +17,9 @@ class DeleteSpaceServiceTest {
 
     LoadUniversePort loadUniversePort = mock();
     HandleSpaceEventPort handleSpaceEventPort = mock();
-    FileDeleteEventPublisher fileDeleteEventPublisher = mock();
+    DeleteFileEventPublisher deleteFileEventPublisher = mock();
 
-    DeleteSpaceService sut = new DeleteSpaceService(loadUniversePort, handleSpaceEventPort, fileDeleteEventPublisher);
+    DeleteSpaceService sut = new DeleteSpaceService(loadUniversePort, handleSpaceEventPort, deleteFileEventPublisher);
 
     @Test
     @DisplayName("스페이스 삭제 서비스")
@@ -35,6 +35,6 @@ class DeleteSpaceServiceTest {
 
         // then
         verify(handleSpaceEventPort, times(1)).handleSpaceDeleteEvent(any());
-        verify(fileDeleteEventPublisher, times(1)).publishDeleteFilesEvent(anyList());
+        verify(deleteFileEventPublisher, times(1)).publishDeleteFilesEvent(anyList());
     }
 }

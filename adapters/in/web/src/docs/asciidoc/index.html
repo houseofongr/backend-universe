@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.23">
 <meta name="description" content="하우스 오브 옹알 유니버스 서비스 API 문서입니다.">
-<meta name="author" content="Sangyeop. Nam">
+<meta name="owner" content="Sangyeop. Nam">
 <link rel="icon" type="image/x-icon" href="/Users/leaf/hoo/universe/adapters/in/web/src/docs/asciidoc/images/favicon.ico">
 <title>유니버스 API 문서</title>
 <style>
@@ -206,7 +206,7 @@ table {
 <div id="header">
 <h1>유니버스 API 문서</h1>
 <div class="details">
-<span id="author" class="author">Sangyeop. Nam</span><br>
+<span id="owner" class="owner">Sangyeop. Nam</span><br>
 <span id="email" class="email"><a href="mailto:spearoad15@gmail.com">spearoad15@gmail.com</a></span><br>
 </div>
 <div id="toc" class="toc2">
@@ -329,9 +329,9 @@ Content-Type: application/json
 {
   "title": "우주",
   "description": "유니버스는 우주입니다.",
-  "authorID": "019812d4-73e3-7d80-9e8e-aa62af94c0b3",
+  "ownerID": "019812d4-73e3-7d80-9e8e-aa62af94c0b3",
   "categoryID": "019812d4-73e3-7b78-a49e-b8a68b70cfb6",
-  "accessStatus": "PUBLIC",
+  "accessLevel": "PUBLIC",
   "hashtags": [
     "우주", "행성", "지구", "별"
   ]
@@ -416,7 +416,7 @@ image file
 <td class="tableblock halign-left valign-top"><p class="tableblock">생성할 유니버스의 상세정보입니다.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>authorID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ownerID</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">생성할 유니버스의 작성자 ID입니다.</p></td>
 </tr>
@@ -426,7 +426,7 @@ image file
 <td class="tableblock halign-left valign-top"><p class="tableblock">생성할 유니버스의 카테고리 ID입니다.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>accessStatus</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>accessLevel</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">생성할 유니버스의 접근상태 정보입니다.<br>
 * PUBLIC : 공개 유니버스, PRIVATE : 비공개 유니버스</p></td>
@@ -451,13 +451,13 @@ Content-Length: 565
   "thumbMusicID" : "019819f7-9e46-7995-8078-420b9441e168",
   "thumbnailID" : "019819f7-9e46-79a9-8079-a32b0b45ec26",
   "backgroundID" : "019819f7-9e46-79b2-807a-adac9a05bfbd",
-  "authorID" : "019819f7-9e46-7a04-807b-2c15102e47a1",
+  "ownerID" : "019819f7-9e46-7a04-807b-2c15102e47a1",
   "createdTime" : 1752782315,
   "categoryID" : "019819f7-9e46-7acc-807c-419258fb1d37",
   "title" : "유니버스",
   "description" : "유니버스는 우주입니다.",
-  "author" : "leaf",
-  "accessStatus" : "PUBLIC",
+  "owner" : "leaf",
+  "accessLevel" : "PUBLIC",
   "hashtags" : [ "우주", "행성", "지구", "별" ]
 }</code></pre>
 </div>
@@ -500,7 +500,7 @@ Content-Length: 565
 <td class="tableblock halign-left valign-top"><p class="tableblock">생성된 유니버스의 내부 이미지 파일 ID입니다.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>authorID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ownerID</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">생성된 유니버스 작성자의 ID입니다.</p></td>
 </tr>
@@ -515,7 +515,7 @@ Content-Length: 565
 <td class="tableblock halign-left valign-top"><p class="tableblock">생성된 유니버스의 제목입니다.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>author</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>owner</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">생성된 유니버스의 작성자의 닉네임입니다.</p></td>
 </tr>
@@ -530,7 +530,7 @@ Content-Length: 565
 <td class="tableblock halign-left valign-top"><p class="tableblock">생성된 유니버스의 카테고리 ID입니다.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>accessStatus</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>accessLevel</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">생성된 유니버스의 공개 여부입니다.</p></td>
 </tr>
@@ -636,15 +636,15 @@ Content-Length: 813
     "id" : "019819f7-9f88-787a-9de1-17db1f72f137",
     "thumbmusicID" : "019819f7-9f88-78f1-9de2-828f742c6f34",
     "thumbnailID" : "019819f7-9f88-7902-9de3-80121e72ac72",
-    "authorID" : "019819f7-9f88-790a-9de4-15d5e3a2f576",
+    "ownerID" : "019819f7-9f88-790a-9de4-15d5e3a2f576",
     "createdTime" : 1752782315,
     "updatedTime" : 1752782315,
     "view" : 123,
     "like" : 19,
     "title" : "조회된 유니버스 제목",
     "description" : "조회된 유니버스 내용",
-    "author" : "leaf",
-    "accessStatus" : "PUBLIC",
+    "owner" : "leaf",
+    "accessLevel" : "PUBLIC",
     "category" : {
       "id" : "019819f7-9f88-79b6-9de5-4aaf6f835d6a",
       "eng" : "retried category",
@@ -694,7 +694,7 @@ Content-Length: 813
 <td class="tableblock halign-left valign-top"><p class="tableblock">썸뮤직 파일 ID입니다.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].authorID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].ownerID</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">작성자의 ID입니다.</p></td>
 </tr>
@@ -724,7 +724,7 @@ Content-Length: 813
 <td class="tableblock halign-left valign-top"><p class="tableblock">제목입니다.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].author</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].owner</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">작성자의 닉네임입니다.</p></td>
 </tr>
@@ -739,7 +739,7 @@ Content-Length: 813
 <td class="tableblock halign-left valign-top"><p class="tableblock">카테고리입니다.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].accessStatus</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content[].accessLevel</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">공개 여부입니다.</p></td>
 </tr>
@@ -870,7 +870,7 @@ Host: api.archiveofongr.site</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">백그라운드 파일 ID입니다.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>authorID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ownerID</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">작성자의 ID입니다.</p></td>
 </tr>
@@ -900,7 +900,7 @@ Host: api.archiveofongr.site</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">제목입니다.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>author</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>owner</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">작성자의 닉네임입니다.</p></td>
 </tr>
@@ -910,7 +910,7 @@ Host: api.archiveofongr.site</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">설명입니다.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>accessStatus</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>accessLevel</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">공개 여부입니다.</p></td>
 </tr>
@@ -1078,15 +1078,15 @@ Host: api.archiveofongr.site</code></pre>
   "thumbMusicID" : "019813c8-d91c-7651-9ef9-64854a6b8924",
   "thumbnailID" : "019813c8-d91c-7662-9efa-d51342a8b9e8",
   "backgroundID" : "019813c8-d91c-7666-9efb-170d75765989",
-  "authorID" : "019813c8-d91c-7589-9ef8-4e3178518da2",
+  "ownerID" : "019813c8-d91c-7589-9ef8-4e3178518da2",
   "createdTime" : 1752678586,
   "updatedTime" : 1752678586,
   "view" : 0,
   "like" : 0,
   "title" : "우주",
   "description" : "유니버스는 우주입니다.",
-  "author" : "leaf",
-  "accessStatus" : "PUBLIC",
+  "owner" : "leaf",
+  "accessLevel" : "PUBLIC",
   "category" : {
     "id" : "019813c8-d91c-7368-9ef7-86695566530b",
     "eng" : "Public",
@@ -1193,9 +1193,9 @@ Host: api.archiveofongr.site
 {
   "title" : "수정된 제목",
   "description" : "수정된 내용",
-  "authorID" : "0198132d-a951-7696-ae2f-f18c41996c2b",
+  "ownerID" : "0198132d-a951-7696-ae2f-f18c41996c2b",
   "categoryID" : "0198132d-a951-7cd6-9f71-5b130384fd86",
-  "accessStatus" : "PRIVATE",
+  "accessLevel" : "PRIVATE",
   "hashtags" : [ "수정된", "해시태그" ]
 }</code></pre>
 </div>
@@ -1232,7 +1232,7 @@ Host: api.archiveofongr.site
 <td class="tableblock halign-left valign-top"><p class="tableblock">수정할 상세정보입니다.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>authorID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ownerID</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">수정할 작성자 ID입니다.</p></td>
@@ -1244,7 +1244,7 @@ Host: api.archiveofongr.site
 <td class="tableblock halign-left valign-top"><p class="tableblock">수정할 카테고리 ID입니다.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>accessStatus</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>accessLevel</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">공개 여부입니다.</p></td>
@@ -1267,12 +1267,12 @@ Content-Type: application/json;charset=UTF-8
 Content-Length: 410
 
 {
-  "authorID" : "019819f7-9fa0-7d5c-8caa-dc3c11f0b084",
+  "ownerID" : "019819f7-9fa0-7d5c-8caa-dc3c11f0b084",
   "updatedTime" : 1752782315,
   "title" : "수정된 제목",
   "description" : "수정된 내용",
-  "author" : "수정된 저자",
-  "accessStatus" : "PRIVATE",
+  "owner" : "수정된 저자",
+  "accessLevel" : "PRIVATE",
   "category" : {
     "id" : "0198132d-a951-7cd6-9f71-5b130384fd86",
     "eng" : "altered category",
@@ -1300,7 +1300,7 @@ Content-Length: 410
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>authorID</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ownerID</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">수정된 작성자입니다.</p></td>
 </tr>
@@ -1320,12 +1320,12 @@ Content-Length: 410
 <td class="tableblock halign-left valign-top"><p class="tableblock">수정된 상세정보입니다.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>author</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>owner</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">수정된 작성자의 닉네임입니다.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>accessStatus</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>accessLevel</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">수정된 공개 여부입니다.</p></td>
 </tr>

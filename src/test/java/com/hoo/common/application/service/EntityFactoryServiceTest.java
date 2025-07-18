@@ -37,7 +37,7 @@ class EntityFactoryServiceTest {
 
         // when
         when(issueIdPort.issueHouseId()).thenReturn(1L);
-        House house = sut.createHouse("title", "author", "description", 5000f, 5000f, 1L, 1L, List.of());
+        House house = sut.createHouse("title", "owner", "description", 5000f, 5000f, 1L, 1L, List.of());
 
         // then
         assertThat(house).isNotNull();

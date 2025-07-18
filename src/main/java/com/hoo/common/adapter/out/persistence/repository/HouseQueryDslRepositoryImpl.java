@@ -42,7 +42,7 @@ public class HouseQueryDslRepositoryImpl implements HouseQueryDslRepository {
         if (command.keyword() == null || command.keyword().isBlank()) return null;
         return switch (command.searchType()) {
             case TITLE -> houseJpaEntity.title.likeIgnoreCase("%" + command.keyword() + "%");
-            case AUTHOR -> houseJpaEntity.author.likeIgnoreCase("%" + command.keyword() + "%");
+            case AUTHOR -> houseJpaEntity.owner.likeIgnoreCase("%" + command.keyword() + "%");
             case DESCRIPTION -> houseJpaEntity.description.likeIgnoreCase("%" + command.keyword() + "%");
         };
     }

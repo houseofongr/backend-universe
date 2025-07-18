@@ -1,6 +1,7 @@
 package com.hoo.universe.domain;
 
 import com.github.f4b6a3.uuid.UuidCreator;
+import com.hoo.common.enums.AccessLevel;
 import com.hoo.universe.domain.Space.SpaceID;
 import com.hoo.universe.domain.event.UniverseDeleteEvent;
 import com.hoo.universe.domain.event.UniverseFileOverwriteEvent;
@@ -161,28 +162,28 @@ class UniverseTest {
         Universe universe = defaultUniverseOnly().build();
 
         Category category = new Category(UuidCreator.getTimeOrderedEpoch(), "category2", "카테고리2");
-        Author author = new Author(UuidCreator.getTimeOrderedEpoch(), "leaffael");
+        Owner owner = new Owner(UuidCreator.getTimeOrderedEpoch(), "leaffael");
         String title = "수정";
         String description = "수정된 내용";
-        AccessStatus accessStatus = AccessStatus.PRIVATE;
+        AccessLevel accessLevel = AccessLevel.PRIVATE;
         List<String> tags = List.of("수", "정");
 
         // when
-        UniverseMetadataUpdateEvent event = universe.updateMetadata(category, author, title, description, accessStatus, tags);
+        UniverseMetadataUpdateEvent event = universe.updateMetadata(category, owner, title, description, accessLevel, tags);
 
         // then
         assertThat(event.universeID()).isEqualTo(universe.getId());
         assertThat(event.category()).isEqualTo(category);
-        assertThat(event.author()).isEqualTo(author);
+        assertThat(event.owner()).isEqualTo(owner);
         assertThat(event.title()).isEqualTo(title);
         assertThat(event.description()).isEqualTo(description);
-        assertThat(event.accessStatus()).isEqualTo(accessStatus);
+        assertThat(event.accessLevel()).isEqualTo(accessLevel);
         assertThat(event.tags()).isEqualTo(tags);
         assertThat(event.updatedTime()).isCloseTo(ZonedDateTime.now(), new TemporalUnitLessThanOffset(100L, ChronoUnit.MILLIS));
 
         assertThat(universe.getCommonMetadata().getTitle()).isEqualTo(title);
         assertThat(universe.getCommonMetadata().getDescription()).isEqualTo(description);
-        assertThat(universe.getUniverseMetadata().getAccessStatus()).isEqualTo(accessStatus);
+        assertThat(universe.getUniverseMetadata().getAccessLevel()).isEqualTo(accessLevel);
         assertThat(universe.getUniverseMetadata().getTags()).isEqualTo(tags);
         assertThat(universe.getCommonMetadata().getUpdatedTime()).isCloseTo(ZonedDateTime.now(), new TemporalUnitLessThanOffset(100L, ChronoUnit.MILLIS));
     }

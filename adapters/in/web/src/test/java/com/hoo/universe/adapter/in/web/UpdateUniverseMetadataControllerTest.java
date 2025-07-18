@@ -34,9 +34,9 @@ class UpdateUniverseMetadataControllerTest extends DocumentationTest {
                 {
                   "title": "수정된 제목",
                   "description": "수정된 내용",
-                  "authorID": "0198132d-a951-7696-ae2f-f18c41996c2b",
+                  "ownerID": "0198132d-a951-7696-ae2f-f18c41996c2b",
                   "categoryID": "0198132d-a951-7cd6-9f71-5b130384fd86",
-                  "accessStatus": "PRIVATE",
+                  "accessLevel": "PRIVATE",
                   "hashtags": [
                     "수정된", "해시태그"
                   ]
@@ -47,9 +47,9 @@ class UpdateUniverseMetadataControllerTest extends DocumentationTest {
         when(updateUniverseMetadataUseCase.updateUniverseMetadata(any(), argThat(command ->
                 command.title().equals("수정된 제목") &&
                 command.description().equals("수정된 내용") &&
-                command.authorID().toString().equals("0198132d-a951-7696-ae2f-f18c41996c2b") &&
+                command.ownerID().toString().equals("0198132d-a951-7696-ae2f-f18c41996c2b") &&
                 command.categoryID().toString().equals("0198132d-a951-7cd6-9f71-5b130384fd86") &&
-                command.accessStatus().equals("PRIVATE") &&
+                command.accessLevel().equals("PRIVATE") &&
                 command.hashtags().containsAll(List.of("수정된", "해시태그")))))
                 .thenReturn(new UpdateUniverseMetadataResult(
                         universeID,
@@ -78,18 +78,18 @@ class UpdateUniverseMetadataControllerTest extends DocumentationTest {
                         requestFields(
                                 fieldWithPath("title").description("수정할 제목입니다."),
                                 fieldWithPath("description").description("수정할 상세정보입니다."),
-                                fieldWithPath("authorID").description("수정할 작성자 ID입니다."),
+                                fieldWithPath("ownerID").description("수정할 작성자 ID입니다."),
                                 fieldWithPath("categoryID").description("수정할 카테고리 ID입니다."),
-                                fieldWithPath("accessStatus").description("공개 여부입니다."),
+                                fieldWithPath("accessLevel").description("공개 여부입니다."),
                                 fieldWithPath("hashtags").description("수정할 태그 정보입니다.")
                         ),
                         responseFields(
-                                fieldWithPath("authorID").description("수정된 작성자입니다."),
+                                fieldWithPath("ownerID").description("수정된 작성자입니다."),
                                 fieldWithPath("updatedTime").description(" 수정일자입니다."),
                                 fieldWithPath("title").description("수정된 제목입니다."),
                                 fieldWithPath("description").description("수정된 상세정보입니다."),
-                                fieldWithPath("author").description("수정된 작성자의 닉네임입니다."),
-                                fieldWithPath("accessStatus").description("수정된 공개 여부입니다."),
+                                fieldWithPath("owner").description("수정된 작성자의 닉네임입니다."),
+                                fieldWithPath("accessLevel").description("수정된 공개 여부입니다."),
                                 fieldWithPath("hashtags").description("수정된 태그 정보입니다."),
                                 fieldWithPath("category.id").description("수정된 카테고리의 ID입니다."),
                                 fieldWithPath("category.eng").description("수정된 카테고리의 영문 이름입니다."),

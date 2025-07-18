@@ -35,7 +35,7 @@ class GetUserHomesControllerTest extends AbstractControllerTest {
 
                                 fieldWithPath("homes[].baseHouse.id").description("하우스의 ID입니다."),
                                 fieldWithPath("homes[].baseHouse.title").description("하우스의 타이틀입니다."),
-                                fieldWithPath("homes[].baseHouse.author").description("하우스의 작가입니다."),
+                                fieldWithPath("homes[].baseHouse.owner").description("하우스의 작가입니다."),
                                 fieldWithPath("homes[].baseHouse.description").description("하우스에 대한 설명입니다. +" + "\n" + "* 100자까지만 전송됩니다.")
                         )
                 ));

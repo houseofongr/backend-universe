@@ -6,6 +6,8 @@ import lombok.Getter;
 
 import java.util.UUID;
 
+import static com.hoo.common.util.OptionalUtil.*;
+
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class SpaceMetadata {
@@ -14,7 +16,7 @@ public class SpaceMetadata {
     private final boolean hidden;
 
     public static SpaceMetadata create(UUID imageID, Boolean hidden) {
-        return new SpaceMetadata(imageID, orElseNotHidden(hidden));
+        return new SpaceMetadata(imageID, orElseFalse(hidden));
     }
 
     public SpaceMetadata update(Boolean hidden) {
@@ -25,11 +27,4 @@ public class SpaceMetadata {
         return new SpaceMetadata(backgroundID, hidden);
     }
 
-    private static boolean orElseNotHidden(Boolean hidden) {
-        return hidden != null && hidden;
-    }
-
-    private  <T> T getOrDefault(T value, T defaultValue) {
-        return value != null ? value : defaultValue;
-    }
 }

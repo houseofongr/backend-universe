@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.23">
 <meta name="description" content="아카이브 오브 옹알 API 문서입니다.">
-<meta name="author" content="Sangyeop. Nam">
+<meta name="owner" content="Sangyeop. Nam">
 <link rel="icon" type="image/x-icon" href="/Users/leaf/hoo/aoo-backend/src/docs/asciidoc/images/favicon.ico">
 <title>아카이브 오브 옹알 API 문서</title>
 <style>
@@ -173,7 +173,7 @@ h3 {
 <div id="header">
 <h1>아카이브 오브 옹알 API 문서</h1>
 <div class="details">
-<span id="author" class="author">Sangyeop. Nam</span><br>
+<span id="owner" class="owner">Sangyeop. Nam</span><br>
 <span id="email" class="email"><a href="mailto:spearoad15@gmail.com">spearoad15@gmail.com</a></span><br>
 </div>
 <div id="toc" class="toc2">
@@ -190,14 +190,14 @@ h3 {
 </li>
 <li><a href="#aar-user-api">사용자(User) API</a>
 <ul class="sectlevel3">
-<li><a href="#_인증authorization">인증(Authorization)</a></li>
+<li><a href="#_인증ownerization">인증(Authorization)</a></li>
 <li><a href="#aar-user-get-me-api">본인정보 조회 API</a></li>
 <li><a href="#aar-user-patch-me-api">본인정보 수정 API</a></li>
 </ul>
 </li>
 <li><a href="#aar-home-api">홈(Home) API</a>
 <ul class="sectlevel3">
-<li><a href="#_인증authorization_2">인증(Authorization)</a></li>
+<li><a href="#_인증ownerization_2">인증(Authorization)</a></li>
 <li><a href="#aar-home-get-list-api">홈 리스트 조회 API</a></li>
 <li><a href="#aar-home-get-rooms-api">홈 룸 조회 API</a></li>
 <li><a href="#aar-home-get-room-items-api">룸 아이템 조회 API</a></li>
@@ -501,30 +501,30 @@ h3 {
 <p>사용자 정보 식별을 위해 최초 로그인 시 받은 Access Token을 아래와 같이 포함하여 전송해야 합니다.</p>
 </div>
 <div class="sect4">
-<h5 id="_authorization_header">Authorization Header</h5>
+<h5 id="_ownerization_header">Authorization Header</h5>
 <div class="paragraph">
 <p>Unresolved directive in index.adoc - include::/Users/leaf/hoo/aoo-backend/build/generated-snippets/aar-access-token/response-fields.adoc[]</p>
 </div>
 <div class="sect5">
-<h6 id="_authorization_header_http_request">HTTP request</h6>
+<h6 id="_ownerization_header_http_request">HTTP request</h6>
 <div class="paragraph">
 <p>Snippet http-request not found for operation::aar-authn-regist</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_authorization_header_request_fields">Request fields</h6>
+<h6 id="_ownerization_header_request_fields">Request fields</h6>
 <div class="paragraph">
 <p>Snippet request-fields not found for operation::aar-authn-regist</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_authorization_header_http_response">HTTP response</h6>
+<h6 id="_ownerization_header_http_response">HTTP response</h6>
 <div class="paragraph">
 <p>Snippet http-response not found for operation::aar-authn-regist</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_authorization_header_response_fields">Response fields</h6>
+<h6 id="_ownerization_header_response_fields">Response fields</h6>
 <div class="paragraph">
 <p>Snippet response-fields not found for operation::aar-authn-regist</p>
 </div>
@@ -535,12 +535,12 @@ h3 {
 <div class="sect2">
 <h3 id="aar-user-api">사용자(User) API</h3>
 <div class="sect3">
-<h4 id="_인증authorization">인증(Authorization)</h4>
+<h4 id="_인증ownerization">인증(Authorization)</h4>
 <div class="paragraph">
 <p>사용자 정보 조회 및 수정은 인증된 사용자만 가능하기 때문에, 로그인 시 획득한 AccessToken을 반드시 Authorization Header에 포함해야 합니다.</p>
 </div>
 <div class="sect4">
-<h5 id="_authorization_header_2">Authorization Header</h5>
+<h5 id="_ownerization_header_2">Authorization Header</h5>
 <div class="paragraph">
 <p>Unresolved directive in index.adoc - include::/Users/leaf/hoo/aoo-backend/build/generated-snippets/aar-access-token/response-fields.adoc[]</p>
 </div>
@@ -607,12 +607,12 @@ h3 {
 <p>사용자의 홈과 내부 구성요소(룸, 아이템, 음원)를 조회하기 위한 API입니다.</p>
 </div>
 <div class="sect3">
-<h4 id="_인증authorization_2">인증(Authorization)</h4>
+<h4 id="_인증ownerization_2">인증(Authorization)</h4>
 <div class="paragraph">
 <p>홈은 인증된 사용자만 조회가 가능하기 때문에, 로그인 시 획득한 AccessToken을 반드시 Authorization Header에 포함해야 합니다.</p>
 </div>
 <div class="sect4">
-<h5 id="_authorization_header_3">Authorization Header</h5>
+<h5 id="_ownerization_header_3">Authorization Header</h5>
 <div class="paragraph">
 <p>Unresolved directive in index.adoc - include::/Users/leaf/hoo/aoo-backend/build/generated-snippets/aar-access-token/response-fields.adoc[]</p>
 </div>

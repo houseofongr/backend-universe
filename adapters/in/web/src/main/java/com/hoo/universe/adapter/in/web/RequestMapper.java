@@ -3,8 +3,9 @@ package com.hoo.universe.adapter.in.web;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hoo.common.internal.api.dto.PageRequest;
-import com.hoo.common.internal.api.dto.UploadFileRequest;
+import com.hoo.common.internal.api.dto.FileCommand;
+import com.hoo.common.web.dto.PageRequest;
+import com.hoo.common.internal.api.dto.UploadFileCommand;
 import com.hoo.universe.api.dto.command.CreateUniverseCommand;
 import com.hoo.universe.api.dto.command.piece.CreatePieceWithTwoPointCommand;
 import com.hoo.universe.api.dto.command.sound.CreateSoundCommand;
@@ -22,15 +23,16 @@ public class RequestMapper {
 
     private final ObjectMapper objectMapper;
 
-    public UploadFileRequest mapToUploadFileRequest(MultipartFile file) {
+    public FileCommand mapToFileCommand(MultipartFile file) {
 
         if (file == null) return null;
 
         try {
-            return new UploadFileRequest(
-                    file.getName(),
+            return new FileCommand(
+                    file.getInputStream(),
                     file.getSize(),
-                    file.getInputStream()
+                    file.getName(),
+                    file.getContentType()
             );
         } catch (IOException e) {
             throw new UniverseAdapterException(AdapterErrorCode.GET_FILE_INPUT_STREAM_FAILED);

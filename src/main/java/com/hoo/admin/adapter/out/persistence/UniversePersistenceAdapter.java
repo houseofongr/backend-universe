@@ -45,10 +45,10 @@ public class UniversePersistenceAdapter implements SaveUniversePort, FindUnivers
 
     @Override
     public Universe save(Universe universe) {
-        UserJpaEntity author = userJpaRepository.findById(universe.getAuthorInfo().getId()).orElseThrow(() -> new AdminException(AdminErrorCode.USER_NOT_FOUND));
+        UserJpaEntity owner = userJpaRepository.findById(universe.getAuthorInfo().getId()).orElseThrow(() -> new AdminException(AdminErrorCode.USER_NOT_FOUND));
         CategoryJpaEntity category = categoryJpaRepository.findById(universe.getCategory().getId()).orElseThrow(() -> new AdminException(AdminErrorCode.CATEGORY_NOT_FOUND));
 
-        UniverseJpaEntity universeJpaEntity = UniverseJpaEntity.create(universe, author, category);
+        UniverseJpaEntity universeJpaEntity = UniverseJpaEntity.create(universe, owner, category);
 
         for (String tag : universe.getSocialInfo().getHashtags())
             universeJpaEntity.getUniverseHashtags().add(UniverseHashtagJpaEntity.create(universeJpaEntity, getOrCreate(tag)));

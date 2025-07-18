@@ -1,6 +1,6 @@
 package com.hoo.universe.api.dto.result.piece;
 
-import com.hoo.common.internal.api.dto.PageQueryResult;
+import com.hoo.common.web.dto.PageQueryResult;
 import com.hoo.universe.domain.Piece;
 
 import java.util.UUID;

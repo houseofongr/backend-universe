@@ -56,14 +56,14 @@ class ViewPublicUniverseServiceTest {
         assertThat(result.thumbMusicId()).isEqualTo(1L);
         assertThat(result.thumbnailId()).isEqualTo(2L);
         assertThat(result.innerImageId()).isEqualTo(3L);
-        assertThat(result.authorId()).isEqualTo(1L);
+        assertThat(result.ownerId()).isEqualTo(1L);
         assertThat(result.createdTime()).isBetween(ZonedDateTime.now().minus(Duration.of(1, ChronoUnit.SECONDS)).toEpochSecond(), ZonedDateTime.now().toEpochSecond());
         assertThat(result.updatedTime()).isBetween(ZonedDateTime.now().minus(Duration.of(1, ChronoUnit.SECONDS)).toEpochSecond(), ZonedDateTime.now().toEpochSecond());
         assertThat(result.view()).isEqualTo(5L);
         assertThat(result.like()).isEqualTo(2);
         assertThat(result.title()).isEqualTo("new universe");
         assertThat(result.description()).isEqualTo("새 유니버스");
-        assertThat(result.author()).isEqualTo("leaf");
+        assertThat(result.owner()).isEqualTo("leaf");
         assertThat(result.hashtags()).hasSize(3);
         assertThat(result.isMine()).isTrue();
         assertThat(result.isLiked()).isTrue();

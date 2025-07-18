@@ -1,9 +1,10 @@
 package com.hoo.universe.application.sound;
 
-import com.hoo.common.internal.api.dto.UploadFileRequest;
-import com.hoo.common.internal.api.dto.UploadFileResponse;
-import com.hoo.common.internal.message.FileDeleteEventPublisher;
-import com.hoo.common.internal.api.FileUploadAPI;
+import com.hoo.common.internal.api.dto.FileCommand;
+import com.hoo.common.internal.api.dto.UploadFileCommand;
+import com.hoo.common.internal.api.dto.UploadFileResult;
+import com.hoo.common.internal.message.DeleteFileEventPublisher;
+import com.hoo.common.internal.api.UploadFileAPI;
 import com.hoo.universe.api.dto.result.sound.OverwriteSoundFileResult;
 import com.hoo.universe.api.in.sound.OverwriteSoundFileUseCase;
 import com.hoo.universe.api.out.persistence.HandleSoundEventPort;
@@ -27,21 +28,21 @@ public class OverwriteSoundFileService implements OverwriteSoundFileUseCase {
 
     private final LoadUniversePort loadUniversePort;
     private final HandleSoundEventPort handleSoundEventPort;
-    private final FileUploadAPI fileUploadAPI;
-    private final FileDeleteEventPublisher fileDeleteEventPublisher;
+    private final UploadFileAPI uploadFileAPI;
+    private final DeleteFileEventPublisher deleteFileEventPublisher;
 
     @Override
-    public OverwriteSoundFileResult overwriteSoundAudio(UUID universeID, UUID pieceID, UUID soundID, UploadFileRequest audio) {
+    public OverwriteSoundFileResult overwriteSoundAudio(UUID universeID, UUID pieceID, UUID soundID, FileCommand audio) {
 
         Universe universe = loadUniversePort.loadUniverseWithAllEntity(universeID);
         Piece piece = universe.getPiece(new PieceID(pieceID));
         Sound sound = piece.getSound(new SoundID(soundID));
-        UploadFileResponse response = fileUploadAPI.uploadFile(audio);
+        UploadFileResult response = uploadFileAPI.uploadFile(UploadFileCommand.from(audio, universe.getOwner().getId(), universe.getUniverseMetadata().getAccessLevel()));
 
         SoundFileOverwriteEvent event = sound.overwriteFile(response.id());
 
         handleSoundEventPort.handleSoundFileOverwriteEvent(event);
-        fileDeleteEventPublisher.publishDeleteFilesEvent(event.oldAudioID());
+        deleteFileEventPublisher.publishDeleteFilesEvent(event.oldAudioID());
 
         return new OverwriteSoundFileResult(
                 event.oldAudioID(),

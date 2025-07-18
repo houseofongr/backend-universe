@@ -12,7 +12,7 @@ import java.util.Map;
 public record CreateUniverseCommand(
         @NotBlank String title,
         String description,
-        Long authorId,
+        Long ownerId,
         Long categoryId,
         PublicStatus publicStatus,
         List<String> hashtags,
@@ -41,7 +41,7 @@ public record CreateUniverseCommand(
         return new CreateUniverseCommand(
                 baseCommand.title(),
                 baseCommand.description(),
-                baseCommand.authorId(),
+                baseCommand.ownerId(),
                 baseCommand.categoryId(),
                 baseCommand.publicStatus(),
                 baseCommand.hashtags(),

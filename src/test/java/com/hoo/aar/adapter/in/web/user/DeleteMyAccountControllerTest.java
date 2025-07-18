@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.ownerity.SimpleGrantedAuthority;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.util.ReflectionTestUtils;
 
@@ -70,7 +70,7 @@ class DeleteMyAccountControllerTest extends AbstractControllerTest {
                         .content(content)
                         .contentType(MediaType.APPLICATION_JSON)
                         .with(jwt().jwt(jwt -> jwt.claim("userId", 10L))
-                                .authorities(new SimpleGrantedAuthority("ROLE_USER"))
+                                .ownerities(new SimpleGrantedAuthority("ROLE_USER"))
                         ))
                 .andExpect(status().is(200))
                 .andDo(MockMvcRestDocumentation.document("aar-user-delete",

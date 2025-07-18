@@ -23,7 +23,7 @@ class PatchHouseControllerTest extends AbstractControllerTest {
         String requestBody = """
                 {
                   "title" : "not cozy house",
-                  "author" : "arang",
+                  "owner" : "arang",
                   "description" : "this is not cozy house!!!"
                 }
                 """;
@@ -37,7 +37,7 @@ class PatchHouseControllerTest extends AbstractControllerTest {
                         pathParameters(parameterWithName("houseId").description("수정할 하우스의 ID입니다.")),
                         requestFields(
                                 fieldWithPath("title").description("수정할 제목입니다."),
-                                fieldWithPath("author").description("수정할 작가명입니다."),
+                                fieldWithPath("owner").description("수정할 작가명입니다."),
                                 fieldWithPath("description").description("수정할 상세정보입니다.")
                         ),
                         responseFields(

@@ -1,6 +1,6 @@
 package com.hoo.universe.application;
 
-import com.hoo.common.internal.message.FileDeleteEventPublisher;
+import com.hoo.common.internal.message.DeleteFileEventPublisher;
 import com.hoo.universe.api.dto.result.DeleteUniverseResult;
 import com.hoo.universe.api.in.DeleteUniverseUseCase;
 import com.hoo.universe.api.out.persistence.HandleUniverseEventPort;
@@ -23,7 +23,7 @@ public class DeleteUniverseService implements DeleteUniverseUseCase {
 
     private final LoadUniversePort loadUniversePort;
     private final HandleUniverseEventPort handleUniverseEventPort;
-    private final FileDeleteEventPublisher fileDeleteEventPublisher;
+    private final DeleteFileEventPublisher deleteFileEventPublisher;
 
     @Override
     public DeleteUniverseResult deleteUniverse(UUID universeID) {
@@ -33,7 +33,7 @@ public class DeleteUniverseService implements DeleteUniverseUseCase {
         UniverseDeleteEvent event = universe.delete();
 
         handleUniverseEventPort.handleUniverseDeleteEvent(event);
-        fileDeleteEventPublisher.publishDeleteFilesEvent(event.deleteFileIDs());
+        deleteFileEventPublisher.publishDeleteFilesEvent(event.deleteFileIDs());
 
         return new DeleteUniverseResult(
                 universeID,

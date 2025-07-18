@@ -8,12 +8,12 @@ public record CreateUniverseResult(
         Long thumbMusicId,
         Long thumbnailId,
         Long innerImageId,
-        Long authorId,
+        Long ownerId,
         Long createdTime,
         Long categoryId,
         String title,
         String description,
-        String author,
+        String owner,
         String publicStatus,
         List<String> hashtags
 ) {

@@ -1,5 +1,6 @@
 package com.hoo.universe.domain;
 
+import com.hoo.common.enums.AccessLevel;
 import com.hoo.universe.domain.Piece.PieceID;
 import com.hoo.universe.domain.Sound.SoundID;
 import com.hoo.universe.domain.Space.SpaceID;
@@ -9,7 +10,6 @@ import com.hoo.universe.domain.event.piece.PieceMoveEvent;
 import com.hoo.universe.domain.event.space.SpaceCreateEvent;
 import com.hoo.universe.domain.event.space.SpaceMoveEvent;
 import com.hoo.universe.domain.vo.*;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -18,7 +18,7 @@ import java.util.*;
 import java.util.stream.Stream;
 
 @Getter
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor(access = lombok.AccessLevel.PRIVATE)
 @EqualsAndHashCode(of = "id")
 public class Universe {
 
@@ -27,15 +27,15 @@ public class Universe {
 
     private final UniverseID id;
     private Category category;
-    private Author author;
+    private Owner owner;
     private UniverseMetadata universeMetadata;
     private CommonMetadata commonMetadata;
     private final List<Space> spaces;
     private final List<Piece> pieces;
 
-    public static UniverseCreateEvent create(UniverseID universeID, Category category, Author author, UniverseMetadata universeMetadata, CommonMetadata commonMetadata) {
+    public static UniverseCreateEvent create(UniverseID universeID, Category category, Owner owner, UniverseMetadata universeMetadata, CommonMetadata commonMetadata) {
         return new UniverseCreateEvent(
-                new Universe(universeID, category, author, universeMetadata, commonMetadata, new ArrayList<>(), new ArrayList<>())
+                new Universe(universeID, category, owner, universeMetadata, commonMetadata, new ArrayList<>(), new ArrayList<>())
         );
     }
 
@@ -129,14 +129,14 @@ public class Universe {
         return found;
     }
 
-    public UniverseMetadataUpdateEvent updateMetadata(Category category, Author author, String title, String description, AccessStatus accessStatus, List<String> tags) {
+    public UniverseMetadataUpdateEvent updateMetadata(Category category, Owner owner, String title, String description, AccessLevel accessLevel, List<String> tags) {
 
         this.category = category;
-        this.author = author;
+        this.owner = owner;
         this.commonMetadata = commonMetadata.update(title, description);
-        this.universeMetadata = universeMetadata.update(accessStatus, tags);
+        this.universeMetadata = universeMetadata.update(accessLevel, tags);
 
-        return UniverseMetadataUpdateEvent.from(id, category, author, commonMetadata, universeMetadata);
+        return UniverseMetadataUpdateEvent.from(id, category, owner, commonMetadata, universeMetadata);
     }
 
     public UniverseFileOverwriteEvent overwriteFiles(UUID newThumbmusicID, UUID newThumbnailID, UUID newInnerImageID) {

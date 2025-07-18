@@ -33,7 +33,7 @@ public class GetHouseListControllerTest extends AbstractControllerTest {
                         responseFields(
                                 fieldWithPath("houses[].id").description("하우스의 아이디입니다."),
                                 fieldWithPath("houses[].title").description("하우스의 제목입니다."),
-                                fieldWithPath("houses[].author").description("하우스의 작가입니다."),
+                                fieldWithPath("houses[].owner").description("하우스의 작가입니다."),
                                 fieldWithPath("houses[].description").description("하우스에 대한 설명입니다. +" + "\n" + "* 100자까지만 전송됩니다."),
                                 fieldWithPath("houses[].createdDate").description("하우스가 생성된 날짜입니다."),
                                 fieldWithPath("houses[].updatedDate").description("하우스가 최종 수정된 날짜입니다."),

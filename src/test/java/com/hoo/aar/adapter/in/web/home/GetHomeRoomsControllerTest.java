@@ -3,7 +3,7 @@ package com.hoo.aar.adapter.in.web.home;
 import com.hoo.common.adapter.in.web.config.AbstractControllerTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.ownerity.SimpleGrantedAuthority;
 import org.springframework.test.context.jdbc.Sql;
 
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
@@ -23,7 +23,7 @@ class GetHomeRoomsControllerTest extends AbstractControllerTest {
         mockMvc.perform(get("/aar/homes/rooms")
                         .param("homeId", "1234")
                         .with(jwt().jwt(jwt -> jwt.claim("userId", 10L))
-                                .authorities(new SimpleGrantedAuthority("ROLE_USER"))
+                                .ownerities(new SimpleGrantedAuthority("ROLE_USER"))
                         )
                 )
                 .andExpect(status().is(403));
@@ -31,7 +31,7 @@ class GetHomeRoomsControllerTest extends AbstractControllerTest {
         mockMvc.perform(get("/aar/homes/rooms")
                         .param("homeId", "1")
                         .with(jwt().jwt(jwt -> jwt.claim("userId", 10L))
-                                .authorities(new SimpleGrantedAuthority("ROLE_USER"))
+                                .ownerities(new SimpleGrantedAuthority("ROLE_USER"))
                         )
                 )
                 .andExpect(status().is(200))

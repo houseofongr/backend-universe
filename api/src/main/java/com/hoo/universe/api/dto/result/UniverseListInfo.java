@@ -9,15 +9,15 @@ public record UniverseListInfo(
         UUID id,
         UUID thumbmusicID,
         UUID thumbnailID,
-        UUID authorID,
+        UUID ownerID,
         Long createdTime,
         Long updatedTime,
         Long view,
         Integer like,
         String title,
         String description,
-        String author,
-        String accessStatus,
+        String owner,
+        String accessLevel,
         Category category,
         List<String> hashtags
 ) {

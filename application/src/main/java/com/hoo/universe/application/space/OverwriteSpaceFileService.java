@@ -1,9 +1,10 @@
 package com.hoo.universe.application.space;
 
-import com.hoo.common.internal.api.dto.UploadFileRequest;
-import com.hoo.common.internal.api.dto.UploadFileResponse;
-import com.hoo.common.internal.message.FileDeleteEventPublisher;
-import com.hoo.common.internal.api.FileUploadAPI;
+import com.hoo.common.internal.api.dto.FileCommand;
+import com.hoo.common.internal.api.dto.UploadFileCommand;
+import com.hoo.common.internal.api.dto.UploadFileResult;
+import com.hoo.common.internal.message.DeleteFileEventPublisher;
+import com.hoo.common.internal.api.UploadFileAPI;
 import com.hoo.universe.api.dto.result.space.OverwriteSpaceFileResult;
 import com.hoo.universe.api.in.space.OverwriteSpaceFileUseCase;
 import com.hoo.universe.api.out.persistence.HandleSpaceEventPort;
@@ -25,20 +26,20 @@ public class OverwriteSpaceFileService implements OverwriteSpaceFileUseCase {
 
     private final LoadUniversePort loadUniversePort;
     private final HandleSpaceEventPort handleSpaceEventPort;
-    private final FileUploadAPI fileUploadAPI;
-    private final FileDeleteEventPublisher fileDeleteEventPublisher;
+    private final UploadFileAPI uploadFileAPI;
+    private final DeleteFileEventPublisher deleteFileEventPublisher;
 
     @Override
-    public OverwriteSpaceFileResult overwriteSpaceFile(UUID universeID, UUID spaceID, UploadFileRequest background) {
+    public OverwriteSpaceFileResult overwriteSpaceFile(UUID universeID, UUID spaceID, FileCommand background) {
 
         Universe universe = loadUniversePort.loadUniverseExceptSounds(universeID);
         Space space = universe.getSpace(new SpaceID(spaceID));
-        UploadFileResponse response = fileUploadAPI.uploadFile(background);
+        UploadFileResult response = uploadFileAPI.uploadFile(UploadFileCommand.from(background, universe.getOwner().getId(), universe.getUniverseMetadata().getAccessLevel()));
 
         SpaceFileOverwriteEvent event = space.overwriteFile(response.id());
 
         handleSpaceEventPort.handleSpaceFileOverwriteEvent(event);
-        fileDeleteEventPublisher.publishDeleteFilesEvent(event.oldInnerImageID());
+        deleteFileEventPublisher.publishDeleteFilesEvent(event.oldInnerImageID());
 
         return new OverwriteSpaceFileResult(
                 event.oldInnerImageID(),

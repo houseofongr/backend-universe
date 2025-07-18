@@ -14,7 +14,7 @@ public record UploadFileResult(
             String realName,
             String fileSystemName,
             String size,
-            Authority authority
+            Authority ownerity
     ) {
         public static FileInfo from(File file, Long id) {
             return new FileInfo(

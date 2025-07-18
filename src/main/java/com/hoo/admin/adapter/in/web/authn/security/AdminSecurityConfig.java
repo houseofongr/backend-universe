@@ -36,8 +36,8 @@ public class AdminSecurityConfig {
                 )
 
                 .oauth2Login(oauth2 -> oauth2
-                        .authorizationEndpoint(authorization ->
-                                authorization.baseUri("/admin/authn/login/sns/**"))
+                        .ownerizationEndpoint(ownerization ->
+                                ownerization.baseUri("/admin/authn/login/sns/**"))
                         .redirectionEndpoint(redirection ->
                                 redirection.baseUri("/admin/authn/code/**"))
                         .userInfoEndpoint(userInfo ->
@@ -52,8 +52,8 @@ public class AdminSecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 // 로컬 테스트 간 임시 허용
 
-                .authorizeHttpRequests(authorize ->
-                        authorize.anyRequest().permitAll()
+                .ownerizeHttpRequests(ownerize ->
+                        ownerize.anyRequest().permitAll()
                 )
 
                 .build();

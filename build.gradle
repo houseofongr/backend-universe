@@ -34,14 +34,14 @@ subprojects {
         annotationProcessor 'org.projectlombok:lombok'
 
         testImplementation project(":test-support")
-        testCompileOnly 'org.projectlombok:lombok'
-        testAnnotationProcessor 'org.projectlombok:lombok'
         testImplementation "org.assertj:assertj-core"
         testImplementation "org.mockito:mockito-core"
         testImplementation "org.junit.jupiter:junit-jupiter-api"
         testImplementation "com.github.f4b6a3:uuid-creator:6.1.1"
+        testCompileOnly 'org.projectlombok:lombok'
         testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
         testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+        testAnnotationProcessor 'org.projectlombok:lombok'
     }
 }
 

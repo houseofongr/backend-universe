@@ -6,6 +6,8 @@ import lombok.Getter;
 
 import java.util.UUID;
 
+import static com.hoo.common.util.OptionalUtil.*;
+
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class SoundMetadata {
@@ -14,7 +16,7 @@ public class SoundMetadata {
     private final boolean hidden;
 
     public static SoundMetadata create(UUID audioID, Boolean hidden) {
-        return new SoundMetadata(audioID, orElseNotHidden(hidden));
+        return new SoundMetadata(audioID, orElseFalse(hidden));
     }
 
     public SoundMetadata update(Boolean hidden) {
@@ -25,11 +27,4 @@ public class SoundMetadata {
         return new SoundMetadata(newAudioID, hidden);
     }
 
-    private static boolean orElseNotHidden(Boolean hidden) {
-        return hidden != null && hidden;
-    }
-
-    private  <T> T getOrDefault(T value, T defaultValue) {
-        return value != null ? value : defaultValue;
-    }
 }

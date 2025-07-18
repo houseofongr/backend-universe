@@ -25,7 +25,7 @@ public class HouseJpaEntity extends DateColumnBaseEntity {
     private String title;
 
     @Column(nullable = false, length = 255)
-    private String author;
+    private String owner;
 
     @Column(nullable = false, length = 255)
     private String description;
@@ -61,7 +61,7 @@ public class HouseJpaEntity extends DateColumnBaseEntity {
 
     public void update(House house) {
         this.title = house.getHouseDetail().getTitle();
-        this.author = house.getHouseDetail().getAuthor();
+        this.owner = house.getHouseDetail().getAuthor();
         this.description = house.getHouseDetail().getDescription();
     }
 

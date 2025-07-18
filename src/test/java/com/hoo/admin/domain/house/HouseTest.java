@@ -15,11 +15,11 @@ class HouseTest {
         HouseDetail houseDetail2 = new HouseDetail("cozy house", "leaf", "this is cozy house.");
 
         String title = "not cozy house";
-        String author = null;
+        String owner = null;
         String description = "this is not cozy house.";
 
         // when
-        houseDetail.update(title, author, description);
+        houseDetail.update(title, owner, description);
         houseDetail2.update(title, "", description);
 
         // then

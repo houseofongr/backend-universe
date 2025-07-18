@@ -31,7 +31,7 @@ public class CreateUniverseService implements CreateUniverseUseCase {
 
     @Override
     public CreateUniverseResult create(CreateUniverseCommand command) {
-        User author = findUserPort.loadUser(command.authorId()).orElseThrow(() -> new AdminException(AdminErrorCode.USER_NOT_FOUND));
+        User owner = findUserPort.loadUser(command.ownerId()).orElseThrow(() -> new AdminException(AdminErrorCode.USER_NOT_FOUND));
 
         UploadFileResult.FileInfo thumbMusic = uploadPublicAudioUseCase.publicUpload(command.fileMap().get("thumbMusic"));
         UploadFileResult.FileInfo thumbnail = uploadPublicImageUseCase.publicUpload(command.fileMap().get("thumbnail"));
@@ -48,7 +48,7 @@ public class CreateUniverseService implements CreateUniverseUseCase {
                 universeCategory,
                 command.publicStatus(),
                 command.hashtags(),
-                author
+                owner
         );
 
         Universe savedUniverse = saveUniversePort.save(universe);

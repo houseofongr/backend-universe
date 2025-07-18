@@ -29,9 +29,9 @@ public class FileSecurityConfig {
                 .csrf(CsrfConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
-                .authorizeHttpRequests(authorize ->
+                .ownerizeHttpRequests(ownerize ->
                         // 로컬 테스트 간 임시 허용
-                        authorize.anyRequest().permitAll()
+                        ownerize.anyRequest().permitAll()
                 )
 
                 .build();

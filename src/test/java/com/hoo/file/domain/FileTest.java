@@ -19,11 +19,11 @@ class FileTest {
     void testCreate(@TempDir Path tempDir) throws FileSizeLimitExceedException, IOException, FileExtensionMismatchException {
         // given
         String baseDir = tempDir.toString();
-        Authority authority = Authority.PUBLIC_FILE_ACCESS;
+        Authority ownerity = Authority.PUBLIC_FILE_ACCESS;
         FileType fileType = FileType.IMAGE;
         String fileName = "test.png";
 
-        FileId fileId = FileId.create(baseDir, authority, fileType, fileName, fileName);
+        FileId fileId = FileId.create(baseDir, ownerity, fileType, fileName, fileName);
 
         // when
         File file = File.create(fileId, FileStatus.CREATED, OwnerId.empty(), new FileSize(10000L, 100000L));

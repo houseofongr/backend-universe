@@ -35,9 +35,9 @@ class CreateUniverseControllerTest extends DocumentationTest {
                 {
                   "title": "우주",
                   "description": "유니버스는 우주입니다.",
-                  "authorID": "019812d4-73e3-7d80-9e8e-aa62af94c0b3",
+                  "ownerID": "019812d4-73e3-7d80-9e8e-aa62af94c0b3",
                   "categoryID": "019812d4-73e3-7b78-a49e-b8a68b70cfb6",
-                  "accessStatus": "PUBLIC",
+                  "accessLevel": "PUBLIC",
                   "hashtags": [
                     "우주", "행성", "지구", "별"
                   ]
@@ -54,9 +54,9 @@ class CreateUniverseControllerTest extends DocumentationTest {
         when(createUniverseUseCase.createNewUniverse(argThat( command ->
                         command.metadata().title().equals("우주") &&
                         command.metadata().description().equals("유니버스는 우주입니다.") &&
-                        command.metadata().authorID().toString().equals("019812d4-73e3-7d80-9e8e-aa62af94c0b3") &&
+                        command.metadata().ownerID().toString().equals("019812d4-73e3-7d80-9e8e-aa62af94c0b3") &&
                         command.metadata().categoryID().toString().equals("019812d4-73e3-7b78-a49e-b8a68b70cfb6") &&
-                        command.metadata().accessStatus().equals("PUBLIC") &&
+                        command.metadata().accessLevel().equals("PUBLIC") &&
                         command.metadata().hashtags().containsAll(List.of( "우주", "행성", "지구", "별")
                         ))))
                 .thenReturn(new CreateUniverseResult(
@@ -91,13 +91,13 @@ class CreateUniverseControllerTest extends DocumentationTest {
                                 fieldWithPath("thumbnailID").description("생성된 유니버스의 썸네일 파일 ID입니다."),
                                 fieldWithPath("thumbMusicID").description("생성된 유니버스의 썸뮤직 파일 ID입니다."),
                                 fieldWithPath("backgroundID").description("생성된 유니버스의 내부 이미지 파일 ID입니다."),
-                                fieldWithPath("authorID").description("생성된 유니버스 작성자의 ID입니다."),
+                                fieldWithPath("ownerID").description("생성된 유니버스 작성자의 ID입니다."),
                                 fieldWithPath("createdTime").description("유니버스의 생성(등록)일자입니다."),
                                 fieldWithPath("title").description("생성된 유니버스의 제목입니다."),
-                                fieldWithPath("author").description("생성된 유니버스의 작성자의 닉네임입니다."),
+                                fieldWithPath("owner").description("생성된 유니버스의 작성자의 닉네임입니다."),
                                 fieldWithPath("description").description("생성된 유니버스의 설명입니다."),
                                 fieldWithPath("categoryID").description("생성된 유니버스의 카테고리 ID입니다."),
-                                fieldWithPath("accessStatus").description("생성된 유니버스의 공개 여부입니다."),
+                                fieldWithPath("accessLevel").description("생성된 유니버스의 공개 여부입니다."),
                                 fieldWithPath("hashtags").description("생성된 유니버스의 해시태그 리스트입니다.")
                         )
                 ));

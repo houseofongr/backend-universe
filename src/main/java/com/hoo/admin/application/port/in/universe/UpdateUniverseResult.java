@@ -8,11 +8,11 @@ public record UpdateUniverseResult() {
 
     public record Detail(
             String message,
-            Long authorId,
+            Long ownerId,
             Long updatedTime,
             String title,
             String description,
-            String author,
+            String owner,
             String publicStatus,
             CategoryInfo category,
             List<String> hashtags

@@ -6,7 +6,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.ownerity.SimpleGrantedAuthority;
 import org.springframework.test.context.jdbc.Sql;
 
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
@@ -27,7 +27,7 @@ class PatchMainHomeControllerTest extends AbstractControllerTest {
     void testChangeMainHome() throws Exception {
         mockMvc.perform(patch("/aar/homes/{homeId}/main", 1L)
                         .with(jwt().jwt(jwt -> jwt.claim("userId", 10L))
-                                .authorities(new SimpleGrantedAuthority("ROLE_USER"))
+                                .ownerities(new SimpleGrantedAuthority("ROLE_USER"))
                         ))
                 .andExpect(status().is(200))
                 .andDo(document("aar-home-patch-main",

@@ -1,7 +1,11 @@
 package com.hoo.universe.domain.event;
 
+import com.hoo.common.enums.AccessLevel;
 import com.hoo.universe.domain.Universe.UniverseID;
-import com.hoo.universe.domain.vo.*;
+import com.hoo.universe.domain.vo.Category;
+import com.hoo.universe.domain.vo.CommonMetadata;
+import com.hoo.universe.domain.vo.Owner;
+import com.hoo.universe.domain.vo.UniverseMetadata;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -9,23 +13,23 @@ import java.util.List;
 public record UniverseMetadataUpdateEvent(
         UniverseID universeID,
         Category category,
-        Author author,
+        Owner owner,
         String title,
         String description,
         ZonedDateTime updatedTime,
-        AccessStatus accessStatus,
+        AccessLevel accessLevel,
         List<String> tags
 ) {
 
-    public static UniverseMetadataUpdateEvent from(UniverseID universeID, Category category, Author author, CommonMetadata commonMetadata, UniverseMetadata universeMetadata) {
+    public static UniverseMetadataUpdateEvent from(UniverseID universeID, Category category, Owner owner, CommonMetadata commonMetadata, UniverseMetadata universeMetadata) {
         return new UniverseMetadataUpdateEvent(
                 universeID,
                 category,
-                author,
+                owner,
                 commonMetadata.getTitle(),
                 commonMetadata.getDescription(),
                 commonMetadata.getUpdatedTime(),
-                universeMetadata.getAccessStatus(),
+                universeMetadata.getAccessLevel(),
                 universeMetadata.getTags()
         );
     }

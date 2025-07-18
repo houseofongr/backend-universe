@@ -16,12 +16,12 @@ class FileIdTest {
     void testAddPath() throws FileExtensionMismatchException {
         // given
         String baseDir = "/tmp";
-        Authority authority = Authority.PUBLIC_FILE_ACCESS;
+        Authority ownerity = Authority.PUBLIC_FILE_ACCESS;
         FileType fileType = FileType.IMAGE;
         String fileName = "test.png";
 
         // when
-        FileId fileId = FileId.create(baseDir, authority, fileType, fileName, fileName);
+        FileId fileId = FileId.create(baseDir, ownerity, fileType, fileName, fileName);
 
         // then
         assertThat(fileId.getPath()).isEqualTo("/tmp/public/images/test.png");
@@ -33,12 +33,12 @@ class FileIdTest {
     void testAddSlash() throws FileExtensionMismatchException {
         // given
         String baseDir = "/tmp/";
-        Authority authority = Authority.PUBLIC_FILE_ACCESS;
+        Authority ownerity = Authority.PUBLIC_FILE_ACCESS;
         FileType fileType = FileType.IMAGE;
         String fileName = "test.png";
 
         // when
-        FileId fileId = FileId.create(baseDir, authority, fileType, fileName, fileName);
+        FileId fileId = FileId.create(baseDir, ownerity, fileType, fileName, fileName);
 
         // then
         assertThat(fileId.getPath()).isEqualTo("/tmp/public/images/test.png");
@@ -49,12 +49,12 @@ class FileIdTest {
     void testGetDirectory() throws FileExtensionMismatchException {
         // given
         String baseDir = "/tmp/";
-        Authority authority = Authority.PUBLIC_FILE_ACCESS;
+        Authority ownerity = Authority.PUBLIC_FILE_ACCESS;
         FileType fileType = FileType.IMAGE;
         String fileName = "test.png";
 
         // when
-        FileId fileId = FileId.create(baseDir, authority, fileType, fileName, fileName);
+        FileId fileId = FileId.create(baseDir, ownerity, fileType, fileName, fileName);
 
         // then
         assertThat(fileId.getDirectory()).isEqualTo("/tmp/public/images");
@@ -64,17 +64,17 @@ class FileIdTest {
     @DisplayName("이미지 확장자 테스트")
     void testImageExtension() throws FileExtensionMismatchException {
         String baseDir = "/tmp/";
-        Authority authority = Authority.PUBLIC_FILE_ACCESS;
+        Authority ownerity = Authority.PUBLIC_FILE_ACCESS;
         FileType fileType = FileType.IMAGE;
 
-        FileId.create(baseDir, authority, fileType, "test.png", "file-system-name.png");
-        FileId.create(baseDir, authority, fileType, "test.jpg", "file-system-name.png");
-        FileId.create(baseDir, authority, fileType, "test.jpeg", "file-system-name.png");
-        FileId.create(baseDir, authority, fileType, "test.svg", "file-system-name.png");
-        FileId.create(baseDir, authority, fileType, "test.gif", "file-system-name.png");
+        FileId.create(baseDir, ownerity, fileType, "test.png", "file-system-name.png");
+        FileId.create(baseDir, ownerity, fileType, "test.jpg", "file-system-name.png");
+        FileId.create(baseDir, ownerity, fileType, "test.jpeg", "file-system-name.png");
+        FileId.create(baseDir, ownerity, fileType, "test.svg", "file-system-name.png");
+        FileId.create(baseDir, ownerity, fileType, "test.gif", "file-system-name.png");
 
-        assertThatThrownBy(() -> FileId.create(baseDir, authority, fileType, "test", "file-system-name")).isInstanceOf(FileExtensionMismatchException.class);
-        assertThatThrownBy(() -> FileId.create(baseDir, authority, fileType, "test.sh", "file-system-name.sh")).isInstanceOf(FileExtensionMismatchException.class);
+        assertThatThrownBy(() -> FileId.create(baseDir, ownerity, fileType, "test", "file-system-name")).isInstanceOf(FileExtensionMismatchException.class);
+        assertThatThrownBy(() -> FileId.create(baseDir, ownerity, fileType, "test.sh", "file-system-name.sh")).isInstanceOf(FileExtensionMismatchException.class);
     }
 
     @Test

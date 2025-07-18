@@ -1,7 +1,7 @@
 package com.hoo.universe.application.sound;
 
 import com.github.f4b6a3.uuid.UuidCreator;
-import com.hoo.common.internal.message.FileDeleteEventPublisher;
+import com.hoo.common.internal.message.DeleteFileEventPublisher;
 import com.hoo.universe.api.out.persistence.HandleSoundEventPort;
 import com.hoo.universe.api.out.persistence.LoadUniversePort;
 import com.hoo.universe.domain.Universe;
@@ -18,9 +18,9 @@ class DeleteSoundServiceTest {
 
     LoadUniversePort loadUniversePort = mock();
     HandleSoundEventPort handleSoundEventPort = mock();
-    FileDeleteEventPublisher fileDeleteEventPublisher = mock();
+    DeleteFileEventPublisher deleteFileEventPublisher = mock();
 
-    DeleteSoundService sut = new DeleteSoundService(loadUniversePort, handleSoundEventPort, fileDeleteEventPublisher);
+    DeleteSoundService sut = new DeleteSoundService(loadUniversePort, handleSoundEventPort, deleteFileEventPublisher);
 
     @Test
     @DisplayName("사운드 삭제 서비스")
@@ -37,7 +37,7 @@ class DeleteSoundServiceTest {
 
         // then
         verify(handleSoundEventPort, times(1)).handleSoundDeleteEvent(any());
-        verify(fileDeleteEventPublisher, times(1)).publishDeleteFilesEvent((UUID) any());
+        verify(deleteFileEventPublisher, times(1)).publishDeleteFilesEvent((UUID) any());
     }
 
 }

@@ -8,7 +8,7 @@ public record CreateHouseMetadata(
 ) {
     public record HouseData(
             String title,
-            String author,
+            String owner,
             String description,
             String houseForm,
             String borderForm,

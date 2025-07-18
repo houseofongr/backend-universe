@@ -1,6 +1,7 @@
 package com.hoo.universe.test.domain;
 
 import com.github.f4b6a3.uuid.UuidCreator;
+import com.hoo.common.enums.AccessLevel;
 import com.hoo.universe.domain.Piece;
 import com.hoo.universe.domain.Sound;
 import com.hoo.universe.domain.Space;
@@ -22,8 +23,8 @@ public class UniverseTestData {
         return new UniverseBuilder()
                 .withUniverseID(new UniverseID(UuidCreator.getTimeOrderedEpoch()))
                 .withCategory(new Category(UuidCreator.getTimeOrderedEpoch(), "Public", "공공"))
-                .withAuthor(new Author(UuidCreator.getTimeOrderedEpoch(), "leaf"))
-                .withUniverseMetadata(UniverseMetadata.create(UuidCreator.getTimeOrderedEpoch(), UuidCreator.getTimeOrderedEpoch(), UuidCreator.getTimeOrderedEpoch(), AccessStatus.PUBLIC, List.of("우주", "별", "지구")))
+                .withAuthor(new Owner(UuidCreator.getTimeOrderedEpoch(), "leaf"))
+                .withUniverseMetadata(UniverseMetadata.create(UuidCreator.getTimeOrderedEpoch(), UuidCreator.getTimeOrderedEpoch(), UuidCreator.getTimeOrderedEpoch(), AccessLevel.PUBLIC, List.of("우주", "별", "지구")))
                 .withCommonMetadata(CommonMetadata.create("우주", "유니버스는 우주입니다."));
     }
 
@@ -196,7 +197,7 @@ public class UniverseTestData {
     public static class UniverseBuilder {
         private UniverseID id;
         private Category category;
-        private Author author;
+        private Owner owner;
         private UniverseMetadata universeMetadata;
         private CommonMetadata commonMetadata;
 
@@ -210,8 +211,8 @@ public class UniverseTestData {
             return this;
         }
 
-        public UniverseBuilder withAuthor(Author author) {
-            this.author = author;
+        public UniverseBuilder withAuthor(Owner owner) {
+            this.owner = owner;
             return this;
         }
 
@@ -226,7 +227,7 @@ public class UniverseTestData {
         }
 
         public Universe build() {
-            return Universe.create(this.id, this.category, this.author, this.universeMetadata, this.commonMetadata).newUniverse();
+            return Universe.create(this.id, this.category, this.owner, this.universeMetadata, this.commonMetadata).newUniverse();
         }
     }
 }

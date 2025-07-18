@@ -51,24 +51,24 @@ class UniversePersistenceAdapterTest {
         // given
         SearchPublicUniverseCommand content_건강 = new SearchPublicUniverseCommand(PageRequest.of(0, 10), 1L, "content", "건강", null, false);
         SearchPublicUniverseCommand content_콘텐츠 = new SearchPublicUniverseCommand(PageRequest.of(0, 10), 1L, "content", "콘텐츠", null, false);
-        SearchPublicUniverseCommand author_leaf = new SearchPublicUniverseCommand(PageRequest.of(0, 10), 1L, "author", "leaf", null, false);
+        SearchPublicUniverseCommand owner_leaf = new SearchPublicUniverseCommand(PageRequest.of(0, 10), 1L, "owner", "leaf", null, false);
         SearchPublicUniverseCommand all_건 = new SearchPublicUniverseCommand(PageRequest.of(0, 10), 1L, "all", "건", null, false);
 
         // when
         SearchPublicUniverseResult result_content_건강 = sut.searchPublicUniverse(content_건강);
         SearchPublicUniverseResult result_content_콘텐츠 = sut.searchPublicUniverse(content_콘텐츠);
-        SearchPublicUniverseResult result_author_leaf = sut.searchPublicUniverse(author_leaf);
+        SearchPublicUniverseResult result_owner_leaf = sut.searchPublicUniverse(owner_leaf);
         SearchPublicUniverseResult result_all_건 = sut.searchPublicUniverse(all_건);
 
         // then
         assertThat(result_content_건강.universes().size()).isEqualTo(2);
         assertThat(result_content_콘텐츠.universes().size()).isEqualTo(2);
-        assertThat(result_author_leaf.universes().size()).isEqualTo(5);
+        assertThat(result_owner_leaf.universes().size()).isEqualTo(5);
         assertThat(result_all_건.universes().size()).isEqualTo(2);
         assertThat(result_content_건강.universes()).allMatch(universeInfo -> universeInfo.title().contains("건강") || universeInfo.description().contains("건강"));
         assertThat(result_content_콘텐츠.universes()).allMatch(universeInfo -> universeInfo.title().contains("콘텐츠") || universeInfo.description().contains("콘텐츠"));
-        assertThat(result_author_leaf.universes()).allMatch(universeInfo -> universeInfo.author().contains("leaf"));
-        assertThat(result_all_건.universes()).allMatch(universeInfo -> universeInfo.title().contains("건") || universeInfo.description().contains("건") || universeInfo.author().contains("건"));
+        assertThat(result_owner_leaf.universes()).allMatch(universeInfo -> universeInfo.owner().contains("leaf"));
+        assertThat(result_all_건.universes()).allMatch(universeInfo -> universeInfo.title().contains("건") || universeInfo.description().contains("건") || universeInfo.owner().contains("건"));
     }
 
     @Test

@@ -26,7 +26,7 @@ public class UpdateHouseService implements UpdateHouseInfoUseCase {
         House house = findHousePort.load(command.persistenceId())
                 .orElseThrow(() -> new AdminException(AdminErrorCode.HOUSE_NOT_FOUND));
 
-        house.updateDetail(command.title(), command.author(), command.description());
+        house.updateDetail(command.title(), command.owner(), command.description());
         updateHousePort.update(house);
 
         return new MessageDto(command.persistenceId() + "번 하우스 정보 수정이 완료되었습니다.");

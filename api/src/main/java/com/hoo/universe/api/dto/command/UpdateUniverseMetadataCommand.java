@@ -6,9 +6,9 @@ import java.util.UUID;
 public record UpdateUniverseMetadataCommand(
         String title,
         String description,
-        UUID authorID,
+        UUID ownerID,
         UUID categoryID,
-        String accessStatus,
+        String accessLevel,
         List<String> hashtags
 ) {
 

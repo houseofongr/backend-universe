@@ -13,7 +13,7 @@ public record QueryHouseListResult(
     public record HouseInfo(
             Long id,
             String title,
-            String author,
+            String owner,
             String description,
             String createdDate,
             String updatedDate,

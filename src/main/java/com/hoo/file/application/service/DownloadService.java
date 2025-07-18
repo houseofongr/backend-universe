@@ -26,7 +26,7 @@ public class DownloadService {
 
     private final FindFilePort findFilePort;
 
-    public DownloadFileResult load(Long fileId, FileType type, Authority authority, boolean attachment) {
+    public DownloadFileResult load(Long fileId, FileType type, Authority ownerity, boolean attachment) {
         try {
 
             File loadedFile = findFilePort.load(fileId)
@@ -37,7 +37,7 @@ public class DownloadService {
             if (loadedFileId.getFileType() != type)
                 throw new FileException(FileErrorCode.INVALID_FILE_TYPE);
 
-            if (loadedFileId.getAuthority() != authority)
+            if (loadedFileId.getAuthority() != ownerity)
                 throw new FileException(FileErrorCode.INVALID_AUTHORITY);
 
             ContentDisposition disposition = getDisposition(loadedFileId, attachment);

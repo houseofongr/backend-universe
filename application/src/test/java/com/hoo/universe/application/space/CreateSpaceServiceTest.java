@@ -2,8 +2,9 @@ package com.hoo.universe.application.space;
 
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.common.IssueIDPort;
-import com.hoo.common.internal.api.dto.UploadFileRequest;
-import com.hoo.common.internal.api.FileUploadAPI;
+import com.hoo.common.internal.api.dto.FileCommand;
+import com.hoo.common.internal.api.dto.UploadFileCommand;
+import com.hoo.common.internal.api.UploadFileAPI;
 import com.hoo.universe.api.dto.command.space.CreateSpaceWithTwoPointCommand;
 import com.hoo.universe.api.out.persistence.HandleSpaceEventPort;
 import com.hoo.universe.api.out.persistence.LoadUniversePort;
@@ -16,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import java.util.UUID;
 
 import static com.hoo.universe.test.domain.UniverseTestData.defaultUniverseOnly;
-import static com.hoo.universe.test.dto.UploadFileTestData.*;
+import static com.hoo.universe.test.dto.FileTestData.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.*;
 
@@ -25,28 +26,28 @@ class CreateSpaceServiceTest {
     IssueIDPort issueIDPort = mock();
     LoadUniversePort loadUniversePort = mock();
     HandleSpaceEventPort handleSpaceEventPort = mock();
-    FileUploadAPI fileUploadAPI = mock();
+    UploadFileAPI uploadFileAPI = mock();
 
-    CreateSpaceService sut = new CreateSpaceService(issueIDPort, loadUniversePort, handleSpaceEventPort, fileUploadAPI);
+    CreateSpaceService sut = new CreateSpaceService(issueIDPort, loadUniversePort, handleSpaceEventPort, uploadFileAPI);
 
     @Test
     @DisplayName("스페이스 생성 서비스")
     void createSpaceService() {
         // given
         UUID universeID = UuidCreator.getTimeOrderedEpoch();
-        UploadFileRequest background = defaultImageFileRequest();
+        FileCommand background = defaultImageFileCommand();
         CreateSpaceWithTwoPointCommand command = new CreateSpaceWithTwoPointCommand(new CreateSpaceWithTwoPointCommand.Metadata(null, "공간", "스페이스는 공간입니다.", 0.1, 0.1, 0.2, 0.2, false), background);
         Universe universe = defaultUniverseOnly().build();
 
         // when
         when(loadUniversePort.loadUniverseExceptSounds(universeID)).thenReturn(universe);
-        when(fileUploadAPI.uploadFile(any())).thenReturn(defaultImageFileResponse());
+        when(uploadFileAPI.uploadFile(any())).thenReturn(defaultFileResponse());
         sut.createSpaceWithTwoPoint(universeID, null, command);
 
         // then
         verify(issueIDPort, times(1)).issueNewID();
         verify(loadUniversePort, times(1)).loadUniverseExceptSounds(any());
-        verify(fileUploadAPI, times(1)).uploadFile(background);
+        verify(uploadFileAPI, times(1)).uploadFile(any());
         verify(handleSpaceEventPort, times(1)).handleSpaceCreateEvent(any());
 
         // 같은 위치에 두번 생성 시 실패

@@ -60,7 +60,7 @@ public class CreateHouseService implements CreateHouseUseCase {
                             rooms.add(createRoomPort.createRoom(room.name(), room.x(), room.y(), room.z(), room.width(), room.height(), fileInfo.id()));
             }
 
-            House newHouse = createHousePort.createHouse(metadata.house().title(), metadata.house().author(), metadata.house().description(), metadata.house().width(), metadata.house().height(), basicImageId, borderImageId, rooms);
+            House newHouse = createHousePort.createHouse(metadata.house().title(), metadata.house().owner(), metadata.house().description(), metadata.house().width(), metadata.house().height(), basicImageId, borderImageId, rooms);
             Long savedId = saveHousePort.save(newHouse);
 
             return new CreateHouseResult(savedId);

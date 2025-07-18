@@ -3,7 +3,7 @@ package com.hoo.aar.adapter.in.web.universe;
 import com.hoo.common.adapter.in.web.config.AbstractControllerTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.ownerity.SimpleGrantedAuthority;
 import org.springframework.test.context.jdbc.Sql;
 
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
@@ -25,7 +25,7 @@ class GetPublicUniverseControllerTest extends AbstractControllerTest {
 
         mockMvc.perform(get("/aar/universes/{universeId}", 1)
                         .with(jwt().jwt(jwt -> jwt.claim("userId", 1L))
-                                .authorities(new SimpleGrantedAuthority("ROLE_USER"))
+                                .ownerities(new SimpleGrantedAuthority("ROLE_USER"))
                         )
                 )
                 .andExpect(status().is(200))
@@ -39,14 +39,14 @@ class GetPublicUniverseControllerTest extends AbstractControllerTest {
                                 fieldWithPath("thumbMusicId").description("썸뮤직 파일 ID입니다."),
                                 fieldWithPath("thumbnailId").description("썸네일 파일 ID입니다."),
                                 fieldWithPath("innerImageId").description("내부 이미지 파일 ID입니다."),
-                                fieldWithPath("authorId").description("작성자의 ID입니다."),
+                                fieldWithPath("ownerId").description("작성자의 ID입니다."),
                                 fieldWithPath("createdTime").description("유닉스 타임스탬프 형식의 생성(등록)일자입니다."),
                                 fieldWithPath("updatedTime").description("유닉스 타임스탬프 형식의 수정일자입니다."),
                                 fieldWithPath("view").description("조회수입니다. +" + "\n" +
                                                                   "* 조회 시 조회수가 1 증가합니다."),
                                 fieldWithPath("like").description("좋아요 숫자입니다."),
                                 fieldWithPath("title").description("제목입니다."),
-                                fieldWithPath("author").description("작성자의 닉네임입니다."),
+                                fieldWithPath("owner").description("작성자의 닉네임입니다."),
                                 fieldWithPath("description").description("설명입니다."),
                                 fieldWithPath("category.id").description("카테고리의 ID입니다."),
                                 fieldWithPath("category.eng").description("카테고리의 영문 이름입니다."),

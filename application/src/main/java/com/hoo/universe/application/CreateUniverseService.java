@@ -1,14 +1,16 @@
 package com.hoo.universe.application;
 
 import com.hoo.common.IssueIDPort;
-import com.hoo.common.internal.api.dto.UploadFileResponse;
+import com.hoo.common.enums.AccessLevel;
+import com.hoo.common.internal.api.dto.UploadFileCommand;
+import com.hoo.common.internal.api.dto.UploadFileResult;
 import com.hoo.universe.api.dto.command.CreateUniverseCommand;
 import com.hoo.universe.api.dto.result.CreateUniverseResult;
 import com.hoo.universe.api.in.CreateUniverseUseCase;
-import com.hoo.common.internal.api.FileUploadAPI;
+import com.hoo.common.internal.api.UploadFileAPI;
 import com.hoo.universe.api.out.persistence.HandleUniverseEventPort;
 import com.hoo.universe.api.out.persistence.QueryCategoryPort;
-import com.hoo.universe.api.out.internal.FindAuthorAPI;
+import com.hoo.universe.api.out.internal.FindOwnerAPI;
 import com.hoo.universe.application.exception.UniverseApplicationException;
 import com.hoo.universe.application.exception.ApplicationErrorCode;
 import com.hoo.universe.domain.Universe;
@@ -25,34 +27,35 @@ import org.springframework.transaction.annotation.Transactional;
 public class CreateUniverseService implements CreateUniverseUseCase {
 
     private final IssueIDPort issueIDPort;
-    private final FindAuthorAPI findAuthorAPI;
+    private final FindOwnerAPI findOwnerAPI;
     private final QueryCategoryPort queryCategoryPort;
     private final HandleUniverseEventPort handleUniverseEventPort;
-    private final FileUploadAPI fileUploadAPI;
+    private final UploadFileAPI uploadFileAPI;
 
     @Override
     public CreateUniverseResult createNewUniverse(CreateUniverseCommand command) {
 
         validate(command);
 
-        Author author = findAuthorAPI.findAuthor(command.metadata().authorID());
+        Owner owner = findOwnerAPI.findOwner(command.metadata().ownerID());
         Category category = queryCategoryPort.findUniverseCategory(command.metadata().categoryID());
+        AccessLevel accessLevel = AccessLevel.valueOf(command.metadata().accessLevel());
 
-        UploadFileResponse thumbmusic = fileUploadAPI.uploadFile(command.thumbMusic());
-        UploadFileResponse thumbnail = fileUploadAPI.uploadFile(command.thumbnail());
-        UploadFileResponse background = fileUploadAPI.uploadFile(command.background());
+        UploadFileResult thumbmusic = uploadFileAPI.uploadFile(UploadFileCommand.from(command.thumbMusic(), owner.getId(), accessLevel));
+        UploadFileResult thumbnail = uploadFileAPI.uploadFile(UploadFileCommand.from(command.thumbnail(), owner.getId(), accessLevel));
+        UploadFileResult background = uploadFileAPI.uploadFile(UploadFileCommand.from(command.background(), owner.getId(), accessLevel));
 
         UniverseID newUniverseID = new UniverseID(issueIDPort.issueNewID());
 
         UniverseCreateEvent event = Universe.create(
                 newUniverseID,
                 category,
-                author,
+                owner,
                 UniverseMetadata.create(
                         thumbmusic.id(),
                         thumbnail.id(),
                         background.id(),
-                        AccessStatus.of(command.metadata().accessStatus()),
+                        AccessLevel.valueOf(command.metadata().accessLevel()),
                         command.metadata().hashtags()),
                 CommonMetadata.create(
                         command.metadata().title(),
@@ -67,13 +70,13 @@ public class CreateUniverseService implements CreateUniverseUseCase {
                 universe.getUniverseMetadata().getThumbmusicID(),
                 universe.getUniverseMetadata().getThumbnailID(),
                 universe.getUniverseMetadata().getBackgroundID(),
-                universe.getAuthor().getId(),
+                universe.getOwner().getId(),
                 universe.getCommonMetadata().getCreatedTime().toEpochSecond(),
                 universe.getCategory().getId(),
                 universe.getCommonMetadata().getTitle(),
                 universe.getCommonMetadata().getDescription(),
-                universe.getAuthor().getNickname(),
-                universe.getUniverseMetadata().getAccessStatus().name(),
+                universe.getOwner().getNickname(),
+                universe.getUniverseMetadata().getAccessLevel().name(),
                 universe.getUniverseMetadata().getTags()
         );
     }

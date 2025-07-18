@@ -1,7 +1,7 @@
 package com.hoo.universe.application;
 
 import com.github.f4b6a3.uuid.UuidCreator;
-import com.hoo.common.internal.message.FileDeleteEventPublisher;
+import com.hoo.common.internal.message.DeleteFileEventPublisher;
 import com.hoo.universe.api.out.persistence.HandleUniverseEventPort;
 import com.hoo.universe.api.out.persistence.LoadUniversePort;
 import com.hoo.universe.domain.Universe;
@@ -18,9 +18,9 @@ class DeleteUniverseServiceTest {
 
     LoadUniversePort loadUniversePort = mock();
     HandleUniverseEventPort handleUniverseEventPort = mock();
-    FileDeleteEventPublisher fileDeleteEventPublisher = mock();
+    DeleteFileEventPublisher deleteFileEventPublisher = mock();
 
-    DeleteUniverseService sut = new DeleteUniverseService(loadUniversePort, handleUniverseEventPort, fileDeleteEventPublisher);
+    DeleteUniverseService sut = new DeleteUniverseService(loadUniversePort, handleUniverseEventPort, deleteFileEventPublisher);
 
     @Test
     @DisplayName("유니버스 삭제 서비스")
@@ -35,7 +35,7 @@ class DeleteUniverseServiceTest {
 
         // then
         verify(handleUniverseEventPort, times(1)).handleUniverseDeleteEvent(any());
-        verify(fileDeleteEventPublisher, times(1)).publishDeleteFilesEvent((List) any());
+        verify(deleteFileEventPublisher, times(1)).publishDeleteFilesEvent((List) any());
     }
 
 }

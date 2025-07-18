@@ -3,7 +3,7 @@ package com.hoo.aar.adapter.in.web.universe;
 import com.hoo.common.adapter.in.web.config.AbstractControllerTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.ownerity.SimpleGrantedAuthority;
 import org.springframework.test.context.jdbc.Sql;
 
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
@@ -25,7 +25,7 @@ class GetPublicUniverseListControllerTest extends AbstractControllerTest {
 
         mockMvc.perform(get("/aar/universes?page=1&size=10")
                         .with(jwt().jwt(jwt -> jwt.claim("userId", 1L))
-                                .authorities(new SimpleGrantedAuthority("ROLE_USER"))
+                                .ownerities(new SimpleGrantedAuthority("ROLE_USER"))
                         )
                 )
                 .andExpect(status().is(200))
@@ -51,14 +51,14 @@ class GetPublicUniverseListControllerTest extends AbstractControllerTest {
                                 fieldWithPath("universes[].id").description("유니버스의 아이디입니다."),
                                 fieldWithPath("universes[].thumbnailId").description("썸네일 파일 ID입니다."),
                                 fieldWithPath("universes[].thumbMusicId").description("썸뮤직 파일 ID입니다."),
-                                fieldWithPath("universes[].authorId").description("작성자의 ID입니다."),
+                                fieldWithPath("universes[].ownerId").description("작성자의 ID입니다."),
                                 fieldWithPath("universes[].createdTime").description("유닉스 타임스탬프 형식의 생성(등록)일자입니다."),
                                 fieldWithPath("universes[].view").description("조회수입니다."),
                                 fieldWithPath("universes[].likeCnt").description("좋아요 숫자입니다."),
                                 fieldWithPath("universes[].isLiked").description("해당 게시글에 좋아요를 눌렀는지 여부입니다. * 로그인 시에만 동작"),
                                 fieldWithPath("universes[].title").description("제목입니다."),
                                 fieldWithPath("universes[].description").description("설명입니다."),
-                                fieldWithPath("universes[].author").description("작성자의 닉네임입니다."),
+                                fieldWithPath("universes[].owner").description("작성자의 닉네임입니다."),
                                 fieldWithPath("universes[].hashtags").description("해시태그 리스트입니다."),
 
                                 fieldWithPath("pagination.pageNumber").description("현재 페이지 번호입니다."),

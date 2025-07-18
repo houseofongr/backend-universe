@@ -45,7 +45,7 @@ public record QueryUserHomesResult(
     public record HouseInfo(
             Long id,
             String title,
-            String author,
+            String owner,
             String description
     ) {
         public static HouseInfo of(House house) {

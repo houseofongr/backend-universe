@@ -1,12 +1,12 @@
 package com.hoo.universe.api.dto.command.piece;
 
-import com.hoo.common.internal.api.dto.UploadFileRequest;
+import com.hoo.common.internal.api.dto.FileCommand;
 
 import java.util.UUID;
 
 public record CreatePieceWithTwoPointCommand(
         Metadata metadata,
-        UploadFileRequest background
+        FileCommand background
 ) {
 
     public record Metadata(

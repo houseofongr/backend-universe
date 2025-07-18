@@ -1,6 +1,6 @@
 package com.hoo.universe.application;
 
-import com.hoo.common.internal.api.dto.PageQueryResult;
+import com.hoo.common.web.dto.PageQueryResult;
 import com.hoo.universe.api.dto.command.SearchUniverseCommand;
 import com.hoo.universe.api.dto.result.UniverseListInfo;
 import com.hoo.universe.api.in.SearchUniverseUseCase;

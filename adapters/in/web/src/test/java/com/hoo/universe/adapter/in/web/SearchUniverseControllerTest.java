@@ -1,8 +1,8 @@
 package com.hoo.universe.adapter.in.web;
 
 import com.github.f4b6a3.uuid.UuidCreator;
-import com.hoo.common.internal.api.dto.PageQueryResult;
-import com.hoo.common.internal.api.dto.PageRequest;
+import com.hoo.common.web.dto.PageQueryResult;
+import com.hoo.common.web.dto.PageRequest;
 import com.hoo.universe.api.dto.result.UniverseListInfo;
 import com.hoo.universe.api.in.SearchUniverseUseCase;
 import com.hoo.universe.domain.vo.Category;
@@ -83,16 +83,16 @@ class SearchUniverseControllerTest extends DocumentationTest {
                                 fieldWithPath("content[].id").description("유니버스의 아이디입니다."),
                                 fieldWithPath("content[].thumbnailID").description("썸네일 파일 ID입니다."),
                                 fieldWithPath("content[].thumbmusicID").description("썸뮤직 파일 ID입니다."),
-                                fieldWithPath("content[].authorID").description("작성자의 ID입니다."),
+                                fieldWithPath("content[].ownerID").description("작성자의 ID입니다."),
                                 fieldWithPath("content[].createdTime").description(" 생성(등록)일자입니다."),
                                 fieldWithPath("content[].updatedTime").description(" 생성(등록)일자입니다."),
                                 fieldWithPath("content[].view").description("조회수입니다."),
                                 fieldWithPath("content[].like").description("좋아요 숫자입니다."),
                                 fieldWithPath("content[].title").description("제목입니다."),
-                                fieldWithPath("content[].author").description("작성자의 닉네임입니다."),
+                                fieldWithPath("content[].owner").description("작성자의 닉네임입니다."),
                                 fieldWithPath("content[].description").description("설명입니다."),
                                 fieldWithPath("content[].category").description("카테고리입니다."),
-                                fieldWithPath("content[].accessStatus").description("공개 여부입니다."),
+                                fieldWithPath("content[].accessLevel").description("공개 여부입니다."),
                                 fieldWithPath("content[].hashtags").description("해시태그 리스트입니다."),
                                 fieldWithPath("content[].category.id").description("카테고리의 ID입니다."),
                                 fieldWithPath("content[].category.eng").description("카테고리의 영문 이름입니다."),

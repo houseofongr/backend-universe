@@ -33,25 +33,25 @@ public class House {
         this.borderImageFile = borderImageFile;
     }
 
-    public static House create(Long id, String title, String author, String description, Float width, Float height, Long defaultImageFileId, Long borderImageFileId, List<Room> rooms) {
+    public static House create(Long id, String title, String owner, String description, Float width, Float height, Long defaultImageFileId, Long borderImageFileId, List<Room> rooms) {
 
         File defaultImageFile = new File(new FileId(defaultImageFileId), FileType.IMAGE);
         File borderImageFile = new File(new FileId(borderImageFileId), FileType.IMAGE);
 
-        return new House(new HouseId(id), new HouseDetail(title, author, description), new Area(width, height), null, rooms, defaultImageFile, borderImageFile);
+        return new House(new HouseId(id), new HouseDetail(title, owner, description), new Area(width, height), null, rooms, defaultImageFile, borderImageFile);
     }
 
-    public static House load(Long houseId, String title, String author, String description, Float width, Float height, ZonedDateTime createdTime, ZonedDateTime updatedTime, Long defaultImageFileId, Long borderImageFileId, List<Room> rooms) {
+    public static House load(Long houseId, String title, String owner, String description, Float width, Float height, ZonedDateTime createdTime, ZonedDateTime updatedTime, Long defaultImageFileId, Long borderImageFileId, List<Room> rooms) {
 
         Area area = new Area(width, height);
         File defaultImageFile = new File(new FileId(defaultImageFileId), FileType.IMAGE);
         File borderImageFile = new File(new FileId(borderImageFileId), FileType.IMAGE);
 
-        return new House(new HouseId(houseId), new HouseDetail(title, author, description), area, new BaseTime(createdTime, updatedTime), rooms, defaultImageFile, borderImageFile);
+        return new House(new HouseId(houseId), new HouseDetail(title, owner, description), area, new BaseTime(createdTime, updatedTime), rooms, defaultImageFile, borderImageFile);
     }
 
-    public void updateDetail(String title, String author, String description) {
-        houseDetail.update(title, author, description);
+    public void updateDetail(String title, String owner, String description) {
+        houseDetail.update(title, owner, description);
     }
 
     public void updateRoomInfo(String originalName, String newName) {
