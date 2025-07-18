@@ -1,0 +1,102 @@
+spring:
+  profiles:
+    group:
+      prod:
+        - prod
+        - common
+      dev:
+        - dev
+        - common
+      dev-local:
+        - dev-local
+        - common
+      local:
+        - local
+        - common
+    default: local
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+    import:
+      - file:/Users/hooserver/backend/aoo/config/aoo-config.yml
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+    import: file:/Users/hooserver/backend/aoo/config/aoo-dev-config.yml
+---
+spring:
+  config:
+    activate:
+      on-profile: dev-local
+    import: file:/Users/hooserver/backend/aoo/config/aoo-local-config.yml
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+    import: hoo-universe-config.yml
+---
+spring:
+  config:
+    activate:
+      on-profile: common
+  application:
+    name: aoo-backend
+  jpa:
+    database: mysql
+    hibernate:
+      naming:
+        physical-strategy: com.hoo.universe.adapter.out.persistence.config.HibernateCustomNamingStrategy
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${database.mysql.username}
+    password: ${database.mysql.password}
+    url: jdbc:${database.mysql.name}://${database.mysql.address}:${database.mysql.port}/${database.mysql.scheme}?serverTimezone=${database.mysql.timezone}
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: ${security.oauth2.kakao.client-id}
+            client-secret: ${security.oauth2.kakao.client-secret}
+            authorization-grant-type: ${security.oauth2.kakao.authorization-grant-type}
+            redirect-uri: ${security.oauth2.kakao.redirect-uri}
+            client-name: kakao
+            client-authentication-method: client_secret_post
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB
+  data:
+    web:
+      pageable:
+        one-indexed-parameters: true
+        default-page-size: 10
+  kafka:
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+server:
+  tomcat:
+    max-http-form-post-size: 100MB
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

@@ -1,0 +1,66 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.1'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'io.spring.dependency-management'
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
+    }
+
+    group = 'com.hoo'
+    version = '0.0.1-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom("org.springframework.boot:spring-boot-dependencies:3.5.3")
+        }
+    }
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+
+        testImplementation project(":test-support")
+        testCompileOnly 'org.projectlombok:lombok'
+        testAnnotationProcessor 'org.projectlombok:lombok'
+        testImplementation "org.assertj:assertj-core"
+        testImplementation "org.mockito:mockito-core"
+        testImplementation "org.junit.jupiter:junit-jupiter-api"
+        testImplementation "com.github.f4b6a3:uuid-creator:6.1.1"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+        testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            exclude 'com/hoo/file/**'
+            exclude 'com/hoo/aar/**'
+            exclude 'com/hoo/admin/**'
+            exclude 'com/hoo/common/**'
+        }
+    }
+
+    test {
+        java {
+            exclude 'com/hoo/file/**'
+            exclude 'com/hoo/aar/**'
+            exclude 'com/hoo/admin/**'
+            exclude 'com/hoo/common/**'
+        }
+    }
+}

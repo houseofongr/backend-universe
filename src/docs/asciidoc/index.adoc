@@ -1,0 +1,966 @@
+= 아카이브 오브 옹알 API 문서
+Sangyeop. Nam <spearoad15@gmail.com>
+:doctype: book
+:description: 아카이브 오브 옹알 API 문서입니다.
+:icons: font
+:source-highlighter: highlightjs
+:highlightjs-theme:
+:toc: left
+:toclevels: 3
+:pdf-themesdir: {docdir}/themes
+:pdf-theme: ko
+:pdf-fontsdir: {docdir}/fonts
+:stylesheet: stylesheet.css
+:imagesdir: {docdir}/images
+:stylesdir: {docdir}/styles
+:favicon: {docdir}/images/favicon.ico
+// :sectlinks:
+
+아카이브 오브 옹알 공식 API 문서입니다.
+
+This is Archive Of Ong(AOO) R Official API Documents.
+
+[[aar-api]]
+== 소리기록실(AAR) API
+
+소리기록실(Audio Record Room; ARR) 사용자를 위한 API입니다.
+
+[[aar-authn-flow]]
+=== 소리기록실 인증 플로우
+.로그인 플로우차트
+//https://excalidraw.com/#json=aTnuIuf60RUxbEY_BPuum,jbkQ3CdbR9HT5byljXptkw
+image::login.png[login flow]
+
+1. `**User 로그인**`
+    a. ``사용자``가 소리기록실 페이지로 접속해서 로그인을 시도합니다.
+    b. ``프론트엔드``에서 ``백엔드``로 특정 서드파티 도메인의 로그인 API 요청을 전송합니다.
+    c. 이를 받은 ``백엔드``는 브라우저를 ``서드파티``의 로그인 페이지로 이동시킵니다.
+2. `**SNS 로그인 시도**`
+    a. ``사용자``가 서드파티 페이지에서 로그인을 시도합니다.
+    b. 정상 로그인일 경우, ``서드파티``에서 백엔드로 코드를 전송합니다.
+    c. 해당 코드를 수신한 ``백엔드``는 토큰을 교환하여 사용자 정보를 받습니다.
+3. `**SNS 로그인 완료**`
+    a. ``백엔드``에서 받은 사용자 정보를 확인하여 ``프론트엔드``로 전송합니다.
+    b. ``프론트엔드``에서는 해당 사용자 정보를 포함하여 메인 페이지를 전송합니다.
+    c. ``사용자``는 메인 페이지로 이동합니다.
+
+.회원가입 플로우차트
+//https://excalidraw.com/#json=ZlQOr-_1yHyOU65158_Hd,h0Df7KyDrhCJoL7BzYLHqA
+image::regist.png[regist flow]
+
+1. `**User 로그인**`
+    - 사용자가 로그인을 시도합니다.(로그인 플로우와 동일)
+2. `**SNS 계정 등록**`
+    a. ``백엔드``에서 해당 SNS 계정이 등록되어 있지 않으면 해당 계정을 **임시 저장**합니다.
+    b. ``프론트엔드``에게 임시 저장된 계정 정보와 함께 **임시 토큰**을 전송합니다.
+    c. ``프론트엔드``는 해당 정보를 임시 저장하고, 회원가입 페이지를 전송합니다.
+3. `**회원가입**`
+    a. ``사용자``는 회원가입 페이지에서 필요한 양식을 채워 회원가입을 시도합니다.
+    b. ``프론트엔드``는 해당 정보를 ``백엔드``로 전송합니다.
+    c. ``백엔드``는 해당 정보를 등록하고, 사용자 정보와 함께 **토큰**을 전송합니다.
+    d. ``프론트엔드``는 해당 사용자 정보를 포함하여 메인 페이지를 전송합니다.
+    e. ``사용자``는 메인 페이지로 이동합니다.
+
+[[aar-authn-api]]
+=== 인증(Authn) API
+
+소리기록실의 인증을 위한 API입니다.
+
+[[aar-authn-login-api]]
+==== SNS 로그인 API
+
+소리기록실에 SNS 로그인을 시도합니다.
+
+- **서드파티 인증 페이지로 이동**하여 정상 인증이 완료되면 해당 계정으로 로그인합니다.
+
+operation::aar-authn-login[snippets='path-parameters,http-request,http-response,response-headers']
+
+> 파라미터에 대한 세부 정보는 아래 **Response fields**를 참고바랍니다.
+
+operation::aar-authn-login-2[snippets='response-fields']
+
+[[aar-authn-business-login-api]]
+==== 비즈니스 로그인 API
+
+소리기록실에 비즈니스 계정으로 로그인을 시도합니다.
+
+operation::aar-post-login-user-business[snippets='http-request,form-parameters,http-response,response-fields']
+
+[[aar-authn-regist-api]]
+==== 회원가입 API
+
+소리기록실에 회원가입을 시도합니다.
+
+사용자 정보 식별을 위해 최초 로그인 시 받은 Access Token을 아래와 같이 포함하여 전송해야 합니다.
+
+===== Authorization Header
+include::{snippets}/aar-access-token/response-fields.adoc[]
+
+operation::aar-authn-regist[snippets='http-request,request-fields,http-response,response-fields']
+
+[[aar-authn-create-email-code-api]]
+==== 이메일 인증코드 생성 API
+
+이메일 인증을 위한 코드를 메일로 전송합니다.
+
+operation::aar-authn-post-email-code[snippets='http-request,form-parameters,http-response,response-fields']
+
+[[aar-authn-verify-email-code-api]]
+==== 이메일 인증 API
+
+전송된 인증코드로 이메일을 인증합니다.
+
+operation::aar-authn-post-email-code-verify[snippets='http-request,form-parameters,http-response,response-fields']
+
+
+[[aar-user-api]]
+=== 사용자(User) API
+
+==== 인증(Authorization)
+
+사용자 정보 조회 및 수정은 인증된 사용자만 가능하기 때문에, 로그인 시 획득한 AccessToken을 반드시 Authorization Header에 포함해야 합니다.
+
+===== Authorization Header
+include::{snippets}/aar-access-token/response-fields.adoc[]
+
+[[aar-user-get-nickname-exist-api]]
+==== 닉네임 중복여부 조회 API
+
+특정 닉네임이 존재하는지 확인하기 위한 API입니다.
+
+operation::aar-user-get-nickname[snippets='http-request,path-parameters,http-response,response-fields']
+
+[[aar-user-post-business-user-api]]
+==== 비즈니스 회원가입 API
+
+비즈니스 회원가입을 위한 API입니다.
+
+> 관리자의 승인 후 계정이 활성화됩니다.
+
+> <<aar-authn-verify-email-code-api>>를 통해 인증 완료된 이메일만 회원가입이 가능합니다.
+
+operation::aar-post-user-business[snippets='http-request,request-fields,http-response,response-fields']
+
+[[aar-user-get-me-api]]
+==== 본인정보 조회 API
+
+사용자가 본인의 정보를 조회하기 위한 API입니다.
+
+operation::aar-user-get-me[snippets='http-request,http-response,response-fields']
+
+[[aar-user-patch-me-api]]
+==== 본인정보 수정 API
+
+사용자가 본인의 정보를 수정하기 위한 API입니다.
+
+operation::aar-user-patch-me[snippets='http-request,request-fields,http-response,response-fields']
+
+[[aar-user-delete-api]]
+==== 회원탈퇴 API
+
+사용자가 회원탈퇴를 하기 위한 API입니다.
+
+> 연관된 모든 홈, 아이템, 음원, SNS 계정이 삭제되며 삭제된 회원정보를 마스킹하여 별도로 저장합니다.
+
+operation::aar-user-delete[snippets='http-request,request-fields,http-response,response-fields']
+
+[[aar-home-api]]
+=== 홈(Home) API
+
+사용자의 홈과 내부 구성요소(룸, 아이템, 음원)를 조회하기 위한 API입니다.
+
+==== 인증(Authorization)
+
+홈은 인증된 사용자만 조회가 가능하기 때문에, 로그인 시 획득한 AccessToken을 반드시 Authorization Header에 포함해야 합니다.
+
+===== Authorization Header
+include::{snippets}/aar-access-token/response-fields.adoc[]
+
+[[aar-home-get-list-api]]
+==== 홈 리스트 조회 API
+
+사용자의 정보로부터 보유하고 있는 모든 홈을 조회합니다.
+
+operation::aar-home-get-list[snippets='http-request,http-response,response-fields']
+
+[[aar-home-get-rooms-api]]
+==== 홈 룸 조회 API
+
+사용자의 특정 홈과 내부에 포함된 룸을 모두 조회합니다.
+
+operation::aar-home-get-rooms[snippets='query-parameters,http-request,http-response,response-fields']
+
+[[aar-home-get-room-items-api]]
+==== 룸 아이템 조회 API
+
+사용자의 특정 룸 내부에 포함된 아이템을 모두 조회합니다.
+
+
+"빈 아이템*은 조회되지 않습니다."
+-- * 내부에 활성화(``isActive = true``)된 음원이 존재하지 않는 아이템
+
+operation::aar-home-get-room-items[snippets='query-parameters,http-request,http-response,response-fields']
+
+[[aar-home-get-item-soundsources-api]]
+==== 아이템 음원 조회 API
+
+사용자의 특정 아이템 내부에 포함된 음원을 모두 조회합니다.
+
+> 관리자가 활성화시킨(``isActive = true``) 음원만 조회됩니다.
+
+operation::aar-home-get-item-soundsources[snippets='query-parameters,http-request,http-response,response-fields']
+
+
+[[aar-home-get-soundsource-api]]
+==== 음원 상세조회 API
+
+사용자의 특정 음원을 조회합니다.
+
+> 관리자가 활성화시킨(``isActive = true``) 음원만 조회됩니다.
+
+operation::aar-home-get-soundsource[snippets='query-parameters,http-request,http-response,response-fields']
+
+[[aar-home-get-soundsource-path-api]]
+==== 전체 음원 경로조회 API
+
+사용자의 모든 음원과 음원의 경로를 조회합니다.
+
+> 관리자가 활성화시킨(``isActive = true``) 음원만 조회됩니다.
+
+operation::aar-home-get-soundsource-path[snippets='http-request,http-response,response-fields']
+
+[[aar-home-name-patch-api]]
+==== 홈 이름 수정 API
+
+사용자가 보유한 홈의 이름을 수정합니다.
+
+> 본인이 보유하지 않은 홈을 수정할 경우 403 오류가 발생합니다.
+
+> 빈 값(Null, 공백)만 전송될 경우 400 오류가 발생합니다.
+
+operation::aar-home-patch-name[snippets='path-parameters,http-request,request-fields,http-response,response-fields']
+
+[[aar-home-main-patch-api]]
+==== 메인 홈 수정 API
+
+사용자가 보유한 메인 홈을 수정합니다.
+
+> 본인이 보유하지 않은 홈을 수정할 경우 403 오류가 발생합니다.
+
+> 메인 홈은 1개만 존재할 수 있으므로, 기존 메인 홈은 더이상 메인이 아니게 됩니다.
+
+operation::aar-home-patch-main[snippets='path-parameters,http-request,http-response,response-fields']
+
+[[aar-universe-api]]
+=== 사용자 유니버스(Universe) API
+
+[[aar-public-universe-list-get-api]]
+==== 공개 유니버스 검색 API
+
+공개된 유니버스를 조회합니다.
+
+> 비공개 유니버스는 조회되지 않으며, 로그인한 사용자는 좋아요를 표시했는지 여부가 함께 조회됩니다.
+
+operation::aar-public-universe-get-list[snippets='path-parameters,http-request,http-response,response-fields']
+
+[[aar-public-universe-get-api]]
+==== 공개 유니버스 상세조회 API
+
+공개된 유니버스의 상세정보를 조회합니다.
+
+> 본인의 것이 아닌 비공개 유니버스나, 숨겨진 스페이스 및 피스는 조회되지 않습니다.
+
+> 조회 시 조회수가 1 증가하며, 내부의 모든 컴포넌트를 함께 조회합니다.
+
+operation::aar-public-universe-get[snippets='path-parameters,http-request,http-response,response-fields']
+
+[[admin-api]]
+== 관리자(Admin) API
+
+관리자페이지에서 소리기록실(Audio Archive Room)을 관리하기 위한 API 입니다.
+
+
+[[admin-Authn-api]]
+=== 인증(Authn) API
+
+관리자페이지의 보안(인증)을 위한 API입니다.
+
+[[admin-authn-id-pw-login-api]]
+==== 1차 : 관리자 ID/PW 로그인 API
+
+관리자의 아이디와 비밀번호로 로그인합니다.
+
+operation::admin-authn-login[snippets='http-request,form-parameters,http-response,response-headers']
+
+> 성공 시 로그인 페이지로 다시 이동하며, URL에 ``?form-success``라는 파라미터가 함께 도착합니다.
+
+[[admin-authn-sns-login-api]]
+==== 2차 : 관리자 SNS 로그인 API
+
+관리자가 소유한 SNS ID로 로그인을 시도합니다.
+
+- **서드파티 인증 페이지로 이동**하여 정상 인증이 완료되면 해당 계정으로 로그인합니다.
+
+operation::admin-authn-sns-login[snippets='path-parameters,http-request,http-response,response-headers']
+
+> 성공 시 로그인 페이지로 다시 이동하며, URL에 ``?sns-success``라는 파라미터가 함께 도착합니다.
+
+[[admin-house-api]]
+=== 하우스(House) API
+
+하우스 관리를 위한 API 입니다.
+
+[[admin-house-post-api]]
+==== 하우스 생성 API
+
+관리자가 지정한 하우스의 좌표에 맞게 하우스를 저장합니다.
+
+===== Http Request
+include::{snippets}/admin-house-post/http-request.adoc[]
+
+===== Request Form
+include::{snippets}/admin-house-post/request-parts.adoc[]
+
+> 위 요청에서 각 이미지 파일의 **Form 태그 snsAccountInfo 속성값**은 아래 <<CreateHouseMetadata>>와 일치해야 합니다.
+
+===== CreateHouseMetadata 예시
+include::{snippets}/admin-create-house-metadata/response-body.adoc[]
+
+===== CreateHouseMetadata
+include::{snippets}/admin-create-house-metadata/response-fields.adoc[]
+
+operation::admin-house-post[snippets='http-response,response-fields']
+
+==== 하우스 생성 시 오류
+
+===== 전송타입 오류
+
+전송타입(``Content-Type``)이 ``Multipart-FormData``가 아닐 경우, 다음과 같은 오류가 발생합니다.
+
+include::{snippets}/admin-house-post-error-1/response-body.adoc[]
+
+===== 하우스 이미지 파일 중복 오류
+
+하우스 생성 시 프로필 이미지 파일(``houseForm``)과 테두리 이미지 파일(``borderForm``)이 중복되면 다음과 같은 오류가 발생합니다.
+
+> 업로드한 이미지 파일의 ``이름(파일명)``이 동일한지 검사합니다.
+
+include::{snippets}/admin-house-post-error-2/response-body.adoc[]
+
+[[admin-house-get-list-api]]
+==== 하우스 검색 API
+
+여러 건의 하우스를 검색 조건에 맞게 조회합니다.
+
+operation::admin-house-get-list[snippets='path-parameters,http-request,http-response,response-fields']
+
+[[admin-house-get-api]]
+==== 하우스 상세 조회 API
+
+하우스와 내부 룸에 대한 상세 정보를 조회합니다.
+
+operation::admin-house-get[snippets='path-parameters,http-request,http-response,response-fields']
+
+[[admin-house-patch-api]]
+==== 하우스 정보 수정 API
+
+하우스의 기본 정보를 수정하는 API입니다.
+
+> 하우스의 이미지와 좌표는 최초 생성 이후 수정할 수 없습니다.
+
+operation::admin-house-patch[snippets='path-parameters,http-request,request-fields,http-response,response-fields']
+
+[[admin-house-delete-api]]
+==== 하우스 삭제 API
+
+하우스와 내부의 룸을 모두 삭제하는 API입니다.
+
+> 삭제 시 해당 하우스의 기본 이미지, 보더 이미지를 함께 삭제합니다.
+
+operation::admin-house-delete[snippets='path-parameters,http-request,http-response,response-fields']
+
+> 해당 하우스로 생성된 홈이 있을 경우, 삭제할 수 업습니다.
+
+[[admin-room-api]]
+=== 룸(Room) API
+
+룸 관리를 위한 API 입니다.
+
+[[admin-room-get-api]]
+==== 룸 조회 API
+
+룸에 대한 정보를 조회하는 API입니다.
+
+operation::admin-room-get[snippets='path-parameters,http-request,http-response,response-fields']
+
+
+[[admin-room-get-items-api]]
+==== 룸 & 아이템 조회 API
+
+룸과 해당 룸 안의 아이템 정보를 조회하는 API입니다.
+
+operation::admin-room-get-items[snippets='path-parameters,http-request,http-response,response-fields']
+
+[[admin-room-patch-api]]
+==== 룸 정보 수정 API
+
+룸의 기본 정보를 수정하는 API입니다.
+
+> 룸의 이미지와 좌표는 최초 생성 이후 수정할 수 없습니다.
+
+operation::admin-room-patch[snippets='http-request,request-fields,http-response,response-fields']
+
+[[admin-room-delete-api]]
+==== 룸 삭제 API
+
+룸을 삭제하는 API입니다.
+
+operation::admin-room-delete[snippets='path-parameters,http-request,http-response,response-fields']
+
+> 룸 내부에 아이템이 포함되어 있을 경우 삭제할 수 없습니다.
+
+[[admin-user-api]]
+=== 사용자(User) API
+
+소리기록실 사용자 정보 관리를 위한 API 입니다.
+
+[[admin-user-get-list-api]]
+==== 사용자 조회 API
+
+관리자가 유저를 조회하는 API 입니다.
+
+operation::admin-user-get-list[snippets='path-parameters,http-request,http-response,response-fields']
+
+[[admin-user-get-list-v2-api]]
+==== 관리자 유저 조회 API
+
+관리자가 유저를 조회하는 API 입니다.
+
+> 민감정보를 포함하고 있어 주의가 필요합니다.
+
+operation::admin-user-get-list-v2[snippets='path-parameters,http-request,http-response,response-fields']
+
+[[admin-user-get-home-list-api]]
+==== 사용자 홈 조회 API
+
+사용자가 보유한 홈을 조회하는 API 입니다.
+
+operation::admin-user-get-home-list[snippets='path-parameters,http-request,http-response,response-fields']
+
+[[admin-user-post-confirm-business-user-api]]
+==== 비즈니스 사용자 회원가입 승인 API
+
+특정 비즈니스 사용자의 가입을 승인하는 API입니다.
+
+operation::admin-post-confirm-user-business[snippets='form-parameters,http-request,http-response,response-fields']
+
+
+[[admin-home-api]]
+=== 홈(Home) API
+
+소리기록실의 홈 정보 관리를 위한 API 입니다.
+
+[[admin-home-post-api]]
+==== 홈 생성 API
+
+홈을 생성하는 API 입니다.
+
+operation::admin-home-post[snippets='http-request,request-fields,http-response,response-fields']
+
+[[admin-home-get-api]]
+==== 홈 조회 API
+
+홈 정보를 조회하는 API 입니다.
+
+operation::admin-home-get[snippets='path-parameters,http-request,http-response,response-fields']
+
+[[admin-home-delete-api]]
+==== 홈 삭제 API
+
+홈을 삭제하는 API 입니다.
+
+> 홈 내부에 아이템이 존재할 경우, 함께 삭제됩니다.
+
+operation::admin-home-delete[snippets='path-parameters,http-request,http-response,response-fields']
+
+[[admin-item-api]]
+=== 아이템(Item) API
+
+[[admin-item-post-api]]
+==== 아이템 생성 API
+
+관리자가 지정한 아이템의 좌표에 맞게 아이템을 저장합니다.
+
+operation::admin-item-post[snippets='path-parameters,http-request,request-fields,http-response,response-fields']
+
+[[admin-item-post-api-v2]]
+==== 아이템 생성 API V2
+
+아이템 생성과 수정을 함께 처리합니다.
+
+operation::admin-item-post-v2[snippets='path-parameters,http-request,request-fields,http-response,response-fields']
+
+
+[[admin-item-get-api]]
+==== 아이템 조회 API
+
+아이템에 저장된 음원 리스트를 불러옵니다.
+
+operation::admin-item-get[snippets='path-parameters,http-request,http-response,response-fields']
+
+[[admin-item-patch-api]]
+==== 아이템 수정 API
+
+아이템의 정보를 수정합니다.
+
+> 해당 아이템의 이름과 형태(좌표 + 모양)를 수정할 수 있습니다.
+
+operation::admin-item-patch[snippets='path-parameters,http-request,request-fields,http-response,response-fields']
+
+[[admin-item-delete-api]]
+==== 아이템 삭제 API
+
+아이템을 삭제합니다.
+
+> 음원이 포함된 아이템은 삭제할 수 없습니다.
+
+operation::admin-item-delete[snippets='path-parameters,http-request,http-response,response-fields']
+
+
+[[admin-soundsource-api]]
+=== 음원(SoundSource) API
+
+[[admin-soundsource-get-list-api]]
+==== 전체음원 조회 API
+
+저장된 전체 음원을 불러옵니다.
+
+operation::admin-soundsource-get-list[snippets='http-request,http-response,response-fields']
+
+[[admin-soundsource-post-api]]
+==== 음원 생성 API
+
+관리자가 아이템 내부에 음원을 추가합니다.
+
+operation::admin-soundsource-post[snippets='path-parameters,http-request,request-parts']
+
+> 음원 생성 시 메타데이터 정보는 아래 <<CreateSoundSourceMetadata>>를 참고하시기 바랍니다.
+
+===== CreateSoundSourceMetadata 예시
+include::{snippets}/admin-create-soundsource-metadata/response-body.adoc[]
+
+===== CreateSoundSourceMetadata
+include::{snippets}/admin-create-soundsource-metadata/response-fields.adoc[]
+
+operation::admin-soundsource-post[snippets='http-response,response-fields']
+
+[[admin-soundsource-get-api]]
+==== 음원 조회 API
+
+음원에 저장된 정보와 함께 음악 파일 식별자를 불러옵니다.
+
+operation::admin-soundsource-get[snippets='path-parameters,http-request,http-response,response-fields']
+
+[[admin-soundsource-patch-api]]
+==== 음원 수정 API
+
+음원의 정보를 수정합니다.
+
+> 음원에 저장된 파일은 수정할 수 없습니다.
+
+operation::admin-soundsource-patch[snippets='path-parameters,http-request,request-fields,http-response,response-fields']
+
+[[admin-soundsource-delete-api]]
+==== 음원 삭제 API
+
+음원을 삭제합니다.
+
+operation::admin-soundsource-delete[snippets='path-parameters,http-request,http-response,response-fields']
+
+[[admin-category-api]]
+=== 카테고리(Category) API
+
+[[admin-category-post-api]]
+==== 카테고리 생성 API
+
+관리자가 카테고리를 생성합니다.
+
+operation::admin-category-post[snippets='http-request,request-fields,http-response,response-fields']
+
+[[admin-category-get-api]]
+==== 카테고리 검색 API
+
+관리자가 전체 카테고리를 검색합니다.
+
+operation::admin-category-get[snippets='http-request,http-response,response-fields']
+
+[[admin-category-patch-api]]
+==== 특정 카테고리 수정 API
+
+관리자가 특정 카테고리를 수정합니다.
+
+operation::admin-category-patch[snippets='http-request,path-parameters,request-fields,http-response,response-fields']
+
+[[admin-category-delete-api]]
+==== 특정 카테고리 삭제 API
+
+관리자가 특정 카테고리를 삭제합니다.
+
+operation::admin-category-delete[snippets='http-request,path-parameters,http-response,response-fields']
+
+
+[[admin-universe-api]]
+=== 유니버스(Universe) API
+
+[[admin-universe-post-api]]
+==== 유니버스 생성 API
+
+관리자가 유니버스를 생성합니다.
+
+operation::admin-universe-post[snippets='http-request,request-parts,http-response,response-fields']
+
+[[admin-universe-get-list-api]]
+==== 유니버스 검색 API
+
+관리자가 유니버스를 검색합니다.
+
+> 비공개 유니버스도 검색되며, 유니버스의 모든 정보가 공개됩니다.
+
+operation::admin-universe-get-list[snippets='path-parameters,http-request,http-response,response-fields']
+
+[[admin-universe-get-api]]
+==== 관리자 유니버스 상세정보 조회 API
+
+관리자가 특정 유니버스를 상세조회합니다.
+
+> 비공개 유니버스도 검색되며, 유니버스의 모든 정보가 공개됩니다.
+
+operation::admin-universe-get[snippets='path-parameters,http-request,http-response,response-fields']
+
+[[admin-universe-get-tree-api]]
+==== 관리자 유니버스 트리정보 조회 API
+
+관리자가 특정 유니버스의 트리정보를 조회합니다.
+
+> 비공개 유니버스도 검색되며, 유니버스의 모든 정보가 공개됩니다.
+
+===== 유니버스 트리
+
+- 유니버스는 다음과 같이 트리 형태로 구성됩니다.
+
+//https://excalidraw.com/#json=dPkJjvjSPaz6_JObrgARE,a49N4D52vI_c3E67OPtdoQ
+image::universe-tree.png[universe tree]
+
+- 위 트리구조를 집합으로 표현하면 다음과 같습니다.
+
+image::universe-nested.png[universe nested]
+
+> 아래 API 예시는 위 그림을 토대로 작성하였습니다.
+
+operation::admin-universe-get-tree[snippets='path-parameters,http-request,http-response,response-fields']
+
+[[admin-universe-patch-api]]
+==== 특정 유니버스 정보 수정 API
+
+관리자가 특정 유니버스를 수정합니다.
+
+operation::admin-universe-patch[snippets='path-parameters,http-request,request-fields,http-response,response-fields']
+
+[[admin-universe-post-update-thumbnail-api]]
+==== 특정 유니버스 썸네일 변경 API
+
+관리자가 유니버스의 썸네일을 변경합니다.
+
+> 썸네일 파일 용량은 2MB를 초과할 수 없으며, 기존 썸네일은 삭제됩니다.
+
+operation::admin-universe-post-update-thumbnail[snippets='path-parameters,http-request,request-parts,http-response,response-fields']
+
+[[admin-universe-post-update-thumb-music-api]]
+==== 특정 유니버스 썸뮤직 변경 API
+
+관리자가 유니버스의 썸뮤직을 변경합니다.
+
+> 썸뮤직 파일 용량은 2MB를 초과할 수 없으며, 기존 썸뮤직은 삭제됩니다.
+
+operation::admin-universe-post-update-thumb-music[snippets='path-parameters,http-request,request-parts,http-response,response-fields']
+
+[[admin-universe-post-update-inner-image-api]]
+==== 특정 유니버스 내부 이미지 변경 API
+
+관리자가 유니버스의 내부 이미지를 변경합니다.
+
+> 내부 이미지 파일 용량은 5MB를 초과할 수 없으며, 기존 내부 이미지는 삭제됩니다.
+
+operation::admin-universe-post-update-inner-image[snippets='path-parameters,http-request,request-parts,http-response,response-fields']
+
+[[admin-universe-delete-api]]
+==== 특정 유니버스 삭제 API
+
+관리자가 특정 유니버스를 삭제합니다.
+
+> 유니버스 내부의 모든 연관된 정보(좋아요, 해시태그, 썸네일, 썸뮤직, 스페이스, 피스)를 함께 삭제합니다.
+
+operation::admin-universe-delete[snippets='path-parameters,http-request,http-response,response-fields']
+
+[[admin-space-api]]
+=== 스페이스(Space) API
+
+[[admin-space-post-api]]
+==== 스페이스 생성 API
+
+관리자가 스페이스를 생성합니다.
+
+operation::admin-space-post[snippets='http-request,request-parts,http-response,response-fields']
+
+[[admin-space-patch-api]]
+==== 특정 스페이스 정보 수정 API
+
+관리자가 특정 스페이스의 정보를 수정합니다.
+
+operation::admin-space-patch[snippets='http-request,path-parameters,request-fields,http-response,response-fields']
+
+[[admin-space-patch-position-api]]
+==== 특정 스페이스 좌표 수정 API
+
+관리자가 특정 스페이스의 좌표를 수정합니다.
+
+operation::admin-space-patch-position[snippets='http-request,path-parameters,request-fields,http-response,response-fields']
+
+[[admin-space-post-update-api]]
+==== 특정 스페이스 내부이미지 변경 API
+
+관리자가 특정 스페이스의 내부이미지를 변경합니다.
+
+operation::admin-space-post-update-inner-image[snippets='http-request,path-parameters,request-parts,http-response,response-fields']
+
+[[admin-space-delete-api]]
+==== 특정 스페이스 삭제 API
+
+관리자가 특정 스페이스를 삭제합니다.
+
+> 스페이스 내부의 모든 연관된 정보(하위 스페이스, 피스, 오디오 파일, 이미지 파일)를 함께 삭제합니다.
+
+operation::admin-space-delete[snippets='path-parameters,http-request,http-response,response-fields']
+
+
+[[admin-piece-api]]
+=== 피스(Piece) API
+
+[[admin-piece-post-api]]
+==== 피스 좌표방식 생성 API
+
+관리자가 좌표방식으로 피스를 생성합니다.
+
+> 해당 API로 생성된 피스는 내부이미지 ID가 -1입니다.
+
+operation::admin-piece-post[snippets='http-request,request-fields,http-response,response-fields']
+
+[[admin-piece-get-api]]
+==== 관리자 특정 피스 내부 조회 API
+
+관리자가 특정 피스를 내부 사운드와 함께 조회합니다.
+
+> 비공개 사운드도 검색됩니다.
+
+operation::admin-piece-get[snippets='path-parameters,http-request,http-response,response-fields']
+
+
+[[admin-piece-patch-api]]
+==== 특정 피스 정보 수정 API
+
+관리자가 특정 피스의 정보를 수정합니다.
+
+operation::admin-piece-patch[snippets='http-request,path-parameters,request-fields,http-response,response-fields']
+
+[[admin-piece-patch-position-api]]
+==== 특정 피스 좌표 수정 API
+
+관리자가 특정 피스의 좌표를 수정합니다.
+
+operation::admin-piece-patch-position[snippets='http-request,path-parameters,request-fields,http-response,response-fields']
+
+[[admin-piece-delete-api]]
+==== 특정 피스 삭제 API
+
+관리자가 특정 피스를 삭제합니다.
+
+> 피스 내부의 모든 연관된 정보(오디오 파일, 이미지 파일)를 함께 삭제합니다.
+
+operation::admin-piece-delete[snippets='path-parameters,http-request,http-response,response-fields']
+
+[[admin-sound-api]]
+=== 사운드(Sound) API
+
+[[admin-sound-post-api]]
+==== 사운드 생성 API
+
+관리자가 사운드를 생성합니다.
+
+operation::admin-sound-post[snippets='http-request,request-parts,http-response,response-fields']
+
+[[admin-sound-patch-api]]
+==== 특정 사운드 정보 수정 API
+
+관리자가 특정 사운드의 정보를 수정합니다.
+
+operation::admin-sound-patch[snippets='http-request,path-parameters,request-fields,http-response,response-fields']
+
+[[admin-sound-post-update-api]]
+==== 특정 사운드 오디오 변경 API
+
+관리자가 특정 스페이스의 오디오 파일을 변경합니다.
+
+operation::admin-sound-post-update-audio[snippets='http-request,path-parameters,request-parts,http-response,response-fields']
+
+[[admin-sound-delete-api]]
+==== 특정 사운드 삭제 API
+
+관리자가 특정 사운드를 삭제합니다.
+
+> 사운드 내부의 오디오 파일을 함께 삭제합니다.
+
+operation::admin-sound-delete[snippets='path-parameters,http-request,http-response,response-fields']
+
+
+[[file-api]]
+== 파일(File) API
+
+파일서버의 업로드, 다운로드와 관련된 API입니다.
+
+[[file-public-api]]
+=== 공개(Public) API
+
+별도의 권한 없이 요청 가능한 API입니다.
+
+[[file-public-images-post-api]]
+==== 이미지 업로드 API
+
+이미지 파일을 공개 서버에 업로드합니다.
+
+operation::file-public-images-upload[snippets='http-request,http-response,response-fields']
+
+[[file-public-images-get-inline-api]]
+==== 이미지 인라인 다운로드 API
+
+이미지 파일을 공개 서버로부터 다운로드합니다.
+
+> 해당 API는 인라인 방식으로, 브라우저에서는 <img/> 태그 내부의 파일로 인식합니다.
+
+operation::file-public-images-download-inline[snippets='path-parameters,http-request,response-file']
+
+[[file-public-images-get-attachment-api]]
+==== 이미지 첨부파일 다운로드 API
+
+이미지 파일을 공개 서버로부터 다운로드합니다.
+
+> 해당 API는 첨부파일 방식으로, 브라우저에서는 첨부파일로 다운로드를 시도합니다.
+
+operation::file-public-images-download-attachment[snippets='path-parameters,http-request,response-file']
+
+[[file-public-audios-post-api]]
+==== 오디오 업로드 API
+
+오디오 파일을 공개 서버에 업로드합니다.
+
+operation::file-public-audio-upload[snippets='http-request,http-response,response-fields']
+
+
+[[file-public-audios-get-inline-api]]
+==== 오디오 인라인 다운로드 API
+
+오디오 파일을 공개 서버로부터 다운로드합니다.
+
+> 해당 API는 인라인 방식으로, 브라우저에서는 <audio/> 태그 내부의 파일로 인식합니다.
+
+operation::file-public-audios-download-inline[snippets='path-parameters,http-request,response-file']
+
+[[file-public-audios-get-attachment-api]]
+==== 오디오 첨부파일 다운로드 API
+
+오디오 파일을 공개 서버로부터 다운로드합니다.
+
+> 해당 API는 첨부파일 방식으로, 브라우저에서는 첨부파일로 다운로드를 시도합니다.
+
+operation::file-public-audios-download-attachment[snippets='path-parameters,http-request,response-file']
+
+[[file-private-api]]
+=== 비공개(Private) API
+
+해당 API는 **PRIVATE_FILE_ACCESS** 권한이 필요합니다.
+
+> 차후 해당 권한을 바탕으로 자원 접근을 제어할 예정입니다.
+
+[[file-private-images-get-api]]
+==== 이미지 로드 API
+
+이미지 파일을 비공개 서버로부터 로드합니다.
+
+operation::file-private-images-download[snippets='path-parameters,http-request,response-file']
+
+[[file-private-images-get-api-v2]]
+==== 이미지 로드 API(인증)
+
+이미지 파일을 비공개 서버로부터 로드합니다. 요청 시 해당 사용자의 권한을 함께 검사합니다.
+
+operation::file-private-images-download-v2[snippets='path-parameters,query-parameters,http-request']
+
+> 응답은 <<file-private-api>>와 동일합니다.
+
+[[file-private-audios-get-api]]
+==== 오디오 로드 API
+
+오디오 파일을 비공개 서버로부터 로드합니다.
+
+operation::file-private-audios-download[snippets='path-parameters,http-request,response-file']
+
+[[error-code]]
+== 에러코드
+
+[[error-code-API]]
+=== 에러코드 API
+
+API 요청 간 발생하는 에러코드를 조회할 수 있습니다.
+
+> **에러코드 조회 API**의 응답 결과는 아래 <<에러코드 테이블>>을 참고 바랍니다.
+
+[[error-code-aar-api]]
+==== 소리기록실 에러코드 API
+
+소리기록실에서 관리하는 에러코드를 확인할 수 있습니다.
+
+include::{snippets}/aar-error-code/http-request.adoc[]
+
+[[error-code-admin-api]]
+==== 관리자 에러코드 API
+
+관리자 페이지에서 관리하는 에러코드를 확인할 수 있습니다.
+
+include::{snippets}/admin-error-code/http-request.adoc[]
+
+
+[[error-code-file-api]]
+==== 파일 에러코드 API
+
+파일 서버에서 관리하는 에러코드를 확인할 수 있습니다.
+
+include::{snippets}/file-error-code/http-request.adoc[]
+
+[[error-code-table]]
+=== 에러코드 테이블
+
+전체 에러코드는 다음 표에서 확인할 수 있습니다.
+해당 표에서 확인되지 않는 에러코드는 별도 문의 바랍니다.
+
+[[error-code-aar-table]]
+==== 소리기록실 에러코드
+
+include::{snippets}/aar-error-code/error-code-response-fields.adoc[]
+
+[[error-code-admin-table]]
+==== 관리자 에러코드
+include::{snippets}/admin-error-code/error-code-response-fields.adoc[]
+
+[[error-code-file-table]]
+==== 파일 에러코드
+
+include::{snippets}/file-error-code/error-code-response-fields.adoc[]

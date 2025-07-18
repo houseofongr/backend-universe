@@ -1,0 +1,23 @@
+extends: default
+font:
+  fallbacks:
+    - Apple Gothic
+  catalog:
+    merge: true
+    Noto Sans:
+      normal: NotoSansKR-Regular.ttf
+      bold: NotoSansKR-Bold.ttf
+      italic: NotoSansKR-Light.ttf
+      bold_italic: NotoSansKR-ExtraBold.ttf
+    Apple Gothic:
+      normal: AppleSDGothicNeoR.ttf
+      bold: AppleSDGothicNeoB.ttf
+      italic: AppleSDGothicNeoL.ttf
+      bold_italic: AppleSDGothicNeoEB.ttf
+base:
+  font-color: #333333
+  font-family: Apple Gothic
+code:
+  font-family: Apple Gothic
+pre:
+  font-family: Apple Gothic

@@ -1,0 +1,21 @@
+plugins {
+    id 'org.springframework.boot' version '3.4.1'
+}
+
+
+dependencies {
+    implementation project(":adapters:in:web")
+    implementation project(":adapters:out:persistence")
+    implementation project(":adapters:out:id-gen")
+    implementation project(":adapters:out:internal:in-api")
+    implementation project(":adapters:out:internal:message")
+    implementation 'org.springframework.boot:spring-boot-starter'
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDirs = ["${rootDir}/config"]
+        }
+    }
+}

@@ -1,0 +1,76 @@
+@import "https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css";
+
+@font-face {
+    font-family: "Apple SDGothic Neo";
+    font-style: normal;
+    font-weight: bold;
+    src: url(../fonts/AppleSDGothicNeoM.woff) format("woff");
+}
+
+body {
+    font-family: "Apple SDGothic Neo", sans-serif;
+}
+
+.admonitionblock td.content>.title, .audioblock>.title, .exampleblock>.title, .imageblock>.title, .listingblock>.title, .literalblock>.title, .stemblock>.title, .openblock>.title, .paragraph>.title, .quoteblock>.title, table.tableblock>.title, .verseblock>.title, .videoblock>.title, .dlist>.title, .olist>.title, .ulist>.title, .qlist>.title, .hdlist>.title {
+    font-family: "Apple SDGothic Neo", sans-serif;
+    color: seagreen;
+}
+
+h1, h2, h3, h4, h5, h6, #toctitle {
+    font-family: "Apple SDGothic Neo", monospace;
+    font-weight: bolder;
+    color: #666;
+}
+
+h1 {
+    color: black
+}
+
+h2 {
+    color: darkcyan;
+}
+
+h3 {
+    color: darkorange;
+}
+
+.hljs, pre, .literalblock pre, code, :not(pre):not([class^=L])>code{
+    font-family: "Apple SDGothic Neo", sans-serif;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    background: #e5e5e5;
+}
+
+pre code {
+    white-space: pre-wrap;
+    font-family: Menlo, Monaco, Consolas, monospace;
+    font-size: 0.9em;
+    background-color: #f9f9f9;
+}
+
+.code-toggle-btn,
+.table-toggle-btn {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    background-color: #f1f1f1;
+    border: none;
+    padding: 4px 8px;
+    font-size: 0.85em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    z-index: 10;
+}
+
+.code-toggle-btn:hover,
+.table-toggle-btn:hover {
+    background-color: #e0e0e0;
+}
+
+table {
+    background-color: #fff; /* 테이블 배경색 보정 */
+    width: 100%;
+    border-collapse: collapse;
+}

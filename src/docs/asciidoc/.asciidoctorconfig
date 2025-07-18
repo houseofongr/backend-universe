@@ -1,0 +1,12 @@
+:doctype: book
+:description: 소리기록실 API 문서입니다.
+:icons: font
+:source-highlighter: highlightjs
+:highlightjs-theme:
+:toc: left
+:toclevels: 2
+:pdf-themesdir: {docdir}/themes
+:pdf-theme: ko
+:pdf-fontsdir: {docdir}/assets/fonts
+:stylesheet: stylesheet.css
+:stylesdir: {docdir}/assets/styles

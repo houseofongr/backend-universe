@@ -1,0 +1,2149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.23">
+<meta name="description" content="아카이브 오브 옹알 API 문서입니다.">
+<meta name="author" content="Sangyeop. Nam">
+<link rel="icon" type="image/x-icon" href="/Users/leaf/hoo/aoo-backend/src/docs/asciidoc/images/favicon.ico">
+<title>아카이브 오브 옹알 API 문서</title>
+<style>
+@import "https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css";
+
+@font-face {
+    font-family: "Apple SDGothic Neo";
+    font-style: normal;
+    font-weight: bold;
+    src: url(../fonts/AppleSDGothicNeoM.woff) format("woff");
+}
+
+body {
+    font-family: "Apple SDGothic Neo", sans-serif;
+}
+
+.admonitionblock td.content>.title, .audioblock>.title, .exampleblock>.title, .imageblock>.title, .listingblock>.title, .literalblock>.title, .stemblock>.title, .openblock>.title, .paragraph>.title, .quoteblock>.title, table.tableblock>.title, .verseblock>.title, .videoblock>.title, .dlist>.title, .olist>.title, .ulist>.title, .qlist>.title, .hdlist>.title {
+    font-family: "Apple SDGothic Neo", sans-serif;
+    color: seagreen;
+}
+
+h1, h2, h3, h4, h5, h6, #toctitle {
+    font-family: "Apple SDGothic Neo", monospace;
+    font-weight: bolder;
+    color: #666;
+}
+
+h1 {
+    color: black
+}
+
+h2 {
+    color: darkcyan;
+}
+
+h3 {
+    color: darkorange;
+}
+
+.hljs, pre, .literalblock pre, code, :not(pre):not([class^=L])>code{
+    font-family: "Apple SDGothic Neo", sans-serif;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    background: #e5e5e5;
+}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/.min.css">
+<style>
+/*! Asciidoctor Tabs | Copyright (c) 2018-present Dan Allen | MIT License */
+.tabs {
+    margin-bottom: 1.25em;
+}
+
+.tablist > ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tablist > ul li {
+    align-items: center;
+    background-color: #fff;
+    cursor: pointer;
+    display: flex;
+    font-weight: bold;
+    line-height: 1.5;
+    padding: 0.25em 1em;
+    position: relative;
+}
+
+.tablist > ul li:focus-visible {
+    outline: none;
+}
+
+.tablist.ulist,
+.tablist.ulist > ul li {
+    margin: 0;
+}
+
+.tablist.ulist > ul li + li {
+    margin-left: 0.25em;
+}
+
+.tabs .tablist li::after {
+    content: "";
+    display: block;
+    height: 1px;
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+}
+
+.tabs.is-loading .tablist li:not(:first-child),
+.tabs:not(.is-loading) .tablist li:not(.is-selected) {
+    background-color: #f5f5f5;
+}
+
+.tabs.is-loading .tablist li:first-child::after,
+.tabs:not(.is-loading) .tablist li.is-selected::after {
+    background-color: #fff;
+}
+
+/*
+.tabs:not(.is-loading) .tablist li,
+.tabs:not(.is-loading) .tablist li::after {
+  transition: background-color 200ms ease-in-out;
+}
+*/
+
+.tablist > ul p {
+    line-height: inherit;
+    margin: 0;
+}
+
+.tabpanel {
+    background-color: #fff;
+    padding: 1.25em;
+}
+
+.tablist > ul li,
+.tabpanel {
+    border: 1px solid #dcdcdc;
+}
+
+.tablist > ul li {
+    border-bottom: 0;
+}
+
+.tabs.is-loading .tabpanel + .tabpanel,
+.tabs:not(.is-loading) .tabpanel.is-hidden {
+    display: none;
+}
+
+.tabpanel > :first-child {
+    margin-top: 0;
+}
+
+/* #content is a signature of the Asciidoctor standalone HTML output */
+#content .tabpanel > :last-child,
+#content .tabpanel > :last-child > :last-child,
+#content .tabpanel > :last-child > :last-child > li:last-child > :last-child {
+    margin-bottom: 0;
+}
+
+.tablecontainer {
+    overflow-x: auto;
+}
+
+#content .tablecontainer {
+    margin-bottom: 1.25em;
+}
+
+#content .tablecontainer > table.tableblock {
+    margin-bottom: 0;
+}
+</style>
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>아카이브 오브 옹알 API 문서</h1>
+<div class="details">
+<span id="author" class="author">Sangyeop. Nam</span><br>
+<span id="email" class="email"><a href="mailto:spearoad15@gmail.com">spearoad15@gmail.com</a></span><br>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#aar-api">소리기록실(AAR) API</a>
+<ul class="sectlevel2">
+<li><a href="#aar-authn-flow">소리기록실 인증 플로우</a></li>
+<li><a href="#aar-authn-api">인증(Authn) API</a>
+<ul class="sectlevel3">
+<li><a href="#aar-authn-login-api">SNS 로그인 API</a></li>
+<li><a href="#aar-authn-regist-api">회원가입 API</a></li>
+</ul>
+</li>
+<li><a href="#aar-user-api">사용자(User) API</a>
+<ul class="sectlevel3">
+<li><a href="#_인증authorization">인증(Authorization)</a></li>
+<li><a href="#aar-user-get-me-api">본인정보 조회 API</a></li>
+<li><a href="#aar-user-patch-me-api">본인정보 수정 API</a></li>
+</ul>
+</li>
+<li><a href="#aar-home-api">홈(Home) API</a>
+<ul class="sectlevel3">
+<li><a href="#_인증authorization_2">인증(Authorization)</a></li>
+<li><a href="#aar-home-get-list-api">홈 리스트 조회 API</a></li>
+<li><a href="#aar-home-get-rooms-api">홈 룸 조회 API</a></li>
+<li><a href="#aar-home-get-room-items-api">룸 아이템 조회 API</a></li>
+<li><a href="#aar-home-get-item-soundsources-api">아이템 음원 조회 API</a></li>
+<li><a href="#aar-home-get-soundsource-api">음원 상세조회 API</a></li>
+<li><a href="#aar-home-get-soundsource-path-api">전체 음원 경로조회 API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#admin-api">관리자(Admin) API</a>
+<ul class="sectlevel2">
+<li><a href="#admin-Authn-api">인증(Authn) API</a>
+<ul class="sectlevel3">
+<li><a href="#admin-authn-login-api">관리자 로그인 API</a></li>
+</ul>
+</li>
+<li><a href="#admin-house-api">하우스(House) API</a>
+<ul class="sectlevel3">
+<li><a href="#admin-house-post-api">하우스 생성 API</a></li>
+<li><a href="#admin-house-get-list-api">하우스 리스트 조회 API</a></li>
+<li><a href="#admin-house-get-api">하우스 상세 조회 API</a></li>
+<li><a href="#admin-house-patch-api">하우스 정보 수정 API</a></li>
+<li><a href="#admin-house-delete-api">하우스 삭제 API</a></li>
+</ul>
+</li>
+<li><a href="#admin-room-api">룸(Room) API</a>
+<ul class="sectlevel3">
+<li><a href="#admin-room-get-api">룸 조회 API</a></li>
+<li><a href="#admin-room-get-items-api">룸 &amp; 아이템 조회 API</a></li>
+<li><a href="#admin-room-patch-api">룸 정보 수정 API</a></li>
+<li><a href="#admin-room-delete-api">룸 삭제 API</a></li>
+</ul>
+</li>
+<li><a href="#admin-user-api">사용자(User) API</a>
+<ul class="sectlevel3">
+<li><a href="#admin-user-get-list-api">사용자 조회 API</a></li>
+<li><a href="#admin-user-get-home-list-api">사용자 홈 조회 API</a></li>
+</ul>
+</li>
+<li><a href="#admin-home-api">홈(Home) API</a>
+<ul class="sectlevel3">
+<li><a href="#admin-home-post-api">홈 생성 API</a></li>
+<li><a href="#admin-home-get-api">홈 조회 API</a></li>
+<li><a href="#admin-home-delete-api">홈 삭제 API</a></li>
+</ul>
+</li>
+<li><a href="#admin-item-api">아이템(Item) API</a>
+<ul class="sectlevel3">
+<li><a href="#admin-item-post-api">아이템 생성 API</a></li>
+<li><a href="#admin-item-post-api-v2">아이템 생성 API V2</a></li>
+<li><a href="#admin-item-get-api">아이템 조회 API</a></li>
+<li><a href="#admin-item-patch-api">아이템 수정 API</a></li>
+<li><a href="#admin-item-delete-api">아이템 삭제 API</a></li>
+</ul>
+</li>
+<li><a href="#admin-soundsource-api">음원(SoundSource) API</a>
+<ul class="sectlevel3">
+<li><a href="#admin-soundsource-post-api">음원 생성 API</a></li>
+<li><a href="#admin-soundsource-get-api">음원 조회 API</a></li>
+<li><a href="#admin-soundsource-patch-api">음원 수정 API</a></li>
+<li><a href="#admin-soundsource-delete-api">음원 삭제 API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#file-api">파일(File) API</a>
+<ul class="sectlevel2">
+<li><a href="#file-public-api">공개(Public) API</a>
+<ul class="sectlevel3">
+<li><a href="#file-public-images-post-api">이미지 업로드 API</a></li>
+<li><a href="#file-public-images-get-api">이미지 로드 API</a></li>
+</ul>
+</li>
+<li><a href="#file-private-api">비공개(Private) API</a>
+<ul class="sectlevel3">
+<li><a href="#file-private-images-get-api">이미지 로드 API</a></li>
+<li><a href="#file-private-audios-get-api">음원 로드 API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#error-code">에러코드</a>
+<ul class="sectlevel2">
+<li><a href="#error-code-API">에러코드 API</a>
+<ul class="sectlevel3">
+<li><a href="#error-code-aar-api">소리기록실 에러코드 API</a></li>
+<li><a href="#error-code-admin-api">관리자 에러코드 API</a></li>
+<li><a href="#error-code-file-api">파일 에러코드 API</a></li>
+</ul>
+</li>
+<li><a href="#error-code-table">에러코드 테이블</a>
+<ul class="sectlevel3">
+<li><a href="#error-code-aar-table">소리기록실 에러코드</a></li>
+<li><a href="#error-code-admin-table">관리자 에러코드</a></li>
+<li><a href="#error-code-file-table">파일 에러코드</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>아카이브 오브 옹알 공식 API 문서입니다.</p>
+</div>
+<div class="paragraph">
+<p>This is Archive Of Ong(AOO) R Official API Documents.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="aar-api">소리기록실(AAR) API</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>소리기록실(Audio Record Room; ARR) 사용자를 위한 API입니다.</p>
+</div>
+<div class="sect2">
+<h3 id="aar-authn-flow">소리기록실 인증 플로우</h3>
+<div class="imageblock">
+<div class="content">
+<img src="/Users/leaf/hoo/aoo-backend/src/docs/asciidoc/images/login.png" alt="login flow">
+</div>
+<div class="title">Figure 1. 로그인 플로우차트</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code><strong>User 로그인</strong></code></p>
+<div class="olist loweralpha">
+<ol class="loweralpha">
+<li>
+<p><code>사용자</code>가 소리기록실 페이지로 접속해서 로그인을 시도합니다.</p>
+</li>
+<li>
+<p><code>프론트엔드</code>에서 <code>백엔드</code>로 특정 서드파티 도메인의 로그인 API 요청을 전송합니다.</p>
+</li>
+<li>
+<p>이를 받은 <code>백엔드</code>는 브라우저를 <code>서드파티</code>의 로그인 페이지로 이동시킵니다.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><code><strong>SNS 로그인 시도</strong></code></p>
+<div class="olist loweralpha">
+<ol class="loweralpha">
+<li>
+<p><code>사용자</code>가 서드파티 페이지에서 로그인을 시도합니다.</p>
+</li>
+<li>
+<p>정상 로그인일 경우, <code>서드파티</code>에서 백엔드로 코드를 전송합니다.</p>
+</li>
+<li>
+<p>해당 코드를 수신한 <code>백엔드</code>는 토큰을 교환하여 사용자 정보를 받습니다.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><code><strong>SNS 로그인 완료</strong></code></p>
+<div class="olist loweralpha">
+<ol class="loweralpha">
+<li>
+<p><code>백엔드</code>에서 받은 사용자 정보를 확인하여 <code>프론트엔드</code>로 전송합니다.</p>
+</li>
+<li>
+<p><code>프론트엔드</code>에서는 해당 사용자 정보를 포함하여 메인 페이지를 전송합니다.</p>
+</li>
+<li>
+<p><code>사용자</code>는 메인 페이지로 이동합니다.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/Users/leaf/hoo/aoo-backend/src/docs/asciidoc/images/regist.png" alt="regist flow">
+</div>
+<div class="title">Figure 2. 회원가입 플로우차트</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code><strong>User 로그인</strong></code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>사용자가 로그인을 시도합니다.(로그인 플로우와 동일)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code><strong>SNS 계정 등록</strong></code></p>
+<div class="olist loweralpha">
+<ol class="loweralpha">
+<li>
+<p><code>백엔드</code>에서 해당 SNS 계정이 등록되어 있지 않으면 해당 계정을 <strong>임시 저장</strong>합니다.</p>
+</li>
+<li>
+<p><code>프론트엔드</code>에게 임시 저장된 계정 정보와 함께 <strong>임시 토큰</strong>을 전송합니다.</p>
+</li>
+<li>
+<p><code>프론트엔드</code>는 해당 정보를 임시 저장하고, 회원가입 페이지를 전송합니다.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><code><strong>회원가입</strong></code></p>
+<div class="olist loweralpha">
+<ol class="loweralpha">
+<li>
+<p><code>사용자</code>는 회원가입 페이지에서 필요한 양식을 채워 회원가입을 시도합니다.</p>
+</li>
+<li>
+<p><code>프론트엔드</code>는 해당 정보를 <code>백엔드</code>로 전송합니다.</p>
+</li>
+<li>
+<p><code>백엔드</code>는 해당 정보를 등록하고, 사용자 정보와 함께 <strong>토큰</strong>을 전송합니다.</p>
+</li>
+<li>
+<p><code>프론트엔드</code>는 해당 사용자 정보를 포함하여 메인 페이지를 전송합니다.</p>
+</li>
+<li>
+<p><code>사용자</code>는 메인 페이지로 이동합니다.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="aar-authn-api">인증(Authn) API</h3>
+<div class="paragraph">
+<p>소리기록실의 인증을 위한 API입니다.</p>
+</div>
+<div class="sect3">
+<h4 id="aar-authn-login-api">SNS 로그인 API</h4>
+<div class="paragraph">
+<p>소리기록실에 SNS 로그인을 시도합니다.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>서드파티 인증 페이지로 이동</strong>하여 정상 인증이 완료되면 해당 계정으로 로그인합니다.</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="aar-authn-login-api_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::aar-authn-login</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-authn-login-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::aar-authn-login</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-authn-login-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::aar-authn-login</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-authn-login-api_response_headers">Response headers</h5>
+<div class="paragraph">
+<p>Snippet response-headers not found for operation::aar-authn-login</p>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>파라미터에 대한 세부 정보는 아래 <strong>Response fields</strong>를 참고바랍니다.</p>
+</div>
+</blockquote>
+</div>
+<div class="sect4">
+<h5 id="aar-authn-login-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::aar-authn-login-2</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="aar-authn-regist-api">회원가입 API</h4>
+<div class="paragraph">
+<p>소리기록실에 회원가입을 시도합니다.</p>
+</div>
+<div class="paragraph">
+<p>사용자 정보 식별을 위해 최초 로그인 시 받은 Access Token을 아래와 같이 포함하여 전송해야 합니다.</p>
+</div>
+<div class="sect4">
+<h5 id="_authorization_header">Authorization Header</h5>
+<div class="paragraph">
+<p>Unresolved directive in index.adoc - include::/Users/leaf/hoo/aoo-backend/build/generated-snippets/aar-access-token/response-fields.adoc[]</p>
+</div>
+<div class="sect5">
+<h6 id="_authorization_header_http_request">HTTP request</h6>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::aar-authn-regist</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_authorization_header_request_fields">Request fields</h6>
+<div class="paragraph">
+<p>Snippet request-fields not found for operation::aar-authn-regist</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_authorization_header_http_response">HTTP response</h6>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::aar-authn-regist</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_authorization_header_response_fields">Response fields</h6>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::aar-authn-regist</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="aar-user-api">사용자(User) API</h3>
+<div class="sect3">
+<h4 id="_인증authorization">인증(Authorization)</h4>
+<div class="paragraph">
+<p>사용자 정보 조회 및 수정은 인증된 사용자만 가능하기 때문에, 로그인 시 획득한 AccessToken을 반드시 Authorization Header에 포함해야 합니다.</p>
+</div>
+<div class="sect4">
+<h5 id="_authorization_header_2">Authorization Header</h5>
+<div class="paragraph">
+<p>Unresolved directive in index.adoc - include::/Users/leaf/hoo/aoo-backend/build/generated-snippets/aar-access-token/response-fields.adoc[]</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="aar-user-get-me-api">본인정보 조회 API</h4>
+<div class="paragraph">
+<p>사용자가 본인의 정보를 조회하기 위한 API입니다.</p>
+</div>
+<div class="sect4">
+<h5 id="aar-user-get-me-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::aar-user-get-me</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-user-get-me-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::aar-user-get-me</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-user-get-me-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::aar-user-get-me</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="aar-user-patch-me-api">본인정보 수정 API</h4>
+<div class="paragraph">
+<p>사용자가 본인의 정보를 수정하기 위한 API입니다.</p>
+</div>
+<div class="sect4">
+<h5 id="aar-user-patch-me-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::aar-user-patch-me</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-user-patch-me-api_request_fields">Request fields</h5>
+<div class="paragraph">
+<p>Snippet request-fields not found for operation::aar-user-patch-me</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-user-patch-me-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::aar-user-patch-me</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-user-patch-me-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::aar-user-patch-me</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="aar-home-api">홈(Home) API</h3>
+<div class="paragraph">
+<p>사용자의 홈과 내부 구성요소(룸, 아이템, 음원)를 조회하기 위한 API입니다.</p>
+</div>
+<div class="sect3">
+<h4 id="_인증authorization_2">인증(Authorization)</h4>
+<div class="paragraph">
+<p>홈은 인증된 사용자만 조회가 가능하기 때문에, 로그인 시 획득한 AccessToken을 반드시 Authorization Header에 포함해야 합니다.</p>
+</div>
+<div class="sect4">
+<h5 id="_authorization_header_3">Authorization Header</h5>
+<div class="paragraph">
+<p>Unresolved directive in index.adoc - include::/Users/leaf/hoo/aoo-backend/build/generated-snippets/aar-access-token/response-fields.adoc[]</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="aar-home-get-list-api">홈 리스트 조회 API</h4>
+<div class="paragraph">
+<p>사용자의 정보로부터 보유하고 있는 모든 홈을 조회합니다.</p>
+</div>
+<div class="sect4">
+<h5 id="aar-home-get-list-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::aar-home-get-list</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-home-get-list-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::aar-home-get-list</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-home-get-list-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::aar-home-get-list</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="aar-home-get-rooms-api">홈 룸 조회 API</h4>
+<div class="paragraph">
+<p>사용자의 특정 홈과 내부에 포함된 룸을 모두 조회합니다.</p>
+</div>
+<div class="sect4">
+<h5 id="aar-home-get-rooms-api_query_parameters">Query parameters</h5>
+<div class="paragraph">
+<p>Snippet query-parameters not found for operation::aar-home-get-rooms</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-home-get-rooms-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::aar-home-get-rooms</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-home-get-rooms-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::aar-home-get-rooms</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-home-get-rooms-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::aar-home-get-rooms</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="aar-home-get-room-items-api">룸 아이템 조회 API</h4>
+<div class="paragraph">
+<p>사용자의 특정 룸 내부에 포함된 아이템을 모두 조회합니다.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+빈 아이템*은 조회되지 않습니다.
+</blockquote>
+<div class="attribution">
+&#8212; * 내부에 활성화(<code>isActive = true</code>)된 음원이 존재하지 않는 아이템
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-home-get-room-items-api_query_parameters">Query parameters</h5>
+<div class="paragraph">
+<p>Snippet query-parameters not found for operation::aar-home-get-room-items</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-home-get-room-items-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::aar-home-get-room-items</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-home-get-room-items-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::aar-home-get-room-items</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-home-get-room-items-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::aar-home-get-room-items</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="aar-home-get-item-soundsources-api">아이템 음원 조회 API</h4>
+<div class="paragraph">
+<p>사용자의 특정 아이템 내부에 포함된 음원을 모두 조회합니다.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>관리자가 활성화시킨(<code>isActive = true</code>) 음원만 조회됩니다.</p>
+</div>
+</blockquote>
+</div>
+<div class="sect4">
+<h5 id="aar-home-get-item-soundsources-api_query_parameters">Query parameters</h5>
+<div class="paragraph">
+<p>Snippet query-parameters not found for operation::aar-home-get-item-soundsources</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-home-get-item-soundsources-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::aar-home-get-item-soundsources</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-home-get-item-soundsources-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::aar-home-get-item-soundsources</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-home-get-item-soundsources-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::aar-home-get-item-soundsources</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="aar-home-get-soundsource-api">음원 상세조회 API</h4>
+<div class="paragraph">
+<p>사용자의 특정 음원을 조회합니다.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>관리자가 활성화시킨(<code>isActive = true</code>) 음원만 조회됩니다.</p>
+</div>
+</blockquote>
+</div>
+<div class="sect4">
+<h5 id="aar-home-get-soundsource-api_query_parameters">Query parameters</h5>
+<div class="paragraph">
+<p>Snippet query-parameters not found for operation::aar-home-get-soundsource</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-home-get-soundsource-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::aar-home-get-soundsource</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-home-get-soundsource-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::aar-home-get-soundsource</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-home-get-soundsource-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::aar-home-get-soundsource</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="aar-home-get-soundsource-path-api">전체 음원 경로조회 API</h4>
+<div class="paragraph">
+<p>사용자의 모든 음원과 음원의 경로를 조회합니다.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>관리자가 활성화시킨(<code>isActive = true</code>) 음원만 조회됩니다.</p>
+</div>
+</blockquote>
+</div>
+<div class="sect4">
+<h5 id="aar-home-get-soundsource-path-api_http_request">HTTP request</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /aar/sound-sources/path HTTP/1.1
+Host: api.archiveofongr.site</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-home-get-soundsource-path-api_http_response">HTTP response</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Content-Type: application/json;charset=UTF-8
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 0
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 552
+
+{
+  "soundSources" : [ {
+    "name" : "골골송",
+    "description" : "2025년 골골송 V1",
+    "createdDate" : "2025.02.05.",
+    "updatedDate" : "2025.02.05.",
+    "audioFileId" : 1,
+    "homeName" : "leaf의 cozy house",
+    "roomName" : "거실",
+    "itemName" : "설이"
+  }, {
+    "name" : "멍멍송",
+    "description" : "2025년 멍멍송 V1",
+    "createdDate" : "2025.02.05.",
+    "updatedDate" : "2025.02.05.",
+    "audioFileId" : 1,
+    "homeName" : "leaf의 cozy house",
+    "roomName" : "욕실",
+    "itemName" : "강아지"
+  } ]
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aar-home-get-soundsource-path-api_response_fields">Response fields</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>soundSources[].name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">음원의 이름입니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>soundSources[].description</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">음원의 상세설명입니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>soundSources[].createdDate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">음원의 생성일입니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>soundSources[].updatedDate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">음원의 수정일입니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>soundSources[].audioFileId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">음원이 보유한 음악 파일 식별자입니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>soundSources[].homeName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">음원이 위치한 홈 이름입니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>soundSources[].roomName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">음원이 위치한 방 이름입니다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>soundSources[].itemName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">음원이 위치한 아이템 이름입니다.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="admin-api">관리자(Admin) API</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>관리자페이지에서 소리기록실(Audio Archive Room)을 관리하기 위한 API 입니다.</p>
+</div>
+<div class="sect2">
+<h3 id="admin-Authn-api">인증(Authn) API</h3>
+<div class="paragraph">
+<p>관리자페이지의 보안(인증)을 위한 API입니다.</p>
+</div>
+<div class="sect3">
+<h4 id="admin-authn-login-api">관리자 로그인 API</h4>
+<div class="paragraph">
+<p>관리자 계정으로 로그인합니다.</p>
+</div>
+<div class="sect4">
+<h5 id="admin-authn-login-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::admin-authn-login</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-authn-login-api_form_parameters">Form parameters</h5>
+<div class="paragraph">
+<p>Snippet form-parameters not found for operation::admin-authn-login</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-authn-login-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-authn-login</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-authn-login-api_response_headers">Response headers</h5>
+<div class="paragraph">
+<p>Snippet response-headers not found for operation::admin-authn-login</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="admin-house-api">하우스(House) API</h3>
+<div class="paragraph">
+<p>하우스 관리를 위한 API 입니다.</p>
+</div>
+<div class="sect3">
+<h4 id="admin-house-post-api">하우스 생성 API</h4>
+<div class="paragraph">
+<p>관리자가 지정한 하우스의 좌표에 맞게 하우스를 저장합니다.</p>
+</div>
+<div class="sect4">
+<h5 id="_http_request">Http Request</h5>
+<div class="paragraph">
+<p>Unresolved directive in index.adoc - include::/Users/leaf/hoo/aoo-backend/build/generated-snippets/admin-house-post/http-request.adoc[]</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_request_form">Request Form</h5>
+<div class="paragraph">
+<p>Unresolved directive in index.adoc - include::/Users/leaf/hoo/aoo-backend/build/generated-snippets/admin-house-post/request-parts.adoc[]</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>위 요청에서 각 이미지 파일의 <strong>Form 태그 snsAccountInfo 속성값</strong>은 아래 <a href="#_createhousemetadata">CreateHouseMetadata</a>와 일치해야 합니다.</p>
+</div>
+</blockquote>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_createhousemetadata_예시">CreateHouseMetadata 예시</h5>
+<div class="paragraph">
+<p>Unresolved directive in index.adoc - include::/Users/leaf/hoo/aoo-backend/build/generated-snippets/admin-create-house-metadata/response-body.adoc[]</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_createhousemetadata">CreateHouseMetadata</h5>
+<div class="paragraph">
+<p>Unresolved directive in index.adoc - include::/Users/leaf/hoo/aoo-backend/build/generated-snippets/admin-create-house-metadata/response-fields.adoc[]</p>
+</div>
+<div class="sect5">
+<h6 id="_createhousemetadata_http_response">HTTP response</h6>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-house-post</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_createhousemetadata_response_fields">Response fields</h6>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::admin-house-post</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="admin-house-get-list-api">하우스 리스트 조회 API</h4>
+<div class="paragraph">
+<p>여러 건의 하우스를 검색 조건에 맞게 조회합니다.</p>
+</div>
+<div class="sect4">
+<h5 id="admin-house-get-list-api_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::admin-house-get-list</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-house-get-list-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::admin-house-get-list</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-house-get-list-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-house-get-list</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-house-get-list-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::admin-house-get-list</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="admin-house-get-api">하우스 상세 조회 API</h4>
+<div class="paragraph">
+<p>하우스와 내부 룸에 대한 상세 정보를 조회합니다.</p>
+</div>
+<div class="sect4">
+<h5 id="admin-house-get-api_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::admin-house-get</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-house-get-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::admin-house-get</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-house-get-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-house-get</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-house-get-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::admin-house-get</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="admin-house-patch-api">하우스 정보 수정 API</h4>
+<div class="paragraph">
+<p>하우스의 기본 정보를 수정하는 API입니다.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>하우스의 이미지와 좌표는 최초 생성 이후 수정할 수 없습니다.</p>
+</div>
+</blockquote>
+</div>
+<div class="sect4">
+<h5 id="admin-house-patch-api_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::admin-house-patch</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-house-patch-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::admin-house-patch</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-house-patch-api_request_fields">Request fields</h5>
+<div class="paragraph">
+<p>Snippet request-fields not found for operation::admin-house-patch</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-house-patch-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-house-patch</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-house-patch-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::admin-house-patch</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="admin-house-delete-api">하우스 삭제 API</h4>
+<div class="paragraph">
+<p>하우스와 내부의 룸을 모두 삭제하는 API입니다.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>삭제 시 해당 하우스의 기본 이미지, 보더 이미지를 함께 삭제합니다.</p>
+</div>
+</blockquote>
+</div>
+<div class="sect4">
+<h5 id="admin-house-delete-api_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::admin-house-delete</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-house-delete-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::admin-house-delete</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-house-delete-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-house-delete</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-house-delete-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::admin-house-delete</p>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>해당 하우스로 생성된 홈이 있을 경우, 삭제할 수 업습니다.</p>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="admin-room-api">룸(Room) API</h3>
+<div class="paragraph">
+<p>룸 관리를 위한 API 입니다.</p>
+</div>
+<div class="sect3">
+<h4 id="admin-room-get-api">룸 조회 API</h4>
+<div class="paragraph">
+<p>룸에 대한 정보를 조회하는 API입니다.</p>
+</div>
+<div class="sect4">
+<h5 id="admin-room-get-api_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::admin-room-get</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-room-get-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::admin-room-get</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-room-get-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-room-get</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-room-get-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::admin-room-get</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="admin-room-get-items-api">룸 &amp; 아이템 조회 API</h4>
+<div class="paragraph">
+<p>룸과 해당 룸 안의 아이템 정보를 조회하는 API입니다.</p>
+</div>
+<div class="sect4">
+<h5 id="admin-room-get-items-api_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::admin-room-get-items</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-room-get-items-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::admin-room-get-items</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-room-get-items-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-room-get-items</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-room-get-items-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::admin-room-get-items</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="admin-room-patch-api">룸 정보 수정 API</h4>
+<div class="paragraph">
+<p>룸의 기본 정보를 수정하는 API입니다.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>룸의 이미지와 좌표는 최초 생성 이후 수정할 수 없습니다.</p>
+</div>
+</blockquote>
+</div>
+<div class="sect4">
+<h5 id="admin-room-patch-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::admin-room-patch</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-room-patch-api_request_fields">Request fields</h5>
+<div class="paragraph">
+<p>Snippet request-fields not found for operation::admin-room-patch</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-room-patch-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-room-patch</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-room-patch-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::admin-room-patch</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="admin-room-delete-api">룸 삭제 API</h4>
+<div class="paragraph">
+<p>룸을 삭제하는 API입니다.</p>
+</div>
+<div class="sect4">
+<h5 id="admin-room-delete-api_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::admin-room-delete</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-room-delete-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::admin-room-delete</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-room-delete-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-room-delete</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-room-delete-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::admin-room-delete</p>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>룸 내부에 아이템이 포함되어 있을 경우 삭제할 수 없습니다.</p>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="admin-user-api">사용자(User) API</h3>
+<div class="paragraph">
+<p>소리기록실 사용자 정보 관리를 위한 API 입니다.</p>
+</div>
+<div class="sect3">
+<h4 id="admin-user-get-list-api">사용자 조회 API</h4>
+<div class="paragraph">
+<p>소리기록실 사용자를 조회하는 API 입니다.</p>
+</div>
+<div class="sect4">
+<h5 id="admin-user-get-list-api_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::admin-user-get-list</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-user-get-list-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::admin-user-get-list</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-user-get-list-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-user-get-list</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-user-get-list-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::admin-user-get-list</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="admin-user-get-home-list-api">사용자 홈 조회 API</h4>
+<div class="paragraph">
+<p>사용자가 보유한 홈을 조회하는 API 입니다.</p>
+</div>
+<div class="sect4">
+<h5 id="admin-user-get-home-list-api_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::admin-user-get-home-list</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-user-get-home-list-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::admin-user-get-home-list</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-user-get-home-list-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-user-get-home-list</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-user-get-home-list-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::admin-user-get-home-list</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="admin-home-api">홈(Home) API</h3>
+<div class="paragraph">
+<p>소리기록실의 홈 정보 관리를 위한 API 입니다.</p>
+</div>
+<div class="sect3">
+<h4 id="admin-home-post-api">홈 생성 API</h4>
+<div class="paragraph">
+<p>홈을 생성하는 API 입니다.</p>
+</div>
+<div class="sect4">
+<h5 id="admin-home-post-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::admin-home-post</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-home-post-api_request_fields">Request fields</h5>
+<div class="paragraph">
+<p>Snippet request-fields not found for operation::admin-home-post</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-home-post-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-home-post</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-home-post-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::admin-home-post</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="admin-home-get-api">홈 조회 API</h4>
+<div class="paragraph">
+<p>홈 정보를 조회하는 API 입니다.</p>
+</div>
+<div class="sect4">
+<h5 id="admin-home-get-api_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::admin-home-get</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-home-get-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::admin-home-get</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-home-get-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-home-get</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-home-get-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::admin-home-get</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="admin-home-delete-api">홈 삭제 API</h4>
+<div class="paragraph">
+<p>홈을 삭제하는 API 입니다.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>홈 내부에 아이템이 존재할 경우, 함께 삭제됩니다.</p>
+</div>
+</blockquote>
+</div>
+<div class="sect4">
+<h5 id="admin-home-delete-api_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::admin-home-delete</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-home-delete-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::admin-home-delete</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-home-delete-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-home-delete</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-home-delete-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::admin-home-delete</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="admin-item-api">아이템(Item) API</h3>
+<div class="sect3">
+<h4 id="admin-item-post-api">아이템 생성 API</h4>
+<div class="paragraph">
+<p>관리자가 지정한 아이템의 좌표에 맞게 아이템을 저장합니다.</p>
+</div>
+<div class="sect4">
+<h5 id="admin-item-post-api_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::admin-item-post</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-item-post-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::admin-item-post</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-item-post-api_request_fields">Request fields</h5>
+<div class="paragraph">
+<p>Snippet request-fields not found for operation::admin-item-post</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-item-post-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-item-post</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-item-post-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::admin-item-post</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="admin-item-post-api-v2">아이템 생성 API V2</h4>
+<div class="paragraph">
+<p>아이템 생성과 수정을 함께 처리합니다.</p>
+</div>
+<div class="sect4">
+<h5 id="admin-item-post-api-v2_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::admin-item-post-v2</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-item-post-api-v2_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::admin-item-post-v2</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-item-post-api-v2_request_fields">Request fields</h5>
+<div class="paragraph">
+<p>Snippet request-fields not found for operation::admin-item-post-v2</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-item-post-api-v2_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-item-post-v2</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-item-post-api-v2_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::admin-item-post-v2</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="admin-item-get-api">아이템 조회 API</h4>
+<div class="paragraph">
+<p>아이템에 저장된 음원 리스트를 불러옵니다.</p>
+</div>
+<div class="sect4">
+<h5 id="admin-item-get-api_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::admin-item-get</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-item-get-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::admin-item-get</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-item-get-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-item-get</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-item-get-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::admin-item-get</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="admin-item-patch-api">아이템 수정 API</h4>
+<div class="paragraph">
+<p>아이템의 정보를 수정합니다.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>해당 아이템의 이름과 형태(좌표 + 모양)를 수정할 수 있습니다.</p>
+</div>
+</blockquote>
+</div>
+<div class="sect4">
+<h5 id="admin-item-patch-api_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::admin-item-patch</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-item-patch-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::admin-item-patch</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-item-patch-api_request_fields">Request fields</h5>
+<div class="paragraph">
+<p>Snippet request-fields not found for operation::admin-item-patch</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-item-patch-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-item-patch</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-item-patch-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::admin-item-patch</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="admin-item-delete-api">아이템 삭제 API</h4>
+<div class="paragraph">
+<p>아이템을 삭제합니다.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>음원이 포함된 아이템은 삭제할 수 없습니다.</p>
+</div>
+</blockquote>
+</div>
+<div class="sect4">
+<h5 id="admin-item-delete-api_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::admin-item-delete</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-item-delete-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::admin-item-delete</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-item-delete-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-item-delete</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-item-delete-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::admin-item-delete</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="admin-soundsource-api">음원(SoundSource) API</h3>
+<div class="sect3">
+<h4 id="admin-soundsource-post-api">음원 생성 API</h4>
+<div class="paragraph">
+<p>관리자가 아이템 내부에 음원을 추가합니다.</p>
+</div>
+<div class="sect4">
+<h5 id="admin-soundsource-post-api_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::admin-soundsource-post</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-soundsource-post-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::admin-soundsource-post</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-soundsource-post-api_request_parts">Request parts</h5>
+<div class="paragraph">
+<p>Snippet request-parts not found for operation::admin-soundsource-post</p>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>음원 생성 시 메타데이터 정보는 아래 <a href="#_createsoundsourcemetadata">CreateSoundSourceMetadata</a>를 참고하시기 바랍니다.</p>
+</div>
+</blockquote>
+</div>
+<div class="sect4">
+<h5 id="_createsoundsourcemetadata_예시">CreateSoundSourceMetadata 예시</h5>
+<div class="paragraph">
+<p>Unresolved directive in index.adoc - include::/Users/leaf/hoo/aoo-backend/build/generated-snippets/admin-create-soundsource-metadata/response-body.adoc[]</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_createsoundsourcemetadata">CreateSoundSourceMetadata</h5>
+<div class="paragraph">
+<p>Unresolved directive in index.adoc - include::/Users/leaf/hoo/aoo-backend/build/generated-snippets/admin-create-soundsource-metadata/response-fields.adoc[]</p>
+</div>
+<div class="sect5">
+<h6 id="_createsoundsourcemetadata_http_response">HTTP response</h6>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-soundsource-post</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_createsoundsourcemetadata_response_fields">Response fields</h6>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::admin-soundsource-post</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="admin-soundsource-get-api">음원 조회 API</h4>
+<div class="paragraph">
+<p>음원에 저장된 정보와 함께 음악 파일 식별자를 불러옵니다.</p>
+</div>
+<div class="sect4">
+<h5 id="admin-soundsource-get-api_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::admin-soundsource-get</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-soundsource-get-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::admin-soundsource-get</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-soundsource-get-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-soundsource-get</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-soundsource-get-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::admin-soundsource-get</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="admin-soundsource-patch-api">음원 수정 API</h4>
+<div class="paragraph">
+<p>음원의 정보를 수정합니다.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>음원에 저장된 파일은 수정할 수 없습니다.</p>
+</div>
+</blockquote>
+</div>
+<div class="sect4">
+<h5 id="admin-soundsource-patch-api_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::admin-soundsource-patch</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-soundsource-patch-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::admin-soundsource-patch</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-soundsource-patch-api_request_fields">Request fields</h5>
+<div class="paragraph">
+<p>Snippet request-fields not found for operation::admin-soundsource-patch</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-soundsource-patch-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-soundsource-patch</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-soundsource-patch-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::admin-soundsource-patch</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="admin-soundsource-delete-api">음원 삭제 API</h4>
+<div class="paragraph">
+<p>음원을 삭제합니다.</p>
+</div>
+<div class="sect4">
+<h5 id="admin-soundsource-delete-api_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::admin-soundsource-delete</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-soundsource-delete-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::admin-soundsource-delete</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-soundsource-delete-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::admin-soundsource-delete</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="admin-soundsource-delete-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::admin-soundsource-delete</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="file-api">파일(File) API</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>파일서버의 업로드, 다운로드와 관련된 API입니다.</p>
+</div>
+<div class="sect2">
+<h3 id="file-public-api">공개(Public) API</h3>
+<div class="paragraph">
+<p>별도의 권한 없이 요청 가능한 API입니다.</p>
+</div>
+<div class="sect3">
+<h4 id="file-public-images-post-api">이미지 업로드 API</h4>
+<div class="paragraph">
+<p>이미지 파일을 공개 서버에 업로드합니다.</p>
+</div>
+<div class="sect4">
+<h5 id="file-public-images-post-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::file-public-images-upload</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="file-public-images-post-api_http_response">HTTP response</h5>
+<div class="paragraph">
+<p>Snippet http-response not found for operation::file-public-images-upload</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="file-public-images-post-api_response_fields">Response fields</h5>
+<div class="paragraph">
+<p>Snippet response-fields not found for operation::file-public-images-upload</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="file-public-images-get-api">이미지 로드 API</h4>
+<div class="paragraph">
+<p>이미지 파일을 공개 서버로부터 로드합니다.</p>
+</div>
+<div class="sect4">
+<h5 id="file-public-images-get-api_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::file-public-images-download</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="file-public-images-get-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::file-public-images-download</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="file-public-images-get-api_response_file">Response file</h5>
+<div class="paragraph">
+<p>Snippet response-file not found for operation::file-public-images-download</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="file-private-api">비공개(Private) API</h3>
+<div class="paragraph">
+<p>해당 API는 <strong>PRIVATE_FILE_ACCESS</strong> 권한이 필요합니다.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>차후 해당 권한을 바탕으로 자원 접근을 제어할 예정입니다.</p>
+</div>
+</blockquote>
+</div>
+<div class="sect3">
+<h4 id="file-private-images-get-api">이미지 로드 API</h4>
+<div class="paragraph">
+<p>이미지 파일을 비공개 서버로부터 로드합니다.</p>
+</div>
+<div class="sect4">
+<h5 id="file-private-images-get-api_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::file-private-images-download</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="file-private-images-get-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::file-private-images-download</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="file-private-images-get-api_response_file">Response file</h5>
+<div class="paragraph">
+<p>Snippet response-file not found for operation::file-private-images-download</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="file-private-audios-get-api">음원 로드 API</h4>
+<div class="paragraph">
+<p>음원 파일을 비공개 서버로부터 로드합니다.</p>
+</div>
+<div class="sect4">
+<h5 id="file-private-audios-get-api_path_parameters">Path parameters</h5>
+<div class="paragraph">
+<p>Snippet path-parameters not found for operation::file-private-audios-download</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="file-private-audios-get-api_http_request">HTTP request</h5>
+<div class="paragraph">
+<p>Snippet http-request not found for operation::file-private-audios-download</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="file-private-audios-get-api_response_file">Response file</h5>
+<div class="paragraph">
+<p>Snippet response-file not found for operation::file-private-audios-download</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="error-code">에러코드</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="error-code-API">에러코드 API</h3>
+<div class="paragraph">
+<p>API 요청 간 발생하는 에러코드를 조회할 수 있습니다.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><strong>에러코드 조회 API</strong>의 응답 결과는 아래 <a href="#error-code-table">에러코드 테이블</a>을 참고 바랍니다.</p>
+</div>
+</blockquote>
+</div>
+<div class="sect3">
+<h4 id="error-code-aar-api">소리기록실 에러코드 API</h4>
+<div class="paragraph">
+<p>소리기록실에서 관리하는 에러코드를 확인할 수 있습니다.</p>
+</div>
+<div class="paragraph">
+<p>Unresolved directive in index.adoc - include::/Users/leaf/hoo/aoo-backend/build/generated-snippets/aar-error-code/http-request.adoc[]</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="error-code-admin-api">관리자 에러코드 API</h4>
+<div class="paragraph">
+<p>관리자 페이지에서 관리하는 에러코드를 확인할 수 있습니다.</p>
+</div>
+<div class="paragraph">
+<p>Unresolved directive in index.adoc - include::/Users/leaf/hoo/aoo-backend/build/generated-snippets/admin-error-code/http-request.adoc[]</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="error-code-file-api">파일 에러코드 API</h4>
+<div class="paragraph">
+<p>파일 서버에서 관리하는 에러코드를 확인할 수 있습니다.</p>
+</div>
+<div class="paragraph">
+<p>Unresolved directive in index.adoc - include::/Users/leaf/hoo/aoo-backend/build/generated-snippets/file-error-code/http-request.adoc[]</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="error-code-table">에러코드 테이블</h3>
+<div class="paragraph">
+<p>전체 에러코드는 다음 표에서 확인할 수 있습니다.
+해당 표에서 확인되지 않는 에러코드는 별도 문의 바랍니다.</p>
+</div>
+<div class="sect3">
+<h4 id="error-code-aar-table">소리기록실 에러코드</h4>
+<div class="paragraph">
+<p>Unresolved directive in index.adoc - include::/Users/leaf/hoo/aoo-backend/build/generated-snippets/aar-error-code/error-code-response-fields.adoc[]</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="error-code-admin-table">관리자 에러코드</h4>
+<div class="paragraph">
+<p>Unresolved directive in index.adoc - include::/Users/leaf/hoo/aoo-backend/build/generated-snippets/admin-error-code/error-code-response-fields.adoc[]</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="error-code-file-table">파일 에러코드</h4>
+<div class="paragraph">
+<p>Unresolved directive in index.adoc - include::/Users/leaf/hoo/aoo-backend/build/generated-snippets/file-error-code/error-code-response-fields.adoc[]</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2025-02-05 22:31:40 +0900
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
+<script>
+if (!hljs.initHighlighting.called) {
+  hljs.initHighlighting.called = true
+  ;[].slice.call(document.querySelectorAll('pre.highlight > code[data-lang]')).forEach(function (el) { hljs.highlightBlock(el) })
+}
+</script>
+<script>
+;(function () { /*! Asciidoctor Tabs | Copyright (c) 2018-present Dan Allen | MIT License */
+  'use strict'
+
+  var config = (document.currentScript || {}).dataset || {}
+  var forEach = Array.prototype.forEach
+
+  init(document.querySelectorAll('.tabs'))
+
+  function init (tabsBlocks) {
+    if (!tabsBlocks.length) return
+    forEach.call(tabsBlocks, function (tabs) {
+      var syncIds = tabs.classList.contains('is-sync') ? {} : undefined
+      var tablist = tabs.querySelector('.tablist ul')
+      tablist.setAttribute('role', 'tablist')
+      var start
+      forEach.call(tablist.querySelectorAll('li'), function (tab, idx) {
+        tab.tabIndex = -1
+        tab.setAttribute('role', tab.classList.add('tab') || 'tab')
+        var id, anchor, syncId
+        if (!(id = tab.id) && (anchor = tab.querySelector('a[id]'))) {
+          id = tab.id = anchor.parentNode.removeChild(anchor).id
+        }
+        var panel = id && tabs.querySelector('.tabpanel[aria-labelledby~="' + id + '"]')
+        if (!panel) return idx ? undefined : toggleSelected(tab, true) // invalid state
+        syncIds && (((syncId = tab.textContent.trim()) in syncIds) ? (syncId = undefined) : true) &&
+        (syncIds[(tab.dataset.syncId = syncId)] = tab)
+        idx || (syncIds && (start = { tab: tab, panel: panel })) ? toggleHidden(panel, true) : toggleSelected(tab, true)
+        tab.setAttribute('aria-controls', panel.id)
+        panel.setAttribute('role', 'tabpanel')
+        var onClick = syncId === undefined ? activateTab : activateTabSync
+        tab.addEventListener('click', onClick.bind({ tabs: tabs, tab: tab, panel: panel }))
+      })
+      if (!tabs.closest('.tabpanel')) {
+        forEach.call(tabs.querySelectorAll('.tabpanel table.tableblock'), function (table) {
+          var container = Object.assign(document.createElement('div'), { className: 'tablecontainer' })
+          table.parentNode.insertBefore(container, table).appendChild(table)
+        })
+      }
+      if (start) {
+        var syncGroupId
+        for (var i = 0, lst = tabs.classList, len = lst.length, className; i !== len; i++) {
+          if (!(className = lst.item(i)).startsWith('data-sync-group-id=')) continue
+          tabs.dataset.syncGroupId = syncGroupId = lst.remove(className) || className.slice(19).replace(/\u00a0/g, ' ')
+          break
+        }
+        if (syncGroupId === undefined) tabs.dataset.syncGroupId = syncGroupId = Object.keys(syncIds).sort().join('|')
+        var preferredSyncId = 'syncStorageKey' in config &&
+          window[(config.syncStorageScope || 'local') + 'Storage'].getItem(config.syncStorageKey + '-' + syncGroupId)
+        var tab = preferredSyncId && syncIds[preferredSyncId]
+        tab && Object.assign(start, { tab: tab, panel: document.getElementById(tab.getAttribute('aria-controls')) })
+        toggleSelected(start.tab, true) || toggleHidden(start.panel, false)
+      }
+    })
+    onHashChange()
+    toggleClassOnEach(tabsBlocks, 'is-loading', 'remove')
+    window.setTimeout(toggleClassOnEach.bind(null, tabsBlocks, 'is-loaded', 'add'), 0)
+    window.addEventListener('hashchange', onHashChange)
+  }
+
+  function activateTab (e) {
+    var tab = this.tab
+    var tabs = this.tabs || (this.tabs = tab.closest('.tabs'))
+    var panel = this.panel || (this.panel = document.getElementById(tab.getAttribute('aria-controls')))
+    querySelectorWithSiblings(tabs, '.tablist .tab', 'tab').forEach(function (el) {
+      toggleSelected(el, el === tab)
+    })
+    querySelectorWithSiblings(tabs, '.tabpanel', 'tabpanel').forEach(function (el) {
+      toggleHidden(el, el !== panel)
+    })
+    if (!this.isSync && 'syncStorageKey' in config && 'syncGroupId' in tabs.dataset) {
+      var storageKey = config.syncStorageKey + '-' + tabs.dataset.syncGroupId
+      window[(config.syncStorageScope || 'local') + 'Storage'].setItem(storageKey, tab.dataset.syncId)
+    }
+    if (!e) return
+    var loc = window.location
+    var hashIdx = loc.hash ? loc.href.indexOf('#') : -1
+    if (~hashIdx) window.history.replaceState(null, '', loc.href.slice(0, hashIdx))
+    e.preventDefault()
+  }
+
+  function activateTabSync (e) {
+    activateTab.call(this, e)
+    var thisTabs = this.tabs
+    var thisTab = this.tab
+    var initialY = thisTabs.getBoundingClientRect().y
+    forEach.call(document.querySelectorAll('.tabs'), function (tabs) {
+      if (tabs === thisTabs || tabs.dataset.syncGroupId !== thisTabs.dataset.syncGroupId) return
+      querySelectorWithSiblings(tabs, '.tablist .tab', 'tab').forEach(function (tab) {
+        if (tab.dataset.syncId === thisTab.dataset.syncId) activateTab.call({ tabs: tabs, tab: tab, isSync: true })
+      })
+    })
+    var shiftedBy = thisTabs.getBoundingClientRect().y - initialY
+    if (shiftedBy && (shiftedBy = Math.round(shiftedBy))) window.scrollBy({ top: shiftedBy, behavior: 'instant' })
+  }
+
+  function querySelectorWithSiblings (scope, selector, siblingClass) {
+    var el = scope.querySelector(selector)
+    if (!el) return []
+    var result = [el]
+    while ((el = el.nextElementSibling) && el.classList.contains(siblingClass)) result.push(el)
+    return result
+  }
+
+  function toggleClassOnEach (pieces, className, method) {
+    forEach.call(pieces, function (el) {
+      el.classList[method](className)
+    })
+  }
+
+  function toggleHidden (el, state) {
+    el.classList[(el.hidden = state) ? 'add' : 'remove']('is-hidden')
+  }
+
+  function toggleSelected (el, state) {
+    el.setAttribute('aria-selected', '' + state)
+    el.classList[state ? 'add' : 'remove']('is-selected')
+    el.tabIndex = state ? 0 : -1
+  }
+
+  function onHashChange () {
+    var id = window.location.hash.slice(1)
+    if (!id) return
+    var tab = document.getElementById(~id.indexOf('%') ? decodeURIComponent(id) : id)
+    if (!(tab && tab.classList.contains('tab'))) return
+    'syncId' in tab.dataset ? activateTabSync.call({ tab: tab }) : activateTab.call({ tab: tab })
+  }
+})()
+</script>
+</body>
+</html>

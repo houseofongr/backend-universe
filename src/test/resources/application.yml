@@ -1,0 +1,88 @@
+spring:
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        default_batch_fetch_size: 1000
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: aoo-local-user
+    password: test1234
+    url: jdbc:mysql://localhost:3306/aoo_test?serverTimezone=Asia/Seoul
+    hikari:
+      maximum-pool-size: 5 # for @SpringBootTest, @DataJpaTest connection leak
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: kakao-client-id
+            client-secret: kakao-client-secret
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8080/aar/authn/login/kakao
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+  data:
+    web:
+      pageable:
+        one-indexed-parameters: true
+    redis:
+      host: localhost
+      port: 6380
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: test@example.com
+    password: 12345678
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+
+logging:
+  level:
+    root: info
+    org:
+      hibernate:
+        sql: debug
+        type:
+          descriptor:
+            sql:
+              BasicBinder: trace
+
+security:
+  frontend-redirect-uri: http://localhost:8080
+  backend-base-uri: http://localhost:28080
+  jwt:
+    secret: cANZLk0MJon8ETjGKatPwEGiKgNjLTaFoPrhp4RQkpc=
+    issuer: aar-backend-test
+    expire: 10000
+  oauth2:
+    kakao:
+      client-id: test1234
+      client-secret: test1234
+      unlink-url: https://kapi.kakao.com/v1/user/unlink
+      admin-key: admin1234
+  email-authn-code-ttl: 600 # 10m : 60 * 10 Second
+
+file:
+  size-limit: 104857600 # 100MB : 100 * 1024 * 1024 Byte
+  base-dir: /archive
+
+database:
+  mysql:
+    scheme: aoo_test

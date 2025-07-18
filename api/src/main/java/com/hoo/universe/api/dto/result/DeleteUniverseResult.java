@@ -1,0 +1,13 @@
+package com.hoo.universe.api.dto.result;
+
+import java.util.List;
+import java.util.UUID;
+
+public record DeleteUniverseResult(
+        UUID deletedUniverseID,
+        List<UUID> deletedSpaceIDs,
+        List<UUID> deletedPieceIDs,
+        List<UUID> deletedSoundIDs,
+        List<UUID> deletedFileIDs
+) {
+}
