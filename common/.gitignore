@@ -2,8 +2,6 @@ HELP.md
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
 
 ### STS ###
 .apt_generated
@@ -37,6 +35,4 @@ out/
 .vscode/
 
 ### config ###
-config/**
-!config/application*.yml
-*config*.yml
+aoo-config.yml

@@ -1,5 +1,7 @@
 package com.hoo.universe.api.dto.command;
 
+
+
 import com.hoo.common.internal.api.dto.UploadFileRequest;
 
 import java.util.List;
@@ -11,6 +13,7 @@ public record CreateUniverseCommand(
         UploadFileRequest thumbnail,
         UploadFileRequest background
 ) {
+
     public CreateUniverseCommand {
         if (thumbMusic == null ||
             thumbnail == null ||

@@ -20,19 +20,19 @@ spring:
     activate:
       on-profile: prod
     import:
-      - file:/Users/hooserver/backend/aoo/config/aoo-config.yml
+      - file:/Users/hooserver/backend/aoo/config/hoo-universe-config-prod.yml
 ---
 spring:
   config:
     activate:
       on-profile: dev
-    import: file:/Users/hooserver/backend/aoo/config/aoo-dev-config.yml
+    import: file:/Users/hooserver/backend/aoo/config/hoo-universe-config-dev.yml
 ---
 spring:
   config:
     activate:
-      on-profile: dev-local
-    import: file:/Users/hooserver/backend/aoo/config/aoo-local-config.yml
+      on-profile: server-local
+    import: file:/Users/hooserver/backend/aoo/config/hoo-universe-config-local.yml
 ---
 spring:
   config:
