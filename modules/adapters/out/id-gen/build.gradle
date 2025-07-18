@@ -1,0 +1,13 @@
+plugins {
+    id 'org.springframework.boot' version '3.4.1'
+}
+
+dependencies {
+    implementation project(':modules:common')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation "com.github.f4b6a3:uuid-creator:6.1.1"
+}
+
+test {
+    useJUnitPlatform()
+}

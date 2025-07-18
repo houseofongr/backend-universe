@@ -1,0 +1,11 @@
+plugins {
+    id 'java'
+}
+
+dependencies {
+    implementation project(":modules:common")
+    implementation project(":modules:domain")
+    implementation "com.github.f4b6a3:uuid-creator:6.1.1"
+}
+
+jar.enabled = true

@@ -1,0 +1,14 @@
+plugins {
+    id 'org.springframework.boot' version '3.4.1'
+}
+
+dependencies {
+    implementation project(":modules:application")
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.kafka:spring-kafka'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+}
+
+test {
+    useJUnitPlatform()
+}

@@ -1,0 +1,8 @@
+dependencies {
+    api project(':modules:domain')
+}
+
+test {
+    useJUnitPlatform()
+    outputs.upToDateWhen { false }
+}

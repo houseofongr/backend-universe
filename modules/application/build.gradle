@@ -1,0 +1,19 @@
+plugins {
+    id 'org.springframework.boot' version '3.4.1'
+}
+
+dependencies {
+    api project(':modules:api')
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+    outputs.upToDateWhen { false }
+}
+
+bootJar.enabled = false

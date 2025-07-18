@@ -1,8 +1,0 @@
-dependencies {
-    api project(':domain')
-}
-
-test {
-    useJUnitPlatform()
-    outputs.upToDateWhen { false }
-}

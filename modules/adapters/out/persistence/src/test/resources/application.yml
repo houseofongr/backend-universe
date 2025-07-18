@@ -1,0 +1,27 @@
+spring:
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        default_batch_fetch_size: 10
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: hoo_universe_dev
+    password: test1234
+    url: jdbc:mysql://localhost:3306/hoo_universe_dev?serverTimezone=Asia/Seoul
+    hikari:
+      maximum-pool-size: 5
+logging:
+  level:
+    root: info
+    org:
+      hibernate:
+        sql: debug
+        type:
+          descriptor:
+            sql:
+              BasicBinder: trace

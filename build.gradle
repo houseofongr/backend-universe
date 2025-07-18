@@ -33,7 +33,7 @@ subprojects {
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.projectlombok:lombok'
 
-        testImplementation project(":test-support")
+        testImplementation project(":modules:test-support")
         testImplementation "org.assertj:assertj-core"
         testImplementation "org.mockito:mockito-core"
         testImplementation "org.junit.jupiter:junit-jupiter-api"
