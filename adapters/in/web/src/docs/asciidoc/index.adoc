@@ -14,6 +14,7 @@ Sangyeop. Nam <spearoad15@gmail.com>
 
 ++++
 <script src="js/fold.js"></script>
+<script src="js/copy.js"></script>
 ++++
 
 하우스 오브 옹알 유니버스 서비스 API 문서입니다.
@@ -48,14 +49,14 @@ operation::create-universe[snippets='http-request,request-parts']
 ==== Metadata
 include::{snippets}/create-universe-metadata/response-fields.adoc[]
 
-operation::create-universe[snippets='http-response,response-fields']
+operation::create-universe[snippets='response-body,response-fields']
 
 [[search-universe-api]]
 === 유니버스 검색 API
 
 유니버스를 검색합니다.
 
-operation::search-universe[snippets='path-parameters,http-request,http-response,response-fields']
+operation::search-universe[snippets='path-parameters,http-request,response-body,response-fields']
 
 [[open-universe-api]]
 === 유니버스 열기 API
@@ -64,93 +65,14 @@ operation::search-universe[snippets='path-parameters,http-request,http-response,
 
 > 유니버스의 모든 정보가 공개됩니다.
 
-operation::open-universe[snippets='path-parameters,http-request,response-fields']
-
-==== 응답 예시
-[source,json,options="nowrap"]
-----
-{
-  "id" : "019813c8-d91c-7bb6-9efc-7fda8c00cc5f",
-  "thumbMusicID" : "019813c8-d91c-7651-9ef9-64854a6b8924",
-  "thumbnailID" : "019813c8-d91c-7662-9efa-d51342a8b9e8",
-  "backgroundID" : "019813c8-d91c-7666-9efb-170d75765989",
-  "ownerID" : "019813c8-d91c-7589-9ef8-4e3178518da2",
-  "createdTime" : 1752678586,
-  "updatedTime" : 1752678586,
-  "view" : 0,
-  "like" : 0,
-  "title" : "우주",
-  "description" : "유니버스는 우주입니다.",
-  "owner" : "leaf",
-  "accessLevel" : "PUBLIC",
-  "category" : {
-    "id" : "019813c8-d91c-7368-9ef7-86695566530b",
-    "eng" : "Public",
-    "kor" : "공공"
-  },
-  "hashtags" : [ "우주", "별", "지구" ],
-  "spaces" : [ {
-    "spaceID" : "019813c8-d920-744d-ba7d-169ea4057ef1",
-    "parentSpaceID" : null,
-    "backgroundID" : "019813c8-d920-7249-ba7c-55b63f7696c2",
-    "depth" : 1,
-    "title" : "스페이스1",
-    "description" : "유니버스의 첫번째 스페이스",
-    "hidden" : false,
-    "points" : [ {
-      "x" : 0.0,
-      "y" : 0.0
-    }, {
-      "x" : 0.0,
-      "y" : 0.25
-    }, {
-      "x" : 0.25,
-      "y" : 0.25
-    }, {
-      "x" : 0.25,
-      "y" : 0.0
-    } ],
-    "createdTime" : 1752678586,
-    "updatedTime" : 1752678586,
-    "spaces" : [ {
-      "spaceID" : "019813c8-d922-73e3-8495-bc4536936416"
-       /* ...(생략) */
-    }],
-    "pieces" : [ ]
-  } ],
-  "pieces" : [ {
-    "pieceID" : "019813c8-d923-79a5-8913-6820559750db",
-    "parentSpaceID" : null,
-    "imageID" : null,
-    "depth" : 1,
-    "title" : "피스1",
-    "description" : "유니버스의 첫번째 피스",
-    "hidden" : false,
-    "points" : [ {
-      "x" : 0.25,
-      "y" : 0.25
-    }, {
-      "x" : 0.25,
-      "y" : 0.5
-    }, {
-      "x" : 0.5,
-      "y" : 0.5
-    }, {
-      "x" : 0.5,
-      "y" : 0.25
-    } ],
-    "createdTime" : 1752678586,
-    "updatedTime" : 1752678586
-  } ]
-}
-----
+operation::open-universe[snippets='path-parameters,http-request,response-fields,response-body']
 
 [[update-universe-metadata-api]]
 === 유니버스 상세정보 수정 API
 
 특정 유니버스의 상세정보를 수정합니다.
 
-operation::update-universe-metadata[snippets='path-parameters,http-request,request-fields,http-response,response-fields']
+operation::update-universe-metadata[snippets='path-parameters,http-request,request-fields,response-body,response-fields']
 
 [[overwrite-universe-thumbmusic-api]]
 === 유니버스 썸뮤직 덮어쓰기 API
@@ -159,7 +81,7 @@ operation::update-universe-metadata[snippets='path-parameters,http-request,reque
 
 > 썸뮤직 오디오 파일 용량은 2MB를 초과할 수 없으며, 기존 썸뮤직은 삭제됩니다.
 
-operation::overwrite-universe-thumbmusic[snippets='path-parameters,http-request,request-parts,http-response,response-fields']
+operation::overwrite-universe-thumbmusic[snippets='path-parameters,http-request,request-parts,response-body,response-fields']
 
 [[overwrite-universe-thumbnail-api]]
 === 유니버스 썸네일 덮어쓰기 API
@@ -168,7 +90,7 @@ operation::overwrite-universe-thumbmusic[snippets='path-parameters,http-request,
 
 > 썸네일 이미지 파일 용량은 2MB를 초과할 수 없으며, 기존 썸네일은 삭제됩니다.
 
-operation::overwrite-universe-thumbnail[snippets='path-parameters,http-request,request-parts,http-response,response-fields']
+operation::overwrite-universe-thumbnail[snippets='path-parameters,http-request,request-parts,response-body,response-fields']
 
 [[overwrite-universe-background-api]]
 === 유니버스 배경 덮어쓰기 API
@@ -177,7 +99,7 @@ operation::overwrite-universe-thumbnail[snippets='path-parameters,http-request,r
 
 > 배경 파일 용량은 5MB를 초과할 수 없으며, 기존 배경 파일은 삭제됩니다.
 
-operation::overwrite-universe-background[snippets='path-parameters,http-request,request-parts,http-response,response-fields']
+operation::overwrite-universe-background[snippets='path-parameters,http-request,request-parts,response-body,response-fields']
 
 [[delete-universe-api]]
 === 유니버스 삭제 API
@@ -186,7 +108,7 @@ operation::overwrite-universe-background[snippets='path-parameters,http-request,
 
 > 유니버스 내부의 모든 연관된 정보(좋아요, 해시태그, 스페이스, 피스, 사운드, 파일)를 함께 삭제합니다.
 
-operation::delete-universe[snippets='path-parameters,http-request,http-response,response-fields']
+operation::delete-universe[snippets='path-parameters,http-request,response-body,response-fields']
 
 // ==========
 // 스페이스 API
@@ -207,14 +129,14 @@ operation::create-space[snippets='path-parameters,http-request,request-parts']
 ==== Metadata
 include::{snippets}/create-space-metadata/response-fields.adoc[]
 
-operation::create-space[snippets='http-response,response-fields']
+operation::create-space[snippets='response-body,response-fields']
 
 [[update-space-metadata-api]]
 === 스페이스 상세정보 수정 API
 
 특정 스페이스의 상세정보를 수정합니다.
 
-operation::update-space-metadata[snippets='path-parameters,http-request,request-fields,http-response,response-fields']
+operation::update-space-metadata[snippets='path-parameters,http-request,request-fields,response-body,response-fields']
 
 [[overwrite-space-background-api]]
 === 스페이스 배경 덮어쓰기 API
@@ -223,7 +145,7 @@ operation::update-space-metadata[snippets='path-parameters,http-request,request-
 
 > 배경 파일 용량은 2MB를 초과할 수 없으며, 기존 파일은 삭제됩니다.
 
-operation::overwrite-space-file[snippets='path-parameters,http-request,request-parts,http-response,response-fields']
+operation::overwrite-space-file[snippets='path-parameters,http-request,request-parts,response-body,response-fields']
 
 [[move-space-api]]
 === 스페이스 이동 API
@@ -232,7 +154,7 @@ operation::overwrite-space-file[snippets='path-parameters,http-request,request-p
 
 > 두 점(시작, 종료좌표)을 이용해 사각형을 만들며, 내부의 다른 요소와 겹칠 수 없습니다.
 
-operation::move-space[snippets='path-parameters,http-request,request-fields,http-response,response-fields']
+operation::move-space[snippets='path-parameters,http-request,request-fields,response-body,response-fields']
 
 [[delete-space-api]]
 === 스페이스 삭제 API
@@ -241,7 +163,7 @@ operation::move-space[snippets='path-parameters,http-request,request-fields,http
 
 > 스페이스 내부의 모든 연관된 정보(하위 스페이스, 피스, 사운드, 파일)를 함께 삭제합니다.
 
-operation::delete-space[snippets='path-parameters,http-request,http-response,response-fields']
+operation::delete-space[snippets='path-parameters,http-request,response-body,response-fields']
 
 // ==========
 // 피스 API
@@ -262,21 +184,21 @@ operation::create-piece[snippets='path-parameters,http-request,request-parts']
 ==== Metadata
 include::{snippets}/create-piece-metadata/response-fields.adoc[]
 
-operation::create-space[snippets='http-response,response-fields']
+operation::create-space[snippets='response-body,response-fields']
 
 [[open-piece-api]]
 === 피스 열기 API
 
 특정 피스를 엽니다. 내부의 사운드 리스트가 함께 조회됩니다.
 
-operation::open-piece[snippets='path-parameters,http-request,http-response,response-fields']
+operation::open-piece[snippets='path-parameters,http-request,response-body,response-fields']
 
 [[update-piece-metadata-api]]
 === 피스 상세정보 수정 API
 
 특정 피스의 상세정보를 수정합니다.
 
-operation::update-piece-metadata[snippets='path-parameters,http-request,request-fields,http-response,response-fields']
+operation::update-piece-metadata[snippets='path-parameters,http-request,request-fields,response-body,response-fields']
 
 [[move-piece-api]]
 === 피스 이동 API
@@ -285,7 +207,7 @@ operation::update-piece-metadata[snippets='path-parameters,http-request,request-
 
 > 두 점(시작, 종료좌표)을 이용해 사각형을 만들며, 내부의 다른 요소와 겹칠 수 없습니다.
 
-operation::move-piece[snippets='path-parameters,http-request,request-fields,http-response,response-fields']
+operation::move-piece[snippets='path-parameters,http-request,request-fields,response-body,response-fields']
 
 [[delete-piece-api]]
 === 피스 삭제 API
@@ -294,7 +216,7 @@ operation::move-piece[snippets='path-parameters,http-request,request-fields,http
 
 > 피스 내부의 모든 연관된 정보(하위 사운드, 파일)를 함께 삭제합니다.
 
-operation::delete-space[snippets='path-parameters,http-request,http-response,response-fields']
+operation::delete-space[snippets='path-parameters,http-request,response-body,response-fields']
 
 // ==========
 // 사운드 API
@@ -315,14 +237,14 @@ operation::create-sound[snippets='path-parameters,http-request,request-parts']
 ==== Metadata
 include::{snippets}/create-sound-metadata/response-fields.adoc[]
 
-operation::create-space[snippets='http-response,response-fields']
+operation::create-space[snippets='response-body,response-fields']
 
 [[update-sound-metadata-api]]
 === 사운드 상세정보 수정 API
 
 특정 사운드의 상세정보를 수정합니다.
 
-operation::update-sound-metadata[snippets='path-parameters,http-request,request-fields,http-response,response-fields']
+operation::update-sound-metadata[snippets='path-parameters,http-request,request-fields,response-body,response-fields']
 
 [[overwrite-sound-auiod-api]]
 === 사운드 오디오 파일 덮어쓰기 API
@@ -331,7 +253,7 @@ operation::update-sound-metadata[snippets='path-parameters,http-request,request-
 
 > 기존 파일은 삭제됩니다.
 
-operation::overwrite-sound-audio[snippets='path-parameters,http-request,request-parts,http-response,response-fields']
+operation::overwrite-sound-audio[snippets='path-parameters,http-request,request-parts,response-body,response-fields']
 
 [[delete-sound-api]]
 === 사운드 삭제 API
@@ -340,7 +262,7 @@ operation::overwrite-sound-audio[snippets='path-parameters,http-request,request-
 
 > 사운드 내부의 연관된 오디오 파일을 함께 삭제합니다.
 
-operation::delete-sound[snippets='path-parameters,http-request,http-response,response-fields']
+operation::delete-sound[snippets='path-parameters,http-request,response-body,response-fields']
 
 // ==========
 // 카테고리 API
@@ -356,28 +278,28 @@ operation::delete-sound[snippets='path-parameters,http-request,http-response,res
 
 카테고리를 생성합니다.
 
-operation::create-category[snippets='http-request,request-fields,http-response,response-fields']
+operation::create-category[snippets='http-request,request-fields,response-body,response-fields']
 
 [[search-category-api]]
 === 카테고리 검색 API
 
 전체 카테고리를 검색합니다.
 
-operation::search-category[snippets='http-request,http-response,response-fields']
+operation::search-category[snippets='http-request,response-body,response-fields']
 
 [[update-category-api]]
 === 특정 카테고리 수정 API
 
 특정 카테고리를 수정합니다.
 
-operation::update-category[snippets='http-request,path-parameters,request-fields,http-response,response-fields']
+operation::update-category[snippets='http-request,path-parameters,request-fields,response-body,response-fields']
 
 [[delete-category-api]]
 === 특정 카테고리 삭제 API
 
 특정 카테고리를 삭제합니다.
 
-operation::delete-category[snippets='http-request,path-parameters,http-response,response-fields']
+operation::delete-category[snippets='http-request,path-parameters,response-body,response-fields']
 
 // ==========
 // 에러코드 API
@@ -391,18 +313,13 @@ operation::delete-category[snippets='http-request,path-parameters,http-response,
 > 해당 표에서 확인되지 않는 에러코드는 별도 문의 바랍니다.
 
 [[domain-error-code-table]]
-=== 도메인 에러코드
+=== 도메인 계층 에러코드
 include::{snippets}/domain-error-code/error-code-response-fields.adoc[]
 
 [[application-error-code-table]]
-==== 어플리케이션 에러코드
+==== 어플리케이션 계층 에러코드
 include::{snippets}/application-error-code/error-code-response-fields.adoc[]
 
-[[persistence-error-code-table]]
-==== 영속성 에러코드
-include::{snippets}/persistence-error-code/error-code-response-fields.adoc[]
-
-[[presentation-error-code-table]]
-==== 프레젠테이션 에러코드
-include::{snippets}/presentation-error-code/error-code-response-fields.adoc[]
-
+[[adapter-error-code-table]]
+==== 어댑터 계층 에러코드
+include::{snippets}/adapter-error-code/error-code-response-fields.adoc[]

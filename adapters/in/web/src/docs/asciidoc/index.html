@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.23">
 <meta name="description" content="하우스 오브 옹알 유니버스 서비스 API 문서입니다.">
-<meta name="owner" content="Sangyeop. Nam">
+<meta name="author" content="Sangyeop. Nam">
 <link rel="icon" type="image/x-icon" href="/Users/leaf/hoo/universe/adapters/in/web/src/docs/asciidoc/images/favicon.ico">
 <title>유니버스 API 문서</title>
 <style>
@@ -206,7 +206,7 @@ table {
 <div id="header">
 <h1>유니버스 API 문서</h1>
 <div class="details">
-<span id="owner" class="owner">Sangyeop. Nam</span><br>
+<span id="author" class="author">Sangyeop. Nam</span><br>
 <span id="email" class="email"><a href="mailto:spearoad15@gmail.com">spearoad15@gmail.com</a></span><br>
 </div>
 <div id="toc" class="toc2">
@@ -261,7 +261,7 @@ table {
 </li>
 <li><a href="#error-code-table">에러코드</a>
 <ul class="sectlevel2">
-<li><a href="#domain-error-code-table">도메인 에러코드</a></li>
+<li><a href="#domain-error-code-table">도메인 계층 에러코드</a></li>
 </ul>
 </li>
 </ul>
@@ -271,6 +271,7 @@ table {
 <div id="preamble">
 <div class="sectionbody">
 <script src="js/fold.js"></script>
+<script src="js/copy.js"></script>
 <div class="paragraph">
 <p>하우스 오브 옹알 유니버스 서비스 API 문서입니다.</p>
 </div>
@@ -320,7 +321,7 @@ table {
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /universes HTTP/1.1
 Content-Type: multipart/form-data;charset=UTF-8; boundary=6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
-Host: api.archiveofongr.site
+Host: api.houseofongr.com
 
 --6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
 Content-Disposition: form-data; name=metadata
@@ -439,21 +440,17 @@ image file
 </tbody>
 </table>
 <div class="sect4">
-<h5 id="_metadata_http_response">HTTP response</h5>
+<h5 id="_metadata_response_body">Response body</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 201 Created
-Content-Type: application/json;charset=UTF-8
-Content-Length: 565
-
-{
-  "universeID" : "019819f7-9e46-78d9-8077-e49e696f1653",
-  "thumbMusicID" : "019819f7-9e46-7995-8078-420b9441e168",
-  "thumbnailID" : "019819f7-9e46-79a9-8079-a32b0b45ec26",
-  "backgroundID" : "019819f7-9e46-79b2-807a-adac9a05bfbd",
-  "ownerID" : "019819f7-9e46-7a04-807b-2c15102e47a1",
-  "createdTime" : 1752782315,
-  "categoryID" : "019819f7-9e46-7acc-807c-419258fb1d37",
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
+  "universeID" : "01981e1d-97f6-7418-b48d-bf3904db5900",
+  "thumbMusicID" : "01981e1d-97f6-74d9-b48e-f966997deaf7",
+  "thumbnailID" : "01981e1d-97f6-74f5-b48f-958a9eab5340",
+  "backgroundID" : "01981e1d-97f6-74fd-b490-1c9c644b0ea9",
+  "ownerID" : "01981e1d-97f6-754f-b491-c14ce7481f95",
+  "createdTime" : 1752851912,
+  "categoryID" : "01981e1d-97f6-75e7-b492-799ea3ba65ef",
   "title" : "유니버스",
   "description" : "유니버스는 우주입니다.",
   "owner" : "leaf",
@@ -542,6 +539,27 @@ Content-Length: 565
 </tbody>
 </table>
 </div>
+<div class="sect4">
+<h5 id="_metadata_response_body">Response body</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
+  "universeID" : "01981e1d-97f6-7418-b48d-bf3904db5900",
+  "thumbMusicID" : "01981e1d-97f6-74d9-b48e-f966997deaf7",
+  "thumbnailID" : "01981e1d-97f6-74f5-b48f-958a9eab5340",
+  "backgroundID" : "01981e1d-97f6-74fd-b490-1c9c644b0ea9",
+  "ownerID" : "01981e1d-97f6-754f-b491-c14ce7481f95",
+  "createdTime" : 1752851912,
+  "categoryID" : "01981e1d-97f6-75e7-b492-799ea3ba65ef",
+  "title" : "유니버스",
+  "description" : "유니버스는 우주입니다.",
+  "owner" : "leaf",
+  "accessLevel" : "PUBLIC",
+  "hashtags" : [ "우주", "행성", "지구", "별" ]
+}</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -619,26 +637,22 @@ Content-Length: 565
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /universes?page=1&amp;size=10 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Host: api.archiveofongr.site</code></pre>
+Host: api.houseofongr.com</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="search-universe-api_http_response">HTTP response</h4>
+<h4 id="search-universe-api_response_body">Response body</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-Content-Length: 813
-
-{
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
   "content" : [ {
-    "id" : "019819f7-9f88-787a-9de1-17db1f72f137",
-    "thumbmusicID" : "019819f7-9f88-78f1-9de2-828f742c6f34",
-    "thumbnailID" : "019819f7-9f88-7902-9de3-80121e72ac72",
-    "ownerID" : "019819f7-9f88-790a-9de4-15d5e3a2f576",
-    "createdTime" : 1752782315,
-    "updatedTime" : 1752782315,
+    "id" : "01981e1d-996f-7c7e-9d39-49ab8949c1a2",
+    "thumbmusicID" : "01981e1d-996f-7cf9-9d3a-2a5a3e089bd7",
+    "thumbnailID" : "01981e1d-996f-7d0a-9d3b-3912e5ad1aca",
+    "ownerID" : "01981e1d-996f-7d0e-9d3c-86d64232c845",
+    "createdTime" : 1752851913,
+    "updatedTime" : 1752851913,
     "view" : 123,
     "like" : 19,
     "title" : "조회된 유니버스 제목",
@@ -646,7 +660,7 @@ Content-Length: 813
     "owner" : "leaf",
     "accessLevel" : "PUBLIC",
     "category" : {
-      "id" : "019819f7-9f88-79b6-9de5-4aaf6f835d6a",
+      "id" : "01981e1d-996f-7d95-9d3d-f83eb2a4d9f2",
       "eng" : "retried category",
       "kor" : "조회된 카테고리"
     },
@@ -786,6 +800,41 @@ Content-Length: 813
 </tbody>
 </table>
 </div>
+<div class="sect3">
+<h4 id="search-universe-api_response_body">Response body</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
+  "content" : [ {
+    "id" : "01981e1d-996f-7c7e-9d39-49ab8949c1a2",
+    "thumbmusicID" : "01981e1d-996f-7cf9-9d3a-2a5a3e089bd7",
+    "thumbnailID" : "01981e1d-996f-7d0a-9d3b-3912e5ad1aca",
+    "ownerID" : "01981e1d-996f-7d0e-9d3c-86d64232c845",
+    "createdTime" : 1752851913,
+    "updatedTime" : 1752851913,
+    "view" : 123,
+    "like" : 19,
+    "title" : "조회된 유니버스 제목",
+    "description" : "조회된 유니버스 내용",
+    "owner" : "leaf",
+    "accessLevel" : "PUBLIC",
+    "category" : {
+      "id" : "01981e1d-996f-7d95-9d3d-f83eb2a4d9f2",
+      "eng" : "retried category",
+      "kor" : "조회된 카테고리"
+    },
+    "hashtags" : [ "조회된", "해시태그" ]
+  } ],
+  "pagination" : {
+    "page" : 1,
+    "size" : 10,
+    "totalPages" : 1,
+    "totalElements" : 1
+  }
+}</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="open-universe-api">유니버스 열기 API</h3>
@@ -828,8 +877,8 @@ Content-Length: 813
 <h4 id="open-universe-api_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /universes/019819f7-9f11-7cb4-99e3-9306d57b5ed7 HTTP/1.1
-Host: api.archiveofongr.site</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /universes/01981e1d-98f6-7537-beaf-dcab24fce845 HTTP/1.1
+Host: api.houseofongr.com</code></pre>
 </div>
 </div>
 </div>
@@ -1070,17 +1119,17 @@ Host: api.archiveofongr.site</code></pre>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_응답_예시">응답 예시</h4>
+<h4 id="open-universe-api_response_body">Response body</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
-  "id" : "019813c8-d91c-7bb6-9efc-7fda8c00cc5f",
-  "thumbMusicID" : "019813c8-d91c-7651-9ef9-64854a6b8924",
-  "thumbnailID" : "019813c8-d91c-7662-9efa-d51342a8b9e8",
-  "backgroundID" : "019813c8-d91c-7666-9efb-170d75765989",
-  "ownerID" : "019813c8-d91c-7589-9ef8-4e3178518da2",
-  "createdTime" : 1752678586,
-  "updatedTime" : 1752678586,
+  "id" : "01981e1d-98f7-79c2-a6a1-d415bfe970be",
+  "thumbMusicID" : "01981e1d-98f7-7574-a69e-bd0adb9eca6f",
+  "thumbnailID" : "01981e1d-98f7-757c-a69f-238da11b8d6b",
+  "backgroundID" : "01981e1d-98f7-7585-a6a0-5abd12196d34",
+  "ownerID" : "01981e1d-98f7-74f9-a69d-51344bc5bdd5",
+  "createdTime" : 1752851912,
+  "updatedTime" : 1752851912,
   "view" : 0,
   "like" : 0,
   "title" : "우주",
@@ -1088,15 +1137,15 @@ Host: api.archiveofongr.site</code></pre>
   "owner" : "leaf",
   "accessLevel" : "PUBLIC",
   "category" : {
-    "id" : "019813c8-d91c-7368-9ef7-86695566530b",
+    "id" : "01981e1d-98f7-73ae-a69c-a0681e45a5b9",
     "eng" : "Public",
     "kor" : "공공"
   },
   "hashtags" : [ "우주", "별", "지구" ],
   "spaces" : [ {
-    "spaceID" : "019813c8-d920-744d-ba7d-169ea4057ef1",
+    "spaceID" : "01981e1d-98fa-7ffb-bfc6-f977b363d718",
     "parentSpaceID" : null,
-    "backgroundID" : "019813c8-d920-7249-ba7c-55b63f7696c2",
+    "backgroundID" : "01981e1d-98fa-7c62-bfc5-eae22ed1a836",
     "depth" : 1,
     "title" : "스페이스1",
     "description" : "유니버스의 첫번째 스페이스",
@@ -1114,16 +1163,251 @@ Host: api.archiveofongr.site</code></pre>
       "x" : 0.25,
       "y" : 0.0
     } ],
-    "createdTime" : 1752678586,
-    "updatedTime" : 1752678586,
+    "createdTime" : 1752851912,
+    "updatedTime" : 1752851912,
     "spaces" : [ {
-      "spaceID" : "019813c8-d922-73e3-8495-bc4536936416"
-       /* ...(생략) */
-    }],
+      "spaceID" : "01981e1d-98fd-73db-9ac3-036a0c52db3f",
+      "parentSpaceID" : "01981e1d-98fa-7ffb-bfc6-f977b363d718",
+      "backgroundID" : "01981e1d-98fd-733f-9ac2-bf180bcea0cd",
+      "depth" : 2,
+      "title" : "스페이스3",
+      "description" : "스페이스1의 첫번째 스페이스",
+      "hidden" : false,
+      "points" : [ {
+        "x" : 0.0,
+        "y" : 0.5
+      }, {
+        "x" : 0.0,
+        "y" : 0.75
+      }, {
+        "x" : 0.25,
+        "y" : 0.75
+      }, {
+        "x" : 0.25,
+        "y" : 0.5
+      } ],
+      "createdTime" : 1752851912,
+      "updatedTime" : 1752851912,
+      "spaces" : [ ],
+      "pieces" : [ {
+        "pieceID" : "01981e1d-98ff-7c8b-8afb-83c71f1a21b4",
+        "parentSpaceID" : "01981e1d-98fd-73db-9ac3-036a0c52db3f",
+        "imageID" : null,
+        "depth" : 3,
+        "title" : "피스3",
+        "description" : "스페이스3의 첫번째 피스",
+        "hidden" : false,
+        "points" : [ {
+          "x" : 0.25,
+          "y" : 0.75
+        }, {
+          "x" : 0.25,
+          "y" : 1.0
+        }, {
+          "x" : 0.5,
+          "y" : 1.0
+        }, {
+          "x" : 0.5,
+          "y" : 0.75
+        } ],
+        "createdTime" : 1752851912,
+        "updatedTime" : 1752851912
+      } ]
+    } ],
+    "pieces" : [ {
+      "pieceID" : "01981e1d-98ff-7820-8af3-b9845075df9d",
+      "parentSpaceID" : "01981e1d-98fa-7ffb-bfc6-f977b363d718",
+      "imageID" : null,
+      "depth" : 2,
+      "title" : "피스2",
+      "description" : "스페이스1의 첫번째 피스",
+      "hidden" : false,
+      "points" : [ {
+        "x" : 0.25,
+        "y" : 0.5
+      }, {
+        "x" : 0.25,
+        "y" : 0.75
+      }, {
+        "x" : 0.5,
+        "y" : 0.75
+      }, {
+        "x" : 0.5,
+        "y" : 0.5
+      } ],
+      "createdTime" : 1752851912,
+      "updatedTime" : 1752851912
+    } ]
+  }, {
+    "spaceID" : "01981e1d-98fb-7e08-88e9-aa963fb1f461",
+    "parentSpaceID" : null,
+    "backgroundID" : "01981e1d-98fb-7ce5-88e8-ce1f7fa500e9",
+    "depth" : 1,
+    "title" : "스페이스2",
+    "description" : "유니버스의 두번째 스페이스",
+    "hidden" : false,
+    "points" : [ {
+      "x" : 0.0,
+      "y" : 0.25
+    }, {
+      "x" : 0.0,
+      "y" : 0.5
+    }, {
+      "x" : 0.25,
+      "y" : 0.5
+    }, {
+      "x" : 0.25,
+      "y" : 0.25
+    } ],
+    "createdTime" : 1752851912,
+    "updatedTime" : 1752851912,
+    "spaces" : [ {
+      "spaceID" : "01981e1d-98fd-7c31-9acc-49271f7c0f6e",
+      "parentSpaceID" : "01981e1d-98fb-7e08-88e9-aa963fb1f461",
+      "backgroundID" : "01981e1d-98fd-7b6c-9acb-3f2ceef98553",
+      "depth" : 2,
+      "title" : "스페이스4",
+      "description" : "스페이스2의 첫번째 스페이스",
+      "hidden" : false,
+      "points" : [ {
+        "x" : 0.0,
+        "y" : 0.75
+      }, {
+        "x" : 0.0,
+        "y" : 1.0
+      }, {
+        "x" : 0.25,
+        "y" : 1.0
+      }, {
+        "x" : 0.25,
+        "y" : 0.75
+      } ],
+      "createdTime" : 1752851912,
+      "updatedTime" : 1752851912,
+      "spaces" : [ ],
+      "pieces" : [ {
+        "pieceID" : "01981e1d-98ff-7fe7-8b03-910a4ebec734",
+        "parentSpaceID" : "01981e1d-98fd-7c31-9acc-49271f7c0f6e",
+        "imageID" : null,
+        "depth" : 3,
+        "title" : "피스4",
+        "description" : "스페이스4의 첫번째 피스",
+        "hidden" : false,
+        "points" : [ {
+          "x" : 0.5,
+          "y" : 0.0
+        }, {
+          "x" : 0.5,
+          "y" : 0.25
+        }, {
+          "x" : 0.75,
+          "y" : 0.25
+        }, {
+          "x" : 0.75,
+          "y" : 0.0
+        } ],
+        "createdTime" : 1752851912,
+        "updatedTime" : 1752851912
+      }, {
+        "pieceID" : "01981e1d-9900-7364-a2c5-f81fc0cf73f1",
+        "parentSpaceID" : "01981e1d-98fd-7c31-9acc-49271f7c0f6e",
+        "imageID" : null,
+        "depth" : 3,
+        "title" : "피스5",
+        "description" : "스페이스4의 두번째 피스",
+        "hidden" : false,
+        "points" : [ {
+          "x" : 0.5,
+          "y" : 0.25
+        }, {
+          "x" : 0.5,
+          "y" : 0.5
+        }, {
+          "x" : 0.75,
+          "y" : 0.5
+        }, {
+          "x" : 0.75,
+          "y" : 0.25
+        } ],
+        "createdTime" : 1752851912,
+        "updatedTime" : 1752851912
+      } ]
+    }, {
+      "spaceID" : "01981e1d-98fe-70a3-9fc7-175621341893",
+      "parentSpaceID" : "01981e1d-98fb-7e08-88e9-aa963fb1f461",
+      "backgroundID" : "01981e1d-98fe-7014-9fc6-591d847e7186",
+      "depth" : 2,
+      "title" : "스페이스5",
+      "description" : "스페이스2의 두번째 스페이스",
+      "hidden" : false,
+      "points" : [ {
+        "x" : 0.25,
+        "y" : 0.0
+      }, {
+        "x" : 0.25,
+        "y" : 0.25
+      }, {
+        "x" : 0.5,
+        "y" : 0.25
+      }, {
+        "x" : 0.5,
+        "y" : 0.0
+      } ],
+      "createdTime" : 1752851912,
+      "updatedTime" : 1752851912,
+      "spaces" : [ ],
+      "pieces" : [ {
+        "pieceID" : "01981e1d-9900-7737-a2cd-c4c51f01ce18",
+        "parentSpaceID" : "01981e1d-98fe-70a3-9fc7-175621341893",
+        "imageID" : null,
+        "depth" : 3,
+        "title" : "피스6",
+        "description" : "스페이스5의 첫번째 피스",
+        "hidden" : false,
+        "points" : [ {
+          "x" : 0.5,
+          "y" : 0.5
+        }, {
+          "x" : 0.5,
+          "y" : 0.75
+        }, {
+          "x" : 0.75,
+          "y" : 0.75
+        }, {
+          "x" : 0.75,
+          "y" : 0.5
+        } ],
+        "createdTime" : 1752851912,
+        "updatedTime" : 1752851912
+      }, {
+        "pieceID" : "01981e1d-9900-7a9b-a2d5-672a7a187e5a",
+        "parentSpaceID" : "01981e1d-98fe-70a3-9fc7-175621341893",
+        "imageID" : null,
+        "depth" : 3,
+        "title" : "피스7",
+        "description" : "스페이스5의 두번째 피스",
+        "hidden" : false,
+        "points" : [ {
+          "x" : 0.5,
+          "y" : 0.75
+        }, {
+          "x" : 0.5,
+          "y" : 1.0
+        }, {
+          "x" : 0.75,
+          "y" : 1.0
+        }, {
+          "x" : 0.75,
+          "y" : 0.75
+        } ],
+        "createdTime" : 1752851912,
+        "updatedTime" : 1752851912
+      } ]
+    } ],
     "pieces" : [ ]
   } ],
   "pieces" : [ {
-    "pieceID" : "019813c8-d923-79a5-8913-6820559750db",
+    "pieceID" : "01981e1d-98ff-71d2-8aeb-7cebe52046fd",
     "parentSpaceID" : null,
     "imageID" : null,
     "depth" : 1,
@@ -1143,8 +1427,8 @@ Host: api.archiveofongr.site</code></pre>
       "x" : 0.5,
       "y" : 0.25
     } ],
-    "createdTime" : 1752678586,
-    "updatedTime" : 1752678586
+    "createdTime" : 1752851912,
+    "updatedTime" : 1752851912
   } ]
 }</code></pre>
 </div>
@@ -1185,10 +1469,10 @@ Host: api.archiveofongr.site</code></pre>
 <h4 id="update-universe-metadata-api_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">PATCH /universes/019819f7-9fa0-7d5c-8caa-dc3c11f0b084 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">PATCH /universes/01981e1d-9985-7eed-b0fb-348098717802 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Content-Length: 262
-Host: api.archiveofongr.site
+Content-Length: 260
+Host: api.houseofongr.com
 
 {
   "title" : "수정된 제목",
@@ -1259,16 +1543,12 @@ Host: api.archiveofongr.site
 </table>
 </div>
 <div class="sect3">
-<h4 id="update-universe-metadata-api_http_response">HTTP response</h4>
+<h4 id="update-universe-metadata-api_response_body">Response body</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-Content-Length: 410
-
-{
-  "ownerID" : "019819f7-9fa0-7d5c-8caa-dc3c11f0b084",
-  "updatedTime" : 1752782315,
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
+  "ownerID" : "01981e1d-9985-7eed-b0fb-348098717802",
+  "updatedTime" : 1752851913,
   "title" : "수정된 제목",
   "description" : "수정된 내용",
   "owner" : "수정된 저자",
@@ -1394,9 +1674,9 @@ Content-Length: 410
 <h4 id="overwrite-universe-thumbmusic-api_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /universes/019819f7-9f55-7e45-979c-09586943649c/thumbmusic HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /universes/01981e1d-9941-7a14-b246-b6e320a08255/thumbmusic HTTP/1.1
 Content-Type: multipart/form-data;charset=UTF-8; boundary=6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
-Host: api.archiveofongr.site
+Host: api.houseofongr.com
 
 --6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
 Content-Disposition: form-data; name=thumbmusic; filename=new_universe_thumb.mp3
@@ -1429,16 +1709,12 @@ universe file
 </table>
 </div>
 <div class="sect3">
-<h4 id="overwrite-universe-thumbmusic-api_http_response">HTTP response</h4>
+<h4 id="overwrite-universe-thumbmusic-api_response_body">Response body</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-Content-Length: 130
-
-{
-  "deletedThumbmusicID" : "019819f7-9f55-7d37-979a-8d9995e27946",
-  "newThumbmusicID" : "019819f7-9f55-7da9-979b-1739ca47b87f"
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
+  "deletedThumbmusicID" : "01981e1d-9941-792b-b244-9c56af13fb60",
+  "newThumbmusicID" : "01981e1d-9941-7991-b245-96ca7685e8ca"
 }</code></pre>
 </div>
 </div>
@@ -1514,9 +1790,9 @@ Content-Length: 130
 <h4 id="overwrite-universe-thumbnail-api_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /universes/019819f7-9f78-76e5-9e3b-c77adcf3c892/thumbnail HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /universes/01981e1d-9961-7097-bf74-51e8bf954b8e/thumbnail HTTP/1.1
 Content-Type: multipart/form-data;charset=UTF-8; boundary=6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
-Host: api.archiveofongr.site
+Host: api.houseofongr.com
 
 --6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
 Content-Disposition: form-data; name=thumbnail; filename=new_universe_thumb.png
@@ -1549,16 +1825,12 @@ universe file
 </table>
 </div>
 <div class="sect3">
-<h4 id="overwrite-universe-thumbnail-api_http_response">HTTP response</h4>
+<h4 id="overwrite-universe-thumbnail-api_response_body">Response body</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-Content-Length: 128
-
-{
-  "deletedThumbnailID" : "019819f7-9f78-7585-9e39-d712894d5ebe",
-  "newThumbnailID" : "019819f7-9f78-764d-9e3a-b077ab9de9b8"
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
+  "deletedThumbnailID" : "01981e1d-9960-7fa5-aea8-91dcb0fb27eb",
+  "newThumbnailID" : "01981e1d-9961-7018-bf73-6204d3d7313e"
 }</code></pre>
 </div>
 </div>
@@ -1634,9 +1906,9 @@ Content-Length: 128
 <h4 id="overwrite-universe-background-api_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /universes/019819f7-9f64-7c7e-9e2b-43a786622a35/background HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /universes/01981e1d-994e-7aac-8479-4b162705eaec/background HTTP/1.1
 Content-Type: multipart/form-data;charset=UTF-8; boundary=6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
-Host: api.archiveofongr.site
+Host: api.houseofongr.com
 
 --6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
 Content-Disposition: form-data; name=background; filename=new_universe_background.png
@@ -1669,16 +1941,12 @@ universe file
 </table>
 </div>
 <div class="sect3">
-<h4 id="overwrite-universe-background-api_http_response">HTTP response</h4>
+<h4 id="overwrite-universe-background-api_response_body">Response body</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-Content-Length: 130
-
-{
-  "deletedBackgroundID" : "019819f7-9f64-7b58-9e29-fffabfc2ecf5",
-  "newBackgroundID" : "019819f7-9f64-7bef-9e2a-d5711e0e5424"
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
+  "deletedBackgroundID" : "01981e1d-994e-78dd-8477-262cd5188663",
+  "newBackgroundID" : "01981e1d-994e-794f-8478-97ea08bc136f"
 }</code></pre>
 </div>
 </div>
@@ -1754,25 +2022,21 @@ Content-Length: 130
 <h4 id="delete-universe-api_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">DELETE /universes/019819f7-9efd-7e8b-ac71-8e2b168744bf HTTP/1.1
-Host: api.archiveofongr.site</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">DELETE /universes/01981e1d-98e1-70dd-b00c-2a440c5fecb1 HTTP/1.1
+Host: api.houseofongr.com</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="delete-universe-api_http_response">HTTP response</h4>
+<h4 id="delete-universe-api_response_body">Response body</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-Content-Length: 649
-
-{
-  "deletedUniverseID" : "019819f7-9efd-7e8b-ac71-8e2b168744bf",
-  "deletedSpaceIDs" : [ "019819f7-9efe-7224-94be-d8f26fa6273a" ],
-  "deletedPieceIDs" : [ "019819f7-9efe-7249-94bf-89e26bcbf7be", "019819f7-9efe-7256-94c0-2f20d32aca09" ],
-  "deletedSoundIDs" : [ "019819f7-9efe-72b8-94c1-933f57aa3f8c", "019819f7-9efe-72c0-94c2-452d48a08cfd", "019819f7-9efe-72c8-94c3-08a410161991" ],
-  "deletedFileIDs" : [ "019819f7-9efe-72d4-94c4-68825d7ad316", "019819f7-9efe-7322-94c5-d398915cbcf2", "019819f7-9efe-732f-94c6-880271a98fb4", "019819f7-9efe-7333-94c7-1e43599dccf6", "019819f7-9efe-7378-94c8-8663bc4c5bd7", "019819f7-9efe-7381-94c9-6ea57622c5a9" ]
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
+  "deletedUniverseID" : "01981e1d-98e1-70dd-b00c-2a440c5fecb1",
+  "deletedSpaceIDs" : [ "01981e1d-98e1-73f7-b00d-dcfd00ead66f" ],
+  "deletedPieceIDs" : [ "01981e1d-98e1-7418-b00e-705244d776c0", "01981e1d-98e1-7420-b00f-20b0b17abaf0" ],
+  "deletedSoundIDs" : [ "01981e1d-98e1-747a-b010-e3a73202c0ab", "01981e1d-98e1-7483-b011-0c02f561de68", "01981e1d-98e1-748b-b012-277fc85f6f4d" ],
+  "deletedFileIDs" : [ "01981e1d-98e1-7497-b013-374c5f2d4f9f", "01981e1d-98e1-74dd-b014-2957412d8664", "01981e1d-98e1-74e9-b015-97746b29f9fb", "01981e1d-98e1-74ed-b016-d5b9fa1db1c2", "01981e1d-98e1-752f-b017-3a43fa0b2573", "01981e1d-98e1-7537-b018-c020246b7638" ]
 }</code></pre>
 </div>
 </div>
@@ -1864,16 +2128,16 @@ Content-Length: 649
 <h4 id="create-space-api_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /universes/019819f7-a328-7126-9f38-457c9b50260d/spaces HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /universes/01981e1d-9c79-7004-9b18-50d98215b0b1/spaces HTTP/1.1
 Content-Type: multipart/form-data;charset=UTF-8; boundary=6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
-Host: api.archiveofongr.site
+Host: api.houseofongr.com
 
 --6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
 Content-Disposition: form-data; name=metadata
 Content-Type: application/json
 
 {
-  "parentSpaceID": "019819f7-a328-71ae-9f39-ed94b933381d",
+  "parentSpaceID": "01981e1d-9c79-707a-9b19-4e5f75b1938f",
   "title": "공간",
   "description": "스페이스는 공간입니다.",
   "startX": 0.8,
@@ -1977,16 +2241,12 @@ image file
 </tbody>
 </table>
 <div class="sect4">
-<h5 id="_metadata_2_http_response">HTTP response</h5>
+<h5 id="_metadata_2_response_body">Response body</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 201 Created
-Content-Type: application/json;charset=UTF-8
-Content-Length: 309
-
-{
-  "spaceID" : "019819f7-a329-717c-912c-e350d3923eac",
-  "backgroundID" : "019819f7-a329-71ce-912d-ec033ff9863b",
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
+  "spaceID" : "01981e1d-9c79-767a-9b1a-0048c65c5248",
+  "backgroundID" : "01981e1d-9c79-769f-9b1b-559c0d994121",
   "title" : "공간",
   "description" : "스페이스는 공간입니다.",
   "startX" : 0.8,
@@ -1994,7 +2254,7 @@ Content-Length: 309
   "endX" : 0.6,
   "endY" : 0.5,
   "hidden" : false,
-  "createdTime" : 1752782316
+  "createdTime" : 1752851913
 }</code></pre>
 </div>
 </div>
@@ -2109,10 +2369,10 @@ Content-Length: 309
 <h4 id="update-space-metadata-api_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">PATCH /universes/019819f7-a3c3-7041-b7d9-ef6af08fffd9/spaces/019819f7-a3c3-707a-b7da-6b036a4ca88a HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">PATCH /universes/01981e1d-9d09-7676-9e2f-f350ec47ce93/spaces/01981e1d-9d09-76b0-9e30-02fdffefab55 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Content-Length: 132
-Host: api.archiveofongr.site
+Host: api.houseofongr.com
 
 {
   "title" : "수정할 제목을 입력합니다.",
@@ -2162,18 +2422,14 @@ Host: api.archiveofongr.site
 </table>
 </div>
 <div class="sect3">
-<h4 id="update-space-metadata-api_http_response">HTTP response</h4>
+<h4 id="update-space-metadata-api_response_body">Response body</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-Content-Length: 162
-
-{
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
   "title" : "수정할 제목을 입력합니다.",
   "description" : "수정할 내용을 입력합니다.",
   "hidden" : false,
-  "updatedTime" : 1752782316
+  "updatedTime" : 1752851913
 }</code></pre>
 </div>
 </div>
@@ -2264,9 +2520,9 @@ Content-Length: 162
 <h4 id="overwrite-space-background-api_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /universes/019819f7-a3b3-7147-ab7a-86531e3d3870/spaces/019819f7-a3b3-7185-ab7b-662eee9e32ef/background HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /universes/01981e1d-9cfc-7733-9dcb-f2f242fb5938/spaces/01981e1d-9cfc-779d-9dcc-60b1e6b5d4e9/background HTTP/1.1
 Content-Type: multipart/form-data;charset=UTF-8; boundary=6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
-Host: api.archiveofongr.site
+Host: api.houseofongr.com
 
 --6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
 Content-Disposition: form-data; name=background; filename=new_space_background.png
@@ -2299,16 +2555,12 @@ space file
 </table>
 </div>
 <div class="sect3">
-<h4 id="overwrite-space-background-api_http_response">HTTP response</h4>
+<h4 id="overwrite-space-background-api_response_body">Response body</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-Content-Length: 130
-
-{
-  "deletedBackgroundID" : "019819f7-a3b3-748f-ab7c-e4cff40274ad",
-  "newBackgroundID" : "019819f7-a3b3-7516-ab7d-38f115d5790c"
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
+  "deletedBackgroundID" : "01981e1d-9cfc-7acc-9dcd-dbe0c1f9d8e3",
+  "newBackgroundID" : "01981e1d-9cfc-7ae9-9dce-fc760db9f360"
 }</code></pre>
 </div>
 </div>
@@ -2389,10 +2641,10 @@ Content-Length: 130
 <h4 id="move-space-api_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">PATCH /universes/019819f7-a39f-7bc2-82fb-e96b2a41a3d7/spaces/019819f7-a39f-7c08-82fc-52eccabdd5d3/move HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">PATCH /universes/01981e1d-9ced-7d6c-b0c5-092f440cfb53/spaces/01981e1d-9ced-7dba-b0c6-895be4d04010/move HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Content-Length: 70
-Host: api.archiveofongr.site
+Host: api.houseofongr.com
 
 {
   "startX" : 0.6,
@@ -2449,14 +2701,10 @@ Host: api.archiveofongr.site
 </table>
 </div>
 <div class="sect3">
-<h4 id="move-space-api_http_response">HTTP response</h4>
+<h4 id="move-space-api_response_body">Response body</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-Content-Length: 70
-
-{
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
   "startX" : 0.6,
   "startY" : 0.7,
   "endX" : 0.5,
@@ -2551,24 +2799,20 @@ Content-Length: 70
 <h4 id="delete-space-api_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">DELETE /universes/019819f7-a391-7d33-b544-8501db9afe3d/spaces/019819f7-a391-7d91-b545-edcb7857570e HTTP/1.1
-Host: api.archiveofongr.site</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">DELETE /universes/01981e1d-9cdf-77b6-b223-867a1011dcfa/spaces/01981e1d-9cdf-7828-b224-f46ee0a244ec HTTP/1.1
+Host: api.houseofongr.com</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="delete-space-api_http_response">HTTP response</h4>
+<h4 id="delete-space-api_response_body">Response body</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-Content-Length: 465
-
-{
-  "deletedSpaceIDs" : [ "019819f7-a392-7031-919d-4e9fef752c36" ],
-  "deletedPieceIDs" : [ "019819f7-a392-7076-919e-7de15266e4c4", "019819f7-a392-7093-919f-d21b31ce54c9" ],
-  "deletedSoundIDs" : [ "019819f7-a392-709f-91a0-7e2eddad2489", "019819f7-a392-70a7-91a1-3f76834a03a5" ],
-  "deletedFileIDs" : [ "019819f7-a392-70bc-91a2-0871ab087742", "019819f7-a392-70c4-91a3-e6c477f0ce17", "019819f7-a392-70c8-91a4-1ff2a88cdf2e", "019819f7-a392-70d9-91a5-09f63c3e638b" ]
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
+  "deletedSpaceIDs" : [ "01981e1d-9cdf-7aac-b225-114b954991fe" ],
+  "deletedPieceIDs" : [ "01981e1d-9cdf-7ac4-b226-6281e6eda15e", "01981e1d-9cdf-7add-b227-dc51c4e9689b" ],
+  "deletedSoundIDs" : [ "01981e1d-9cdf-7aed-b228-031c00b8579f", "01981e1d-9cdf-7af1-b229-8c49b1fff61d" ],
+  "deletedFileIDs" : [ "01981e1d-9cdf-7af9-b22a-987427021f1a", "01981e1d-9cdf-7b0a-b22b-6f0e1256fb97", "01981e1d-9cdf-7b12-b22c-ff90fd2c79c3", "01981e1d-9cdf-7b16-b22d-e4636f8c0ef4" ]
 }</code></pre>
 </div>
 </div>
@@ -2655,16 +2899,16 @@ Content-Length: 465
 <h4 id="create-piece-api_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /universes/019819f7-a1be-7d1e-b10b-706111ac9c3f/pieces HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /universes/01981e1d-9b43-7293-9106-d1b7397dc05e/pieces HTTP/1.1
 Content-Type: multipart/form-data;charset=UTF-8; boundary=6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
-Host: api.archiveofongr.site
+Host: api.houseofongr.com
 
 --6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
 Content-Disposition: form-data; name=metadata
 Content-Type: application/json
 
 {
-  "parentSpaceID": "019819f7-a1be-7dfb-b10c-e211d0e2e42e",
+  "parentSpaceID": "01981e1d-9b43-7374-9107-fe56013b7b3d",
   "title": "조각",
   "description": "피스는 조각입니다.",
   "startX": 0.1,
@@ -2763,16 +3007,12 @@ Content-Type: application/json
 </tbody>
 </table>
 <div class="sect4">
-<h5 id="_metadata_3_http_response">HTTP response</h5>
+<h5 id="_metadata_3_response_body">Response body</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 201 Created
-Content-Type: application/json;charset=UTF-8
-Content-Length: 309
-
-{
-  "spaceID" : "019819f7-a329-717c-912c-e350d3923eac",
-  "backgroundID" : "019819f7-a329-71ce-912d-ec033ff9863b",
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
+  "spaceID" : "01981e1d-9c79-767a-9b1a-0048c65c5248",
+  "backgroundID" : "01981e1d-9c79-769f-9b1b-559c0d994121",
   "title" : "공간",
   "description" : "스페이스는 공간입니다.",
   "startX" : 0.8,
@@ -2780,7 +3020,7 @@ Content-Length: 309
   "endX" : 0.6,
   "endY" : 0.5,
   "hidden" : false,
-  "createdTime" : 1752782316
+  "createdTime" : 1752851913
 }</code></pre>
 </div>
 </div>
@@ -2915,35 +3155,31 @@ Content-Length: 309
 <h4 id="open-piece-api_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /universes/pieces/019819f7-a26d-7241-960d-39b2aeabcd62?page=1&amp;size=10 HTTP/1.1
-Host: api.archiveofongr.site</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /universes/pieces/01981e1d-9bd3-75c2-98a7-c1ffe9120fb7?page=1&amp;size=10 HTTP/1.1
+Host: api.houseofongr.com</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="open-piece-api_http_response">HTTP response</h4>
+<h4 id="open-piece-api_response_body">Response body</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-Content-Length: 688
-
-{
-  "pieceID" : "019819f7-a26d-7241-960d-39b2aeabcd62",
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
+  "pieceID" : "01981e1d-9bd3-75c2-98a7-c1ffe9120fb7",
   "title" : "조회된 피스 제목",
   "description" : "조회된 피스 내용",
   "hidden" : false,
-  "createdTime" : 1752782316,
-  "updatedTime" : 1752782316,
+  "createdTime" : 1752851913,
+  "updatedTime" : 1752851913,
   "sounds" : {
     "content" : [ {
-      "soundID" : "019819f7-a26d-7af1-960e-1fba3e2a298c",
-      "audioID" : "019819f7-a26d-7b1a-960f-79346332fe9d",
+      "soundID" : "01981e1d-9bd3-7d4f-98a8-5db4765b3db8",
+      "audioID" : "01981e1d-9bd3-7d68-98a9-9a1c99332c01",
       "title" : "조회된 사운드 제목",
       "description" : "조회된 사운드 내용",
       "hidden" : false,
-      "createdTime" : 1752782316,
-      "updatedTime" : 1752782316
+      "createdTime" : 1752851913,
+      "updatedTime" : 1752851913
     } ],
     "pagination" : {
       "page" : 1,
@@ -3105,10 +3341,10 @@ Content-Length: 688
 <h4 id="update-piece-metadata-api_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">PATCH /universes/019819f7-a284-7570-8ddd-1cb03aea8b88/pieces/019819f7-a284-7600-8dde-42f4a23b3f1c HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">PATCH /universes/01981e1d-9be6-75ef-b9fa-dc6ccdb992f9/pieces/01981e1d-9be6-7662-b9fb-5f21a94592fc HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Content-Length: 92
-Host: api.archiveofongr.site
+Host: api.houseofongr.com
 
 {
   "title" : "평화",
@@ -3158,18 +3394,14 @@ Host: api.archiveofongr.site
 </table>
 </div>
 <div class="sect3">
-<h4 id="update-piece-metadata-api_http_response">HTTP response</h4>
+<h4 id="update-piece-metadata-api_response_body">Response body</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-Content-Length: 122
-
-{
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
   "title" : "평화",
   "description" : "피스는 평화입니다.",
   "hidden" : false,
-  "updatedTime" : 1752782316
+  "updatedTime" : 1752851913
 }</code></pre>
 </div>
 </div>
@@ -3260,10 +3492,10 @@ Content-Length: 122
 <h4 id="move-piece-api_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">PATCH /universes/019819f7-a257-77be-a879-6473c1ec1472/pieces/019819f7-a257-77f3-a87a-2b730916c568/move HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">PATCH /universes/01981e1d-9bc4-748b-a303-e974720223a5/pieces/01981e1d-9bc4-7512-a304-c3b5335fe7a5/move HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Content-Length: 70
-Host: api.archiveofongr.site
+Host: api.houseofongr.com
 
 {
   "startX" : 0.6,
@@ -3320,14 +3552,10 @@ Host: api.archiveofongr.site
 </table>
 </div>
 <div class="sect3">
-<h4 id="move-piece-api_http_response">HTTP response</h4>
+<h4 id="move-piece-api_response_body">Response body</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-Content-Length: 70
-
-{
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
   "startX" : 0.6,
   "startY" : 0.7,
   "endX" : 0.5,
@@ -3422,24 +3650,20 @@ Content-Length: 70
 <h4 id="delete-piece-api_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">DELETE /universes/019819f7-a391-7d33-b544-8501db9afe3d/spaces/019819f7-a391-7d91-b545-edcb7857570e HTTP/1.1
-Host: api.archiveofongr.site</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">DELETE /universes/01981e1d-9cdf-77b6-b223-867a1011dcfa/spaces/01981e1d-9cdf-7828-b224-f46ee0a244ec HTTP/1.1
+Host: api.houseofongr.com</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="delete-piece-api_http_response">HTTP response</h4>
+<h4 id="delete-piece-api_response_body">Response body</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-Content-Length: 465
-
-{
-  "deletedSpaceIDs" : [ "019819f7-a392-7031-919d-4e9fef752c36" ],
-  "deletedPieceIDs" : [ "019819f7-a392-7076-919e-7de15266e4c4", "019819f7-a392-7093-919f-d21b31ce54c9" ],
-  "deletedSoundIDs" : [ "019819f7-a392-709f-91a0-7e2eddad2489", "019819f7-a392-70a7-91a1-3f76834a03a5" ],
-  "deletedFileIDs" : [ "019819f7-a392-70bc-91a2-0871ab087742", "019819f7-a392-70c4-91a3-e6c477f0ce17", "019819f7-a392-70c8-91a4-1ff2a88cdf2e", "019819f7-a392-70d9-91a5-09f63c3e638b" ]
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
+  "deletedSpaceIDs" : [ "01981e1d-9cdf-7aac-b225-114b954991fe" ],
+  "deletedPieceIDs" : [ "01981e1d-9cdf-7ac4-b226-6281e6eda15e", "01981e1d-9cdf-7add-b227-dc51c4e9689b" ],
+  "deletedSoundIDs" : [ "01981e1d-9cdf-7aed-b228-031c00b8579f", "01981e1d-9cdf-7af1-b229-8c49b1fff61d" ],
+  "deletedFileIDs" : [ "01981e1d-9cdf-7af9-b22a-987427021f1a", "01981e1d-9cdf-7b0a-b22b-6f0e1256fb97", "01981e1d-9cdf-7b12-b22c-ff90fd2c79c3", "01981e1d-9cdf-7b16-b22d-e4636f8c0ef4" ]
 }</code></pre>
 </div>
 </div>
@@ -3531,9 +3755,9 @@ Content-Length: 465
 <h4 id="create-sound-api_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /universes/019819f7-a294-747e-8999-b6204f53d730/pieces/019819f7-a294-74f5-899a-752b9f0c5e58/sounds HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /universes/01981e1d-9bf4-7fe3-8572-dd5f48b06d09/pieces/01981e1d-9bf5-7020-acfb-0f367d60d550/sounds HTTP/1.1
 Content-Type: multipart/form-data;charset=UTF-8; boundary=6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
-Host: api.archiveofongr.site
+Host: api.houseofongr.com
 
 --6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
 Content-Disposition: form-data; name=metadata
@@ -3613,16 +3837,12 @@ audio file
 </tbody>
 </table>
 <div class="sect4">
-<h5 id="_metadata_4_http_response">HTTP response</h5>
+<h5 id="_metadata_4_response_body">Response body</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 201 Created
-Content-Type: application/json;charset=UTF-8
-Content-Length: 309
-
-{
-  "spaceID" : "019819f7-a329-717c-912c-e350d3923eac",
-  "backgroundID" : "019819f7-a329-71ce-912d-ec033ff9863b",
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
+  "spaceID" : "01981e1d-9c79-767a-9b1a-0048c65c5248",
+  "backgroundID" : "01981e1d-9c79-769f-9b1b-559c0d994121",
   "title" : "공간",
   "description" : "스페이스는 공간입니다.",
   "startX" : 0.8,
@@ -3630,7 +3850,7 @@ Content-Length: 309
   "endX" : 0.6,
   "endY" : 0.5,
   "hidden" : false,
-  "createdTime" : 1752782316
+  "createdTime" : 1752851913
 }</code></pre>
 </div>
 </div>
@@ -3750,10 +3970,10 @@ Content-Length: 309
 <h4 id="update-sound-metadata-api_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">PATCH /universes/019819f7-a318-720c-90c9-f6b9e4df92ab/pieces/019819f7-a318-728f-90ca-b8b7863c6870/sound/019819f7-a318-729b-90cb-3988b76c417f HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">PATCH /universes/01981e1d-9c6b-7d9d-a85e-a231aa6a1a4c/pieces/01981e1d-9c6b-7e24-a85f-4acbbd912b11/sound/01981e1d-9c6b-7e31-a860-b0f50baf8a64 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Content-Length: 134
-Host: api.archiveofongr.site
+Host: api.houseofongr.com
 
 {
   "title" : "수정할 제목을 입력합니다.",
@@ -3803,18 +4023,14 @@ Host: api.archiveofongr.site
 </table>
 </div>
 <div class="sect3">
-<h4 id="update-sound-metadata-api_http_response">HTTP response</h4>
+<h4 id="update-sound-metadata-api_response_body">Response body</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-Content-Length: 162
-
-{
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
   "title" : "수정할 제목을 입력합니다.",
   "description" : "수정할 내용을 입력합니다.",
   "hidden" : false,
-  "updatedTime" : 1752782316
+  "updatedTime" : 1752851913
 }</code></pre>
 </div>
 </div>
@@ -3910,9 +4126,9 @@ Content-Length: 162
 <h4 id="overwrite-sound-auiod-api_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /universes/019819f7-a30a-7164-b64c-2b7292f1060f/pieces/019819f7-a30a-71a1-b64d-e04044e732db/sound/019819f7-a30a-71eb-b64e-408c19c3ee8a/audio HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /universes/01981e1d-9c5f-763d-99b3-08e5aa875a75/pieces/01981e1d-9c5f-766e-99b4-63bfc3c984e8/sound/01981e1d-9c5f-7676-99b5-4ad85cdaabf2/audio HTTP/1.1
 Content-Type: multipart/form-data;charset=UTF-8; boundary=6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
-Host: api.archiveofongr.site
+Host: api.houseofongr.com
 
 --6o2knFse3p53ty9dmcQvWAIx1zInP11uCfbm
 Content-Disposition: form-data; name=audio; filename=new_sound.mp3
@@ -3945,16 +4161,12 @@ sound file
 </table>
 </div>
 <div class="sect3">
-<h4 id="overwrite-sound-auiod-api_http_response">HTTP response</h4>
+<h4 id="overwrite-sound-auiod-api_response_body">Response body</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-Content-Length: 120
-
-{
-  "deletedAudioID" : "019819f7-a30a-7533-b64f-4bb8fc2b4f93",
-  "newAudioID" : "019819f7-a30a-7543-b650-5d8c32771e15"
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
+  "deletedAudioID" : "01981e1d-9c5f-79be-99b6-88ee4ae62a58",
+  "newAudioID" : "01981e1d-9c5f-79d7-99b7-8df2e20a7d10"
 }</code></pre>
 </div>
 </div>
@@ -4040,23 +4252,19 @@ Content-Length: 120
 <h4 id="delete-sound-api_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">DELETE /universes/019819f7-a2fc-7c00-8a23-dcb2b82a28c4/pieces/019819f7-a2fc-7cb4-8a24-ca57879eab55/sounds/019819f7-a2fc-7cc0-8a25-612710747e51 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">DELETE /universes/01981e1d-9c53-7083-8a36-bf292397e984/pieces/01981e1d-9c53-717c-8a37-2633ee7ac3d7/sounds/01981e1d-9c53-718d-8a38-aa0a2d454e0f HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Host: api.archiveofongr.site</code></pre>
+Host: api.houseofongr.com</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="delete-sound-api_http_response">HTTP response</h4>
+<h4 id="delete-sound-api_response_body">Response body</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-Content-Length: 124
-
-{
-  "deletedSoundID" : "019819f7-a2fc-7cc0-8a25-612710747e51",
-  "deletedAudioID" : "019819f7-a2fd-70f9-a9e5-5d36624602f1"
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
+  "deletedSoundID" : "01981e1d-9c53-718d-8a38-aa0a2d454e0f",
+  "deletedAudioID" : "01981e1d-9c53-7400-8a39-a242f17b093c"
 }</code></pre>
 </div>
 </div>
@@ -4111,7 +4319,7 @@ Content-Length: 124
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /universes/categories HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Content-Length: 58
-Host: api.archiveofongr.site
+Host: api.houseofongr.com
 
 {
   "eng" : "new category",
@@ -4154,15 +4362,11 @@ Host: api.archiveofongr.site
 </table>
 </div>
 <div class="sect3">
-<h4 id="create-category-api_http_response">HTTP response</h4>
+<h4 id="create-category-api_response_body">Response body</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 201 Created
-Content-Type: application/json;charset=UTF-8
-Content-Length: 115
-
-{
-  "categoryID" : "019819f7-a01b-7f68-adad-24369306855b",
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
+  "categoryID" : "01981e1d-99fa-7466-aceb-da181ad83225",
   "eng" : "new category",
   "kor" : "새 카테고리"
 }</code></pre>
@@ -4214,29 +4418,25 @@ Content-Length: 115
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /universes/categories HTTP/1.1
-Host: api.archiveofongr.site</code></pre>
+Host: api.houseofongr.com</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="search-category-api_http_response">HTTP response</h4>
+<h4 id="search-category-api_response_body">Response body</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-Content-Length: 356
-
-{
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
   "categories" : [ {
-    "id" : "019819f7-a12a-7347-88c3-53facc754f9b",
+    "id" : "01981e1d-9ab6-748b-acfe-06169c495221",
     "eng" : "Category1",
     "kor" : "카테고리1"
   }, {
-    "id" : "019819f7-a12a-738d-88c4-1c3430a16b26",
+    "id" : "01981e1d-9ab6-751e-acff-fd6670ff4770",
     "eng" : "Category2",
     "kor" : "카테고리2"
   }, {
-    "id" : "019819f7-a12a-739d-88c5-c9b624cecdfb",
+    "id" : "01981e1d-9ab6-7537-ad00-031a0f13eb39",
     "eng" : "Category3",
     "kor" : "카테고리3"
   } ]
@@ -4288,10 +4488,10 @@ Content-Length: 356
 <h4 id="update-category-api_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">PATCH /universes/categories/019819f7-a1a5-7eac-81cd-3ebe376b7f3d HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">PATCH /universes/categories/01981e1d-9b0d-74d9-af47-e61a047748fa HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Content-Length: 68
-Host: api.archiveofongr.site
+Host: api.houseofongr.com
 
 {
   "eng" : "altered category",
@@ -4361,15 +4561,11 @@ Host: api.archiveofongr.site
 </table>
 </div>
 <div class="sect3">
-<h4 id="update-category-api_http_response">HTTP response</h4>
+<h4 id="update-category-api_response_body">Response body</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-Content-Length: 125
-
-{
-  "categoryID" : "019819f7-a1a5-7eac-81cd-3ebe376b7f3d",
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
+  "categoryID" : "01981e1d-9b0d-74d9-af47-e61a047748fa",
   "eng" : "altered category",
   "kor" : "변경된 카테고리"
 }</code></pre>
@@ -4420,9 +4616,9 @@ Content-Length: 125
 <h4 id="delete-category-api_http_request">HTTP request</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">DELETE /universes/categories/019819f7-a0a6-746e-af89-4aa2feb880bc HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">DELETE /universes/categories/01981e1d-9a5b-7876-9993-2c7c2324916c HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Host: api.archiveofongr.site</code></pre>
+Host: api.houseofongr.com</code></pre>
 </div>
 </div>
 </div>
@@ -4452,15 +4648,11 @@ Host: api.archiveofongr.site</code></pre>
 </table>
 </div>
 <div class="sect3">
-<h4 id="delete-category-api_http_response">HTTP response</h4>
+<h4 id="delete-category-api_response_body">Response body</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json;charset=UTF-8
-Content-Length: 125
-
-{
-  "categoryID" : "019819f7-a0a6-746e-af89-4aa2feb880bc",
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
+  "categoryID" : "01981e1d-9a5b-7876-9993-2c7c2324916c",
   "eng" : "deleted category",
   "kor" : "삭제된 카테고리"
 }</code></pre>
@@ -4518,7 +4710,7 @@ Content-Length: 125
 </blockquote>
 </div>
 <div class="sect2">
-<h3 id="domain-error-code-table">도메인 에러코드</h3>
+<h3 id="domain-error-code-table">도메인 계층 에러코드</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -4562,7 +4754,7 @@ Content-Length: 125
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="application-error-code-table">어플리케이션 에러코드</h4>
+<h4 id="application-error-code-table">어플리케이션 계층 에러코드</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -4589,7 +4781,7 @@ Content-Length: 125
 </table>
 </div>
 <div class="sect3">
-<h4 id="persistence-error-code-table">영속성 에러코드</h4>
+<h4 id="adapter-error-code-table">어댑터 계층 에러코드</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -4607,115 +4799,100 @@ Content-Length: 125
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PERSISTENCE-1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">다각형 객체 직렬화에 실패했습니다.</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">400</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Bad Request</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PERSISTENCE-2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">다각형 객체 역직렬화에 실패했습니다.</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">400</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Bad Request</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PERSISTENCE-300</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">해당 유니버스를 찾을 수 없습니다.</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">404</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Not Found</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PERSISTENCE-301</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">해당 카테고리를 찾을 수 없습니다.</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">404</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Not Found</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PERSISTENCE-302</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">해당 스페이스를 찾을 수 없습니다.</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">404</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Not Found</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PERSISTENCE-303</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">해당 피스를 찾을 수 없습니다.</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">404</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Not Found</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PERSISTENCE-304</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">해당 사운드를 찾을 수 없습니다.</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">404</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Not Found</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PERSISTENCE-305</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">해당 사용자를 찾을 수 없습니다.</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">404</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Not Found</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PERSISTENCE-500</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">객체를 불러오던 중 내부의 다른 요소와 충돌했습니다.</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">500</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Internal Server Error</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PERSISTENCE-501</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">객체를 불러오던 중 자식 요소의 최대치를 초과했습니다. * 최대 자식 요소 : [100]개</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">500</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Internal Server Error</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PERSISTENCE-502</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">객체를 불러오던 중 스페이스 개수 최대치를 초과했습니다. * 최대 내부 스페이스 : [10]개</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">500</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Internal Server Error</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PERSISTENCE-503</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">객체를 불러오던 중 사운드 개수 최대치를 초과했습니다. * 최대 내부 사운드 : [100]개</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">500</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Internal Server Error</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PERSISTENCE-504</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">도메인 객체의 ID를 통해 엔티티를 불러오는데 실패했습니다.</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">500</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">Internal Server Error</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="presentation-error-code-table">프레젠테이션 에러코드</h4>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-center valign-top">Code</th>
-<th class="tableblock halign-left valign-top">설명(메시지)</th>
-<th class="tableblock halign-center valign-top">HTTP 상태 코드</th>
-<th class="tableblock halign-center valign-top">코드 원인</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PRESENTATION-1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-WEB-1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">메타데이터를 파싱할 수 없습니다.</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">400</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Bad Request</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PRESENTATION-2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-WEB-2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">업로드 파일을 읽어오는데 실패했습니다.</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">400</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">Bad Request</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PRESENTATION-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">다각형 객체 직렬화에 실패했습니다.</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">400</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Bad Request</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PRESENTATION-2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">다각형 객체 역직렬화에 실패했습니다.</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">400</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Bad Request</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PRESENTATION-300</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">해당 유니버스를 찾을 수 없습니다.</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Not Found</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PRESENTATION-301</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">해당 카테고리를 찾을 수 없습니다.</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Not Found</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PRESENTATION-302</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">해당 스페이스를 찾을 수 없습니다.</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Not Found</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PRESENTATION-303</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">해당 피스를 찾을 수 없습니다.</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Not Found</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PRESENTATION-304</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">해당 사운드를 찾을 수 없습니다.</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Not Found</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PRESENTATION-305</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">해당 사용자를 찾을 수 없습니다.</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Not Found</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PRESENTATION-500</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">객체를 불러오던 중 내부의 다른 요소와 충돌했습니다.</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">500</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Internal Server Error</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PRESENTATION-501</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">객체를 불러오던 중 자식 요소의 최대치를 초과했습니다. * 최대 자식 요소 : [100]개</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">500</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Internal Server Error</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PRESENTATION-502</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">객체를 불러오던 중 스페이스 개수 최대치를 초과했습니다. * 최대 내부 스페이스 : [10]개</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">500</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Internal Server Error</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PRESENTATION-503</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">객체를 불러오던 중 사운드 개수 최대치를 초과했습니다. * 최대 내부 사운드 : [100]개</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">500</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Internal Server Error</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-PRESENTATION-504</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">도메인 객체의 ID를 통해 엔티티를 불러오는데 실패했습니다.</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">500</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Internal Server Error</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">UNIVERSE-INTERNAL-MESSAGE-505</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">메시지를 매핑하는데 실패했습니다.</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">500</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Internal Server Error</p></td>
 </tr>
 </tbody>
 </table>
@@ -4726,7 +4903,7 @@ Content-Length: 125
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-07-17 15:09:46 -0500
+Last updated 2025-07-18 10:58:29 -0500
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
