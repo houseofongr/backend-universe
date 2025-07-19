@@ -1,8 +1,8 @@
 package com.hoo.universe.application.sound;
 
 import com.hoo.common.internal.message.DeleteFileEventPublisher;
-import com.hoo.universe.api.dto.result.sound.DeleteSoundResult;
-import com.hoo.universe.api.in.sound.DeleteSoundUseCase;
+import com.hoo.universe.api.in.web.dto.result.DeleteSoundResult;
+import com.hoo.universe.api.in.web.usecase.DeleteSoundUseCase;
 import com.hoo.universe.api.out.persistence.HandleSoundEventPort;
 import com.hoo.universe.api.out.persistence.LoadUniversePort;
 import com.hoo.universe.domain.Piece;

@@ -3,12 +3,11 @@ package com.hoo.universe.application.piece;
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.common.web.dto.PageQueryResult;
 import com.hoo.common.web.dto.PageRequest;
-import com.hoo.universe.api.dto.query.OpenPieceQueryResult;
-import com.hoo.universe.api.dto.result.piece.OpenPieceResult;
+import com.hoo.universe.api.in.web.dto.query.OpenPieceQueryResult;
+import com.hoo.universe.api.in.web.dto.result.OpenPieceResult;
 import com.hoo.universe.api.out.persistence.QueryUniversePort;
 import com.hoo.universe.application.FileUrlResolver;
 import com.hoo.universe.domain.Piece;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

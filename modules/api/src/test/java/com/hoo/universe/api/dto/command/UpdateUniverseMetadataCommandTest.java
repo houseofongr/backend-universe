@@ -1,6 +1,7 @@
 package com.hoo.universe.api.dto.command;
 
 import com.hoo.common.enums.AccessLevel;
+import com.hoo.universe.api.in.web.dto.command.UpdateUniverseMetadataCommand;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

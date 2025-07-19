@@ -1,7 +1,7 @@
 package com.hoo.universe.api.dto.command;
 
 import com.hoo.common.internal.api.dto.FileCommand;
-import com.hoo.universe.test.dto.FileTestData;
+import com.hoo.universe.api.in.web.dto.command.CreateUniverseCommand;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

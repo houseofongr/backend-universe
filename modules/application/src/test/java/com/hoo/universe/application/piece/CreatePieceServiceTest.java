@@ -2,7 +2,7 @@ package com.hoo.universe.application.piece;
 
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.common.IssueIDPort;
-import com.hoo.universe.api.dto.command.piece.CreatePieceWithTwoPointCommand;
+import com.hoo.universe.api.in.web.dto.command.CreatePieceWithTwoPointCommand;
 import com.hoo.universe.api.out.persistence.HandlePieceEventPort;
 import com.hoo.universe.api.out.persistence.LoadUniversePort;
 import com.hoo.universe.application.exception.DomainErrorCode;

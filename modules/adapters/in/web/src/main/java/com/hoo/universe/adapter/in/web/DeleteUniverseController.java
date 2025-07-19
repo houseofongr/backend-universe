@@ -1,7 +1,7 @@
 package com.hoo.universe.adapter.in.web;
 
-import com.hoo.universe.api.dto.result.DeleteUniverseResult;
-import com.hoo.universe.api.in.DeleteUniverseUseCase;
+import com.hoo.universe.api.in.web.dto.result.DeleteUniverseResult;
+import com.hoo.universe.api.in.web.usecase.DeleteUniverseUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

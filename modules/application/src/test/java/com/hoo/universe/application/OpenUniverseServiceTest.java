@@ -1,7 +1,7 @@
 package com.hoo.universe.application;
 
 import com.github.f4b6a3.uuid.UuidCreator;
-import com.hoo.universe.api.dto.result.OpenUniverseResult;
+import com.hoo.universe.api.in.web.dto.result.OpenUniverseResult;
 import com.hoo.universe.api.out.persistence.LoadUniversePort;
 import com.hoo.universe.domain.Piece;
 import com.hoo.universe.domain.Space;
@@ -9,7 +9,6 @@ import com.hoo.universe.domain.Universe;
 import com.hoo.universe.domain.vo.CommonMetadata;
 import com.hoo.universe.domain.vo.Outline;
 import com.hoo.universe.domain.vo.PieceMetadata;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

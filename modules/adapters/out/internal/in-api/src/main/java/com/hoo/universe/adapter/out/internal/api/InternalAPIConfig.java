@@ -1,7 +1,8 @@
 package com.hoo.universe.adapter.out.internal.api;
 
+import com.hoo.universe.adapter.out.internal.api.file.GetFileInfoWebClientAdapter;
 import com.hoo.universe.adapter.out.internal.api.file.UploadFileWebClientAdapter;
-import com.hoo.universe.adapter.out.internal.api.user.FindOwnerWebClientAdapter;
+import com.hoo.universe.adapter.out.internal.api.user.GetOwnerWebClientAdapter;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +13,16 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class InternalAPIConfig {
 
     @Bean
-    public UploadFileWebClientAdapter fileUploadAPIAdapter(
+    public GetFileInfoWebClientAdapter getFileInfoAPIAdapter(
+            WebClient fileAPIWebClient,
+            InternalAPIConfigProperties internalAPIConfigProperties
+    ) {
+
+        return new GetFileInfoWebClientAdapter(fileAPIWebClient, internalAPIConfigProperties);
+    }
+
+    @Bean
+    public UploadFileWebClientAdapter uploadFileAPIAdapter(
             WebClient fileAPIWebClient,
             InternalAPIConfigProperties internalAPIConfigProperties
     ) {
@@ -21,11 +31,11 @@ public class InternalAPIConfig {
     }
 
     @Bean
-    public FindOwnerWebClientAdapter findUserAPIAdapter(
+    public GetOwnerWebClientAdapter getOwnerAPIAdapter(
             WebClient userAPIWebClient,
             InternalAPIConfigProperties internalAPIConfigProperties) {
 
-        return new FindOwnerWebClientAdapter(userAPIWebClient, internalAPIConfigProperties);
+        return new GetOwnerWebClientAdapter(userAPIWebClient, internalAPIConfigProperties);
     }
 
     @Bean

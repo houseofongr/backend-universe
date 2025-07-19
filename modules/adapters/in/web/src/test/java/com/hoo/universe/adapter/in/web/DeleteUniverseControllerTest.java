@@ -1,8 +1,8 @@
 package com.hoo.universe.adapter.in.web;
 
 import com.github.f4b6a3.uuid.UuidCreator;
-import com.hoo.universe.api.dto.result.DeleteUniverseResult;
-import com.hoo.universe.api.in.DeleteUniverseUseCase;
+import com.hoo.universe.api.in.web.dto.result.DeleteUniverseResult;
+import com.hoo.universe.api.in.web.usecase.DeleteUniverseUseCase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

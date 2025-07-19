@@ -1,8 +1,8 @@
 package com.hoo.universe.adapter.in.web.category;
 
-import com.hoo.universe.api.dto.command.category.CreateCategoryCommand;
-import com.hoo.universe.api.dto.result.category.CreateCategoryResult;
-import com.hoo.universe.api.in.category.CreateCategoryUseCase;
+import com.hoo.universe.api.in.web.dto.command.CreateCategoryCommand;
+import com.hoo.universe.api.in.web.dto.result.CreateCategoryResult;
+import com.hoo.universe.api.in.web.usecase.CreateCategoryUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

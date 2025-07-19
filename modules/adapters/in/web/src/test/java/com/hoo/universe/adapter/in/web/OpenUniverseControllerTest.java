@@ -1,9 +1,8 @@
 package com.hoo.universe.adapter.in.web;
 
 import com.github.f4b6a3.uuid.UuidCreator;
-import com.hoo.common.enums.AccessLevel;
-import com.hoo.universe.api.dto.result.OpenUniverseResult;
-import com.hoo.universe.api.in.OpenUniverseUseCase;
+import com.hoo.universe.api.in.web.dto.result.OpenUniverseResult;
+import com.hoo.universe.api.in.web.usecase.OpenUniverseUseCase;
 import com.hoo.universe.domain.vo.Category;
 import com.hoo.universe.domain.vo.Point;
 import org.junit.jupiter.api.DisplayName;
@@ -11,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.URI;
-import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
 

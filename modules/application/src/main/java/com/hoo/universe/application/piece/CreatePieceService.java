@@ -1,9 +1,9 @@
 package com.hoo.universe.application.piece;
 
 import com.hoo.common.IssueIDPort;
-import com.hoo.universe.api.dto.command.piece.CreatePieceWithTwoPointCommand;
-import com.hoo.universe.api.dto.result.piece.CreatePieceResult;
-import com.hoo.universe.api.in.piece.CreatePieceUseCase;
+import com.hoo.universe.api.in.web.dto.command.CreatePieceWithTwoPointCommand;
+import com.hoo.universe.api.in.web.dto.result.CreatePieceResult;
+import com.hoo.universe.api.in.web.usecase.CreatePieceUseCase;
 import com.hoo.universe.api.out.persistence.HandlePieceEventPort;
 import com.hoo.universe.api.out.persistence.LoadUniversePort;
 import com.hoo.universe.application.exception.DomainErrorCode;

@@ -2,9 +2,9 @@ package com.hoo.universe.application.category;
 
 
 import com.hoo.common.IssueIDPort;
-import com.hoo.universe.api.dto.command.category.CreateCategoryCommand;
-import com.hoo.universe.api.dto.result.category.CreateCategoryResult;
-import com.hoo.universe.api.in.category.CreateCategoryUseCase;
+import com.hoo.universe.api.in.web.dto.command.CreateCategoryCommand;
+import com.hoo.universe.api.in.web.dto.result.CreateCategoryResult;
+import com.hoo.universe.api.in.web.usecase.CreateCategoryUseCase;
 import com.hoo.universe.api.out.persistence.CommandCategoryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

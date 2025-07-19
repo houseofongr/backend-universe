@@ -1,8 +1,8 @@
 package com.hoo.universe.application.piece;
 
-import com.hoo.universe.api.dto.command.piece.MovePieceWithTwoPointCommand;
-import com.hoo.universe.api.dto.result.piece.MovePieceWithTwoPointResult;
-import com.hoo.universe.api.in.piece.MovePieceUseCase;
+import com.hoo.universe.api.in.web.dto.command.MovePieceWithTwoPointCommand;
+import com.hoo.universe.api.in.web.dto.result.MovePieceWithTwoPointResult;
+import com.hoo.universe.api.in.web.usecase.MovePieceUseCase;
 import com.hoo.universe.api.out.persistence.HandlePieceEventPort;
 import com.hoo.universe.api.out.persistence.LoadUniversePort;
 import com.hoo.universe.application.exception.DomainErrorCode;

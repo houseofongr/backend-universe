@@ -1,5 +1,6 @@
 package com.hoo.universe.api.dto.command.category;
 
+import com.hoo.universe.api.in.web.dto.command.UpdateCategoryCommand;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

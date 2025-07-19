@@ -1,7 +1,7 @@
 package com.hoo.universe.application.piece;
 
 import com.github.f4b6a3.uuid.UuidCreator;
-import com.hoo.universe.api.dto.command.piece.UpdatePieceMetadataCommand;
+import com.hoo.universe.api.in.web.dto.command.UpdatePieceMetadataCommand;
 import com.hoo.universe.api.out.persistence.HandlePieceEventPort;
 import com.hoo.universe.api.out.persistence.LoadUniversePort;
 import com.hoo.universe.domain.Universe;

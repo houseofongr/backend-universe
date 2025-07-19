@@ -4,13 +4,13 @@ import com.hoo.common.IssueIDPort;
 import com.hoo.common.enums.AccessLevel;
 import com.hoo.common.internal.api.dto.UploadFileCommand;
 import com.hoo.common.internal.api.dto.UploadFileResult;
-import com.hoo.universe.api.dto.command.CreateUniverseCommand;
-import com.hoo.universe.api.dto.result.CreateUniverseResult;
-import com.hoo.universe.api.in.CreateUniverseUseCase;
+import com.hoo.universe.api.in.web.dto.command.CreateUniverseCommand;
+import com.hoo.universe.api.in.web.dto.result.CreateUniverseResult;
+import com.hoo.universe.api.in.web.usecase.CreateUniverseUseCase;
 import com.hoo.common.internal.api.UploadFileAPI;
 import com.hoo.universe.api.out.persistence.HandleUniverseEventPort;
 import com.hoo.universe.api.out.persistence.QueryCategoryPort;
-import com.hoo.universe.api.out.internal.FindOwnerAPI;
+import com.hoo.universe.api.out.internal.GetOwnerAPI;
 import com.hoo.universe.application.exception.UniverseApplicationException;
 import com.hoo.universe.application.exception.ApplicationErrorCode;
 import com.hoo.universe.domain.Universe;
@@ -27,7 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class CreateUniverseService implements CreateUniverseUseCase {
 
     private final IssueIDPort issueIDPort;
-    private final FindOwnerAPI findOwnerAPI;
+    private final GetOwnerAPI getOwnerAPI;
     private final QueryCategoryPort queryCategoryPort;
     private final HandleUniverseEventPort handleUniverseEventPort;
     private final UploadFileAPI uploadFileAPI;
@@ -37,7 +37,7 @@ public class CreateUniverseService implements CreateUniverseUseCase {
 
         validate(command);
 
-        Owner owner = findOwnerAPI.findOwner(command.metadata().ownerID());
+        Owner owner = getOwnerAPI.getOwner(command.metadata().ownerID());
         Category category = queryCategoryPort.findUniverseCategory(command.metadata().categoryID());
         AccessLevel accessLevel = AccessLevel.valueOf(command.metadata().accessLevel());
 

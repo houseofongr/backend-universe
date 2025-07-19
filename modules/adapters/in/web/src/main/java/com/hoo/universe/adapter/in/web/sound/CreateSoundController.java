@@ -1,9 +1,9 @@
 package com.hoo.universe.adapter.in.web.sound;
 
 import com.hoo.universe.adapter.in.web.RequestMapper;
-import com.hoo.universe.api.dto.command.sound.CreateSoundCommand;
-import com.hoo.universe.api.dto.result.sound.CreateSoundResult;
-import com.hoo.universe.api.in.sound.CreateSoundUseCase;
+import com.hoo.universe.api.in.web.dto.command.CreateSoundCommand;
+import com.hoo.universe.api.in.web.dto.result.CreateSoundResult;
+import com.hoo.universe.api.in.web.usecase.CreateSoundUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

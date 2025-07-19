@@ -1,16 +1,14 @@
 package com.hoo.universe.adapter.in.web;
 
-import com.hoo.universe.api.in.*;
-import com.hoo.universe.api.in.category.CreateCategoryUseCase;
-import com.hoo.universe.api.in.category.DeleteCategoryUseCase;
-import com.hoo.universe.api.in.category.SearchCategoryUseCase;
-import com.hoo.universe.api.in.category.UpdateCategoryUseCase;
-import com.hoo.universe.api.in.piece.*;
-import com.hoo.universe.api.in.sound.CreateSoundUseCase;
-import com.hoo.universe.api.in.sound.DeleteSoundUseCase;
-import com.hoo.universe.api.in.sound.OverwriteSoundFileUseCase;
-import com.hoo.universe.api.in.sound.UpdateSoundMetadataUseCase;
-import com.hoo.universe.api.in.space.*;
+import com.hoo.universe.api.in.web.usecase.*;
+import com.hoo.universe.api.in.web.usecase.CreateCategoryUseCase;
+import com.hoo.universe.api.in.web.usecase.DeleteCategoryUseCase;
+import com.hoo.universe.api.in.web.usecase.SearchCategoryUseCase;
+import com.hoo.universe.api.in.web.usecase.UpdateCategoryUseCase;
+import com.hoo.universe.api.in.web.usecase.CreateSoundUseCase;
+import com.hoo.universe.api.in.web.usecase.DeleteSoundUseCase;
+import com.hoo.universe.api.in.web.usecase.OverwriteSoundFileUseCase;
+import com.hoo.universe.api.in.web.usecase.UpdateSoundMetadataUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

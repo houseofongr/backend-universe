@@ -3,7 +3,7 @@ package com.hoo.universe.application.sound;
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.common.IssueIDPort;
 import com.hoo.common.internal.api.UploadFileAPI;
-import com.hoo.universe.api.dto.command.sound.CreateSoundCommand;
+import com.hoo.universe.api.in.web.dto.command.CreateSoundCommand;
 import com.hoo.universe.api.out.persistence.HandleSoundEventPort;
 import com.hoo.universe.api.out.persistence.LoadUniversePort;
 import com.hoo.universe.domain.Universe;

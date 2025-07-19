@@ -2,11 +2,9 @@ package com.hoo.universe.api.out.persistence;
 
 import com.hoo.common.web.dto.PageQueryResult;
 import com.hoo.common.web.dto.PageRequest;
-import com.hoo.universe.api.dto.command.SearchUniverseCommand;
-import com.hoo.universe.api.dto.query.OpenPieceQueryResult;
-import com.hoo.universe.api.dto.query.UniverseListQueryInfo;
-import com.hoo.universe.api.dto.result.UniverseListInfo;
-import com.hoo.universe.api.dto.result.piece.OpenPieceResult;
+import com.hoo.universe.api.in.web.dto.command.SearchUniverseCommand;
+import com.hoo.universe.api.in.web.dto.query.OpenPieceQueryResult;
+import com.hoo.universe.api.in.web.dto.query.UniverseListQueryInfo;
 
 import java.util.UUID;
 

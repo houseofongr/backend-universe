@@ -34,9 +34,7 @@ public class Universe {
     private final List<Piece> pieces;
 
     public static UniverseCreateEvent create(UniverseID universeID, Category category, Owner owner, UniverseMetadata universeMetadata, CommonMetadata commonMetadata) {
-        return new UniverseCreateEvent(
-                new Universe(universeID, category, owner, universeMetadata, commonMetadata, new ArrayList<>(), new ArrayList<>())
-        );
+        return new UniverseCreateEvent(new Universe(universeID, category, owner, universeMetadata, commonMetadata, new ArrayList<>(), new ArrayList<>()));
     }
 
     public SpaceCreateEvent createSpaceInside(SpaceID spaceID, SpaceID parentSpaceID, SpaceMetadata spaceMetadata, CommonMetadata commonMetadata, Outline outline) {

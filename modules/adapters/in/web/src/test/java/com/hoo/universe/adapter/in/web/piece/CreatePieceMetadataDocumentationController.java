@@ -1,8 +1,7 @@
 package com.hoo.universe.adapter.in.web.piece;
 
 import com.github.f4b6a3.uuid.UuidCreator;
-import com.hoo.universe.api.dto.command.piece.CreatePieceWithTwoPointCommand;
-import com.hoo.universe.api.dto.command.space.CreateSpaceWithTwoPointCommand;
+import com.hoo.universe.api.in.web.dto.command.CreatePieceWithTwoPointCommand;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,7 +1,7 @@
 package com.hoo.universe.adapter.in.web.sound;
 
-import com.hoo.universe.api.dto.result.sound.DeleteSoundResult;
-import com.hoo.universe.api.in.sound.DeleteSoundUseCase;
+import com.hoo.universe.api.in.web.dto.result.DeleteSoundResult;
+import com.hoo.universe.api.in.web.usecase.DeleteSoundUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

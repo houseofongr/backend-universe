@@ -1,8 +1,8 @@
 package com.hoo.universe.adapter.in.web.space;
 
-import com.hoo.universe.api.dto.command.space.MoveSpaceWithTwoPointCommand;
-import com.hoo.universe.api.dto.result.space.MoveSpaceWithTwoPointResult;
-import com.hoo.universe.api.in.space.MoveSpaceUseCase;
+import com.hoo.universe.api.in.web.dto.command.MoveSpaceWithTwoPointCommand;
+import com.hoo.universe.api.in.web.dto.result.MoveSpaceWithTwoPointResult;
+import com.hoo.universe.api.in.web.usecase.MoveSpaceUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PatchMapping;

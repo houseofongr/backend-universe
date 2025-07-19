@@ -1,9 +1,9 @@
 package com.hoo.universe.adapter.in.web.piece;
 
 import com.hoo.universe.adapter.in.web.RequestMapper;
-import com.hoo.universe.api.dto.command.piece.CreatePieceWithTwoPointCommand;
-import com.hoo.universe.api.dto.result.piece.CreatePieceResult;
-import com.hoo.universe.api.in.piece.CreatePieceUseCase;
+import com.hoo.universe.api.in.web.dto.command.CreatePieceWithTwoPointCommand;
+import com.hoo.universe.api.in.web.dto.result.CreatePieceResult;
+import com.hoo.universe.api.in.web.usecase.CreatePieceUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

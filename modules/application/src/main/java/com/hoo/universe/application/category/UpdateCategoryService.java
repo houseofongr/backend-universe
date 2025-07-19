@@ -1,8 +1,8 @@
 package com.hoo.universe.application.category;
 
-import com.hoo.universe.api.dto.command.category.UpdateCategoryCommand;
-import com.hoo.universe.api.dto.result.category.UpdateCategoryResult;
-import com.hoo.universe.api.in.category.UpdateCategoryUseCase;
+import com.hoo.universe.api.in.web.dto.command.UpdateCategoryCommand;
+import com.hoo.universe.api.in.web.dto.result.UpdateCategoryResult;
+import com.hoo.universe.api.in.web.usecase.UpdateCategoryUseCase;
 import com.hoo.universe.api.out.persistence.CommandCategoryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

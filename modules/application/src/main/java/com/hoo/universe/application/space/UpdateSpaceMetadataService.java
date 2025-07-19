@@ -1,8 +1,8 @@
 package com.hoo.universe.application.space;
 
-import com.hoo.universe.api.dto.command.space.UpdateSpaceMetadataCommand;
-import com.hoo.universe.api.dto.result.space.UpdateSpaceMetadataResult;
-import com.hoo.universe.api.in.space.UpdateSpaceMetadataUseCase;
+import com.hoo.universe.api.in.web.dto.command.UpdateSpaceMetadataCommand;
+import com.hoo.universe.api.in.web.dto.result.UpdateSpaceMetadataResult;
+import com.hoo.universe.api.in.web.usecase.UpdateSpaceMetadataUseCase;
 import com.hoo.universe.api.out.persistence.HandleSpaceEventPort;
 import com.hoo.universe.api.out.persistence.LoadUniversePort;
 import com.hoo.universe.domain.Space.SpaceID;

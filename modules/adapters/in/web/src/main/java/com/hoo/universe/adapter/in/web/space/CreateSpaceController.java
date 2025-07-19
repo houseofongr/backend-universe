@@ -1,9 +1,9 @@
 package com.hoo.universe.adapter.in.web.space;
 
 import com.hoo.universe.adapter.in.web.RequestMapper;
-import com.hoo.universe.api.dto.command.space.CreateSpaceWithTwoPointCommand;
-import com.hoo.universe.api.dto.result.space.CreateSpaceResult;
-import com.hoo.universe.api.in.space.CreateSpaceUseCase;
+import com.hoo.universe.api.in.web.dto.command.CreateSpaceWithTwoPointCommand;
+import com.hoo.universe.api.in.web.dto.result.CreateSpaceResult;
+import com.hoo.universe.api.in.web.usecase.CreateSpaceUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

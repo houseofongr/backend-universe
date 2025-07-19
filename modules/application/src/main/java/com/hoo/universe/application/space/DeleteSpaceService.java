@@ -1,8 +1,8 @@
 package com.hoo.universe.application.space;
 
 import com.hoo.common.internal.message.DeleteFileEventPublisher;
-import com.hoo.universe.api.dto.result.space.DeleteSpaceResult;
-import com.hoo.universe.api.in.space.DeleteSpaceUseCase;
+import com.hoo.universe.api.in.web.dto.result.DeleteSpaceResult;
+import com.hoo.universe.api.in.web.usecase.DeleteSpaceUseCase;
 import com.hoo.universe.api.out.persistence.HandleSpaceEventPort;
 import com.hoo.universe.api.out.persistence.LoadUniversePort;
 import com.hoo.universe.domain.Piece.PieceID;

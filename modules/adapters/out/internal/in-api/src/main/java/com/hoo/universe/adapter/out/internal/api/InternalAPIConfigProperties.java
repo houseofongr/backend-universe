@@ -20,6 +20,8 @@ public class InternalAPIConfigProperties {
     public static class File {
         private String baseUrl;
         private String uploadFileUrl;
+        private String getFileInfoUrl;
+        private String getFileInfoListUrl;
     }
 
 }

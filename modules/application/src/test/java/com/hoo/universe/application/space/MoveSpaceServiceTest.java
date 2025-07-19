@@ -1,10 +1,9 @@
 package com.hoo.universe.application.space;
 
 import com.github.f4b6a3.uuid.UuidCreator;
-import com.hoo.universe.api.dto.command.space.MoveSpaceWithTwoPointCommand;
+import com.hoo.universe.api.in.web.dto.command.MoveSpaceWithTwoPointCommand;
 import com.hoo.universe.api.out.persistence.HandleSpaceEventPort;
 import com.hoo.universe.api.out.persistence.LoadUniversePort;
-import com.hoo.universe.application.exception.ApplicationErrorCode;
 import com.hoo.universe.application.exception.DomainErrorCode;
 import com.hoo.universe.domain.Universe;
 import org.junit.jupiter.api.DisplayName;

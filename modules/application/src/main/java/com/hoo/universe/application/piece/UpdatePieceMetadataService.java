@@ -1,8 +1,8 @@
 package com.hoo.universe.application.piece;
 
-import com.hoo.universe.api.dto.command.piece.UpdatePieceMetadataCommand;
-import com.hoo.universe.api.dto.result.piece.UpdatePieceMetadataResult;
-import com.hoo.universe.api.in.piece.UpdatePieceMetadataUseCase;
+import com.hoo.universe.api.in.web.dto.command.UpdatePieceMetadataCommand;
+import com.hoo.universe.api.in.web.dto.result.UpdatePieceMetadataResult;
+import com.hoo.universe.api.in.web.usecase.UpdatePieceMetadataUseCase;
 import com.hoo.universe.api.out.persistence.HandlePieceEventPort;
 import com.hoo.universe.api.out.persistence.LoadUniversePort;
 import com.hoo.universe.domain.Piece;

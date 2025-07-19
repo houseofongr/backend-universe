@@ -2,8 +2,8 @@ package com.hoo.universe.adapter.in.web.space;
 
 import com.hoo.common.internal.api.dto.FileCommand;
 import com.hoo.universe.adapter.in.web.RequestMapper;
-import com.hoo.universe.api.dto.result.space.OverwriteSpaceFileResult;
-import com.hoo.universe.api.in.space.OverwriteSpaceFileUseCase;
+import com.hoo.universe.api.in.web.dto.result.OverwriteSpaceFileResult;
+import com.hoo.universe.api.in.web.usecase.OverwriteSpaceFileUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;

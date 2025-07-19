@@ -2,10 +2,10 @@ package com.hoo.universe.application;
 
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.common.enums.AccessLevel;
-import com.hoo.universe.api.dto.command.UpdateUniverseMetadataCommand;
+import com.hoo.universe.api.in.web.dto.command.UpdateUniverseMetadataCommand;
 import com.hoo.universe.api.out.persistence.LoadUniversePort;
 import com.hoo.universe.api.out.persistence.HandleUniverseEventPort;
-import com.hoo.universe.api.out.internal.FindOwnerAPI;
+import com.hoo.universe.api.out.internal.GetOwnerAPI;
 import com.hoo.universe.api.out.persistence.QueryCategoryPort;
 import com.hoo.universe.domain.Universe;
 import com.hoo.universe.domain.vo.Owner;
@@ -22,11 +22,11 @@ import static org.mockito.Mockito.*;
 class UpdateUniverseMetadataServiceTest {
 
     LoadUniversePort loadUniversePort = mock();
-    FindOwnerAPI findOwnerAPI = mock();
+    GetOwnerAPI getOwnerAPI = mock();
     QueryCategoryPort queryCategoryPort = mock();
     HandleUniverseEventPort handleUniverseEventPort = mock();
 
-    UpdateUniverseMetadataService sut = new UpdateUniverseMetadataService(loadUniversePort, findOwnerAPI, queryCategoryPort, handleUniverseEventPort);
+    UpdateUniverseMetadataService sut = new UpdateUniverseMetadataService(loadUniversePort, getOwnerAPI, queryCategoryPort, handleUniverseEventPort);
 
     @Test
     @DisplayName("정보 수정 서비스")
@@ -41,7 +41,7 @@ class UpdateUniverseMetadataServiceTest {
 
         // when
         when(loadUniversePort.loadUniverseOnly(universeID)).thenReturn(universe);
-        when(findOwnerAPI.findOwner(command.ownerID())).thenReturn(newOwner);
+        when(getOwnerAPI.getOwner(command.ownerID())).thenReturn(newOwner);
         sut.updateUniverseMetadata(universeID, command);
 
         // then

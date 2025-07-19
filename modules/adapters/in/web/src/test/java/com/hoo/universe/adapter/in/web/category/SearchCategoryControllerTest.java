@@ -2,8 +2,8 @@ package com.hoo.universe.adapter.in.web.category;
 
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.universe.adapter.in.web.DocumentationTest;
-import com.hoo.universe.api.dto.result.category.SearchCategoryResult;
-import com.hoo.universe.api.in.category.SearchCategoryUseCase;
+import com.hoo.universe.api.in.web.dto.result.SearchCategoryResult;
+import com.hoo.universe.api.in.web.usecase.SearchCategoryUseCase;
 import com.hoo.universe.domain.vo.Category;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,9 +1,8 @@
 package com.hoo.universe.adapter.in.web.piece;
 
-import com.hoo.universe.api.dto.command.piece.UpdatePieceMetadataCommand;
-import com.hoo.universe.api.dto.command.sound.UpdateSoundMetadataCommand;
-import com.hoo.universe.api.dto.result.piece.UpdatePieceMetadataResult;
-import com.hoo.universe.api.in.piece.UpdatePieceMetadataUseCase;
+import com.hoo.universe.api.in.web.dto.command.UpdatePieceMetadataCommand;
+import com.hoo.universe.api.in.web.dto.result.UpdatePieceMetadataResult;
+import com.hoo.universe.api.in.web.usecase.UpdatePieceMetadataUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PatchMapping;

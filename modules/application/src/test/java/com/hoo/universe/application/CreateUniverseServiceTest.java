@@ -3,19 +3,17 @@ package com.hoo.universe.application;
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.common.IssueIDPort;
 import com.hoo.common.internal.api.dto.FileCommand;
-import com.hoo.common.internal.api.dto.UploadFileCommand;
-import com.hoo.universe.api.dto.command.CreateUniverseCommand;
+import com.hoo.universe.api.in.web.dto.command.CreateUniverseCommand;
 import com.hoo.common.internal.api.UploadFileAPI;
 import com.hoo.universe.api.out.persistence.HandleUniverseEventPort;
 import com.hoo.universe.api.out.persistence.QueryCategoryPort;
-import com.hoo.universe.api.out.internal.FindOwnerAPI;
+import com.hoo.universe.api.out.internal.GetOwnerAPI;
 import com.hoo.universe.application.exception.ApplicationErrorCode;
 import com.hoo.universe.domain.vo.Owner;
 import com.hoo.universe.domain.vo.Category;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.InputStream;
 import java.util.*;
 
 import static com.hoo.universe.test.dto.FileTestData.*;
@@ -25,12 +23,12 @@ import static org.mockito.Mockito.*;
 class CreateUniverseServiceTest {
 
     IssueIDPort issueIDPort = mock();
-    FindOwnerAPI findOwnerAPI = mock();
+    GetOwnerAPI getOwnerAPI = mock();
     QueryCategoryPort queryCategoryPort = mock();
     HandleUniverseEventPort handleUniverseEventPort = mock();
     UploadFileAPI uploadFileAPI = mock();
 
-    CreateUniverseService sut = new CreateUniverseService(issueIDPort, findOwnerAPI, queryCategoryPort, handleUniverseEventPort, uploadFileAPI);
+    CreateUniverseService sut = new CreateUniverseService(issueIDPort, getOwnerAPI, queryCategoryPort, handleUniverseEventPort, uploadFileAPI);
 
     @Test
     @DisplayName("썸네일, 썸뮤직, 내부이미지 용량 초과")
@@ -61,7 +59,7 @@ class CreateUniverseServiceTest {
         Owner newOwner = new Owner(UuidCreator.getTimeOrderedEpoch(),"leaffael");
 
         // when
-        when(findOwnerAPI.findOwner(command.metadata().ownerID())).thenReturn(newOwner);
+        when(getOwnerAPI.getOwner(command.metadata().ownerID())).thenReturn(newOwner);
         when(queryCategoryPort.findUniverseCategory(any())).thenReturn(new Category(UuidCreator.getTimeOrderedEpoch(), "category", "카테고리"));
         when(uploadFileAPI.uploadFile(any())).thenReturn(defaultFileResponse());
         when(uploadFileAPI.uploadFile(any())).thenReturn(defaultFileResponse());

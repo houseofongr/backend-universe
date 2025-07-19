@@ -2,9 +2,9 @@ package com.hoo.universe.adapter.in.web;
 
 import com.hoo.common.web.dto.PageQueryResult;
 import com.hoo.common.web.dto.PageRequest;
-import com.hoo.universe.api.dto.command.SearchUniverseCommand;
-import com.hoo.universe.api.dto.result.UniverseListInfo;
-import com.hoo.universe.api.in.SearchUniverseUseCase;
+import com.hoo.universe.api.in.web.dto.command.SearchUniverseCommand;
+import com.hoo.universe.api.in.web.dto.result.UniverseListInfo;
+import com.hoo.universe.api.in.web.usecase.SearchUniverseUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,7 @@
 package com.hoo.universe.application.category;
 
-import com.hoo.universe.api.dto.result.category.DeleteCategoryResult;
-import com.hoo.universe.api.in.category.DeleteCategoryUseCase;
+import com.hoo.universe.api.in.web.dto.result.DeleteCategoryResult;
+import com.hoo.universe.api.in.web.usecase.DeleteCategoryUseCase;
 import com.hoo.universe.api.out.persistence.CommandCategoryPort;
 import com.hoo.universe.api.out.persistence.QueryCategoryPort;
 import com.hoo.universe.domain.vo.Category;
