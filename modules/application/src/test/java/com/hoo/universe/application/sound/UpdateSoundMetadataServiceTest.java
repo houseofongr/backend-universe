@@ -4,6 +4,7 @@ import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.universe.api.in.web.dto.command.UpdateSoundMetadataCommand;
 import com.hoo.universe.api.out.persistence.HandleSoundEventPort;
 import com.hoo.universe.api.out.persistence.LoadUniversePort;
+import com.hoo.universe.application.UpdateSoundMetadataService;
 import com.hoo.universe.domain.Universe;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

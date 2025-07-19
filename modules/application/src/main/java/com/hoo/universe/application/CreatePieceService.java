@@ -1,4 +1,4 @@
-package com.hoo.universe.application.piece;
+package com.hoo.universe.application;
 
 import com.hoo.common.IssueIDPort;
 import com.hoo.universe.api.in.web.dto.command.CreatePieceWithTwoPointCommand;

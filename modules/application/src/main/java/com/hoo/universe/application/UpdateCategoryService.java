@@ -1,4 +1,4 @@
-package com.hoo.universe.application.category;
+package com.hoo.universe.application;
 
 import com.hoo.universe.api.in.web.dto.command.UpdateCategoryCommand;
 import com.hoo.universe.api.in.web.dto.result.UpdateCategoryResult;

@@ -3,6 +3,7 @@ package com.hoo.universe.application.category;
 import com.hoo.common.IssueIDPort;
 import com.hoo.universe.api.in.web.dto.command.CreateCategoryCommand;
 import com.hoo.universe.api.out.persistence.CommandCategoryPort;
+import com.hoo.universe.application.CreateCategoryService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

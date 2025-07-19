@@ -1,28 +1,26 @@
 package com.hoo.universe.adapter.out.internal.api.user;
 
+import com.hoo.common.internal.api.dto.UserInfo;
 import com.hoo.universe.adapter.out.internal.api.InternalAPIConfigProperties;
-import com.hoo.universe.api.out.internal.GetOwnerAPI;
-import com.hoo.universe.domain.vo.Owner;
+import com.hoo.common.internal.api.GetUserInfoAPI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.UUID;
 
 @RequiredArgsConstructor
-public class GetOwnerWebClientAdapter implements GetOwnerAPI {
+public class GetUserInfoWebClientAdapter implements GetUserInfoAPI {
 
     private final WebClient webClient;
     private final InternalAPIConfigProperties internalAPIConfigProperties;
 
     @Override
-    public Owner getOwner(UUID ownerID) {
+    public UserInfo getUserInfo(UUID userID) {
 
-        String nickname = webClient.get()
-                .uri(String.format(internalAPIConfigProperties.getUser().getFindUserNicknameUrl(), ownerID))
+        return webClient.get()
+                .uri(String.format(internalAPIConfigProperties.getUser().getFindUserNicknameUrl(), userID))
                 .retrieve()
-                .bodyToMono(String.class)
+                .bodyToMono(UserInfo.class)
                 .block();
-
-        return new Owner(ownerID, nickname);
     }
 }

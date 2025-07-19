@@ -1,4 +1,4 @@
-package com.hoo.universe.application.category;
+package com.hoo.universe.application;
 
 import com.hoo.universe.api.in.web.dto.result.SearchCategoryResult;
 import com.hoo.universe.api.in.web.usecase.SearchCategoryUseCase;

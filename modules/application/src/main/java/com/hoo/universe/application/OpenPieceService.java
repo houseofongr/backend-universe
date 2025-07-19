@@ -1,4 +1,4 @@
-package com.hoo.universe.application.piece;
+package com.hoo.universe.application;
 
 import com.hoo.common.web.dto.PageQueryResult;
 import com.hoo.common.web.dto.PageRequest;
@@ -6,7 +6,6 @@ import com.hoo.universe.api.in.web.dto.query.OpenPieceQueryResult;
 import com.hoo.universe.api.in.web.dto.result.OpenPieceResult;
 import com.hoo.universe.api.in.web.usecase.OpenPieceUseCase;
 import com.hoo.universe.api.out.persistence.QueryUniversePort;
-import com.hoo.universe.application.FileUrlResolver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

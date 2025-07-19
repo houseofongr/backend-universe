@@ -1,4 +1,4 @@
-package com.hoo.universe.application.piece;
+package com.hoo.universe.application;
 
 import com.hoo.common.internal.message.DeleteFileEventPublisher;
 import com.hoo.universe.api.in.web.dto.result.DeletePieceResult;

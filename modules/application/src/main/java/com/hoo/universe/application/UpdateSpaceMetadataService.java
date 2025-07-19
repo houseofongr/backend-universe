@@ -1,4 +1,4 @@
-package com.hoo.universe.application.space;
+package com.hoo.universe.application;
 
 import com.hoo.universe.api.in.web.dto.command.UpdateSpaceMetadataCommand;
 import com.hoo.universe.api.in.web.dto.result.UpdateSpaceMetadataResult;

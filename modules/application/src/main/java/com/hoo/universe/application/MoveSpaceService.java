@@ -1,15 +1,15 @@
-package com.hoo.universe.application.piece;
+package com.hoo.universe.application;
 
-import com.hoo.universe.api.in.web.dto.command.MovePieceWithTwoPointCommand;
-import com.hoo.universe.api.in.web.dto.result.MovePieceWithTwoPointResult;
-import com.hoo.universe.api.in.web.usecase.MovePieceUseCase;
-import com.hoo.universe.api.out.persistence.HandlePieceEventPort;
+import com.hoo.universe.api.in.web.dto.command.MoveSpaceWithTwoPointCommand;
+import com.hoo.universe.api.in.web.dto.result.MoveSpaceWithTwoPointResult;
+import com.hoo.universe.api.in.web.usecase.MoveSpaceUseCase;
+import com.hoo.universe.api.out.persistence.HandleSpaceEventPort;
 import com.hoo.universe.api.out.persistence.LoadUniversePort;
 import com.hoo.universe.application.exception.DomainErrorCode;
 import com.hoo.universe.application.exception.UniverseDomainException;
-import com.hoo.universe.domain.Piece;
+import com.hoo.universe.domain.Space.SpaceID;
 import com.hoo.universe.domain.Universe;
-import com.hoo.universe.domain.event.piece.PieceMoveEvent;
+import com.hoo.universe.domain.event.space.SpaceMoveEvent;
 import com.hoo.universe.domain.vo.Point;
 import com.hoo.universe.domain.vo.Outline;
 import lombok.RequiredArgsConstructor;
@@ -22,27 +22,27 @@ import java.util.UUID;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class MovePieceService implements MovePieceUseCase {
+public class MoveSpaceService implements MoveSpaceUseCase {
 
     private final LoadUniversePort loadUniversePort;
-    private final HandlePieceEventPort handlePieceEventPort;
+    private final HandleSpaceEventPort handleSpaceEventPort;
 
     @Override
-    public MovePieceWithTwoPointResult movePieceWithTwoPoint(UUID universeID, UUID pieceID, MovePieceWithTwoPointCommand command) {
+    public MoveSpaceWithTwoPointResult moveSpaceWithTwoPoint(UUID universeID, UUID spaceID, MoveSpaceWithTwoPointCommand command) {
 
         Universe universe = loadUniversePort.loadUniverseExceptSounds(universeID);
 
         Outline rectangle = Outline.getRectangleBy2Point(Point.of(command.startX(), command.startY()), Point.of(command.endX(), command.endY()));
-        PieceMoveEvent event = universe.movePiece(new Piece.PieceID(pieceID), rectangle);
+        SpaceMoveEvent event = universe.moveSpace(new SpaceID(spaceID), rectangle);
 
         if (event.overlapEvent().isOverlapped()) throw new UniverseDomainException(DomainErrorCode.OVERLAPPED);
 
-        handlePieceEventPort.handlePieceMoveEvent(event);
+        handleSpaceEventPort.handleSpaceMoveEvent(event);
 
         List<Point> points = rectangle.getPoints();
         Point[] farthestPoints = rectangle.getRectangleFarthestPoints();
 
-        return new MovePieceWithTwoPointResult(
+        return new MoveSpaceWithTwoPointResult(
                 farthestPoints[0].x(),
                 farthestPoints[0].y(),
                 farthestPoints[1].x(),

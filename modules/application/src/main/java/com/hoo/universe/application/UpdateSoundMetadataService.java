@@ -1,4 +1,4 @@
-package com.hoo.universe.application.sound;
+package com.hoo.universe.application;
 
 import com.hoo.universe.api.in.web.dto.command.UpdateSoundMetadataCommand;
 import com.hoo.universe.api.in.web.dto.result.UpdateSoundMetadataResult;

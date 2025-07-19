@@ -7,6 +7,7 @@ import com.hoo.common.internal.api.UploadFileAPI;
 import com.hoo.universe.api.in.web.dto.command.CreateSpaceWithTwoPointCommand;
 import com.hoo.universe.api.out.persistence.HandleSpaceEventPort;
 import com.hoo.universe.api.out.persistence.LoadUniversePort;
+import com.hoo.universe.application.CreateSpaceService;
 import com.hoo.universe.application.exception.DomainErrorCode;
 import com.hoo.universe.application.exception.UniverseDomainException;
 import com.hoo.universe.domain.Universe;

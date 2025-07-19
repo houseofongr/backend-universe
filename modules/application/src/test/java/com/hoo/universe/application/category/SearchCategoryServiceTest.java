@@ -3,6 +3,7 @@ package com.hoo.universe.application.category;
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.universe.api.in.web.dto.result.SearchCategoryResult;
 import com.hoo.universe.api.out.persistence.QueryCategoryPort;
+import com.hoo.universe.application.SearchCategoryService;
 import com.hoo.universe.domain.vo.Category;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

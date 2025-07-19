@@ -1,10 +1,7 @@
 package com.hoo.universe.test.dto;
 
 import com.github.f4b6a3.uuid.UuidCreator;
-import com.hoo.common.enums.AccessLevel;
 import com.hoo.common.internal.api.dto.FileCommand;
-import com.hoo.common.internal.api.dto.FileMetadata;
-import com.hoo.common.internal.api.dto.UploadFileCommand;
 import com.hoo.common.internal.api.dto.UploadFileResult;
 
 import java.io.ByteArrayInputStream;

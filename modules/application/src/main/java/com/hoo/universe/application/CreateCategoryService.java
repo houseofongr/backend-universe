@@ -1,4 +1,4 @@
-package com.hoo.universe.application.category;
+package com.hoo.universe.application;
 
 
 import com.hoo.common.IssueIDPort;

@@ -1,4 +1,4 @@
-package com.hoo.universe.application.space;
+package com.hoo.universe.application;
 
 import com.hoo.common.IssueIDPort;
 import com.hoo.common.internal.api.dto.UploadFileCommand;

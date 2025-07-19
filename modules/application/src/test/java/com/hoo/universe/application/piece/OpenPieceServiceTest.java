@@ -7,6 +7,7 @@ import com.hoo.universe.api.in.web.dto.query.OpenPieceQueryResult;
 import com.hoo.universe.api.in.web.dto.result.OpenPieceResult;
 import com.hoo.universe.api.out.persistence.QueryUniversePort;
 import com.hoo.universe.application.FileUrlResolver;
+import com.hoo.universe.application.OpenPieceService;
 import com.hoo.universe.domain.Piece;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
