@@ -1,9 +1,9 @@
 package com.hoo.universe.application;
 
-import com.hoo.universe.api.in.web.dto.result.OpenUniverseResult;
-import com.hoo.universe.api.in.web.usecase.OpenUniverseUseCase;
-import com.hoo.universe.api.out.persistence.LoadUniversePort;
-import com.hoo.universe.api.in.web.dto.query.OpenUniverseQueryResult;
+import com.hoo.universe.api.in.dto.OpenUniverseResult;
+import com.hoo.universe.api.in.OpenUniverseUseCase;
+import com.hoo.universe.api.out.LoadUniversePort;
+import com.hoo.universe.api.out.dto.OpenUniverseQueryResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

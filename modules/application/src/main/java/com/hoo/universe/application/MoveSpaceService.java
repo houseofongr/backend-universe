@@ -1,10 +1,10 @@
 package com.hoo.universe.application;
 
-import com.hoo.universe.api.in.web.dto.command.MoveSpaceWithTwoPointCommand;
-import com.hoo.universe.api.in.web.dto.result.MoveSpaceWithTwoPointResult;
-import com.hoo.universe.api.in.web.usecase.MoveSpaceUseCase;
-import com.hoo.universe.api.out.persistence.HandleSpaceEventPort;
-import com.hoo.universe.api.out.persistence.LoadUniversePort;
+import com.hoo.universe.api.in.dto.MoveSpaceWithTwoPointCommand;
+import com.hoo.universe.api.in.dto.MoveSpaceWithTwoPointResult;
+import com.hoo.universe.api.in.MoveSpaceUseCase;
+import com.hoo.universe.api.out.HandleSpaceEventPort;
+import com.hoo.universe.api.out.LoadUniversePort;
 import com.hoo.universe.application.exception.DomainErrorCode;
 import com.hoo.universe.application.exception.UniverseDomainException;
 import com.hoo.universe.domain.Space.SpaceID;

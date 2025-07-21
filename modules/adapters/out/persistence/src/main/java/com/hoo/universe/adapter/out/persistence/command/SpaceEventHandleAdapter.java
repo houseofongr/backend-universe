@@ -9,7 +9,7 @@ import com.hoo.universe.adapter.out.persistence.repository.PieceJpaRepository;
 import com.hoo.universe.adapter.out.persistence.repository.SoundJpaRepository;
 import com.hoo.universe.adapter.out.persistence.repository.SpaceJpaRepository;
 import com.hoo.universe.adapter.out.persistence.repository.UniverseJpaRepository;
-import com.hoo.universe.api.out.persistence.HandleSpaceEventPort;
+import com.hoo.universe.api.out.HandleSpaceEventPort;
 import com.hoo.universe.domain.Piece;
 import com.hoo.universe.domain.Sound;
 import com.hoo.universe.domain.Space;

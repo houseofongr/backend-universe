@@ -6,7 +6,7 @@ import com.hoo.universe.application.exception.AdapterErrorCode;
 import com.hoo.universe.application.exception.UniverseAdapterException;
 import com.hoo.universe.adapter.out.persistence.repository.PieceJpaRepository;
 import com.hoo.universe.adapter.out.persistence.repository.SoundJpaRepository;
-import com.hoo.universe.api.out.persistence.HandleSoundEventPort;
+import com.hoo.universe.api.out.HandleSoundEventPort;
 import com.hoo.universe.domain.Sound;
 import com.hoo.universe.domain.event.sound.SoundCreateEvent;
 import com.hoo.universe.domain.event.sound.SoundDeleteEvent;

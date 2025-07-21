@@ -1,10 +1,10 @@
 package com.hoo.universe.application;
 
-import com.hoo.universe.api.in.web.dto.command.UpdateSoundMetadataCommand;
-import com.hoo.universe.api.in.web.dto.result.UpdateSoundMetadataResult;
-import com.hoo.universe.api.in.web.usecase.UpdateSoundMetadataUseCase;
-import com.hoo.universe.api.out.persistence.HandleSoundEventPort;
-import com.hoo.universe.api.out.persistence.LoadUniversePort;
+import com.hoo.universe.api.in.dto.UpdateSoundMetadataCommand;
+import com.hoo.universe.api.in.dto.UpdateSoundMetadataResult;
+import com.hoo.universe.api.in.UpdateSoundMetadataUseCase;
+import com.hoo.universe.api.out.HandleSoundEventPort;
+import com.hoo.universe.api.out.LoadUniversePort;
 import com.hoo.universe.domain.Piece;
 import com.hoo.universe.domain.Sound;
 import com.hoo.universe.domain.Universe;

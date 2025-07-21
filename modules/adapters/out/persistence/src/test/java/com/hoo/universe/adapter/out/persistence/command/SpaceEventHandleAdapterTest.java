@@ -2,7 +2,7 @@ package com.hoo.universe.adapter.out.persistence.command;
 
 import com.hoo.universe.adapter.out.persistence.PersistenceAdapterTest;
 import com.hoo.universe.adapter.out.persistence.entity.SpaceJpaEntity;
-import com.hoo.universe.adapter.out.persistence.query.UniverseLoadAdapter;
+import com.hoo.universe.adapter.out.persistence.query.LoadUniverseAdapter;
 import com.hoo.universe.adapter.out.persistence.repository.SpaceJpaRepository;
 import com.hoo.universe.adapter.out.persistence.repository.UniverseJpaRepository;
 import com.hoo.universe.domain.Space;
@@ -37,7 +37,7 @@ class SpaceEventHandleAdapterTest {
     SpaceJpaRepository spaceJpaRepository;
 
     @Autowired
-    UniverseLoadAdapter universeLoadAdapter;
+    LoadUniverseAdapter universeLoadAdapter;
 
     @Test
     @DisplayName("스페이스 생성 이벤트 처리")

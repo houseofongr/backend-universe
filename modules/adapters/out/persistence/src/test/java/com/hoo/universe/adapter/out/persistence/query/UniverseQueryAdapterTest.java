@@ -4,9 +4,9 @@ import com.hoo.common.web.dto.PageQueryResult;
 import com.hoo.common.web.dto.PageRequest;
 import com.hoo.universe.adapter.out.persistence.PersistenceAdapterTest;
 import com.hoo.universe.adapter.out.persistence.repository.PieceJpaRepository;
-import com.hoo.universe.api.in.web.dto.command.SearchUniverseCommand;
-import com.hoo.universe.api.in.web.dto.query.OpenPieceQueryResult;
-import com.hoo.universe.api.in.web.dto.query.UniverseListQueryInfo;
+import com.hoo.universe.api.in.dto.SearchUniverseCommand;
+import com.hoo.universe.api.out.dto.OpenPieceQueryResult;
+import com.hoo.universe.api.out.dto.UniverseListQueryInfo;
 import com.hoo.universe.domain.vo.Category;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class UniverseQueryAdapterTest {
 
     @Autowired
-    UniverseQueryAdapter sut;
+    QueryUniverseAdapter sut;
     @Autowired
     private PieceJpaRepository pieceJpaRepository;
 

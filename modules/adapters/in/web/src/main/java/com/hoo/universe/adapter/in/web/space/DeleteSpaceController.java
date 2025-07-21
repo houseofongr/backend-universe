@@ -1,7 +1,7 @@
 package com.hoo.universe.adapter.in.web.space;
 
-import com.hoo.universe.api.in.web.dto.result.DeleteSpaceResult;
-import com.hoo.universe.api.in.web.usecase.DeleteSpaceUseCase;
+import com.hoo.universe.api.in.dto.DeleteSpaceResult;
+import com.hoo.universe.api.in.DeleteSpaceUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

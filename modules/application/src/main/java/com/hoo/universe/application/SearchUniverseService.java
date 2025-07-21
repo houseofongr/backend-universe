@@ -1,11 +1,11 @@
 package com.hoo.universe.application;
 
 import com.hoo.common.web.dto.PageQueryResult;
-import com.hoo.universe.api.in.web.dto.command.SearchUniverseCommand;
-import com.hoo.universe.api.in.web.dto.query.UniverseListQueryInfo;
-import com.hoo.universe.api.in.web.dto.result.UniverseListInfo;
-import com.hoo.universe.api.in.web.usecase.SearchUniverseUseCase;
-import com.hoo.universe.api.out.persistence.QueryUniversePort;
+import com.hoo.universe.api.in.dto.SearchUniverseCommand;
+import com.hoo.universe.api.out.dto.UniverseListQueryInfo;
+import com.hoo.universe.api.in.dto.UniverseListInfo;
+import com.hoo.universe.api.in.SearchUniverseUseCase;
+import com.hoo.universe.api.out.QueryUniversePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

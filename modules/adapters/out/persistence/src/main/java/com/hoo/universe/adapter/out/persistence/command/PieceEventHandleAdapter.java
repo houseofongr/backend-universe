@@ -8,7 +8,7 @@ import com.hoo.universe.application.exception.UniverseAdapterException;
 import com.hoo.universe.adapter.out.persistence.repository.PieceJpaRepository;
 import com.hoo.universe.adapter.out.persistence.repository.SoundJpaRepository;
 import com.hoo.universe.adapter.out.persistence.repository.UniverseJpaRepository;
-import com.hoo.universe.api.out.persistence.HandlePieceEventPort;
+import com.hoo.universe.api.out.HandlePieceEventPort;
 import com.hoo.universe.domain.Piece;
 import com.hoo.universe.domain.Sound;
 import com.hoo.universe.domain.event.piece.PieceCreateEvent;

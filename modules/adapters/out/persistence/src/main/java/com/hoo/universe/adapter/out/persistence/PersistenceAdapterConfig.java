@@ -5,14 +5,13 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.hoo.universe.adapter.out.persistence.command.*;
 import com.hoo.universe.adapter.out.persistence.config.PointDeserializer;
 import com.hoo.universe.adapter.out.persistence.config.PointSerializer;
-import com.hoo.universe.adapter.out.persistence.query.UniverseLoadAdapter;
-import com.hoo.universe.adapter.out.persistence.query.UniverseQueryAdapter;
+import com.hoo.universe.adapter.out.persistence.query.LoadUniverseAdapter;
+import com.hoo.universe.adapter.out.persistence.query.QueryUniverseAdapter;
 import com.hoo.universe.adapter.out.persistence.repository.*;
 import com.hoo.universe.domain.vo.Point;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
@@ -21,13 +20,13 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class PersistenceAdapterConfig {
 
     @Bean
-    UniverseQueryAdapter universePersistenceAdapter(
+    QueryUniverseAdapter universePersistenceAdapter(
             UniverseJpaRepository universeJpaRepository,
             PieceJpaRepository pieceJpaRepository,
             CategoryJpaRepository categoryJpaRepository,
             UniverseMapper universeMapper
     ) {
-        return new UniverseQueryAdapter(
+        return new QueryUniverseAdapter(
                 universeJpaRepository,
                 pieceJpaRepository,
                 categoryJpaRepository,
@@ -50,12 +49,12 @@ public class PersistenceAdapterConfig {
     }
 
     @Bean
-    UniverseLoadAdapter universeLoadAdapter(
+    LoadUniverseAdapter universeLoadAdapter(
             UniverseJpaRepository universeJpaRepository,
             UniverseMapper universeMapper,
             OutlineSerializer outlineSerializer
     ) {
-        return new UniverseLoadAdapter(
+        return new LoadUniverseAdapter(
                 universeJpaRepository,
                 universeMapper,
                 outlineSerializer
@@ -63,10 +62,10 @@ public class PersistenceAdapterConfig {
     }
 
     @Bean
-    UniverseCommandCategoryAdapter universeCommandAdapter(
+    CommandCategoryAdapter universeCommandAdapter(
             CategoryJpaRepository categoryJpaRepository
     ) {
-        return new UniverseCommandCategoryAdapter(categoryJpaRepository);
+        return new CommandCategoryAdapter(categoryJpaRepository);
     }
 
     @Bean

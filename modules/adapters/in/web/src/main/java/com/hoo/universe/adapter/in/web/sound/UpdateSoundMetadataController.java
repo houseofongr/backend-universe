@@ -1,8 +1,8 @@
 package com.hoo.universe.adapter.in.web.sound;
 
-import com.hoo.universe.api.in.web.dto.command.UpdateSoundMetadataCommand;
-import com.hoo.universe.api.in.web.dto.result.UpdateSoundMetadataResult;
-import com.hoo.universe.api.in.web.usecase.UpdateSoundMetadataUseCase;
+import com.hoo.universe.api.in.dto.UpdateSoundMetadataCommand;
+import com.hoo.universe.api.in.dto.UpdateSoundMetadataResult;
+import com.hoo.universe.api.in.UpdateSoundMetadataUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PatchMapping;

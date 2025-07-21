@@ -1,8 +1,8 @@
 package com.hoo.universe.application;
 
-import com.hoo.universe.api.in.web.dto.result.SearchCategoryResult;
-import com.hoo.universe.api.in.web.usecase.SearchCategoryUseCase;
-import com.hoo.universe.api.out.persistence.QueryCategoryPort;
+import com.hoo.universe.api.in.dto.SearchCategoryResult;
+import com.hoo.universe.api.in.SearchCategoryUseCase;
+import com.hoo.universe.api.out.QueryCategoryPort;
 import com.hoo.universe.domain.vo.Category;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

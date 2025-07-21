@@ -2,10 +2,10 @@ package com.hoo.universe.application;
 
 
 import com.hoo.common.IssueIDPort;
-import com.hoo.universe.api.in.web.dto.command.CreateCategoryCommand;
-import com.hoo.universe.api.in.web.dto.result.CreateCategoryResult;
-import com.hoo.universe.api.in.web.usecase.CreateCategoryUseCase;
-import com.hoo.universe.api.out.persistence.CommandCategoryPort;
+import com.hoo.universe.api.in.dto.CreateCategoryCommand;
+import com.hoo.universe.api.in.dto.CreateCategoryResult;
+import com.hoo.universe.api.in.CreateCategoryUseCase;
+import com.hoo.universe.api.out.CommandCategoryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

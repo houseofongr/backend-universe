@@ -2,8 +2,8 @@ package com.hoo.universe.adapter.in.web.piece;
 
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.universe.adapter.in.web.DocumentationTest;
-import com.hoo.universe.api.in.web.dto.result.DeletePieceResult;
-import com.hoo.universe.api.in.web.usecase.DeletePieceUseCase;
+import com.hoo.universe.api.in.dto.DeletePieceResult;
+import com.hoo.universe.api.in.DeletePieceUseCase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

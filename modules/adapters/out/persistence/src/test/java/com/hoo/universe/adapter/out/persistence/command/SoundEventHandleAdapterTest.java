@@ -4,7 +4,7 @@ import com.hoo.universe.adapter.out.persistence.PersistenceAdapterTest;
 import com.hoo.universe.adapter.out.persistence.entity.SoundJpaEntity;
 import com.hoo.universe.adapter.out.persistence.repository.SoundJpaRepository;
 import com.hoo.universe.adapter.out.persistence.repository.UniverseJpaRepository;
-import com.hoo.universe.api.out.persistence.LoadUniversePort;
+import com.hoo.universe.api.out.LoadUniversePort;
 import com.hoo.universe.domain.Piece;
 import com.hoo.universe.domain.Sound;
 import com.hoo.universe.domain.Universe;

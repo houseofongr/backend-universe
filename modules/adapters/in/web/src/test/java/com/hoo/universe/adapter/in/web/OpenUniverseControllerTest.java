@@ -1,8 +1,8 @@
 package com.hoo.universe.adapter.in.web;
 
 import com.github.f4b6a3.uuid.UuidCreator;
-import com.hoo.universe.api.in.web.dto.result.OpenUniverseResult;
-import com.hoo.universe.api.in.web.usecase.OpenUniverseUseCase;
+import com.hoo.universe.api.in.dto.OpenUniverseResult;
+import com.hoo.universe.api.in.OpenUniverseUseCase;
 import com.hoo.universe.domain.vo.Category;
 import com.hoo.universe.domain.vo.Point;
 import org.junit.jupiter.api.DisplayName;

@@ -2,8 +2,8 @@ package com.hoo.universe.adapter.in.web.sound;
 
 import com.hoo.common.internal.api.dto.FileCommand;
 import com.hoo.universe.adapter.in.web.RequestMapper;
-import com.hoo.universe.api.in.web.dto.result.OverwriteSoundFileResult;
-import com.hoo.universe.api.in.web.usecase.OverwriteSoundFileUseCase;
+import com.hoo.universe.api.in.dto.OverwriteSoundFileResult;
+import com.hoo.universe.api.in.OverwriteSoundFileUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -1,9 +1,9 @@
 package com.hoo.universe.application;
 
-import com.hoo.universe.api.in.web.dto.result.DeleteCategoryResult;
-import com.hoo.universe.api.in.web.usecase.DeleteCategoryUseCase;
-import com.hoo.universe.api.out.persistence.CommandCategoryPort;
-import com.hoo.universe.api.out.persistence.QueryCategoryPort;
+import com.hoo.universe.api.in.dto.DeleteCategoryResult;
+import com.hoo.universe.api.in.DeleteCategoryUseCase;
+import com.hoo.universe.api.out.CommandCategoryPort;
+import com.hoo.universe.api.out.QueryCategoryPort;
 import com.hoo.universe.domain.vo.Category;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

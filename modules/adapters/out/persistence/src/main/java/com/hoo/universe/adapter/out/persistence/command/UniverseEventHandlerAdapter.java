@@ -9,7 +9,7 @@ import com.hoo.universe.application.exception.UniverseAdapterException;
 import com.hoo.universe.adapter.out.persistence.repository.CategoryJpaRepository;
 import com.hoo.universe.adapter.out.persistence.repository.TagJpaRepository;
 import com.hoo.universe.adapter.out.persistence.repository.UniverseJpaRepository;
-import com.hoo.universe.api.out.persistence.HandleUniverseEventPort;
+import com.hoo.universe.api.out.HandleUniverseEventPort;
 import com.hoo.universe.domain.Universe;
 import com.hoo.universe.domain.event.UniverseCreateEvent;
 import com.hoo.universe.domain.event.UniverseDeleteEvent;

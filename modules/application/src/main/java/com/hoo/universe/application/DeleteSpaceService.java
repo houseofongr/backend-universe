@@ -1,10 +1,10 @@
 package com.hoo.universe.application;
 
 import com.hoo.common.internal.message.DeleteFileEventPublisher;
-import com.hoo.universe.api.in.web.dto.result.DeleteSpaceResult;
-import com.hoo.universe.api.in.web.usecase.DeleteSpaceUseCase;
-import com.hoo.universe.api.out.persistence.HandleSpaceEventPort;
-import com.hoo.universe.api.out.persistence.LoadUniversePort;
+import com.hoo.universe.api.in.dto.DeleteSpaceResult;
+import com.hoo.universe.api.in.DeleteSpaceUseCase;
+import com.hoo.universe.api.out.HandleSpaceEventPort;
+import com.hoo.universe.api.out.LoadUniversePort;
 import com.hoo.universe.domain.Piece.PieceID;
 import com.hoo.universe.domain.Sound.SoundID;
 import com.hoo.universe.domain.Space;

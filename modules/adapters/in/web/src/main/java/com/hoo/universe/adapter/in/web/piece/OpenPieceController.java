@@ -2,8 +2,8 @@ package com.hoo.universe.adapter.in.web.piece;
 
 import com.hoo.common.web.dto.PageRequest;
 import com.hoo.universe.adapter.in.web.RequestMapper;
-import com.hoo.universe.api.in.web.dto.result.OpenPieceResult;
-import com.hoo.universe.api.in.web.usecase.OpenPieceUseCase;
+import com.hoo.universe.api.in.dto.OpenPieceResult;
+import com.hoo.universe.api.in.OpenPieceUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;

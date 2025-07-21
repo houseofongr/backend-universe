@@ -1,7 +1,7 @@
 package com.hoo.universe.adapter.in.web.category;
 
-import com.hoo.universe.api.in.web.dto.result.DeleteCategoryResult;
-import com.hoo.universe.api.in.web.usecase.DeleteCategoryUseCase;
+import com.hoo.universe.api.in.dto.DeleteCategoryResult;
+import com.hoo.universe.api.in.DeleteCategoryUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

@@ -1,8 +1,8 @@
 package com.hoo.universe.adapter.in.web.piece;
 
-import com.hoo.universe.api.in.web.dto.command.MovePieceWithTwoPointCommand;
-import com.hoo.universe.api.in.web.dto.result.MovePieceWithTwoPointResult;
-import com.hoo.universe.api.in.web.usecase.MovePieceUseCase;
+import com.hoo.universe.api.in.dto.MovePieceWithTwoPointCommand;
+import com.hoo.universe.api.in.dto.MovePieceWithTwoPointResult;
+import com.hoo.universe.api.in.MovePieceUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PatchMapping;

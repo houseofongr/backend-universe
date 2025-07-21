@@ -1,8 +1,8 @@
 package com.hoo.universe.adapter.in.web.piece;
 
-import com.hoo.universe.api.in.web.dto.command.UpdatePieceMetadataCommand;
-import com.hoo.universe.api.in.web.dto.result.UpdatePieceMetadataResult;
-import com.hoo.universe.api.in.web.usecase.UpdatePieceMetadataUseCase;
+import com.hoo.universe.api.in.dto.UpdatePieceMetadataCommand;
+import com.hoo.universe.api.in.dto.UpdatePieceMetadataResult;
+import com.hoo.universe.api.in.UpdatePieceMetadataUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PatchMapping;

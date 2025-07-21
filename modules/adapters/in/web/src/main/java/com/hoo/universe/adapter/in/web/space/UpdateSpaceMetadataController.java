@@ -1,8 +1,8 @@
 package com.hoo.universe.adapter.in.web.space;
 
-import com.hoo.universe.api.in.web.dto.command.UpdateSpaceMetadataCommand;
-import com.hoo.universe.api.in.web.dto.result.UpdateSpaceMetadataResult;
-import com.hoo.universe.api.in.web.usecase.UpdateSpaceMetadataUseCase;
+import com.hoo.universe.api.in.dto.UpdateSpaceMetadataCommand;
+import com.hoo.universe.api.in.dto.UpdateSpaceMetadataResult;
+import com.hoo.universe.api.in.UpdateSpaceMetadataUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PatchMapping;

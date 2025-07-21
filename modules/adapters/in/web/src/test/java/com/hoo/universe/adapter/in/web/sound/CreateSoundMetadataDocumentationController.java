@@ -1,6 +1,6 @@
 package com.hoo.universe.adapter.in.web.sound;
 
-import com.hoo.universe.api.in.web.dto.command.CreateSoundCommand;
+import com.hoo.universe.api.in.dto.CreateSoundCommand;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

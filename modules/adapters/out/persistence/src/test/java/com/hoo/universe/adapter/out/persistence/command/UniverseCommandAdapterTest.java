@@ -23,7 +23,7 @@ class UniverseCommandAdapterTest {
     CategoryJpaRepository categoryJpaRepository;
 
     @Autowired
-    UniverseCommandCategoryAdapter sut;
+    CommandCategoryAdapter sut;
 
     @Autowired
     UniverseJpaRepository universeJpaRepository;

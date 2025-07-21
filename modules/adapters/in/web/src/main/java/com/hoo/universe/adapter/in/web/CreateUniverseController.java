@@ -1,8 +1,8 @@
 package com.hoo.universe.adapter.in.web;
 
-import com.hoo.universe.api.in.web.dto.command.CreateUniverseCommand;
-import com.hoo.universe.api.in.web.dto.result.CreateUniverseResult;
-import com.hoo.universe.api.in.web.usecase.CreateUniverseUseCase;
+import com.hoo.universe.api.in.dto.CreateUniverseCommand;
+import com.hoo.universe.api.in.dto.CreateUniverseResult;
+import com.hoo.universe.api.in.CreateUniverseUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

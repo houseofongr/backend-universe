@@ -1,8 +1,8 @@
 package com.hoo.universe.application;
 
 import com.github.f4b6a3.uuid.UuidCreator;
-import com.hoo.universe.api.in.web.dto.result.OpenUniverseResult;
-import com.hoo.universe.api.out.persistence.LoadUniversePort;
+import com.hoo.universe.api.in.dto.OpenUniverseResult;
+import com.hoo.universe.api.out.LoadUniversePort;
 import com.hoo.universe.domain.Piece;
 import com.hoo.universe.domain.Space;
 import com.hoo.universe.domain.Universe;

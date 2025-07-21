@@ -1,10 +1,10 @@
 package com.hoo.universe.application;
 
 import com.hoo.common.internal.message.DeleteFileEventPublisher;
-import com.hoo.universe.api.in.web.dto.result.DeletePieceResult;
-import com.hoo.universe.api.in.web.usecase.DeletePieceUseCase;
-import com.hoo.universe.api.out.persistence.HandlePieceEventPort;
-import com.hoo.universe.api.out.persistence.LoadUniversePort;
+import com.hoo.universe.api.in.dto.DeletePieceResult;
+import com.hoo.universe.api.in.DeletePieceUseCase;
+import com.hoo.universe.api.out.HandlePieceEventPort;
+import com.hoo.universe.api.out.LoadUniversePort;
 import com.hoo.universe.domain.Piece;
 import com.hoo.universe.domain.Piece.PieceID;
 import com.hoo.universe.domain.Sound;

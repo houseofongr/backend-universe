@@ -2,8 +2,8 @@ package com.hoo.universe.adapter.in.web.sound;
 
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.universe.adapter.in.web.DocumentationTest;
-import com.hoo.universe.api.in.web.dto.result.UpdateSoundMetadataResult;
-import com.hoo.universe.api.in.web.usecase.UpdateSoundMetadataUseCase;
+import com.hoo.universe.api.in.dto.UpdateSoundMetadataResult;
+import com.hoo.universe.api.in.UpdateSoundMetadataUseCase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class UniverseLoadAdapterTest {
 
     @Autowired
-    UniverseLoadAdapter sut;
+    LoadUniverseAdapter sut;
 
     @Autowired
     UniverseJpaRepository universeJpaRepository;

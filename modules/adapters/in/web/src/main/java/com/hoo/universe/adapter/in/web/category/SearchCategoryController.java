@@ -1,7 +1,7 @@
 package com.hoo.universe.adapter.in.web.category;
 
-import com.hoo.universe.api.in.web.dto.result.SearchCategoryResult;
-import com.hoo.universe.api.in.web.usecase.SearchCategoryUseCase;
+import com.hoo.universe.api.in.dto.SearchCategoryResult;
+import com.hoo.universe.api.in.SearchCategoryUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

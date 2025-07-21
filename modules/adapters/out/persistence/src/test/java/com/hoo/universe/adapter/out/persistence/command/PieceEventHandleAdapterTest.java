@@ -2,7 +2,7 @@ package com.hoo.universe.adapter.out.persistence.command;
 
 import com.hoo.universe.adapter.out.persistence.PersistenceAdapterTest;
 import com.hoo.universe.adapter.out.persistence.entity.PieceJpaEntity;
-import com.hoo.universe.adapter.out.persistence.query.UniverseLoadAdapter;
+import com.hoo.universe.adapter.out.persistence.query.LoadUniverseAdapter;
 import com.hoo.universe.adapter.out.persistence.repository.PieceJpaRepository;
 import com.hoo.universe.adapter.out.persistence.repository.UniverseJpaRepository;
 import com.hoo.universe.domain.Piece;
@@ -40,7 +40,7 @@ class PieceEventHandleAdapterTest {
     PieceJpaRepository pieceJpaRepository;
 
     @Autowired
-    UniverseLoadAdapter universeLoadAdapter;
+    LoadUniverseAdapter universeLoadAdapter;
 
     @Test
     @DisplayName("피스 생성 이벤트 처리")

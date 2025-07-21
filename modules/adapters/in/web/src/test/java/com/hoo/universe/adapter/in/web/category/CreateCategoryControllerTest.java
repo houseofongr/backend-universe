@@ -2,8 +2,8 @@ package com.hoo.universe.adapter.in.web.category;
 
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.universe.adapter.in.web.DocumentationTest;
-import com.hoo.universe.api.in.web.dto.result.CreateCategoryResult;
-import com.hoo.universe.api.in.web.usecase.CreateCategoryUseCase;
+import com.hoo.universe.api.in.dto.CreateCategoryResult;
+import com.hoo.universe.api.in.CreateCategoryUseCase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
