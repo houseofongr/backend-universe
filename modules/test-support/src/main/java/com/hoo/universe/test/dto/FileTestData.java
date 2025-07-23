@@ -1,8 +1,8 @@
 package com.hoo.universe.test.dto;
 
 import com.github.f4b6a3.uuid.UuidCreator;
-import com.hoo.common.internal.api.dto.FileCommand;
-import com.hoo.common.internal.api.dto.UploadFileResult;
+import com.hoo.common.internal.api.file.dto.UploadFileCommand;
+import com.hoo.common.internal.api.file.dto.UploadFileResult;
 
 import java.io.ByteArrayInputStream;
 import java.net.URI;
@@ -12,23 +12,23 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class FileTestData {
 
-    public static FileCommand defaultImageFileCommand() {
+    public static UploadFileCommand.FileSource defaultImageFileSource() {
 
-        return new FileCommand(
+        return new UploadFileCommand.FileSource(
                 new ByteArrayInputStream("image file".getBytes(UTF_8)),
-                1000L,
+                "image/png",
                 "image.png",
-                "image/png"
+                1000L
         );
     }
 
-    public static FileCommand defaultAudioFileCommand() {
+    public static UploadFileCommand.FileSource defaultAudioFileSource() {
 
-        return new FileCommand(
+        return new UploadFileCommand.FileSource(
                 new ByteArrayInputStream("audio file".getBytes(UTF_8)),
-                1000L,
+                "audio/mpeg",
                 "sound.mp3",
-                "audio/mpeg"
+                1000L
         );
     }
 

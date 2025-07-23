@@ -1,8 +1,8 @@
 package com.hoo.universe.adapter.out.internal.api.file;
 
-import com.hoo.common.internal.api.UploadFileAPI;
-import com.hoo.common.internal.api.dto.UploadFileCommand;
-import com.hoo.common.internal.api.dto.UploadFileResult;
+import com.hoo.common.internal.api.file.UploadFileAPI;
+import com.hoo.common.internal.api.file.dto.UploadFileCommand;
+import com.hoo.common.internal.api.file.dto.UploadFileResult;
 import com.hoo.universe.adapter.out.internal.api.InternalAPIConfigProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
@@ -21,9 +21,9 @@ public class UploadFileWebClientAdapter implements UploadFileAPI {
 
         MultipartBodyBuilder builder = new MultipartBodyBuilder();
         builder
-                .part("file", new InputStreamResource(uploadFileCommand.inputStream()))
-                .filename(uploadFileCommand.fileMetadata().name())
-                .header("Content-Disposition", "form-data; name=file; filename=\"" + uploadFileCommand.fileMetadata().name() + "\"");
+                .part("file", new InputStreamResource(uploadFileCommand.fileSource().inputStream()))
+                .filename(uploadFileCommand.fileSource().name())
+                .header("Content-Disposition", "form-data; name=file; filename=\"" + uploadFileCommand.fileSource().name() + "\"");
 
         return webClient.post()
                 .uri(internalAPIConfigProperties.getFile().getUploadFileUrl())

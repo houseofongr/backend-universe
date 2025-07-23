@@ -1,7 +1,8 @@
 package com.hoo.universe.application;
 
-import com.hoo.common.internal.api.GetFileInfoAPI;
-import com.hoo.common.internal.api.dto.FileInfo;
+import com.hoo.common.internal.api.file.GetFileInfoAPI;
+import com.hoo.common.internal.api.file.dto.FileInfo;
+import com.hoo.common.internal.api.file.dto.GetFileInfoCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -14,24 +15,19 @@ public class FileUrlResolver {
 
     private final GetFileInfoAPI getFileInfoAPI;
 
-    public URI resolve(UUID fileID) {
-
-        return getFileInfoAPI.getFileInfo(fileID).fileUrl();
-    }
-
-    public Map<UUID, URI> resolveBatch(Collection<UUID> fileIDs) {
+    public Map<UUID, URI> resolveBatch(Map<UUID, UUID> fileOwnerMap) {
 
         Map<UUID, URI> result = new HashMap<>();
 
-        for (FileInfo fileInfo : getFileInfoAPI.getFileInfo(fileIDs)) {
+        GetFileInfoCommand command = new GetFileInfoCommand(fileOwnerMap.entrySet().stream()
+                .map(entry -> new GetFileInfoCommand.FileOwnership(entry.getKey(), entry.getValue()))
+                .toList());
+
+        for (FileInfo fileInfo : getFileInfoAPI.getFileInfo(command)) {
             result.put(fileInfo.id(), fileInfo.fileUrl());
         };
 
         return result;
     }
 
-    public Map<UUID, URI> resolveBatch(UUID... fileID) {
-
-        return resolveBatch(Arrays.stream(fileID).toList());
-    }
 }

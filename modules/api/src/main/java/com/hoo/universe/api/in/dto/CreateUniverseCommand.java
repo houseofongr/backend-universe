@@ -1,17 +1,15 @@
 package com.hoo.universe.api.in.dto;
 
-
-
-import com.hoo.common.internal.api.dto.FileCommand;
+import com.hoo.common.internal.api.file.dto.UploadFileCommand;
 
 import java.util.List;
 import java.util.UUID;
 
 public record CreateUniverseCommand(
         Metadata metadata,
-        FileCommand thumbmusic,
-        FileCommand thumbnail,
-        FileCommand background
+        UploadFileCommand.FileSource thumbmusic,
+        UploadFileCommand.FileSource thumbnail,
+        UploadFileCommand.FileSource background
 ) {
 
     public CreateUniverseCommand {

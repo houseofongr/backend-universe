@@ -1,14 +1,14 @@
 package com.hoo.universe.adapter.out.internal.api.file;
 
-import com.hoo.common.internal.api.GetFileInfoAPI;
-import com.hoo.common.internal.api.dto.FileInfo;
+import com.hoo.common.internal.api.file.GetFileInfoAPI;
+import com.hoo.common.internal.api.file.dto.FileInfo;
+import com.hoo.common.internal.api.file.dto.GetFileInfoCommand;
 import com.hoo.universe.adapter.out.internal.api.InternalAPIConfigProperties;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 public class GetFileInfoWebClientAdapter implements GetFileInfoAPI {
@@ -17,22 +17,14 @@ public class GetFileInfoWebClientAdapter implements GetFileInfoAPI {
     private final InternalAPIConfigProperties internalAPIConfigProperties;
 
     @Override
-    public FileInfo getFileInfo(UUID fileID) {
-
-        return webClient.get()
-                .uri(String.format(internalAPIConfigProperties.getFile().getUploadFileUrl(), fileID))
+    public List<FileInfo> getFileInfo(GetFileInfoCommand command) {
+        return webClient.post()
+                .uri(String.format(internalAPIConfigProperties.getFile().getUploadFileUrl()))
+                .header("Content-Type", "application/json")
+                .bodyValue(command)
                 .retrieve()
-                .bodyToMono(FileInfo.class)
+                .bodyToMono(new ParameterizedTypeReference<List<FileInfo>>() {
+                })
                 .block();
-    }
-
-    @Override
-    public List<FileInfo> getFileInfo(UUID... fileID) {
-        return List.of();
-    }
-
-    @Override
-    public List<FileInfo> getFileInfo(Collection<UUID> fileIDs) {
-        return List.of();
     }
 }

@@ -2,8 +2,8 @@ package com.hoo.universe.application;
 
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.common.IssueIDPort;
-import com.hoo.common.internal.api.dto.FileCommand;
-import com.hoo.common.internal.api.UploadFileAPI;
+import com.hoo.common.internal.api.file.UploadFileAPI;
+import com.hoo.common.internal.api.file.dto.UploadFileCommand;
 import com.hoo.universe.api.in.dto.CreateSpaceWithTwoPointCommand;
 import com.hoo.universe.api.out.HandleSpaceEventPort;
 import com.hoo.universe.api.out.LoadUniversePort;
@@ -34,7 +34,7 @@ class CreateSpaceServiceTest {
     void createSpaceService() {
         // given
         UUID universeID = UuidCreator.getTimeOrderedEpoch();
-        FileCommand background = defaultImageFileCommand();
+        UploadFileCommand.FileSource background = defaultImageFileSource();
         CreateSpaceWithTwoPointCommand command = new CreateSpaceWithTwoPointCommand(new CreateSpaceWithTwoPointCommand.Metadata(null, "공간", "스페이스는 공간입니다.", 0.1, 0.1, 0.2, 0.2, false), background);
         Universe universe = defaultUniverseOnly().build();
 

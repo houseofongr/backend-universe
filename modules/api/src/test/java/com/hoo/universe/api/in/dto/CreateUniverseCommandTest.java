@@ -1,6 +1,6 @@
 package com.hoo.universe.api.in.dto;
 
-import com.hoo.common.internal.api.dto.FileCommand;
+import com.hoo.common.internal.api.file.dto.UploadFileCommand;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -45,9 +45,9 @@ class CreateUniverseCommandTest {
         // given
         CreateUniverseCommand.Metadata metadata = getMetadata();
 
-        FileCommand thumbmusic = defaultAudioFileCommand();
-        FileCommand thumbnail = defaultImageFileCommand();
-        FileCommand background = defaultImageFileCommand();
+        UploadFileCommand.FileSource thumbmusic = defaultAudioFileSource();
+        UploadFileCommand.FileSource thumbnail = defaultImageFileSource();
+        UploadFileCommand.FileSource background = defaultImageFileSource();
 
         assertThatThrownBy(() -> new CreateUniverseCommand(metadata, null, thumbnail, background)).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new CreateUniverseCommand(metadata, thumbmusic, null, background)).isInstanceOf(IllegalArgumentException.class);

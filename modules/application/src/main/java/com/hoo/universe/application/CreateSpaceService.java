@@ -1,12 +1,13 @@
 package com.hoo.universe.application;
 
 import com.hoo.common.IssueIDPort;
-import com.hoo.common.internal.api.dto.UploadFileCommand;
-import com.hoo.common.internal.api.dto.UploadFileResult;
-import com.hoo.common.internal.api.UploadFileAPI;
-import com.hoo.universe.api.in.dto.CreateSpaceWithTwoPointCommand;
-import com.hoo.universe.api.in.dto.CreateSpaceResult;
+import com.hoo.common.enums.Domain;
+import com.hoo.common.internal.api.file.UploadFileAPI;
+import com.hoo.common.internal.api.file.dto.UploadFileCommand;
+import com.hoo.common.internal.api.file.dto.UploadFileResult;
 import com.hoo.universe.api.in.CreateSpaceUseCase;
+import com.hoo.universe.api.in.dto.CreateSpaceResult;
+import com.hoo.universe.api.in.dto.CreateSpaceWithTwoPointCommand;
 import com.hoo.universe.api.out.HandleSpaceEventPort;
 import com.hoo.universe.api.out.LoadUniversePort;
 import com.hoo.universe.application.exception.ApplicationErrorCode;
@@ -18,8 +19,8 @@ import com.hoo.universe.domain.Space.SpaceID;
 import com.hoo.universe.domain.Universe;
 import com.hoo.universe.domain.event.space.SpaceCreateEvent;
 import com.hoo.universe.domain.vo.CommonMetadata;
-import com.hoo.universe.domain.vo.Point;
 import com.hoo.universe.domain.vo.Outline;
+import com.hoo.universe.domain.vo.Point;
 import com.hoo.universe.domain.vo.SpaceMetadata;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -45,7 +46,7 @@ public class CreateSpaceService implements CreateSpaceUseCase {
         Universe universe = loadUniversePort.loadUniverseExceptSounds(universeID);
         SpaceID newSpaceID = new SpaceID(issueIDPort.issueNewID());
 
-        UploadFileResult background = uploadFileAPI.uploadFile(UploadFileCommand.from(command.background(), universe.getOwner().getId(), universe.getUniverseMetadata().getAccessLevel()));
+        UploadFileResult background = uploadFileAPI.uploadFile(UploadFileCommand.from(command.background(), Domain.UNIVERSE.getName(), universe.getOwner().getId(), universe.getUniverseMetadata().getAccessLevel()));
 
         SpaceCreateEvent event = universe.createSpaceInside(newSpaceID, new SpaceID(parentSpaceID),
                 SpaceMetadata.create(background.id(), command.metadata().hidden()),

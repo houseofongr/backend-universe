@@ -31,7 +31,7 @@ public class CreateSpaceController {
 
         CreateSpaceWithTwoPointCommand command = new CreateSpaceWithTwoPointCommand(
                 requestMapper.mapToCreateSpaceCommandMetadata(metadata),
-                requestMapper.mapToFileCommand(backgroundFile));
+                requestMapper.mapToFileSource(backgroundFile));
 
         return new ResponseEntity<>(useCase.createSpaceWithTwoPoint(universeID, parentSpaceID, command), HttpStatus.CREATED);
     }

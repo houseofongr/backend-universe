@@ -1,6 +1,6 @@
 package com.hoo.universe.adapter.in.web.space;
 
-import com.hoo.common.internal.api.dto.FileCommand;
+import com.hoo.common.internal.api.file.dto.UploadFileCommand;
 import com.hoo.universe.adapter.in.web.RequestMapper;
 import com.hoo.universe.api.in.dto.OverwriteSpaceFileResult;
 import com.hoo.universe.api.in.OverwriteSpaceFileUseCase;
@@ -27,7 +27,7 @@ public class OverwriteSpaceFileController {
             @PathVariable UUID spaceID,
             @RequestPart(value = "background") MultipartFile backgroundFile) {
 
-        FileCommand background = requestMapper.mapToFileCommand(backgroundFile);
+        UploadFileCommand.FileSource background = requestMapper.mapToFileSource(backgroundFile);
         return ResponseEntity.ok(useCase.overwriteSpaceFile(universeID, spaceID, background));
     }
 }

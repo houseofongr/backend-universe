@@ -32,7 +32,7 @@ public class CreateSoundController {
 
         CreateSoundCommand command = new CreateSoundCommand(
                 requestMapper.mapToCreateSoundCommandMetadata(metadata),
-                requestMapper.mapToFileCommand(audioFile)
+                requestMapper.mapToFileSource(audioFile)
         );
 
         return new ResponseEntity<>(useCase.createNewSound(universeID, parentPieceID, command), HttpStatus.CREATED);

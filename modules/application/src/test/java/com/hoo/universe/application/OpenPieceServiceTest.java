@@ -41,14 +41,14 @@ class OpenPieceServiceTest {
                         "소리", "소리소리", false, ZonedDateTime.now().toEpochSecond(), ZonedDateTime.now().toEpochSecond()))
         );
 
-        OpenPieceQueryResult queryResult = OpenPieceQueryResult.from(piece, soundQueryResult);
+        OpenPieceQueryResult queryResult = new OpenPieceQueryResult(UuidCreator.getTimeOrderedEpoch(), UuidCreator.getTimeOrderedEpoch(), "조각", "조각=피스", false, ZonedDateTime.now().toEpochSecond(), ZonedDateTime.now().toEpochSecond(), soundQueryResult);
 
         Map<UUID, URI> uriMap = new HashMap<>();
         uriMap.put(soundQueryResult.content().getLast().audioFileID(), URI.create("1"));
 
         // when
         when(queryUniversePort.searchPiece(pieceID, pageRequest)).thenReturn(queryResult);
-        when(fileUrlResolver.resolveBatch((Collection<UUID>) any())).thenReturn(uriMap);
+        when(fileUrlResolver.resolveBatch(any())).thenReturn(uriMap);
         OpenPieceResult result = sut.openPieceWithSounds(pieceID, pageRequest);
 
         // then

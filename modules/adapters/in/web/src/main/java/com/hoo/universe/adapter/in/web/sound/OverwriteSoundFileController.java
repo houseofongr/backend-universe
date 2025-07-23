@@ -1,6 +1,6 @@
 package com.hoo.universe.adapter.in.web.sound;
 
-import com.hoo.common.internal.api.dto.FileCommand;
+import com.hoo.common.internal.api.file.dto.UploadFileCommand;
 import com.hoo.universe.adapter.in.web.RequestMapper;
 import com.hoo.universe.api.in.dto.OverwriteSoundFileResult;
 import com.hoo.universe.api.in.OverwriteSoundFileUseCase;
@@ -28,7 +28,7 @@ public class OverwriteSoundFileController {
             @PathVariable UUID soundID,
             @RequestPart(value = "audio") MultipartFile audioFile) {
 
-        FileCommand audio = requestMapper.mapToFileCommand(audioFile);
+        UploadFileCommand.FileSource audio = requestMapper.mapToFileSource(audioFile);
         return ResponseEntity.ok(useCase.overwriteSoundAudio(universeID, parentPieceID, soundID, audio));
     }
 }

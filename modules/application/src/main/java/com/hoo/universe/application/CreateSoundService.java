@@ -1,9 +1,10 @@
 package com.hoo.universe.application;
 
 import com.hoo.common.IssueIDPort;
-import com.hoo.common.internal.api.dto.UploadFileCommand;
-import com.hoo.common.internal.api.dto.UploadFileResult;
-import com.hoo.common.internal.api.UploadFileAPI;
+import com.hoo.common.enums.Domain;
+import com.hoo.common.internal.api.file.UploadFileAPI;
+import com.hoo.common.internal.api.file.dto.UploadFileCommand;
+import com.hoo.common.internal.api.file.dto.UploadFileResult;
 import com.hoo.universe.api.in.dto.CreateSoundCommand;
 import com.hoo.universe.api.in.dto.CreateSoundResult;
 import com.hoo.universe.api.in.CreateSoundUseCase;
@@ -42,7 +43,7 @@ public class CreateSoundService implements CreateSoundUseCase {
         Piece piece = universe.getPiece(new PieceID(pieceID));
         SoundID newSoundID = new SoundID(issueIDPort.issueNewID());
 
-        UploadFileResult audio = uploadFileAPI.uploadFile(UploadFileCommand.from(command.audio(), universe.getOwner().getId(), universe.getUniverseMetadata().getAccessLevel()));
+        UploadFileResult audio = uploadFileAPI.uploadFile(UploadFileCommand.from(command.audio(), Domain.UNIVERSE.getName(), universe.getOwner().getId(), universe.getUniverseMetadata().getAccessLevel()));
 
         SoundCreateEvent event = piece.createSoundInside(newSoundID,
                 SoundMetadata.create(audio.id(), command.metadata().hidden()),

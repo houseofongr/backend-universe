@@ -3,11 +3,14 @@ package com.hoo.universe.api.out.dto;
 import com.hoo.common.web.dto.PageQueryResult;
 import com.hoo.universe.domain.Piece;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public record OpenPieceQueryResult(
         UUID pieceID,
+        UUID ownerID,
         String title,
         String description,
         Boolean hidden,
@@ -16,22 +19,15 @@ public record OpenPieceQueryResult(
         PageQueryResult<SoundInfo> sounds
 ) {
 
-    public List<UUID> extractFileIds() {
+    public Map<UUID, UUID> extractFileIds() {
 
-        return sounds.content().stream().map(SoundInfo::audioFileID).toList();
-    }
+        Map<UUID, UUID> fileOwnerMap = new HashMap<>();
 
-    public static OpenPieceQueryResult from(Piece piece, PageQueryResult<SoundInfo> sounds) {
+        for (SoundInfo soundInfo : sounds.content()) {
+            fileOwnerMap.put(soundInfo.audioFileID, ownerID);
+        }
 
-        return new OpenPieceQueryResult(
-                piece.getId().uuid(),
-                piece.getCommonMetadata().getTitle(),
-                piece.getCommonMetadata().getDescription(),
-                piece.getPieceMetadata().isHidden(),
-                piece.getCommonMetadata().getCreatedTime().toEpochSecond(),
-                piece.getCommonMetadata().getUpdatedTime().toEpochSecond(),
-                sounds
-        );
+        return fileOwnerMap;
     }
 
     public record SoundInfo(

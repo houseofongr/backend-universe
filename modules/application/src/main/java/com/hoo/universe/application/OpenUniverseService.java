@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.net.URI;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
 import static com.hoo.common.util.OptionalUtil.getOrDefault;
@@ -33,8 +32,8 @@ public class OpenUniverseService implements OpenUniverseUseCase {
 
     private OpenUniverseResult mapToAPIResult(OpenUniverseQueryResult queryResult) {
 
-        Set<UUID> uuids = queryResult.extractFileIds();
-        Map<UUID, URI> uriMap = fileUrlResolver.resolveBatch(uuids);
+        Map<UUID, UUID> fileOwnerMap = queryResult.extractFileOwnerMap();
+        Map<UUID, URI> uriMap = fileUrlResolver.resolveBatch(fileOwnerMap);
 
         return mapToAPIResult(queryResult, uriMap);
     }

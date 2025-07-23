@@ -28,7 +28,7 @@ public class CreatePieceController {
 
         CreatePieceWithTwoPointCommand command = new CreatePieceWithTwoPointCommand(
                 requestMapper.mapToCreatePieceCommandMetadata(metadata),
-                requestMapper.mapToFileCommand(imageFile));
+                requestMapper.mapToFileSource(imageFile));
 
         return new ResponseEntity<>(useCase.createNewPieceWithTwoPoint(universeID, command), HttpStatus.CREATED);
     }

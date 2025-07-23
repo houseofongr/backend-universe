@@ -2,7 +2,7 @@ package com.hoo.universe.application;
 
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.common.IssueIDPort;
-import com.hoo.common.internal.api.UploadFileAPI;
+import com.hoo.common.internal.api.file.UploadFileAPI;
 import com.hoo.universe.api.in.dto.CreateSoundCommand;
 import com.hoo.universe.api.out.HandleSoundEventPort;
 import com.hoo.universe.api.out.LoadUniversePort;
@@ -31,7 +31,7 @@ class CreateSoundServiceTest {
     void createSoundService() {
         // given
         UUID universeID = UuidCreator.getTimeOrderedEpoch();
-        CreateSoundCommand command = new CreateSoundCommand(new CreateSoundCommand.Metadata("소리", "사운드는 소리입니다.", false), defaultAudioFileCommand());
+        CreateSoundCommand command = new CreateSoundCommand(new CreateSoundCommand.Metadata("소리", "사운드는 소리입니다.", false), defaultAudioFileSource());
         Universe universe = defaultUniverse();
         UUID pieceID = universe.getPieces().getFirst().getId().uuid();
 

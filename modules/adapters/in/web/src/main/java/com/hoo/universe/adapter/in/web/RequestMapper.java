@@ -3,7 +3,7 @@ package com.hoo.universe.adapter.in.web;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hoo.common.internal.api.dto.FileCommand;
+import com.hoo.common.internal.api.file.dto.UploadFileCommand;
 import com.hoo.common.web.dto.PageRequest;
 import com.hoo.universe.api.in.dto.CreateUniverseCommand;
 import com.hoo.universe.api.in.dto.CreatePieceWithTwoPointCommand;
@@ -22,16 +22,16 @@ public class RequestMapper {
 
     private final ObjectMapper objectMapper;
 
-    public FileCommand mapToFileCommand(MultipartFile file) {
+    public UploadFileCommand.FileSource mapToFileSource(MultipartFile file) {
 
         if (file == null) return null;
 
         try {
-            return new FileCommand(
+            return new UploadFileCommand.FileSource(
                     file.getInputStream(),
-                    file.getSize(),
+                    file.getContentType(),
                     file.getName(),
-                    file.getContentType()
+                    file.getSize()
             );
         } catch (IOException e) {
             throw new UniverseAdapterException(AdapterErrorCode.GET_FILE_INPUT_STREAM_FAILED);

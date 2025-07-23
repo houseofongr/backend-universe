@@ -1,9 +1,9 @@
 package com.hoo.universe.application;
 
 import com.github.f4b6a3.uuid.UuidCreator;
-import com.hoo.common.internal.api.UploadFileAPI;
-import com.hoo.common.internal.api.dto.FileCommand;
-import com.hoo.common.internal.api.dto.UploadFileResult;
+import com.hoo.common.internal.api.file.UploadFileAPI;
+import com.hoo.common.internal.api.file.dto.UploadFileCommand;
+import com.hoo.common.internal.api.file.dto.UploadFileResult;
 import com.hoo.common.internal.message.DeleteFileEventPublisher;
 import com.hoo.universe.api.in.dto.OverwriteUniverseFileResult;
 import com.hoo.universe.api.out.HandleUniverseEventPort;
@@ -33,9 +33,9 @@ class OverwriteUniverseFileServiceTest {
         // given
         UUID universeID = UuidCreator.getTimeOrderedEpoch();
 
-        FileCommand thumbmusic = defaultAudioFileCommand();
-        FileCommand thumbnail = defaultImageFileCommand();
-        FileCommand background = defaultImageFileCommand();
+        UploadFileCommand.FileSource thumbmusic = defaultAudioFileSource();
+        UploadFileCommand.FileSource thumbnail = defaultImageFileSource();
+        UploadFileCommand.FileSource background = defaultImageFileSource();
 
         Universe universe = defaultUniverseOnly().build();
 

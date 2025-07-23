@@ -2,24 +2,24 @@ package com.hoo.universe.application;
 
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.common.IssueIDPort;
-import com.hoo.common.internal.api.dto.FileCommand;
-import com.hoo.common.internal.api.dto.UserInfo;
+import com.hoo.common.internal.api.file.UploadFileAPI;
+import com.hoo.common.internal.api.file.dto.UploadFileCommand;
+import com.hoo.common.internal.api.user.GetUserInfoAPI;
+import com.hoo.common.internal.api.user.dto.UserInfo;
 import com.hoo.universe.api.in.dto.CreateUniverseCommand;
-import com.hoo.common.internal.api.UploadFileAPI;
 import com.hoo.universe.api.out.HandleUniverseEventPort;
 import com.hoo.universe.api.out.QueryCategoryPort;
-import com.hoo.common.internal.api.GetUserInfoAPI;
 import com.hoo.universe.application.exception.ApplicationErrorCode;
-import com.hoo.universe.domain.vo.Owner;
 import com.hoo.universe.domain.vo.Category;
+import com.hoo.universe.domain.vo.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.ZonedDateTime;
-import java.util.*;
+import java.util.List;
 
 import static com.hoo.universe.test.dto.FileTestData.*;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.*;
 
 class CreateUniverseServiceTest {
@@ -38,11 +38,11 @@ class CreateUniverseServiceTest {
         // given
         CreateUniverseCommand.Metadata metadata = new CreateUniverseCommand.Metadata("우주", "유니버스는 우주입니다.", UuidCreator.getTimeOrderedEpoch(), UuidCreator.getTimeOrderedEpoch(), "PUBLIC", List.of());
 
-        FileCommand thumbmusic = new FileCommand(null, 2 * 1024 * 1024 + 1L, "thumbmusic.mp3", "audio/mp3");
-        FileCommand thumbnail = new FileCommand(null, 2 * 1024 * 1024 + 1L,"thumbnail.png", "image/png");
-        FileCommand background = new FileCommand(null, 100 * 1024 * 1024 + 1L,"background.png", "image/png");
+        UploadFileCommand.FileSource thumbmusic = new UploadFileCommand.FileSource(null, "audio/mp3", "thumbmusic.mp3", 2 * 1024 * 1024 + 1L);
+        UploadFileCommand.FileSource thumbnail = new UploadFileCommand.FileSource(null, "image/png", "thumbnail.png", 2 * 1024 * 1024 + 1L);
+        UploadFileCommand.FileSource background = new UploadFileCommand.FileSource(null, "image/png", "background.png", 100 * 1024 * 1024 + 1L);
 
-        Owner newOwner = new Owner(UuidCreator.getTimeOrderedEpoch(),"leaffael");
+        Owner newOwner = new Owner(UuidCreator.getTimeOrderedEpoch(), "leaffael");
 
         CreateUniverseCommand command = new CreateUniverseCommand(metadata, thumbmusic, thumbnail, background);
 
@@ -55,10 +55,10 @@ class CreateUniverseServiceTest {
     void testUniverseCreateService() {
         // given
         CreateUniverseCommand.Metadata metadata = new CreateUniverseCommand.Metadata("우주", "유니버스는 우주입니다.", UuidCreator.getTimeOrderedEpoch(), UuidCreator.getTimeOrderedEpoch(), "PUBLIC", List.of());
-        FileCommand audio = defaultAudioFileCommand();
-        FileCommand image = defaultImageFileCommand();
+        UploadFileCommand.FileSource audio = defaultAudioFileSource();
+        UploadFileCommand.FileSource image = defaultImageFileSource();
         CreateUniverseCommand command = new CreateUniverseCommand(metadata, audio, image, image);
-        Owner newOwner = new Owner(UuidCreator.getTimeOrderedEpoch(),"leaffael");
+        Owner newOwner = new Owner(UuidCreator.getTimeOrderedEpoch(), "leaffael");
 
         // when
         when(getOwnerAPI.getUserInfo(command.metadata().ownerID())).thenReturn(new UserInfo(command.metadata().ownerID(), true, true, "test@example.com", "leaf", "BUSINESS", "ACTIVATE", ZonedDateTime.now().toEpochSecond()));

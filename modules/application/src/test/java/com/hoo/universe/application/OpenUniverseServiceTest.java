@@ -60,12 +60,12 @@ class OpenUniverseServiceTest {
 
         // when
         when(loadUniversePort.loadUniverseExceptSounds(universeID)).thenReturn(universe);
-        when(fileUrlResolver.resolveBatch((Collection<UUID>) any())).thenReturn(uriMap);
+        when(fileUrlResolver.resolveBatch((Map<UUID, UUID>) any())).thenReturn(uriMap);
         OpenUniverseResult result = sut.openUniverseWithComponents(universeID);
 
         // then
         verify(loadUniversePort, times(1)).loadUniverseExceptSounds(universeID);
-        verify(fileUrlResolver, times(1)).resolveBatch((Collection<UUID>) any());
+        verify(fileUrlResolver, times(1)).resolveBatch((Map<UUID, UUID>) any());
 
         assertThat(result.thumbmusicFileUrl().toString()).isEqualTo("1");
         assertThat(result.thumbnailFileUrl().toString()).isEqualTo("2");

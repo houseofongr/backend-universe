@@ -77,6 +77,7 @@ public class UniverseMapper {
     public OpenPieceQueryResult mapToOpenPieceResult(PieceJpaEntity pieceJpaEntity, PageQueryResult<SoundJpaEntity> soundQueryResult) {
         return new OpenPieceQueryResult(
                 pieceJpaEntity.getUuid(),
+                pieceJpaEntity.getUniverse().getOwner().getOwnerId(),
                 pieceJpaEntity.getCommonMetadata().getTitle(),
                 pieceJpaEntity.getCommonMetadata().getDescription(),
                 pieceJpaEntity.getPieceMetadata().getHidden(),

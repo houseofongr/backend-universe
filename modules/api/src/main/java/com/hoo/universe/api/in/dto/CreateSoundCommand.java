@@ -1,10 +1,11 @@
 package com.hoo.universe.api.in.dto;
 
-import com.hoo.common.internal.api.dto.FileCommand;
+
+import com.hoo.common.internal.api.file.dto.UploadFileCommand;
 
 public record CreateSoundCommand(
         Metadata metadata,
-        FileCommand audio
+        UploadFileCommand.FileSource audio
 ) {
     public CreateSoundCommand {
         if (audio == null) throw new IllegalArgumentException();

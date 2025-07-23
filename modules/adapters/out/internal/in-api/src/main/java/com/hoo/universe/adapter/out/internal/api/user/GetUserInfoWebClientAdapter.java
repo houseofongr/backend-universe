@@ -1,8 +1,8 @@
 package com.hoo.universe.adapter.out.internal.api.user;
 
-import com.hoo.common.internal.api.dto.UserInfo;
+import com.hoo.common.internal.api.user.GetUserInfoAPI;
+import com.hoo.common.internal.api.user.dto.UserInfo;
 import com.hoo.universe.adapter.out.internal.api.InternalAPIConfigProperties;
-import com.hoo.common.internal.api.GetUserInfoAPI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -18,7 +18,7 @@ public class GetUserInfoWebClientAdapter implements GetUserInfoAPI {
     public UserInfo getUserInfo(UUID userID) {
 
         return webClient.get()
-                .uri(String.format(internalAPIConfigProperties.getUser().getFindUserNicknameUrl(), userID))
+                .uri(String.format(internalAPIConfigProperties.getUser().getGetUserInfoUrl(), userID))
                 .retrieve()
                 .bodyToMono(UserInfo.class)
                 .block();

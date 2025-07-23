@@ -2,8 +2,8 @@ package com.hoo.universe.application;
 
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.common.enums.AccessLevel;
-import com.hoo.common.internal.api.GetUserInfoAPI;
-import com.hoo.common.internal.api.dto.UserInfo;
+import com.hoo.common.internal.api.user.GetUserInfoAPI;
+import com.hoo.common.internal.api.user.dto.UserInfo;
 import com.hoo.universe.api.in.dto.UpdateUniverseMetadataCommand;
 import com.hoo.universe.api.out.HandleUniverseEventPort;
 import com.hoo.universe.api.out.LoadUniversePort;

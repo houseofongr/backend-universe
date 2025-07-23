@@ -1,13 +1,13 @@
 package com.hoo.universe.application;
 
 import com.hoo.common.enums.AccessLevel;
-import com.hoo.common.internal.api.dto.UserInfo;
+import com.hoo.common.internal.api.user.GetUserInfoAPI;
+import com.hoo.common.internal.api.user.dto.UserInfo;
 import com.hoo.universe.api.in.dto.UpdateUniverseMetadataCommand;
 import com.hoo.universe.api.in.dto.UpdateUniverseMetadataResult;
 import com.hoo.universe.api.in.UpdateUniverseMetadataUseCase;
 import com.hoo.universe.api.out.LoadUniversePort;
 import com.hoo.universe.api.out.HandleUniverseEventPort;
-import com.hoo.common.internal.api.GetUserInfoAPI;
 import com.hoo.universe.api.out.QueryCategoryPort;
 import com.hoo.universe.domain.Universe;
 import com.hoo.universe.domain.event.UniverseMetadataUpdateEvent;

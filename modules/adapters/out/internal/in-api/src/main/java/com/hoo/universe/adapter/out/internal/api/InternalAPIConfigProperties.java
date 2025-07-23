@@ -13,7 +13,7 @@ public class InternalAPIConfigProperties {
     @Data
     public static class User {
         private String baseUrl;
-        private String findUserNicknameUrl;
+        private String getUserInfoUrl;
     }
 
     @Data

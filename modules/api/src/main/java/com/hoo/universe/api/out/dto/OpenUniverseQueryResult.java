@@ -6,10 +6,7 @@ import com.hoo.universe.domain.Universe;
 import com.hoo.universe.domain.vo.Category;
 import com.hoo.universe.domain.vo.Point;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 public record OpenUniverseQueryResult(
         UUID id,
@@ -114,30 +111,30 @@ public record OpenUniverseQueryResult(
         }
     }
 
-    public Set<UUID> extractFileIds() {
+    public Map<UUID, UUID> extractFileOwnerMap() {
 
-        Set<UUID> ids = new HashSet<>();
+        Map<UUID, UUID> fileOwnerMap = new HashMap<>();
 
-        ids.add(thumbmusicFileID());
-        ids.add(thumbnailFileID());
-        ids.add(backgroundFileID());
+        fileOwnerMap.put(thumbmusicFileID(), ownerID);
+        fileOwnerMap.put(thumbnailFileID(), ownerID);
+        fileOwnerMap.put(backgroundFileID(), ownerID);
 
-        for (var s : spaces()) collectSpaceFileIds(s, ids);
-        for (var p : pieces()) collectPieceFileIds(p, ids);
+        for (var s : spaces()) collectSpaceFileIds(s, fileOwnerMap);
+        for (var p : pieces()) collectPieceFileIds(p, fileOwnerMap);
 
-        return ids;
+        return fileOwnerMap;
     }
 
-    private void collectSpaceFileIds(SpaceInfo space, Set<UUID> ids) {
+    private void collectSpaceFileIds(SpaceInfo space, Map<UUID, UUID> fileOwnerMap) {
 
-        ids.add(space.backgroundFileID());
+        fileOwnerMap.put(space.backgroundFileID(), ownerID);
 
-        for (var s : space.spaces()) collectSpaceFileIds(s, ids);
-        for (var p : space.pieces()) collectPieceFileIds(p, ids);
+        for (var s : space.spaces()) collectSpaceFileIds(s, fileOwnerMap);
+        for (var p : space.pieces()) collectPieceFileIds(p, fileOwnerMap);
     }
 
-    private void collectPieceFileIds(PieceInfo piece, Set<UUID> ids) {
+    private void collectPieceFileIds(PieceInfo piece, Map<UUID, UUID> fileOwnerMap) {
 
-        ids.add(piece.imageFileID());
+        fileOwnerMap.put(piece.imageFileID(), ownerID);
     }
 }

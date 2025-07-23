@@ -1,9 +1,9 @@
 package com.hoo.universe.application;
 
 import com.github.f4b6a3.uuid.UuidCreator;
-import com.hoo.common.internal.api.dto.FileCommand;
+import com.hoo.common.internal.api.file.UploadFileAPI;
+import com.hoo.common.internal.api.file.dto.UploadFileCommand;
 import com.hoo.common.internal.message.DeleteFileEventPublisher;
-import com.hoo.common.internal.api.UploadFileAPI;
 import com.hoo.universe.api.out.HandleSoundEventPort;
 import com.hoo.universe.api.out.LoadUniversePort;
 import com.hoo.universe.domain.Universe;
@@ -30,7 +30,7 @@ class OverwriteSoundFileServiceTest {
     void overwriteSoundAudioService() {
         // given
         UUID universeID = UuidCreator.getTimeOrderedEpoch();
-        FileCommand audio = defaultAudioFileCommand();
+        UploadFileCommand.FileSource audio = defaultAudioFileSource();
         Universe universe = defaultUniverse();
         UUID pieceID = universe.getPieces().getFirst().getId().uuid();
         UUID soundID = universe.getPieces().getFirst().getSounds().getFirst().getId().uuid();

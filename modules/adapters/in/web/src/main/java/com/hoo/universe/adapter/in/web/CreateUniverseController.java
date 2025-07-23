@@ -28,9 +28,9 @@ public class CreateUniverseController {
 
         CreateUniverseCommand command = new CreateUniverseCommand(
                 requestMapper.mapToCreateUniverseCommandMetadata(metadata),
-                requestMapper.mapToFileCommand(thumbmusicFile),
-                requestMapper.mapToFileCommand(thumbnailFile),
-                requestMapper.mapToFileCommand(backgroundFile)
+                requestMapper.mapToFileSource(thumbmusicFile),
+                requestMapper.mapToFileSource(thumbnailFile),
+                requestMapper.mapToFileSource(backgroundFile)
         );
 
         return new ResponseEntity<>(useCase.createNewUniverse(command), HttpStatus.CREATED);

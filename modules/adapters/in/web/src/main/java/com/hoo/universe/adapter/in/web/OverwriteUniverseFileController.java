@@ -1,6 +1,6 @@
 package com.hoo.universe.adapter.in.web;
 
-import com.hoo.common.internal.api.dto.FileCommand;
+import com.hoo.common.internal.api.file.dto.UploadFileCommand;
 import com.hoo.universe.api.in.dto.OverwriteUniverseFileResult;
 import com.hoo.universe.api.in.OverwriteUniverseFileUseCase;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class OverwriteUniverseFileController {
             @PathVariable UUID universeID,
             @RequestPart(value = "thumbmusic") MultipartFile thumbmusicFile) {
 
-        FileCommand thumbmusic = requestMapper.mapToFileCommand(thumbmusicFile);
+        UploadFileCommand.FileSource thumbmusic = requestMapper.mapToFileSource(thumbmusicFile);
 
         return ResponseEntity.ok(useCase.overwriteUniverseThumbmusic(universeID, thumbmusic));
 
@@ -36,7 +36,7 @@ public class OverwriteUniverseFileController {
             @PathVariable UUID universeID,
             @RequestPart(value = "thumbnail") MultipartFile thumbnailFile) {
 
-        FileCommand thumbnail = requestMapper.mapToFileCommand(thumbnailFile);
+        UploadFileCommand.FileSource thumbnail = requestMapper.mapToFileSource(thumbnailFile);
 
         return ResponseEntity.ok(useCase.overwriteUniverseThumbnail(universeID, thumbnail));
     }
@@ -46,7 +46,7 @@ public class OverwriteUniverseFileController {
             @PathVariable UUID universeID,
             @RequestPart(value = "background") MultipartFile backgroundFile) {
 
-        FileCommand background = requestMapper.mapToFileCommand(backgroundFile);
+        UploadFileCommand.FileSource background = requestMapper.mapToFileSource(backgroundFile);
 
         return ResponseEntity.ok(useCase.overwriteUniverseBackground(universeID, background));
 
