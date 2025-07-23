@@ -43,23 +43,3 @@ subprojects {
         testAnnotationProcessor 'org.projectlombok:lombok'
     }
 }
-
-sourceSets {
-    main {
-        java {
-            exclude 'com/hoo/file/**'
-            exclude 'com/hoo/aar/**'
-            exclude 'com/hoo/admin/**'
-            exclude 'com/hoo/common/**'
-        }
-    }
-
-    test {
-        java {
-            exclude 'com/hoo/file/**'
-            exclude 'com/hoo/aar/**'
-            exclude 'com/hoo/admin/**'
-            exclude 'com/hoo/common/**'
-        }
-    }
-}
