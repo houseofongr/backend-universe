@@ -11,6 +11,6 @@ import java.lang.annotation.RetentionPolicy;
 @Retention(RetentionPolicy.RUNTIME)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@ContextConfiguration(classes = {PersistenceAdapterConfig.class})
+@ContextConfiguration(classes = {PersistenceConfig.class})
 public @interface PersistenceAdapterTest {
 }
