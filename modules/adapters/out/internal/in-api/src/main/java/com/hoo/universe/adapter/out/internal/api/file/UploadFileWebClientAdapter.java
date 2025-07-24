@@ -6,6 +6,7 @@ import com.hoo.common.internal.api.file.dto.UploadFileResult;
 import com.hoo.universe.adapter.out.internal.api.InternalProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.MediaType;
 import org.springframework.http.client.MultipartBodyBuilder;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -19,15 +20,17 @@ public class UploadFileWebClientAdapter implements UploadFileAPI {
     @Override
     public UploadFileResult uploadFile(UploadFileCommand uploadFileCommand) {
 
-        MultipartBodyBuilder builder = new MultipartBodyBuilder();
-        builder
-                .part("file", new InputStreamResource(uploadFileCommand.fileSource().inputStream()))
+        MultipartBodyBuilder body = new MultipartBodyBuilder();
+
+        body.part("file", new InputStreamResource(uploadFileCommand.fileSource().inputStream()))
                 .filename(uploadFileCommand.fileSource().name())
-                .header("Content-Disposition", "form-data; name=file; filename=\"" + uploadFileCommand.fileSource().name() + "\"");
+                .contentType(MediaType.parseMediaType(uploadFileCommand.fileSource().contentType()));
+
+        body.part("metadata", uploadFileCommand.metadata());
 
         return webClient.post()
                 .uri(internalProperties.getFile().getUploadFileUrl())
-                .body(BodyInserters.fromMultipartData(builder.build()))
+                .body(BodyInserters.fromMultipartData(body.build()))
                 .retrieve()
                 .bodyToMono(UploadFileResult.class)
                 .block();
