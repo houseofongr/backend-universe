@@ -8,8 +8,8 @@ import com.hoo.common.internal.api.file.dto.UploadFileResult;
 import com.hoo.universe.api.in.CreateSpaceUseCase;
 import com.hoo.universe.api.in.dto.CreateSpaceResult;
 import com.hoo.universe.api.in.dto.CreateSpaceWithTwoPointCommand;
-import com.hoo.universe.api.out.HandleSpaceEventPort;
 import com.hoo.universe.api.out.LoadUniversePort;
+import com.hoo.universe.api.out.SaveEntityPort;
 import com.hoo.universe.application.exception.ApplicationErrorCode;
 import com.hoo.universe.application.exception.DomainErrorCode;
 import com.hoo.universe.application.exception.UniverseApplicationException;
@@ -17,7 +17,7 @@ import com.hoo.universe.application.exception.UniverseDomainException;
 import com.hoo.universe.domain.Space;
 import com.hoo.universe.domain.Space.SpaceID;
 import com.hoo.universe.domain.Universe;
-import com.hoo.universe.domain.event.space.SpaceCreateEvent;
+import com.hoo.universe.domain.event.SpaceCreateEvent;
 import com.hoo.universe.domain.vo.CommonMetadata;
 import com.hoo.universe.domain.vo.Outline;
 import com.hoo.universe.domain.vo.Point;
@@ -35,12 +35,11 @@ public class CreateSpaceService implements CreateSpaceUseCase {
 
     private final IssueIDPort issueIDPort;
     private final LoadUniversePort loadUniversePort;
-    private final HandleSpaceEventPort handleSpaceEventPort;
+    private final SaveEntityPort saveEntityPort;
     private final UploadFileAPI uploadFileAPI;
 
     @Override
     public CreateSpaceResult createSpaceWithTwoPoint(UUID universeID, UUID parentSpaceID, CreateSpaceWithTwoPointCommand command) {
-
         validate(command);
 
         Universe universe = loadUniversePort.loadUniverseExceptSounds(universeID);
@@ -63,7 +62,8 @@ public class CreateSpaceService implements CreateSpaceUseCase {
             throw new UniverseDomainException(DomainErrorCode.OVERLAPPED, DomainErrorCode.OVERLAPPED.getMessage() + event.overlapEvent().renderOverlapStatus());
 
         Space newSpace = event.newSpace();
-        handleSpaceEventPort.handleSpaceCreateEvent(event);
+        saveEntityPort.saveSpace(newSpace);
+
         Point[] farthestPoints = newSpace.getOutline().getRectangleFarthestPoints();
 
         return new CreateSpaceResult(

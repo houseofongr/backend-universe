@@ -6,8 +6,8 @@ import com.hoo.common.internal.api.file.dto.UploadFileCommand;
 import com.hoo.common.internal.message.DeleteFileEventPublisher;
 import com.hoo.universe.api.in.OverwriteUniverseFileUseCase;
 import com.hoo.universe.api.in.dto.OverwriteUniverseFileResult;
-import com.hoo.universe.api.out.HandleUniverseEventPort;
 import com.hoo.universe.api.out.LoadUniversePort;
+import com.hoo.universe.api.out.UpdateUniverseStatusPort;
 import com.hoo.universe.domain.Universe;
 import com.hoo.universe.domain.event.UniverseFileOverwriteEvent;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ import java.util.UUID;
 public class OverwriteUniverseFileService implements OverwriteUniverseFileUseCase {
 
     private final LoadUniversePort loadUniversePort;
-    private final HandleUniverseEventPort handleUniverseEventPort;
+    private final UpdateUniverseStatusPort updateUniverseStatusPort;
     private final UploadFileAPI uploadFileAPI;
     private final DeleteFileEventPublisher deleteFileEventPublisher;
 
@@ -30,12 +30,11 @@ public class OverwriteUniverseFileService implements OverwriteUniverseFileUseCas
     public OverwriteUniverseFileResult.Thumbmusic overwriteUniverseThumbmusic(UUID universeID, UploadFileCommand.FileSource thumbmusic) {
 
         Universe universe = loadUniversePort.loadUniverseOnly(universeID);
-        UploadFileCommand command = UploadFileCommand.from(thumbmusic, Domain.UNIVERSE.getName(), universe.getOwner().getId(), universe.getUniverseMetadata().getAccessLevel());
-        UUID newThumbmusicID = uploadFileAPI.uploadFile(command).id();
+        UUID newThumbmusicID = getFileID(thumbmusic, universe);
 
         UniverseFileOverwriteEvent event = universe.overwriteFiles(newThumbmusicID, null, null);
 
-        handleUniverseEventPort.handleUniverseFileOverwriteEvent(event);
+        updateUniverseStatusPort.updateUniverseFileOverwrite(event);
         deleteFileEventPublisher.publishDeleteFilesEvent(event.getOldFileIDs());
 
         return new OverwriteUniverseFileResult.Thumbmusic(event.oldThumbmusicID(), event.newThumbmusicID());
@@ -45,12 +44,11 @@ public class OverwriteUniverseFileService implements OverwriteUniverseFileUseCas
     public OverwriteUniverseFileResult.Thumbnail overwriteUniverseThumbnail(UUID universeID, UploadFileCommand.FileSource thumbnail) {
 
         Universe universe = loadUniversePort.loadUniverseOnly(universeID);
-        UploadFileCommand command = UploadFileCommand.from(thumbnail, Domain.UNIVERSE.getName(), universe.getOwner().getId(), universe.getUniverseMetadata().getAccessLevel());
-        UUID newThumbnailID = uploadFileAPI.uploadFile(command).id();
+        UUID newThumbnailID = getFileID(thumbnail, universe);
 
         UniverseFileOverwriteEvent event = universe.overwriteFiles(null, newThumbnailID, null);
 
-        handleUniverseEventPort.handleUniverseFileOverwriteEvent(event);
+        updateUniverseStatusPort.updateUniverseFileOverwrite(event);
         deleteFileEventPublisher.publishDeleteFilesEvent(event.getOldFileIDs());
 
         return new OverwriteUniverseFileResult.Thumbnail(event.oldThumbnailID(), event.newThumbnailID());
@@ -60,14 +58,18 @@ public class OverwriteUniverseFileService implements OverwriteUniverseFileUseCas
     public OverwriteUniverseFileResult.Background overwriteUniverseBackground(UUID universeID, UploadFileCommand.FileSource background) {
 
         Universe universe = loadUniversePort.loadUniverseOnly(universeID);
-        UploadFileCommand command = UploadFileCommand.from(background, Domain.UNIVERSE.getName(), universe.getOwner().getId(), universe.getUniverseMetadata().getAccessLevel());
-        UUID newBackgroundID = uploadFileAPI.uploadFile(command).id();
+        UUID newBackgroundID = getFileID(background, universe);
 
         UniverseFileOverwriteEvent event = universe.overwriteFiles(null, null, newBackgroundID);
 
-        handleUniverseEventPort.handleUniverseFileOverwriteEvent(event);
+        updateUniverseStatusPort.updateUniverseFileOverwrite(event);
         deleteFileEventPublisher.publishDeleteFilesEvent(event.getOldFileIDs());
 
         return new OverwriteUniverseFileResult.Background(event.oldBackgroundID(), event.newBackgroundID());
+    }
+
+    private UUID getFileID(UploadFileCommand.FileSource background, Universe universe) {
+        UploadFileCommand command = UploadFileCommand.from(background, Domain.UNIVERSE.getName(), universe.getOwner().getId(), universe.getUniverseMetadata().getAccessLevel());
+        return uploadFileAPI.uploadFile(command).id();
     }
 }

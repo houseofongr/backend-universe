@@ -2,8 +2,8 @@ package com.hoo.universe.application;
 
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.universe.api.in.dto.MoveSpaceWithTwoPointCommand;
-import com.hoo.universe.api.out.HandleSpaceEventPort;
 import com.hoo.universe.api.out.LoadUniversePort;
+import com.hoo.universe.api.out.UpdateSpaceStatusPort;
 import com.hoo.universe.application.exception.DomainErrorCode;
 import com.hoo.universe.domain.Universe;
 import org.junit.jupiter.api.DisplayName;
@@ -19,9 +19,9 @@ import static org.mockito.Mockito.when;
 class MoveSpaceServiceTest {
 
     LoadUniversePort loadUniversePort = mock();
-    HandleSpaceEventPort handleSpaceEventPort = mock();
+    UpdateSpaceStatusPort updateSpaceStatusPort = mock();
 
-    MoveSpaceService sut = new MoveSpaceService(loadUniversePort, handleSpaceEventPort);
+    MoveSpaceService sut = new MoveSpaceService(loadUniversePort, updateSpaceStatusPort);
 
     @Test
     @DisplayName("스페이스 이동 불가 시 오류처리")
@@ -53,7 +53,7 @@ class MoveSpaceServiceTest {
         sut.moveSpaceWithTwoPoint(universeID, spaceID, command);
 
         // then
-        verify(handleSpaceEventPort, times(1)).handleSpaceMoveEvent(any());
+        verify(updateSpaceStatusPort, times(1)).updateSpaceMove(any());
     }
 
 }

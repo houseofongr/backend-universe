@@ -1,8 +1,8 @@
 package com.hoo.universe.domain;
 
 import com.github.f4b6a3.uuid.UuidCreator;
-import com.hoo.universe.domain.event.sound.SoundFileOverwriteEvent;
-import com.hoo.universe.domain.event.sound.SoundMetadataUpdateEvent;
+import com.hoo.universe.domain.event.SoundFileOverwriteEvent;
+import com.hoo.universe.domain.event.SoundMetadataUpdateEvent;
 import org.assertj.core.data.TemporalUnitLessThanOffset;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

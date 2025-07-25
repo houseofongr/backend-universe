@@ -2,7 +2,9 @@ package com.hoo.universe.api.out.dto;
 
 import com.hoo.universe.domain.vo.Category;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public record UniverseListQueryInfo(
@@ -21,4 +23,10 @@ public record UniverseListQueryInfo(
         Category category,
         List<String> hashtags
 ) {
+    public Map<UUID, UUID> extractFileOwnerMap() {
+        Map<UUID, UUID> fileOwnerMap = new HashMap<>();
+        fileOwnerMap.put(thumbmusicFileID, ownerID);
+        fileOwnerMap.put(thumbnailFileID, ownerID);
+        return fileOwnerMap;
+    }
 }

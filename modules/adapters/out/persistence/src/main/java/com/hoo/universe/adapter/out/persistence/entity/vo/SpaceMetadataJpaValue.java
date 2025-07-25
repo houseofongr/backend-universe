@@ -1,7 +1,7 @@
 package com.hoo.universe.adapter.out.persistence.entity.vo;
 
-import com.hoo.universe.domain.event.space.SpaceFileOverwriteEvent;
-import com.hoo.universe.domain.event.space.SpaceMetadataUpdateEvent;
+import com.hoo.universe.domain.event.SpaceFileOverwriteEvent;
+import com.hoo.universe.domain.event.SpaceMetadataUpdateEvent;
 import com.hoo.universe.domain.vo.SpaceMetadata;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

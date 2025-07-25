@@ -5,9 +5,9 @@ import com.hoo.common.enums.AccessLevel;
 import com.hoo.common.internal.api.user.GetUserInfoAPI;
 import com.hoo.common.internal.api.user.dto.UserInfo;
 import com.hoo.universe.api.in.dto.UpdateUniverseMetadataCommand;
-import com.hoo.universe.api.out.HandleUniverseEventPort;
 import com.hoo.universe.api.out.LoadUniversePort;
 import com.hoo.universe.api.out.QueryCategoryPort;
+import com.hoo.universe.api.out.UpdateUniverseStatusPort;
 import com.hoo.universe.domain.Universe;
 import com.hoo.universe.domain.vo.Owner;
 import org.junit.jupiter.api.DisplayName;
@@ -25,9 +25,9 @@ class UpdateUniverseMetadataServiceTest {
     LoadUniversePort loadUniversePort = mock();
     GetUserInfoAPI getOwnerAPI = mock();
     QueryCategoryPort queryCategoryPort = mock();
-    HandleUniverseEventPort handleUniverseEventPort = mock();
+    UpdateUniverseStatusPort updateUniverseStatusPort = mock();
 
-    UpdateUniverseMetadataService sut = new UpdateUniverseMetadataService(loadUniversePort, getOwnerAPI, queryCategoryPort, handleUniverseEventPort);
+    UpdateUniverseMetadataService sut = new UpdateUniverseMetadataService(loadUniversePort, getOwnerAPI, queryCategoryPort, updateUniverseStatusPort);
 
     @Test
     @DisplayName("정보 수정 서비스")
@@ -46,6 +46,6 @@ class UpdateUniverseMetadataServiceTest {
         sut.updateUniverseMetadata(universeID, command);
 
         // then
-        verify(handleUniverseEventPort, times(1)).handleUniverseMetadataUpdateEvent(any());
+        verify(updateUniverseStatusPort, times(1)).updateUniverseMetadata(any());
     }
 }

@@ -2,7 +2,7 @@ package com.hoo.universe.application;
 
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.universe.api.in.dto.UpdateCategoryCommand;
-import com.hoo.universe.api.out.CommandCategoryPort;
+import com.hoo.universe.api.out.UpdateCategoryPort;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ import static org.mockito.Mockito.*;
 
 class UpdateCategoryServiceTest {
 
-    CommandCategoryPort updateCategoryPort = mock();
+    UpdateCategoryPort updateCategoryPort = mock();
     UpdateCategoryService sut = new UpdateCategoryService(updateCategoryPort);
 
     @Test

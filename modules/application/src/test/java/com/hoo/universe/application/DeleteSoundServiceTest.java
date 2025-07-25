@@ -2,7 +2,7 @@ package com.hoo.universe.application;
 
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.common.internal.message.DeleteFileEventPublisher;
-import com.hoo.universe.api.out.HandleSoundEventPort;
+import com.hoo.universe.api.out.DeleteEntityPort;
 import com.hoo.universe.api.out.LoadUniversePort;
 import com.hoo.universe.domain.Universe;
 import org.junit.jupiter.api.DisplayName;
@@ -17,10 +17,10 @@ import static org.mockito.Mockito.when;
 class DeleteSoundServiceTest {
 
     LoadUniversePort loadUniversePort = mock();
-    HandleSoundEventPort handleSoundEventPort = mock();
+    DeleteEntityPort deleteEntityPort = mock();
     DeleteFileEventPublisher deleteFileEventPublisher = mock();
 
-    DeleteSoundService sut = new DeleteSoundService(loadUniversePort, handleSoundEventPort, deleteFileEventPublisher);
+    DeleteSoundService sut = new DeleteSoundService(loadUniversePort, deleteEntityPort, deleteFileEventPublisher);
 
     @Test
     @DisplayName("사운드 삭제 서비스")
@@ -36,7 +36,7 @@ class DeleteSoundServiceTest {
         sut.deleteSound(universeID, pieceID, soundID);
 
         // then
-        verify(handleSoundEventPort, times(1)).handleSoundDeleteEvent(any());
+        verify(deleteEntityPort, times(1)).deleteSound(any());
         verify(deleteFileEventPublisher, times(1)).publishDeleteFilesEvent((UUID) any());
     }
 

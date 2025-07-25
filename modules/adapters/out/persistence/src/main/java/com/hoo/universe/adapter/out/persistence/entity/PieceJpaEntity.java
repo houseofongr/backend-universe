@@ -2,9 +2,8 @@ package com.hoo.universe.adapter.out.persistence.entity;
 
 import com.hoo.universe.adapter.out.persistence.entity.vo.CommonMetadataJpaValue;
 import com.hoo.universe.adapter.out.persistence.entity.vo.PieceMetadataJpaValue;
-import com.hoo.universe.adapter.out.persistence.entity.vo.SpaceMetadataJpaValue;
 import com.hoo.universe.domain.Piece;
-import com.hoo.universe.domain.event.piece.PieceMetadataUpdateEvent;
+import com.hoo.universe.domain.event.PieceMetadataUpdateEvent;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

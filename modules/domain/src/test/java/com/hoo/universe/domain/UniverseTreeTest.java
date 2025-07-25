@@ -1,7 +1,7 @@
 package com.hoo.universe.domain;
 
-import com.hoo.universe.domain.event.piece.PieceMoveEvent;
-import com.hoo.universe.domain.event.space.SpaceMoveEvent;
+import com.hoo.universe.domain.event.PieceMoveEvent;
+import com.hoo.universe.domain.event.SpaceMoveEvent;
 import com.hoo.universe.domain.vo.Point;
 import com.hoo.universe.domain.vo.Outline;
 import org.junit.jupiter.api.DisplayName;

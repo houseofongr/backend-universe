@@ -3,7 +3,7 @@ package com.hoo.universe.application;
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.common.IssueIDPort;
 import com.hoo.universe.api.in.dto.CreatePieceWithTwoPointCommand;
-import com.hoo.universe.api.out.HandlePieceEventPort;
+import com.hoo.universe.api.out.SaveEntityPort;
 import com.hoo.universe.api.out.LoadUniversePort;
 import com.hoo.universe.application.exception.DomainErrorCode;
 import com.hoo.universe.application.exception.UniverseDomainException;
@@ -21,9 +21,9 @@ class CreatePieceServiceTest {
 
     IssueIDPort issueIDPort = mock();
     LoadUniversePort loadUniversePort = mock();
-    HandlePieceEventPort handlePieceEventPort = mock();
+    SaveEntityPort saveEntityPort = mock();
 
-    CreatePieceService sut = new CreatePieceService(issueIDPort, loadUniversePort, handlePieceEventPort);
+    CreatePieceService sut = new CreatePieceService(issueIDPort, loadUniversePort, saveEntityPort);
 
     @Test
     @DisplayName("피스 생성 서비스")
@@ -40,7 +40,7 @@ class CreatePieceServiceTest {
         // then
         verify(issueIDPort, times(1)).issueNewID();
         verify(loadUniversePort, times(1)).loadUniverseExceptSounds(any());
-        verify(handlePieceEventPort, times(1)).handlePieceCreateEvent(any());
+        verify(saveEntityPort, times(1)).savePiece(any());
 
         // 같은 위치에 두번 생성시 실패
         assertThatThrownBy(() -> sut.createNewPieceWithTwoPoint(universeID, command))

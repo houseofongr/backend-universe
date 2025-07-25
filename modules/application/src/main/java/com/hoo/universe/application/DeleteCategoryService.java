@@ -2,7 +2,7 @@ package com.hoo.universe.application;
 
 import com.hoo.universe.api.in.dto.DeleteCategoryResult;
 import com.hoo.universe.api.in.DeleteCategoryUseCase;
-import com.hoo.universe.api.out.CommandCategoryPort;
+import com.hoo.universe.api.out.UpdateCategoryPort;
 import com.hoo.universe.api.out.QueryCategoryPort;
 import com.hoo.universe.domain.vo.Category;
 import lombok.RequiredArgsConstructor;
@@ -17,13 +17,12 @@ import java.util.UUID;
 public class DeleteCategoryService implements DeleteCategoryUseCase {
 
     private final QueryCategoryPort queryCategoryPort;
-    private final CommandCategoryPort commandCategoryPort;
+    private final UpdateCategoryPort updateCategoryPort;
 
     @Override
     public DeleteCategoryResult deleteCategory(UUID categoryID) {
-
         Category category = queryCategoryPort.findUniverseCategory(categoryID);
-        commandCategoryPort.deleteCategory(categoryID);
+        updateCategoryPort.deleteCategory(categoryID);
 
         return new DeleteCategoryResult(
                 category.getId(),

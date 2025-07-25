@@ -7,8 +7,8 @@ import com.hoo.common.internal.api.file.dto.UploadFileCommand;
 import com.hoo.common.internal.api.user.GetUserInfoAPI;
 import com.hoo.common.internal.api.user.dto.UserInfo;
 import com.hoo.universe.api.in.dto.CreateUniverseCommand;
-import com.hoo.universe.api.out.HandleUniverseEventPort;
 import com.hoo.universe.api.out.QueryCategoryPort;
+import com.hoo.universe.api.out.SaveEntityPort;
 import com.hoo.universe.application.exception.ApplicationErrorCode;
 import com.hoo.universe.domain.vo.Category;
 import com.hoo.universe.domain.vo.Owner;
@@ -27,10 +27,10 @@ class CreateUniverseServiceTest {
     IssueIDPort issueIDPort = mock();
     GetUserInfoAPI getOwnerAPI = mock();
     QueryCategoryPort queryCategoryPort = mock();
-    HandleUniverseEventPort handleUniverseEventPort = mock();
+    SaveEntityPort saveEntityPort = mock();
     UploadFileAPI uploadFileAPI = mock();
 
-    CreateUniverseService sut = new CreateUniverseService(issueIDPort, getOwnerAPI, queryCategoryPort, handleUniverseEventPort, uploadFileAPI);
+    CreateUniverseService sut = new CreateUniverseService(issueIDPort, getOwnerAPI, queryCategoryPort, saveEntityPort, uploadFileAPI);
 
     @Test
     @DisplayName("썸네일, 썸뮤직, 내부이미지 용량 초과")
@@ -70,7 +70,7 @@ class CreateUniverseServiceTest {
 
         // then
         verify(issueIDPort, times(1)).issueNewID();
-        verify(handleUniverseEventPort, times(1)).handleCreateUniverseEvent(any());
+        verify(saveEntityPort, times(1)).saveUniverse(any());
     }
 
 }

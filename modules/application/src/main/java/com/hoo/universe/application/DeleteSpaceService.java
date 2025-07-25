@@ -3,14 +3,14 @@ package com.hoo.universe.application;
 import com.hoo.common.internal.message.DeleteFileEventPublisher;
 import com.hoo.universe.api.in.dto.DeleteSpaceResult;
 import com.hoo.universe.api.in.DeleteSpaceUseCase;
-import com.hoo.universe.api.out.HandleSpaceEventPort;
+import com.hoo.universe.api.out.DeleteEntityPort;
 import com.hoo.universe.api.out.LoadUniversePort;
 import com.hoo.universe.domain.Piece.PieceID;
 import com.hoo.universe.domain.Sound.SoundID;
 import com.hoo.universe.domain.Space;
 import com.hoo.universe.domain.Space.SpaceID;
 import com.hoo.universe.domain.Universe;
-import com.hoo.universe.domain.event.space.SpaceDeleteEvent;
+import com.hoo.universe.domain.event.SpaceDeleteEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +23,7 @@ import java.util.UUID;
 public class DeleteSpaceService implements DeleteSpaceUseCase {
 
     private final LoadUniversePort loadUniversePort;
-    private final HandleSpaceEventPort handleSpaceEventPort;
+    private final DeleteEntityPort deleteEntityPort;
     private final DeleteFileEventPublisher deleteFileEventPublisher;
 
     @Override
@@ -34,7 +34,7 @@ public class DeleteSpaceService implements DeleteSpaceUseCase {
 
         SpaceDeleteEvent event = space.delete();
 
-        handleSpaceEventPort.handleSpaceDeleteEvent(event);
+        deleteEntityPort.deleteSpace(event);
         deleteFileEventPublisher.publishDeleteFilesEvent(event.deleteFileIDs());
 
         return new DeleteSpaceResult(

@@ -4,8 +4,8 @@ import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.common.internal.api.file.UploadFileAPI;
 import com.hoo.common.internal.api.file.dto.UploadFileCommand;
 import com.hoo.common.internal.message.DeleteFileEventPublisher;
-import com.hoo.universe.api.out.HandleSpaceEventPort;
 import com.hoo.universe.api.out.LoadUniversePort;
+import com.hoo.universe.api.out.UpdateSpaceStatusPort;
 import com.hoo.universe.domain.Universe;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,11 +19,11 @@ import static org.mockito.Mockito.*;
 class OverwriteSpaceFileServiceTest {
 
     LoadUniversePort loadUniversePort = mock();
-    HandleSpaceEventPort handleSpaceEventPort = mock();
+    UpdateSpaceStatusPort updateSpaceStatusPort = mock();
     UploadFileAPI uploadFileAPI = mock();
     DeleteFileEventPublisher deleteFileEventPublisher = mock();
 
-    OverwriteSpaceFileService sut = new OverwriteSpaceFileService(loadUniversePort, handleSpaceEventPort, uploadFileAPI, deleteFileEventPublisher);
+    OverwriteSpaceFileService sut = new OverwriteSpaceFileService(loadUniversePort, updateSpaceStatusPort, uploadFileAPI, deleteFileEventPublisher);
 
     @Test
     @DisplayName("스페이스 파일 덮어쓰기 서비스")
@@ -40,7 +40,7 @@ class OverwriteSpaceFileServiceTest {
         sut.overwriteSpaceFile(universeID, spaceID, background);
 
         // then
-        verify(handleSpaceEventPort, times(1)).handleSpaceFileOverwriteEvent(any());
+        verify(updateSpaceStatusPort, times(1)).updateSpaceFileOverwrite(any());
         verify(deleteFileEventPublisher, times(1)).publishDeleteFilesEvent((UUID) any());
     }
 }

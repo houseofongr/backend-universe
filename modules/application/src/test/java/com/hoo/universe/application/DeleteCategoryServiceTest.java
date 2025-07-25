@@ -1,7 +1,7 @@
 package com.hoo.universe.application;
 
 import com.github.f4b6a3.uuid.UuidCreator;
-import com.hoo.universe.api.out.CommandCategoryPort;
+import com.hoo.universe.api.out.UpdateCategoryPort;
 import com.hoo.universe.api.out.QueryCategoryPort;
 import com.hoo.universe.domain.vo.Category;
 import org.junit.jupiter.api.DisplayName;
@@ -14,7 +14,7 @@ import static org.mockito.Mockito.*;
 class DeleteCategoryServiceTest {
 
     QueryCategoryPort queryCategoryPort = mock();
-    CommandCategoryPort deleteCategoryPort = mock();
+    UpdateCategoryPort deleteCategoryPort = mock();
 
     DeleteCategoryService sut = new DeleteCategoryService(queryCategoryPort, deleteCategoryPort);
 

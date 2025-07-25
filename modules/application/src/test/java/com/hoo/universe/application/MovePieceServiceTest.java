@@ -2,7 +2,7 @@ package com.hoo.universe.application;
 
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.universe.api.in.dto.MovePieceWithTwoPointCommand;
-import com.hoo.universe.api.out.HandlePieceEventPort;
+import com.hoo.universe.api.out.UpdatePieceStatusPort;
 import com.hoo.universe.api.out.LoadUniversePort;
 import com.hoo.universe.domain.Universe;
 import org.junit.jupiter.api.DisplayName;
@@ -16,9 +16,9 @@ import static org.mockito.Mockito.*;
 class MovePieceServiceTest {
 
     LoadUniversePort loadUniversePort = mock();
-    HandlePieceEventPort handlePieceEventPort = mock();
+    UpdatePieceStatusPort updatePieceStatusPort = mock();
 
-    MovePieceService sut = new MovePieceService(loadUniversePort, handlePieceEventPort);
+    MovePieceService sut = new MovePieceService(loadUniversePort, updatePieceStatusPort);
 
     @Test
     @DisplayName("두 점으로 피스 이동 서비스")
@@ -34,6 +34,6 @@ class MovePieceServiceTest {
         sut.movePieceWithTwoPoint(universeID, pieceID, command);
 
         // then
-        verify(handlePieceEventPort, times(1)).handlePieceMoveEvent(any());
+        verify(updatePieceStatusPort, times(1)).updatePieceMove(any());
     }
 }

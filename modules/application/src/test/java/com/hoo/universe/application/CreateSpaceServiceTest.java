@@ -5,8 +5,8 @@ import com.hoo.common.IssueIDPort;
 import com.hoo.common.internal.api.file.UploadFileAPI;
 import com.hoo.common.internal.api.file.dto.UploadFileCommand;
 import com.hoo.universe.api.in.dto.CreateSpaceWithTwoPointCommand;
-import com.hoo.universe.api.out.HandleSpaceEventPort;
 import com.hoo.universe.api.out.LoadUniversePort;
+import com.hoo.universe.api.out.SaveEntityPort;
 import com.hoo.universe.application.exception.DomainErrorCode;
 import com.hoo.universe.application.exception.UniverseDomainException;
 import com.hoo.universe.domain.Universe;
@@ -24,10 +24,10 @@ class CreateSpaceServiceTest {
 
     IssueIDPort issueIDPort = mock();
     LoadUniversePort loadUniversePort = mock();
-    HandleSpaceEventPort handleSpaceEventPort = mock();
+    SaveEntityPort saveEntityPort = mock();
     UploadFileAPI uploadFileAPI = mock();
 
-    CreateSpaceService sut = new CreateSpaceService(issueIDPort, loadUniversePort, handleSpaceEventPort, uploadFileAPI);
+    CreateSpaceService sut = new CreateSpaceService(issueIDPort, loadUniversePort, saveEntityPort, uploadFileAPI);
 
     @Test
     @DisplayName("스페이스 생성 서비스")
@@ -47,7 +47,7 @@ class CreateSpaceServiceTest {
         verify(issueIDPort, times(1)).issueNewID();
         verify(loadUniversePort, times(1)).loadUniverseExceptSounds(any());
         verify(uploadFileAPI, times(1)).uploadFile(any());
-        verify(handleSpaceEventPort, times(1)).handleSpaceCreateEvent(any());
+        verify(saveEntityPort, times(1)).saveSpace(any());
 
         // 같은 위치에 두번 생성 시 실패
         assertThatThrownBy(() -> sut.createSpaceWithTwoPoint(universeID, null, command))

@@ -1,7 +1,7 @@
 package com.hoo.universe.domain;
 
-import com.hoo.universe.domain.event.piece.PieceDeleteEvent;
-import com.hoo.universe.domain.event.piece.PieceMetadataUpdateEvent;
+import com.hoo.universe.domain.event.PieceDeleteEvent;
+import com.hoo.universe.domain.event.PieceMetadataUpdateEvent;
 import org.assertj.core.data.TemporalUnitLessThanOffset;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -3,13 +3,13 @@ package com.hoo.universe.application;
 import com.hoo.universe.api.in.dto.MovePieceWithTwoPointCommand;
 import com.hoo.universe.api.in.dto.MovePieceWithTwoPointResult;
 import com.hoo.universe.api.in.MovePieceUseCase;
-import com.hoo.universe.api.out.HandlePieceEventPort;
+import com.hoo.universe.api.out.UpdatePieceStatusPort;
 import com.hoo.universe.api.out.LoadUniversePort;
 import com.hoo.universe.application.exception.DomainErrorCode;
 import com.hoo.universe.application.exception.UniverseDomainException;
 import com.hoo.universe.domain.Piece;
 import com.hoo.universe.domain.Universe;
-import com.hoo.universe.domain.event.piece.PieceMoveEvent;
+import com.hoo.universe.domain.event.PieceMoveEvent;
 import com.hoo.universe.domain.vo.Point;
 import com.hoo.universe.domain.vo.Outline;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ import java.util.UUID;
 public class MovePieceService implements MovePieceUseCase {
 
     private final LoadUniversePort loadUniversePort;
-    private final HandlePieceEventPort handlePieceEventPort;
+    private final UpdatePieceStatusPort updatePieceStatusPort;
 
     @Override
     public MovePieceWithTwoPointResult movePieceWithTwoPoint(UUID universeID, UUID pieceID, MovePieceWithTwoPointCommand command) {
@@ -37,7 +37,7 @@ public class MovePieceService implements MovePieceUseCase {
 
         if (event.overlapEvent().isOverlapped()) throw new UniverseDomainException(DomainErrorCode.OVERLAPPED);
 
-        handlePieceEventPort.handlePieceMoveEvent(event);
+        updatePieceStatusPort.updatePieceMove(event);
 
         List<Point> points = rectangle.getPoints();
         Point[] farthestPoints = rectangle.getRectangleFarthestPoints();

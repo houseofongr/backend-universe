@@ -3,13 +3,13 @@ package com.hoo.universe.application;
 import com.hoo.universe.api.in.dto.MoveSpaceWithTwoPointCommand;
 import com.hoo.universe.api.in.dto.MoveSpaceWithTwoPointResult;
 import com.hoo.universe.api.in.MoveSpaceUseCase;
-import com.hoo.universe.api.out.HandleSpaceEventPort;
 import com.hoo.universe.api.out.LoadUniversePort;
+import com.hoo.universe.api.out.UpdateSpaceStatusPort;
 import com.hoo.universe.application.exception.DomainErrorCode;
 import com.hoo.universe.application.exception.UniverseDomainException;
 import com.hoo.universe.domain.Space.SpaceID;
 import com.hoo.universe.domain.Universe;
-import com.hoo.universe.domain.event.space.SpaceMoveEvent;
+import com.hoo.universe.domain.event.SpaceMoveEvent;
 import com.hoo.universe.domain.vo.Point;
 import com.hoo.universe.domain.vo.Outline;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ import java.util.UUID;
 public class MoveSpaceService implements MoveSpaceUseCase {
 
     private final LoadUniversePort loadUniversePort;
-    private final HandleSpaceEventPort handleSpaceEventPort;
+    private final UpdateSpaceStatusPort updateSpaceStatusPort;
 
     @Override
     public MoveSpaceWithTwoPointResult moveSpaceWithTwoPoint(UUID universeID, UUID spaceID, MoveSpaceWithTwoPointCommand command) {
@@ -37,7 +37,7 @@ public class MoveSpaceService implements MoveSpaceUseCase {
 
         if (event.overlapEvent().isOverlapped()) throw new UniverseDomainException(DomainErrorCode.OVERLAPPED);
 
-        handleSpaceEventPort.handleSpaceMoveEvent(event);
+        updateSpaceStatusPort.updateSpaceMove(event);
 
         List<Point> points = rectangle.getPoints();
         Point[] farthestPoints = rectangle.getRectangleFarthestPoints();

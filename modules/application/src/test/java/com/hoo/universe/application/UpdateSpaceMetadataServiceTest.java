@@ -2,8 +2,8 @@ package com.hoo.universe.application;
 
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.universe.api.in.dto.UpdateSpaceMetadataCommand;
-import com.hoo.universe.api.out.HandleSpaceEventPort;
 import com.hoo.universe.api.out.LoadUniversePort;
+import com.hoo.universe.api.out.UpdateSpaceStatusPort;
 import com.hoo.universe.domain.Universe;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,9 +16,9 @@ import static org.mockito.Mockito.*;
 class UpdateSpaceMetadataServiceTest {
 
     LoadUniversePort loadUniversePort = mock();
-    HandleSpaceEventPort handleSpaceEventPort = mock();
+    UpdateSpaceStatusPort updateSpaceStatusPort = mock();
 
-    UpdateSpaceMetadataService sut = new UpdateSpaceMetadataService(loadUniversePort, handleSpaceEventPort);
+    UpdateSpaceMetadataService sut = new UpdateSpaceMetadataService(loadUniversePort, updateSpaceStatusPort);
 
     @Test
     @DisplayName("스페이스 상세정보 수정 서비스")
@@ -34,6 +34,6 @@ class UpdateSpaceMetadataServiceTest {
         sut.updateSpaceMetadata(universeID, spaceID, command);
 
         // then
-        verify(handleSpaceEventPort, times(1)).handleSpaceMetadataUpdateEvent(any());
+        verify(updateSpaceStatusPort, times(1)).updateSpaceMetadata(any());
     }
 }

@@ -2,7 +2,7 @@ package com.hoo.universe.application;
 
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.common.internal.message.DeleteFileEventPublisher;
-import com.hoo.universe.api.out.HandleUniverseEventPort;
+import com.hoo.universe.api.out.DeleteEntityPort;
 import com.hoo.universe.api.out.LoadUniversePort;
 import com.hoo.universe.domain.Universe;
 import org.junit.jupiter.api.DisplayName;
@@ -17,10 +17,10 @@ import static org.mockito.Mockito.*;
 class DeleteUniverseServiceTest {
 
     LoadUniversePort loadUniversePort = mock();
-    HandleUniverseEventPort handleUniverseEventPort = mock();
+    DeleteEntityPort deleteEntityPort = mock();
     DeleteFileEventPublisher deleteFileEventPublisher = mock();
 
-    DeleteUniverseService sut = new DeleteUniverseService(loadUniversePort, handleUniverseEventPort, deleteFileEventPublisher);
+    DeleteUniverseService sut = new DeleteUniverseService(loadUniversePort, deleteEntityPort, deleteFileEventPublisher);
 
     @Test
     @DisplayName("유니버스 삭제 서비스")
@@ -34,7 +34,7 @@ class DeleteUniverseServiceTest {
         sut.deleteUniverse(universeID);
 
         // then
-        verify(handleUniverseEventPort, times(1)).handleUniverseDeleteEvent(any());
+        verify(deleteEntityPort, times(1)).deleteUniverse(any());
         verify(deleteFileEventPublisher, times(1)).publishDeleteFilesEvent((List) any());
     }
 

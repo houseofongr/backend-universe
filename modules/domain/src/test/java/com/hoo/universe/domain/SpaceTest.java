@@ -2,11 +2,11 @@ package com.hoo.universe.domain;
 
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.universe.domain.Space.SpaceID;
-import com.hoo.universe.domain.event.piece.PieceCreateEvent;
-import com.hoo.universe.domain.event.space.SpaceCreateEvent;
-import com.hoo.universe.domain.event.space.SpaceDeleteEvent;
-import com.hoo.universe.domain.event.space.SpaceFileOverwriteEvent;
-import com.hoo.universe.domain.event.space.SpaceMetadataUpdateEvent;
+import com.hoo.universe.domain.event.PieceCreateEvent;
+import com.hoo.universe.domain.event.SpaceCreateEvent;
+import com.hoo.universe.domain.event.SpaceDeleteEvent;
+import com.hoo.universe.domain.event.SpaceFileOverwriteEvent;
+import com.hoo.universe.domain.event.SpaceMetadataUpdateEvent;
 import org.assertj.core.data.TemporalUnitLessThanOffset;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

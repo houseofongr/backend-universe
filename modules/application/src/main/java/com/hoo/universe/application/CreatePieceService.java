@@ -4,7 +4,7 @@ import com.hoo.common.IssueIDPort;
 import com.hoo.universe.api.in.dto.CreatePieceWithTwoPointCommand;
 import com.hoo.universe.api.in.dto.CreatePieceResult;
 import com.hoo.universe.api.in.CreatePieceUseCase;
-import com.hoo.universe.api.out.HandlePieceEventPort;
+import com.hoo.universe.api.out.SaveEntityPort;
 import com.hoo.universe.api.out.LoadUniversePort;
 import com.hoo.universe.application.exception.DomainErrorCode;
 import com.hoo.universe.application.exception.UniverseDomainException;
@@ -12,7 +12,7 @@ import com.hoo.universe.domain.Piece;
 import com.hoo.universe.domain.Piece.PieceID;
 import com.hoo.universe.domain.Space.SpaceID;
 import com.hoo.universe.domain.Universe;
-import com.hoo.universe.domain.event.piece.PieceCreateEvent;
+import com.hoo.universe.domain.event.PieceCreateEvent;
 import com.hoo.universe.domain.vo.CommonMetadata;
 import com.hoo.universe.domain.vo.PieceMetadata;
 import com.hoo.universe.domain.vo.Point;
@@ -30,11 +30,10 @@ public class CreatePieceService implements CreatePieceUseCase {
 
     private final IssueIDPort issueIDPort;
     private final LoadUniversePort loadUniversePort;
-    private final HandlePieceEventPort handlePieceEventPort;
+    private final SaveEntityPort saveEntityPort;
 
     @Override
     public CreatePieceResult createNewPieceWithTwoPoint(UUID universeID, CreatePieceWithTwoPointCommand command) {
-
         Universe universe = loadUniversePort.loadUniverseExceptSounds(universeID);
         PieceID newPieceID = new PieceID(issueIDPort.issueNewID());
 
@@ -50,7 +49,8 @@ public class CreatePieceService implements CreatePieceUseCase {
         if (event.overlapEvent().isOverlapped()) throw new UniverseDomainException(DomainErrorCode.OVERLAPPED, DomainErrorCode.OVERLAPPED.getMessage() + event.overlapEvent().renderOverlapStatus());
 
         Piece newPiece = event.newPiece();
-        handlePieceEventPort.handlePieceCreateEvent(event);
+        saveEntityPort.savePiece(newPiece);
+
         Point[] farthestPoints = newPiece.getOutline().getRectangleFarthestPoints();
 
         return new CreatePieceResult(

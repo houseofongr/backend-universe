@@ -7,8 +7,8 @@ import com.hoo.universe.api.in.dto.UpdateUniverseMetadataCommand;
 import com.hoo.universe.api.in.dto.UpdateUniverseMetadataResult;
 import com.hoo.universe.api.in.UpdateUniverseMetadataUseCase;
 import com.hoo.universe.api.out.LoadUniversePort;
-import com.hoo.universe.api.out.HandleUniverseEventPort;
 import com.hoo.universe.api.out.QueryCategoryPort;
+import com.hoo.universe.api.out.UpdateUniverseStatusPort;
 import com.hoo.universe.domain.Universe;
 import com.hoo.universe.domain.event.UniverseMetadataUpdateEvent;
 import com.hoo.universe.domain.vo.Owner;
@@ -27,11 +27,10 @@ public class UpdateUniverseMetadataService implements UpdateUniverseMetadataUseC
     private final LoadUniversePort loadUniversePort;
     private final GetUserInfoAPI getUserInfoAPI;
     private final QueryCategoryPort queryCategoryPort;
-    private final HandleUniverseEventPort handleUniverseEventPort;
+    private final UpdateUniverseStatusPort updateUniverseStatusPort;
 
     @Override
     public UpdateUniverseMetadataResult updateUniverseMetadata(UUID universeID, UpdateUniverseMetadataCommand command) {
-
         Universe universe = loadUniversePort.loadUniverseOnly(universeID);
         UserInfo userInfo = getUserInfoAPI.getUserInfo(command.ownerID());
         Owner owner = new Owner(userInfo.id(), userInfo.nickname());
@@ -39,7 +38,7 @@ public class UpdateUniverseMetadataService implements UpdateUniverseMetadataUseC
 
         UniverseMetadataUpdateEvent event = universe.updateMetadata(category, owner, command.title(), command.description(), AccessLevel.valueOf(command.accessLevel()), command.hashtags());
 
-        handleUniverseEventPort.handleUniverseMetadataUpdateEvent(event);
+        updateUniverseStatusPort.updateUniverseMetadata(event);
 
         return new UpdateUniverseMetadataResult(
                 universe.getOwner().getId(),

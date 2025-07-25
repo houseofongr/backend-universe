@@ -1,9 +1,9 @@
 package com.hoo.universe.adapter.out.persistence.entity.vo;
 
 import com.hoo.universe.domain.event.UniverseMetadataUpdateEvent;
-import com.hoo.universe.domain.event.piece.PieceMetadataUpdateEvent;
-import com.hoo.universe.domain.event.sound.SoundMetadataUpdateEvent;
-import com.hoo.universe.domain.event.space.SpaceMetadataUpdateEvent;
+import com.hoo.universe.domain.event.PieceMetadataUpdateEvent;
+import com.hoo.universe.domain.event.SoundMetadataUpdateEvent;
+import com.hoo.universe.domain.event.SpaceMetadataUpdateEvent;
 import com.hoo.universe.domain.vo.CommonMetadata;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

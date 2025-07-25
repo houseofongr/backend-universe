@@ -7,21 +7,19 @@ import com.hoo.common.internal.api.file.dto.UploadFileResult;
 import com.hoo.common.internal.message.DeleteFileEventPublisher;
 import com.hoo.universe.api.in.dto.OverwriteSoundFileResult;
 import com.hoo.universe.api.in.OverwriteSoundFileUseCase;
-import com.hoo.universe.api.out.HandleSoundEventPort;
 import com.hoo.universe.api.out.LoadUniversePort;
+import com.hoo.universe.api.out.UpdateSoundStatusPort;
 import com.hoo.universe.domain.Piece;
 import com.hoo.universe.domain.Piece.PieceID;
 import com.hoo.universe.domain.Sound;
 import com.hoo.universe.domain.Sound.SoundID;
 import com.hoo.universe.domain.Universe;
-import com.hoo.universe.domain.event.sound.SoundFileOverwriteEvent;
+import com.hoo.universe.domain.event.SoundFileOverwriteEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
-
-import static com.hoo.common.enums.Domain.UNIVERSE;
 
 @Service
 @Transactional
@@ -29,7 +27,7 @@ import static com.hoo.common.enums.Domain.UNIVERSE;
 public class OverwriteSoundFileService implements OverwriteSoundFileUseCase {
 
     private final LoadUniversePort loadUniversePort;
-    private final HandleSoundEventPort handleSoundEventPort;
+    private final UpdateSoundStatusPort updateSoundStatusPort;
     private final UploadFileAPI uploadFileAPI;
     private final DeleteFileEventPublisher deleteFileEventPublisher;
 
@@ -43,7 +41,7 @@ public class OverwriteSoundFileService implements OverwriteSoundFileUseCase {
 
         SoundFileOverwriteEvent event = sound.overwriteFile(audio.id());
 
-        handleSoundEventPort.handleSoundFileOverwriteEvent(event);
+        updateSoundStatusPort.updateSoundFileOverwrite(event);
         deleteFileEventPublisher.publishDeleteFilesEvent(event.oldAudioID());
 
         return new OverwriteSoundFileResult(audio.fileUrl());

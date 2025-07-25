@@ -19,7 +19,6 @@ public class SearchCategoryService implements SearchCategoryUseCase {
 
     @Override
     public SearchCategoryResult searchAllCategories() {
-
         List<Category> allCategories = queryCategoryPort.findAllCategories();
         return new SearchCategoryResult(allCategories);
     }

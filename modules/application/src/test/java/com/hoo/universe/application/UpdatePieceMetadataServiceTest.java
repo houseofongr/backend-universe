@@ -2,7 +2,7 @@ package com.hoo.universe.application;
 
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.universe.api.in.dto.UpdatePieceMetadataCommand;
-import com.hoo.universe.api.out.HandlePieceEventPort;
+import com.hoo.universe.api.out.UpdatePieceStatusPort;
 import com.hoo.universe.api.out.LoadUniversePort;
 import com.hoo.universe.domain.Universe;
 import org.junit.jupiter.api.DisplayName;
@@ -16,9 +16,9 @@ import static org.mockito.Mockito.*;
 class UpdatePieceMetadataServiceTest {
 
     LoadUniversePort loadUniversePort = mock();
-    HandlePieceEventPort handlePieceEventPort = mock();
+    UpdatePieceStatusPort updatePieceStatusPort = mock();
 
-    UpdatePieceMetadataService sut = new UpdatePieceMetadataService(loadUniversePort, handlePieceEventPort);
+    UpdatePieceMetadataService sut = new UpdatePieceMetadataService(loadUniversePort, updatePieceStatusPort);
 
     @Test
     @DisplayName("피스 상세정보 수정 서비스")
@@ -34,7 +34,7 @@ class UpdatePieceMetadataServiceTest {
         sut.updatePieceMetadata(universeID, pieceID, command);
 
         // then
-        verify(handlePieceEventPort, times(1)).handlePieceMetadataUpdateEvent(any());
+        verify(updatePieceStatusPort, times(1)).updatePieceMetadata(any());
     }
 
 }

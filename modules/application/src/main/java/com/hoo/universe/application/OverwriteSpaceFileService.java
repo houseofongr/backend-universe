@@ -7,12 +7,12 @@ import com.hoo.common.internal.api.file.dto.UploadFileResult;
 import com.hoo.common.internal.message.DeleteFileEventPublisher;
 import com.hoo.universe.api.in.OverwriteSpaceFileUseCase;
 import com.hoo.universe.api.in.dto.OverwriteSpaceFileResult;
-import com.hoo.universe.api.out.HandleSpaceEventPort;
 import com.hoo.universe.api.out.LoadUniversePort;
+import com.hoo.universe.api.out.UpdateSpaceStatusPort;
 import com.hoo.universe.domain.Space;
 import com.hoo.universe.domain.Space.SpaceID;
 import com.hoo.universe.domain.Universe;
-import com.hoo.universe.domain.event.space.SpaceFileOverwriteEvent;
+import com.hoo.universe.domain.event.SpaceFileOverwriteEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +25,7 @@ import java.util.UUID;
 public class OverwriteSpaceFileService implements OverwriteSpaceFileUseCase {
 
     private final LoadUniversePort loadUniversePort;
-    private final HandleSpaceEventPort handleSpaceEventPort;
+    private final UpdateSpaceStatusPort updateSpaceStatusPort;
     private final UploadFileAPI uploadFileAPI;
     private final DeleteFileEventPublisher deleteFileEventPublisher;
 
@@ -41,7 +41,7 @@ public class OverwriteSpaceFileService implements OverwriteSpaceFileUseCase {
 
         SpaceFileOverwriteEvent event = space.overwriteFile(audio.id());
 
-        handleSpaceEventPort.handleSpaceFileOverwriteEvent(event);
+        updateSpaceStatusPort.updateSpaceFileOverwrite(event);
         deleteFileEventPublisher.publishDeleteFilesEvent(event.oldInnerImageID());
 
         return new OverwriteSpaceFileResult(audio.fileUrl());

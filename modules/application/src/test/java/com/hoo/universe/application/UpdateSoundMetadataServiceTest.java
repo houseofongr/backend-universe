@@ -2,8 +2,8 @@ package com.hoo.universe.application;
 
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.universe.api.in.dto.UpdateSoundMetadataCommand;
-import com.hoo.universe.api.out.HandleSoundEventPort;
 import com.hoo.universe.api.out.LoadUniversePort;
+import com.hoo.universe.api.out.UpdateSoundStatusPort;
 import com.hoo.universe.domain.Universe;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,9 +16,9 @@ import static org.mockito.Mockito.*;
 class UpdateSoundMetadataServiceTest {
 
     LoadUniversePort loadUniversePort = mock();
-    HandleSoundEventPort handleSoundEventPort = mock();
+    UpdateSoundStatusPort updateSoundStatusPort = mock();
 
-    UpdateSoundMetadataService sut = new UpdateSoundMetadataService(loadUniversePort, handleSoundEventPort);
+    UpdateSoundMetadataService sut = new UpdateSoundMetadataService(loadUniversePort, updateSoundStatusPort);
 
     @Test
     @DisplayName("사운드 상세정보 수정 서비스")
@@ -35,7 +35,7 @@ class UpdateSoundMetadataServiceTest {
         sut.updateSoundMetadata(universeID, pieceID, soundID, command);
 
         // then
-        verify(handleSoundEventPort, times(1)).handleSoundMetadataUpdateEvent(any());
+        verify(updateSoundStatusPort, times(1)).updateSoundMetadata(any());
     }
 
 }

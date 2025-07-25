@@ -1,7 +1,7 @@
 package com.hoo.universe.adapter.out.persistence.entity.vo;
 
-import com.hoo.universe.domain.event.sound.SoundFileOverwriteEvent;
-import com.hoo.universe.domain.event.sound.SoundMetadataUpdateEvent;
+import com.hoo.universe.domain.event.SoundFileOverwriteEvent;
+import com.hoo.universe.domain.event.SoundMetadataUpdateEvent;
 import com.hoo.universe.domain.vo.SoundMetadata;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

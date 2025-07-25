@@ -2,12 +2,9 @@ package com.hoo.universe.adapter.out.persistence;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.hoo.universe.adapter.out.persistence.command.*;
 import com.hoo.universe.adapter.out.persistence.config.HibernateCustomNamingStrategy;
 import com.hoo.universe.adapter.out.persistence.config.PointDeserializer;
 import com.hoo.universe.adapter.out.persistence.config.PointSerializer;
-import com.hoo.universe.adapter.out.persistence.query.LoadUniverseAdapter;
-import com.hoo.universe.adapter.out.persistence.query.QueryUniverseAdapter;
 import com.hoo.universe.adapter.out.persistence.repository.*;
 import com.hoo.universe.domain.vo.Point;
 import org.hibernate.boot.model.naming.PhysicalNamingStrategy;
@@ -22,101 +19,46 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class PersistenceConfig {
 
     @Bean
-    QueryUniverseAdapter universePersistenceAdapter(
-            UniverseJpaRepository universeJpaRepository,
-            PieceJpaRepository pieceJpaRepository,
-            CategoryJpaRepository categoryJpaRepository,
-            UniverseMapper universeMapper
-    ) {
-        return new QueryUniverseAdapter(
-                universeJpaRepository,
-                pieceJpaRepository,
-                categoryJpaRepository,
-                universeMapper
-        );
-    }
-
-    @Bean
-    UniverseEventHandlerAdapter universeEventHandlerAdapter(
-            UniverseJpaRepository universeJpaRepository,
-            CategoryJpaRepository categoryJpaRepository,
-            TagJpaRepository tagJpaRepository
-    ) {
-        return new UniverseEventHandlerAdapter(
-                universeJpaRepository,
-                categoryJpaRepository,
-                tagJpaRepository
-        );
-
-    }
-
-    @Bean
-    LoadUniverseAdapter universeLoadAdapter(
-            UniverseJpaRepository universeJpaRepository,
-            UniverseMapper universeMapper,
-            OutlineSerializer outlineSerializer
-    ) {
-        return new LoadUniverseAdapter(
-                universeJpaRepository,
-                universeMapper,
-                outlineSerializer
-        );
-    }
-
-    @Bean
-    CommandCategoryAdapter universeCommandAdapter(
-            CategoryJpaRepository categoryJpaRepository
-    ) {
-        return new CommandCategoryAdapter(categoryJpaRepository);
-    }
-
-    @Bean
-    SpaceEventHandleAdapter spaceEventHandleAdapter(
+    JpaCommandAdapter jpaCommandAdapter(
             UniverseJpaRepository universeJpaRepository,
             SpaceJpaRepository spaceJpaRepository,
             PieceJpaRepository pieceJpaRepository,
             SoundJpaRepository soundJpaRepository,
+            CategoryJpaRepository categoryJpaRepository,
+            TagJpaRepository tagJpaRepository,
             OutlineSerializer outlineSerializer
     ) {
-        return new SpaceEventHandleAdapter(
+        return new JpaCommandAdapter(
                 universeJpaRepository,
                 spaceJpaRepository,
                 pieceJpaRepository,
                 soundJpaRepository,
+                categoryJpaRepository,
+                tagJpaRepository,
                 outlineSerializer
         );
     }
 
     @Bean
-    PieceEventHandleAdapter pieceEventHandleAdapter(
+    JpaQueryAdapter jpaQueryAdapter(
             UniverseJpaRepository universeJpaRepository,
             PieceJpaRepository pieceJpaRepository,
-            SoundJpaRepository soundJpaRepository,
+            CategoryJpaRepository categoryJpaRepository,
+            PersistenceMapper persistenceMapper,
             OutlineSerializer outlineSerializer
-
     ) {
-        return new PieceEventHandleAdapter(
+        return new JpaQueryAdapter(
                 universeJpaRepository,
                 pieceJpaRepository,
-                soundJpaRepository,
+                categoryJpaRepository,
+                persistenceMapper,
                 outlineSerializer
         );
     }
 
     @Bean
-    SoundEventHandleAdapter soundEventHandleAdapter(
-            PieceJpaRepository pieceJpaRepository,
-            SoundJpaRepository soundJpaRepository
-    ) {
-        return new SoundEventHandleAdapter(
-                pieceJpaRepository,
-                soundJpaRepository
-        );
-    }
-
-    @Bean
-    UniverseMapper universeMapper(OutlineSerializer outlineSerializer) {
-        return new UniverseMapper(outlineSerializer);
+    PersistenceMapper persistenceMapper(OutlineSerializer outlineSerializer) {
+        return new PersistenceMapper(outlineSerializer);
     }
 
     @Bean
@@ -124,8 +66,8 @@ public class PersistenceConfig {
         return new OutlineSerializer(persistenceObjectMapper);
     }
 
-    @Bean("persistenceObjectMapper")
-    ObjectMapper objectMapper() {
+    @Bean
+    ObjectMapper persistenceObjectMapper() {
 
         ObjectMapper objectMapper = new ObjectMapper();
         SimpleModule module = new SimpleModule();

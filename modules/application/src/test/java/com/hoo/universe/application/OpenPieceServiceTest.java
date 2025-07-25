@@ -3,6 +3,9 @@ package com.hoo.universe.application;
 import com.github.f4b6a3.uuid.UuidCreator;
 import com.hoo.common.web.dto.PageQueryResult;
 import com.hoo.common.web.dto.PageRequest;
+import com.hoo.universe.api.in.dto.OpenPieceCommand;
+import com.hoo.universe.api.in.dto.SearchUniverseCommand;
+import com.hoo.universe.api.out.FileUrlResolveInCase;
 import com.hoo.universe.api.out.dto.OpenPieceQueryResult;
 import com.hoo.universe.api.in.dto.OpenPieceResult;
 import com.hoo.universe.api.out.QueryUniversePort;
@@ -22,37 +25,35 @@ import static org.mockito.Mockito.*;
 class OpenPieceServiceTest {
 
     QueryUniversePort queryUniversePort = mock();
-    FileUrlResolver fileUrlResolver = mock();
+    FileUrlResolveInCase fileUrlResolveInCase = mock();
+    FileOwnerMapExtractor fileOwnerMapExtractor = mock();
+    ApplicationMapper applicationMapper = mock();
 
-    OpenPieceService sut = new OpenPieceService(queryUniversePort, fileUrlResolver);
+    OpenPieceService sut = new OpenPieceService(queryUniversePort, fileUrlResolveInCase, fileOwnerMapExtractor, applicationMapper);
 
     @Test
     @DisplayName("피스 열기 서비스")
     void openPieceService() {
         // given
-        UUID pieceID = UuidCreator.getTimeOrderedEpoch();
-        PageRequest pageRequest = defaultPageable();
+        UUID pieceId = UuidCreator.getTimeOrderedEpoch();
+        PageRequest pageRequest = mock(PageRequest.class);
+        OpenPieceQueryResult queryResult = mock(OpenPieceQueryResult.class);
+        Map<UUID, UUID> fileOwnerMap = mock(Map.class);
+        Map<UUID, URI> fileUrlMap = mock(Map.class);
 
-        Piece piece = defaultPiece().build();
-        PageQueryResult<OpenPieceQueryResult.SoundInfo> soundQueryResult = PageQueryResult.from(pageRequest, 1L,
-                List.of(new OpenPieceQueryResult.SoundInfo(
-                        UuidCreator.getTimeOrderedEpoch(),
-                        UuidCreator.getTimeOrderedEpoch(),
-                        "소리", "소리소리", false, ZonedDateTime.now().toEpochSecond(), ZonedDateTime.now().toEpochSecond()))
-        );
-
-        OpenPieceQueryResult queryResult = new OpenPieceQueryResult(UuidCreator.getTimeOrderedEpoch(), UuidCreator.getTimeOrderedEpoch(), "조각", "조각=피스", false, ZonedDateTime.now().toEpochSecond(), ZonedDateTime.now().toEpochSecond(), soundQueryResult);
-
-        Map<UUID, URI> uriMap = new HashMap<>();
-        uriMap.put(soundQueryResult.content().getLast().audioFileID(), URI.create("1"));
+        when(queryUniversePort.searchPiece(pieceId, pageRequest)).thenReturn(queryResult);
+        when(fileOwnerMapExtractor.extractFileOwnerMap(queryResult)).thenReturn(fileOwnerMap);
+        when(fileUrlResolveInCase.resolveBatch(fileOwnerMap)).thenReturn(fileUrlMap);
+        when(applicationMapper.mapToOpenPieceResult(queryResult, fileUrlMap)).thenReturn(mock(OpenPieceResult.class));
 
         // when
-        when(queryUniversePort.searchPiece(pieceID, pageRequest)).thenReturn(queryResult);
-        when(fileUrlResolver.resolveBatch(any())).thenReturn(uriMap);
-        OpenPieceResult result = sut.openPieceWithSounds(pieceID, pageRequest);
+        sut.openPieceWithSounds(pieceId, pageRequest);
 
         // then
-        assertThat(result.sounds().content().getFirst().audioFileUrl().toString()).isEqualTo("1");
+        verify(queryUniversePort, times(1)).searchPiece(pieceId, pageRequest);
+        verify(fileOwnerMapExtractor, times(1)).extractFileOwnerMap(queryResult);
+        verify(fileUrlResolveInCase, times(1)).resolveBatch(fileOwnerMap);
+        verify(applicationMapper, times(1)).mapToOpenPieceResult(queryResult, fileUrlMap);
     }
 
 }
