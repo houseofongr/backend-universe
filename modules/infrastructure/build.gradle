@@ -3,7 +3,7 @@ plugins {
 }
 
 bootJar {
-    archiveBaseName.set('universe')
+    archiveBaseName.set('hoo-universe')
     archiveVersion.set('1.0.0-SNAPSHOT')
     archiveClassifier.set('')
 }
