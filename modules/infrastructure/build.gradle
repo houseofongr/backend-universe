@@ -1,7 +1,12 @@
 plugins {
-    id 'org.springframework.boot' version '3.4.1'
+    id 'org.springframework.boot' version "${springBootVersion}"
 }
 
+bootJar {
+    archiveBaseName.set('universe')
+    archiveVersion.set('1.0.0-SNAPSHOT')
+    archiveClassifier.set('')
+}
 
 dependencies {
     implementation project(":modules:adapters:in:web")
