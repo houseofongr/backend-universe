@@ -1,7 +1,7 @@
 package com.hoo.universe.adapter.in.web.sound;
 
 import com.hoo.common.internal.api.file.dto.UploadFileCommand;
-import com.hoo.universe.adapter.in.web.RequestMapper;
+import com.hoo.universe.adapter.in.web.WebMapper;
 import com.hoo.universe.api.in.dto.OverwriteSoundFileResult;
 import com.hoo.universe.api.in.OverwriteSoundFileUseCase;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ import java.util.UUID;
 public class OverwriteSoundFileController {
 
     private final OverwriteSoundFileUseCase useCase;
-    private final RequestMapper requestMapper;
+    private final WebMapper webMapper;
 
     @PostMapping("/universes/{universeID}/pieces/{parentPieceID}/sound/{soundID}/audio")
     ResponseEntity<OverwriteSoundFileResult> update(
@@ -28,7 +28,7 @@ public class OverwriteSoundFileController {
             @PathVariable UUID soundID,
             @RequestPart(value = "audio") MultipartFile audioFile) {
 
-        UploadFileCommand.FileSource audio = requestMapper.mapToFileSource(audioFile);
+        UploadFileCommand.FileSource audio = webMapper.mapToFileSource(audioFile);
         return ResponseEntity.ok(useCase.overwriteSoundAudio(universeID, parentPieceID, soundID, audio));
     }
 }

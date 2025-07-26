@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class CreateUniverseController {
 
     private final CreateUniverseUseCase useCase;
-    private final RequestMapper requestMapper;
+    private final WebMapper webMapper;
 
     @PostMapping("/universes")
     public ResponseEntity<CreateUniverseResult> create(
@@ -27,10 +27,10 @@ public class CreateUniverseController {
     ) {
 
         CreateUniverseCommand command = new CreateUniverseCommand(
-                requestMapper.mapToCreateUniverseCommandMetadata(metadata),
-                requestMapper.mapToFileSource(thumbmusicFile),
-                requestMapper.mapToFileSource(thumbnailFile),
-                requestMapper.mapToFileSource(backgroundFile)
+                webMapper.mapToCreateUniverseCommandMetadata(metadata),
+                webMapper.mapToFileSource(thumbmusicFile),
+                webMapper.mapToFileSource(thumbnailFile),
+                webMapper.mapToFileSource(backgroundFile)
         );
 
         return new ResponseEntity<>(useCase.createNewUniverse(command), HttpStatus.CREATED);

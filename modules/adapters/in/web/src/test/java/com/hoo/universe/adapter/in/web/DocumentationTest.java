@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 
 
 @WebMvcTest
-@ContextConfiguration(classes = {WebAdapterConfig.class, WebMvcTestMockContext.class})
+@ContextConfiguration(classes = {WebConfig.class, WebMvcTestMockContext.class})
 @ExtendWith(RestDocumentationExtension.class)
 @AutoConfigureRestDocs
 @AutoConfigureMockMvc

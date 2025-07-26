@@ -1,15 +1,14 @@
-package com.hoo.universe.adapter.out.internal.api.user;
+package com.hoo.universe.adapter.out.internal.api;
 
 import com.hoo.common.internal.api.user.GetUserInfoAPI;
 import com.hoo.common.internal.api.user.dto.UserInfo;
-import com.hoo.universe.adapter.out.internal.api.InternalProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.UUID;
 
 @RequiredArgsConstructor
-public class GetUserInfoWebClientAdapter implements GetUserInfoAPI {
+public class UserWebClientAdapter implements GetUserInfoAPI {
 
     private final WebClient webClient;
     private final InternalProperties internalProperties;

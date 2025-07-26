@@ -1,7 +1,7 @@
 package com.hoo.universe.adapter.in.web.space;
 
 import com.hoo.common.internal.api.file.dto.UploadFileCommand;
-import com.hoo.universe.adapter.in.web.RequestMapper;
+import com.hoo.universe.adapter.in.web.WebMapper;
 import com.hoo.universe.api.in.dto.OverwriteSpaceFileResult;
 import com.hoo.universe.api.in.OverwriteSpaceFileUseCase;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ import java.util.UUID;
 public class OverwriteSpaceFileController {
 
     private final OverwriteSpaceFileUseCase useCase;
-    private final RequestMapper requestMapper;
+    private final WebMapper webMapper;
 
     @PostMapping("/universes/{universeID}/spaces/{spaceID}/background")
     public ResponseEntity<OverwriteSpaceFileResult> overwriteSpaceFile(
@@ -27,7 +27,7 @@ public class OverwriteSpaceFileController {
             @PathVariable UUID spaceID,
             @RequestPart(value = "background") MultipartFile backgroundFile) {
 
-        UploadFileCommand.FileSource background = requestMapper.mapToFileSource(backgroundFile);
+        UploadFileCommand.FileSource background = webMapper.mapToFileSource(backgroundFile);
         return ResponseEntity.ok(useCase.overwriteSpaceFile(universeID, spaceID, background));
     }
 }

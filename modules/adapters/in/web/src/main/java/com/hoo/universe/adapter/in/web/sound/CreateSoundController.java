@@ -1,6 +1,6 @@
 package com.hoo.universe.adapter.in.web.sound;
 
-import com.hoo.universe.adapter.in.web.RequestMapper;
+import com.hoo.universe.adapter.in.web.WebMapper;
 import com.hoo.universe.api.in.dto.CreateSoundCommand;
 import com.hoo.universe.api.in.dto.CreateSoundResult;
 import com.hoo.universe.api.in.CreateSoundUseCase;
@@ -20,7 +20,7 @@ import java.util.UUID;
 public class CreateSoundController {
 
     private final CreateSoundUseCase useCase;
-    private final RequestMapper requestMapper;
+    private final WebMapper webMapper;
 
     @PostMapping("/universes/{universeID}/pieces/{parentPieceID}/sounds")
     ResponseEntity<CreateSoundResult> create(
@@ -31,8 +31,8 @@ public class CreateSoundController {
     ) {
 
         CreateSoundCommand command = new CreateSoundCommand(
-                requestMapper.mapToCreateSoundCommandMetadata(metadata),
-                requestMapper.mapToFileSource(audioFile)
+                webMapper.mapToCreateSoundCommandMetadata(metadata),
+                webMapper.mapToFileSource(audioFile)
         );
 
         return new ResponseEntity<>(useCase.createNewSound(universeID, parentPieceID, command), HttpStatus.CREATED);

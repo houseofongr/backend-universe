@@ -1,6 +1,6 @@
 package com.hoo.universe.adapter.in.web.piece;
 
-import com.hoo.universe.adapter.in.web.RequestMapper;
+import com.hoo.universe.adapter.in.web.WebMapper;
 import com.hoo.universe.api.in.dto.CreatePieceWithTwoPointCommand;
 import com.hoo.universe.api.in.dto.CreatePieceResult;
 import com.hoo.universe.api.in.CreatePieceUseCase;
@@ -17,7 +17,7 @@ import java.util.UUID;
 public class CreatePieceController {
 
     private final CreatePieceUseCase useCase;
-    private final RequestMapper requestMapper;
+    private final WebMapper webMapper;
 
     @PostMapping("/universes/{universeID}/pieces")
     public ResponseEntity<CreatePieceResult> create(
@@ -27,8 +27,8 @@ public class CreatePieceController {
     ) {
 
         CreatePieceWithTwoPointCommand command = new CreatePieceWithTwoPointCommand(
-                requestMapper.mapToCreatePieceCommandMetadata(metadata),
-                requestMapper.mapToFileSource(imageFile));
+                webMapper.mapToCreatePieceCommandMetadata(metadata),
+                webMapper.mapToFileSource(imageFile));
 
         return new ResponseEntity<>(useCase.createNewPieceWithTwoPoint(universeID, command), HttpStatus.CREATED);
     }

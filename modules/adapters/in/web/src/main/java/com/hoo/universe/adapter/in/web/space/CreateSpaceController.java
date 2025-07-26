@@ -1,6 +1,6 @@
 package com.hoo.universe.adapter.in.web.space;
 
-import com.hoo.universe.adapter.in.web.RequestMapper;
+import com.hoo.universe.adapter.in.web.WebMapper;
 import com.hoo.universe.api.in.dto.CreateSpaceWithTwoPointCommand;
 import com.hoo.universe.api.in.dto.CreateSpaceResult;
 import com.hoo.universe.api.in.CreateSpaceUseCase;
@@ -20,7 +20,7 @@ import java.util.UUID;
 public class CreateSpaceController {
 
     private final CreateSpaceUseCase useCase;
-    private final RequestMapper requestMapper;
+    private final WebMapper webMapper;
 
     @PostMapping("/universes/{universeID}/spaces")
     public ResponseEntity<CreateSpaceResult> create(
@@ -30,8 +30,8 @@ public class CreateSpaceController {
             @RequestParam("background") MultipartFile backgroundFile) {
 
         CreateSpaceWithTwoPointCommand command = new CreateSpaceWithTwoPointCommand(
-                requestMapper.mapToCreateSpaceCommandMetadata(metadata),
-                requestMapper.mapToFileSource(backgroundFile));
+                webMapper.mapToCreateSpaceCommandMetadata(metadata),
+                webMapper.mapToFileSource(backgroundFile));
 
         return new ResponseEntity<>(useCase.createSpaceWithTwoPoint(universeID, parentSpaceID, command), HttpStatus.CREATED);
     }

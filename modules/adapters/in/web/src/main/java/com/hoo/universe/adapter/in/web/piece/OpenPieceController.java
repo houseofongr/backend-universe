@@ -1,7 +1,7 @@
 package com.hoo.universe.adapter.in.web.piece;
 
 import com.hoo.common.web.dto.PageRequest;
-import com.hoo.universe.adapter.in.web.RequestMapper;
+import com.hoo.universe.adapter.in.web.WebMapper;
 import com.hoo.universe.api.in.dto.OpenPieceResult;
 import com.hoo.universe.api.in.OpenPieceUseCase;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ import java.util.UUID;
 public class OpenPieceController {
 
     private final OpenPieceUseCase useCase;
-    private final RequestMapper requestMapper;
+    private final WebMapper webMapper;
 
     @GetMapping("/universes/pieces/{pieceID}")
     ResponseEntity<OpenPieceResult> search(
@@ -29,7 +29,7 @@ public class OpenPieceController {
             @RequestParam(required = false) Boolean isAsc
     ) {
 
-        PageRequest pageRequest = requestMapper.mapToPageable(pageable, sortType, isAsc);
+        PageRequest pageRequest = webMapper.mapToPageable(pageable, sortType, isAsc);
         return ResponseEntity.ok(useCase.openPieceWithSounds(pieceID, pageRequest));
     }
 }

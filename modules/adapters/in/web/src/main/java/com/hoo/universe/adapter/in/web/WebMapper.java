@@ -18,12 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 @RequiredArgsConstructor
-public class RequestMapper {
+public class WebMapper {
 
     private final ObjectMapper objectMapper;
 
     public UploadFileCommand.FileSource mapToFileSource(MultipartFile file) {
-
         if (file == null) return null;
 
         try {

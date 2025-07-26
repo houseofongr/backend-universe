@@ -18,14 +18,14 @@ import java.util.UUID;
 public class OverwriteUniverseFileController {
 
     private final OverwriteUniverseFileUseCase useCase;
-    private final RequestMapper requestMapper;
+    private final WebMapper webMapper;
 
     @PostMapping("/universes/{universeID}/thumbmusic")
     public ResponseEntity<OverwriteUniverseFileResult.Thumbmusic> updateThumbMusic(
             @PathVariable UUID universeID,
             @RequestPart(value = "thumbmusic") MultipartFile thumbmusicFile) {
 
-        UploadFileCommand.FileSource thumbmusic = requestMapper.mapToFileSource(thumbmusicFile);
+        UploadFileCommand.FileSource thumbmusic = webMapper.mapToFileSource(thumbmusicFile);
 
         return ResponseEntity.ok(useCase.overwriteUniverseThumbmusic(universeID, thumbmusic));
 
@@ -36,7 +36,7 @@ public class OverwriteUniverseFileController {
             @PathVariable UUID universeID,
             @RequestPart(value = "thumbnail") MultipartFile thumbnailFile) {
 
-        UploadFileCommand.FileSource thumbnail = requestMapper.mapToFileSource(thumbnailFile);
+        UploadFileCommand.FileSource thumbnail = webMapper.mapToFileSource(thumbnailFile);
 
         return ResponseEntity.ok(useCase.overwriteUniverseThumbnail(universeID, thumbnail));
     }
@@ -46,7 +46,7 @@ public class OverwriteUniverseFileController {
             @PathVariable UUID universeID,
             @RequestPart(value = "background") MultipartFile backgroundFile) {
 
-        UploadFileCommand.FileSource background = requestMapper.mapToFileSource(backgroundFile);
+        UploadFileCommand.FileSource background = webMapper.mapToFileSource(backgroundFile);
 
         return ResponseEntity.ok(useCase.overwriteUniverseBackground(universeID, background));
 

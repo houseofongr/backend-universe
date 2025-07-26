@@ -5,7 +5,7 @@ import com.hoo.common.IssueIDPort;
 
 import java.util.UUID;
 
-public class IssueUUIDAdapter implements IssueIDPort {
+public class UUIDAdapter implements IssueIDPort {
 
     @Override
     public UUID issueNewID() {

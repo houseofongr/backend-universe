@@ -19,7 +19,7 @@ import java.util.UUID;
 public class SearchUniverseController {
 
     private final SearchUniverseUseCase useCase;
-    private final RequestMapper requestMapper;
+    private final WebMapper webMapper;
 
     @GetMapping("/universes")
     public ResponseEntity<PageQueryResult<UniverseListInfo>> search(
@@ -31,7 +31,7 @@ public class SearchUniverseController {
             @RequestParam(required = false) UUID categoryID
     ) {
 
-        PageRequest pageRequest = requestMapper.mapToPageable(pageable, searchType, keyword, sortType, isAsc);
+        PageRequest pageRequest = webMapper.mapToPageable(pageable, searchType, keyword, sortType, isAsc);
         return ResponseEntity.ok(useCase.searchUniverse(new SearchUniverseCommand(pageRequest, categoryID)));
     }
 }
